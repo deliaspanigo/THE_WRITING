@@ -1,0 +1,9 @@
+## Alcances del sistema
+
+## Limitaciones actuales
+
+## Estado de desarrollo
+
+## Posibles ampliaciones futuras
+
+

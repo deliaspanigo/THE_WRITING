@@ -1,0 +1,9 @@
+---
+title: "04. Arquitectura del sistema"
+lang: es
+format:
+  pdf: default
+---
+
+{{< include chapter04_arquitectura_del_sistema_body.qmd >}}
+

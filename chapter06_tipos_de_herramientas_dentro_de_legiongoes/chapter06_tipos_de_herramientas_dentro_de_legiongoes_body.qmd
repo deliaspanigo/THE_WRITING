@@ -1,0 +1,10 @@
+# Tipos de herramientas dentro de LegionGOES
+
+## Herramientas operative
+
+## Herramientas viewer
+
+## Diferencias de enfoque
+
+## Rapidez operativa versus exploración acumulativa
+

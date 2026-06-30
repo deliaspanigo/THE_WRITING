@@ -1,0 +1,11 @@
+# Resumen {.unnumbered}
+
+[Escribir aquí el resumen de la tesis.]
+
+El resumen de una tesis de maestría debe ser un texto breve, claro y autónomo que sintetice el contenido completo del trabajo, permitiendo comprender qué problema se abordó, cuál fue el objetivo principal, qué metodología se empleó y cuáles fueron los resultados o aportes más relevantes. Debe redactarse de manera precisa y coherente, sin incluir citas bibliográficas ni referencias a secciones internas.
+
+**Palabras clave:** [completar]
+
+```{=latex}
+\clearpage
+```

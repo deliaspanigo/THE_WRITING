@@ -1,0 +1,10 @@
+# Reproducibilidad e instalación
+
+## Importancia de la reproducibilidad en ciencia
+
+## Rol del instalador de LegionGOES
+
+## Entorno computacional controlado
+
+## Portabilidad y despliegue
+

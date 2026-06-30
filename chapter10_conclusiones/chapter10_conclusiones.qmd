@@ -1,0 +1,9 @@
+---
+title: "10. Conclusiones"
+lang: es
+format:
+  pdf: default
+---
+
+{{< include chapter10_conclusiones_body.qmd >}}
+

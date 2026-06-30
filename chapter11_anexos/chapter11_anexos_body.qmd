@@ -1,0 +1,10 @@
+# Anexos
+
+## Guía de instalación
+
+## Estructura de carpetas
+
+## Productos GOES utilizados
+
+## Detalles técnicos complementarios
+

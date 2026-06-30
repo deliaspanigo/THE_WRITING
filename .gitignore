@@ -1,0 +1,29 @@
+# RStudio and R session files
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+
+# Quarto generated/cache files
+.quarto/
+_book/
+*_cache/
+*_files/
+
+# Rendered thesis outputs
+file00_thesis.pdf
+file00_thesis.tex
+chapter*/chapter*.pdf
+*.html
+file00_thesis.aux
+file00_thesis.log
+file00_thesis.out
+file00_thesis.toc
+file00_thesis.lof
+file00_thesis.lot
+
+# Temporary files
+*.tmp
+*.bak
+~$*
+Thumbs.db

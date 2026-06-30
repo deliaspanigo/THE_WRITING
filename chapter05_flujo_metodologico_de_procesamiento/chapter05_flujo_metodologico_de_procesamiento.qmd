@@ -1,0 +1,9 @@
+---
+title: "05. Flujo metodológico de procesamiento"
+lang: es
+format:
+  pdf: default
+---
+
+{{< include chapter05_flujo_metodologico_de_procesamiento_body.qmd >}}
+

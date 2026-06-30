@@ -1,0 +1,9 @@
+---
+title: "07. Aplicaciones y componentes principales"
+lang: es
+format:
+  pdf: default
+---
+
+{{< include chapter07_aplicaciones_y_componentes_principales_body.qmd >}}
+

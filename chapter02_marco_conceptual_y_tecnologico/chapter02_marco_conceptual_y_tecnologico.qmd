@@ -1,0 +1,9 @@
+---
+title: "02. Marco conceptual y tecnológico"
+lang: es
+format:
+  pdf: default
+---
+
+{{< include chapter02_marco_conceptual_y_tecnologico_body.qmd >}}
+

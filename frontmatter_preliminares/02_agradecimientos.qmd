@@ -1,0 +1,35 @@
+# Agradecimientos {.unnumbered}
+
+```{=latex}
+\begin{center}
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\includegraphics[width=3.2cm,height=2.0cm,keepaspectratio]{frontmatter_preliminares/img/flag_argentina.png}
+
+\vspace{0.5cm}
+
+\textbf{República Argentina}
+
+\vspace{0.35cm}
+
+\raggedright
+Agradecimiento total al Gran Pueblo Argentino, que ha costeado nuestros estudios de Maestría en Aplicaciones de Información Espacial.
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\includegraphics[width=3.2cm,height=2.0cm,keepaspectratio]{frontmatter_preliminares/img/flag_italia.png}
+
+\vspace{0.5cm}
+
+\textbf{Repubblica Italiana}
+
+\vspace{0.35cm}
+
+\raggedright
+Ringraziamento totale al Grande Popolo Italiano, che ha sostenuto i nostri studi di Master in Applicazioni dell'Informazione Spaziale.
+\end{minipage}
+\end{center}
+
+\clearpage
+```

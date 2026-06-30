@@ -1,0 +1,155 @@
+---
+lang: es
+format:
+  pdf:
+    documentclass: book
+    classoption:
+      - openany
+      - twoside
+    papersize: a4
+    fontsize: 12pt
+    mainfont: "TeX Gyre Termes"
+    geometry:
+      - top=2cm
+      - bottom=2cm
+      - left=3cm
+      - right=2.5cm
+    toc: false
+    toc-depth: 3
+    number-sections: true
+    top-level-division: chapter
+    colorlinks: true
+    keep-tex: true
+    include-in-header:
+      text: |
+        \setcounter{secnumdepth}{3}
+        \setcounter{tocdepth}{3}
+        \setlength{\parskip}{7.2pt}
+        \setlength{\parindent}{0cm}
+        \usepackage{setspace}
+        \usepackage{fancyhdr}
+        \setlength{\headheight}{15pt}
+        \pagestyle{fancy}
+        \renewcommand{\chaptermark}[1]{\markboth{\thechapter \: \textsc{#1}}{}}
+        \renewcommand{\sectionmark}[1]{\markboth{\thesection \: \textsc{#1}}{}}
+        \fancyhf{}
+        \fancyhead[L]{\leftmark}
+        \fancyfoot[R]{\thepage}
+        \fancypagestyle{plain}{%
+          \fancyhead{}
+          \renewcommand{\headrulewidth}{0pt}
+        }
+execute:
+  echo: false
+  warning: false
+  message: false
+resource-path:
+  - .
+  - frontmatter_caratula
+  - frontmatter_caratula/img
+  - frontmatter_preliminares
+  - frontmatter_preliminares/img
+  - chapter01_intro
+  - chapter01_intro/img
+  - chapter02_marco_conceptual_y_tecnologico
+  - chapter02_marco_conceptual_y_tecnologico/img
+  - chapter03_planteo_general_de_legiongoes
+  - chapter03_planteo_general_de_legiongoes/img
+  - chapter04_arquitectura_del_sistema
+  - chapter04_arquitectura_del_sistema/img
+  - chapter05_flujo_metodologico_de_procesamiento
+  - chapter05_flujo_metodologico_de_procesamiento/img
+  - chapter06_tipos_de_herramientas_dentro_de_legiongoes
+  - chapter06_tipos_de_herramientas_dentro_de_legiongoes/img
+  - chapter07_aplicaciones_y_componentes_principales
+  - chapter07_aplicaciones_y_componentes_principales/img
+  - chapter08_reproducibilidad_e_instalacion
+  - chapter08_reproducibilidad_e_instalacion/img
+  - chapter09_alcances_limitaciones_y_estado_actual
+  - chapter09_alcances_limitaciones_y_estado_actual/img
+  - chapter10_conclusiones
+  - chapter10_conclusiones/img
+  - chapter11_anexos
+  - chapter11_anexos/img
+---
+
+{{< include frontmatter_caratula/caratula.qmd >}}
+
+{{< include frontmatter_preliminares/01_dedicatoria.qmd >}}
+
+{{< include frontmatter_preliminares/02_agradecimientos.qmd >}}
+
+{{< include frontmatter_preliminares/03_resumen.qmd >}}
+
+{{< include frontmatter_preliminares/04_abstract.qmd >}}
+
+```{=latex}
+\begin{spacing}{1.2}
+\tableofcontents
+\end{spacing}
+\clearpage
+```
+
+
+
+{{< include chapter01_intro/chapter01_intro_body.qmd >}}
+
+```{=latex}
+\clearpage
+```
+
+{{< include chapter02_marco_conceptual_y_tecnologico/chapter02_marco_conceptual_y_tecnologico_body.qmd >}}
+
+```{=latex}
+\clearpage
+```
+
+{{< include chapter03_planteo_general_de_legiongoes/chapter03_planteo_general_de_legiongoes_body.qmd >}}
+
+```{=latex}
+\clearpage
+```
+
+{{< include chapter04_arquitectura_del_sistema/chapter04_arquitectura_del_sistema_body.qmd >}}
+
+```{=latex}
+\clearpage
+```
+
+{{< include chapter05_flujo_metodologico_de_procesamiento/chapter05_flujo_metodologico_de_procesamiento_body.qmd >}}
+
+```{=latex}
+\clearpage
+```
+
+{{< include chapter06_tipos_de_herramientas_dentro_de_legiongoes/chapter06_tipos_de_herramientas_dentro_de_legiongoes_body.qmd >}}
+
+```{=latex}
+\clearpage
+```
+
+{{< include chapter07_aplicaciones_y_componentes_principales/chapter07_aplicaciones_y_componentes_principales_body.qmd >}}
+
+```{=latex}
+\clearpage
+```
+
+{{< include chapter08_reproducibilidad_e_instalacion/chapter08_reproducibilidad_e_instalacion_body.qmd >}}
+
+```{=latex}
+\clearpage
+```
+
+{{< include chapter09_alcances_limitaciones_y_estado_actual/chapter09_alcances_limitaciones_y_estado_actual_body.qmd >}}
+
+```{=latex}
+\clearpage
+```
+
+{{< include chapter10_conclusiones/chapter10_conclusiones_body.qmd >}}
+
+```{=latex}
+\clearpage
+```
+
+{{< include chapter11_anexos/chapter11_anexos_body.qmd >}}
