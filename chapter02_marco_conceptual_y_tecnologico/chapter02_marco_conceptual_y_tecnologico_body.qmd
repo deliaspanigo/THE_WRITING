@@ -3,15 +3,16 @@
 El presente capítulo establece los conceptos generales más importantes para comprender el lugar de LegionGOES dentro del monitoreo agrometeorológico basado en imágenes satelitales. No busca desarrollar una historia completa de la agricultura, la meteorología o la teledetección, sino ordenar algunas ideas necesarias para justificar por qué un sistema como LegionGOES tiene sentido: observar procesos ambientales, construir series temporales, procesar productos satelitales y generar salidas visuales útiles para distintos usuarios.
 
 ## Agronomía, meteorología y necesidad de observar
+Vivir entre otras cosas implica alimentarse. Las formas de conocimiento enmarcadas en la agronomía y la meteorología no surgen como formas contemplativas de la naturaleza, sino que son formas sistematizadas de conocimiento utilizadas para mantener la generación de alimentos a corto, mediano y largo plazo.
 
-La relación entre agronomía, meteorología y disponibilidad de recursos naturales acompaña a las sociedades humanas desde mucho antes de la existencia de instrumentos científicos modernos. Sembrar, cosechar, almacenar alimentos, mover animales, anticipar períodos de escasez o proteger infraestructura productiva siempre dependió, de alguna manera, de observar el ambiente. Si bien la frase anterior nos lleva a la idea de agricultura al utilizar la palabra siembra, mucho antes de la agricultura e incluso mucho antes del uso de herramientas, antes del lenguaje y antes del fuego los conocimientos sobre la humedad del suelo, el comportamiento de las estaciones, la ocurrencia de lluvias, sequías, heladas, inundaciones o tormentas no fueron solamente fenómenos físicos: también fueron condiciones que afectaron la organización económica, social y territorial.
+El monitoreo de la disponibilidad de recursos naturales acompaña a las sociedades humanas desde mucho antes de la existencia de instrumentos científicos modernos. Mucho antes de la agricultura e incluso mucho antes del uso de herramientas, antes del lenguaje y antes del fuego los conocimientos ambientales existieron. El comportamiento de las estaciones, la ocurrencia de lluvias, los movimientos migratorios de los animales, las sequías, heladas, inundaciones o tormentas no fueron solamente fenómenos físicos: también fueron condiciones que afectaron la organización económica, social, territorial, política y bélica a través de la historia.
 
-En ese sentido, la agronomía y la meteorología no nacen como campos completamente separados. Ambas responden a una necesidad práctica común: comprender el ambiente para sostener la producción y reducir incertidumbre. La agronomía se ocupa de los sistemas productivos, de los cultivos, del suelo, del manejo y de la generación sostenida de alimentos, fibras y biomasa útil. La meteorología, por su parte, aporta observación y predicción de procesos atmosféricos. La relación entre ambas aparece cuando una causa atmosférica produce una consecuencia agronómica: una helada que afecta un cultivo, una sequía que reduce disponibilidad hídrica, una tormenta que modifica la logística o un foco de calor que amenaza una zona productiva.
+Intentar comprender el ambiente para sostener la producción y reducir incertidumbre es una actividad mental humana desde siempre. El modelo básico para la meteorología y la agronomía es una relación de causa-efecto en donde una causa metereológica tiene una consecuencia agronómica: una helada que afecta un cultivo, una sequía genera estress hídrico, una tormenta que la humedad del suelo y modifica la logística, o un foco de fuego puede destruir una zona productiva.
 
-Algo común también en todas las sociedades y en todos los tiempos es que este conocimiento agrometereológico fue considerado sumamente valioso. Observar la nubosidad, el comportamiento de los ríos, interpretar señales de sequía, seguir la fenología de las plantas o reconocer patrones estacionales fueron formas tempranas de producir información ambiental, son todas acciones de observación y pensamiento crítico que la humanidad realiza desde tiempos inmemoriales, solo que ahora se realiza de una manera más complicada.
+Algo común también en todas las sociedades y en todos los tiempos es que este conocimiento agrometereológico fue considerado sumamente valioso, y todas las sociedades han invertido tiempo y recursos en estas temáticas para intentar realizar monitoreos y predicciones cada vez mejor.
 
 
-Desde esta perspectiva, LegionGOES se inserta en una continuidad histórica: no inventa la necesidad de observar el ambiente, sino que propone una forma computacional contemporánea de hacerlo. Su aporte se ubica en la organización de datos satelitales geoestacionarios, la construcción de series temporales, la generación de imágenes y videos, y la producción de salidas interpretables para distintos perfiles de usuario.
+Desde esta perspectiva, esta tesis y LegionGOES se inserta en una continuidad histórica: no inventa la necesidad de observar el ambiente, sino que propone una forma computacional contemporánea de hacerlo. Su aporte se ubica en la organización de datos satelitales geoestacionarios, la construcción de series temporales, la generación de imágenes y videos, y la producción de salidas interpretables para distintos perfiles de usuario.
 
 
 
@@ -20,9 +21,25 @@ Desde esta perspectiva, LegionGOES se inserta en una continuidad histórica: no 
 
 En esta tesis, monitorear se entiende como la acción de observar, registrar, sistematizar, procesar y presentar información de manera repetida sobre un fenómeno o sistema de interés. El objetivo del monitoreo no es la contemplación pasiva del dato, sino la reducción de incertidumbre para apoyar decisiones técnicas, económicas, sociales, logísticas o institucionales.
 
-El monitoreo agrometeorológico, en particular, se entiende como el monitoreo de procesos atmosféricos y de superficie que tienen consecuencias sobre actividades agropecuarias, ecosistemas productivos o territorios vinculados a la producción. Esta definición incluye tanto variables meteorológicas directas como efectos observables en la superficie. Temperatura, nubosidad, focos de calor, tormentas eléctricas, vientos, humedad, precipitaciones o cambios abruptos en la temperatura de superficie pueden afectar cultivos, pasturas, infraestructura y decisiones operativas.
 
-Dentro del conjunto amplio de actividades meteorológicas y agroambientales posibles, esta tesis se enfoca en cuatro temáticas principales:
+Con sus ventajas y limitaciones, las imágenes satelitales constituyen una fuente de información especialmente valiosa cuando se las sistematiza y ordena de manera adecuada. Debido a que las actividades metereológicas seleccionadas requieren ventanas temporales prolongadas y cobertura espacial amplia, el uso de satélites geoestacionarios resulta particularmente oportuno. En este contexto, monitorear implica contar con secuencias temporales consistentes, mecanismos de procesamiento repetibles, entornos computacionales de trabajo y salidas de reportería interpretables para usuarios técnicos, usuarios operativos y usuarios sin formación avanzada en sistemas de información geográfica.
+
+El monitoreo agrometeorológico, en particular, se entiende como el monitoreo de procesos atmosféricos y de superficie que tienen consecuencias sobre actividades agropecuarias, ecosistemas productivos o territorios vinculados a la producción. Esta definición incluye tanto variables meteorológicas directas como efectos observables en la superficie como por ejemplo,  nubosidad, focos fuego, tormentas eléctricas, vientos, humedad, precipitaciones o cambios abruptos en la temperatura de superficie pueden afectar cultivos, pasturas, infraestructura y decisiones operativas.
+
+Si bien en la definición anterior hemos utilizado una gran cantidad de lenguaje técnico y de conceptos difíciles, a la hora de ver la reportería asociada al monitoreo agrometereológico nos encontaremos con poco o nulo detalle agrícola, y nos encontraremos inmersos en una toma de decisiones más que todo cualitativa o de tendencia general con hipótesis o afirmaciones realmente sencillas de entender incluso por alguien sin formación en estos campos:  
+- Mucha lluvia es malo para los cultivos.  
+- La sequía es mala para el cultivo.  
+- La presencia de fuego en cercanías a sectores productivos es mala para la producción.  
+- El granizo es malo para los cultivos.  
+- Espectativas de baja de producción entre un 15% y un 30%, me parece.  
+
+¿cómo es que iniciamos un intento sumamente cuantitativo utilizando las herramientas tecnológicas más avanzadas a nivel internacional y terminamos con algo sumamente cualitativo y general?
+Rta: Resumir implica perder información, y lograr decir algo respecto a grandes extensiones de tiempo, espacio y biología pues terminan en visiones generalistas del sistema. Es importante resaltar que el monitoreo agrometereológico es en primera instancia una compresión general y resumida de la realidad que debe ser portable a nivel informático en la pantalla de uan computadora o incluso de un celular. 
+
+¿Por qué se denomina monitoreo agrometereológico si finalmente el reporte tiene tal vez cero contenido agrícola?
+Rta: por que se hace incapié en que dicho reporte debe ser contemplado y entendido por un profesional agrícola para obtener finalmnente la conclusión final. El resumen máximo agrícola puede sonar simplemente a una frase que manifiesta si el conjunto metereológico afectará positiva o negativamente a la realidad agrícola. Lo que queda entonces es acotar el marco metereológico para prestar atención a lo que realmente hace falta.
+
+Dentro del conjunto amplio de actividades meteorológicas, esta tesis se enfoca en cuatro temáticas principales:
 
 - Temperatura de superficie.
 - Focos de calor y fuego.
@@ -30,8 +47,8 @@ Dentro del conjunto amplio de actividades meteorológicas y agroambientales posi
 - Tormentas eléctricas.
 
 Estas temáticas tienen en común que su análisis requiere observar la evolución del sistema durante una ventana temporal suficientemente extensa y, en muchos casos, sobre grandes superficies. Un valor aislado puede indicar un estado puntual, pero no siempre permite comprender persistencia, velocidad de cambio, desplazamiento o relación entre fenómenos. Por ello, la serie temporal es una pieza conceptual central para este trabajo.
+Como hemos mencionado anteriormente estas temáticas tendrán en su reportería cero información agrícola asociada de manera explícita y directa, y sin embargo será reportería sumamente útil para tomar contextualizar, entender y tomar decisiones.
 
-Con sus ventajas y limitaciones, las imágenes satelitales constituyen una fuente de información especialmente valiosa cuando se las sistematiza y ordena de manera adecuada. Debido a que las actividades metereológicas seleccionadas requieren ventanas temporales prolongadas y cobertura espacial amplia, el uso de satélites geoestacionarios resulta particularmente oportuno. En este contexto, monitorear implica contar con secuencias temporales consistentes, mecanismos de procesamiento repetibles, entornos computacionales de trabajo y salidas de reportería interpretables para usuarios técnicos, usuarios operativos y usuarios sin formación avanzada en sistemas de información geográfica.
 
 
 ## Satélites geoestacionarios
