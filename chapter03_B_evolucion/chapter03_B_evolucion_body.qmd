@@ -1,0 +1,38 @@
+# Ideas, contexto y evolución del diseño de LegionGOES
+
+
+
+La idea de LegionGOES como producto tuvo 3 fuentes de experiencia profesional previa.  
+- Experiencia profesional en la generaciónd e aplicaciones web R/Shiny para la automatización de análisis estadísticos y reportes automáticos, y la generación de librerías  R.  
+- Experiencia como desarrollador de procesadores de imágenes satelitales basados en Python y R que funcionaban en servidores linux.  
+- Experiencia en la MAIE con la utilización de QGIS y JupyterNotebooks para la visualización de información espacial.  
+
+
+Y hay una serie de ideas básicas que debían ser parte del diseño:  
+- Maximizar la visualización a pantalla completa (inferfaz del usuario ser más parecida a SLIDE que a QGIS).  
+- Tener una facilidad para poder ver series temporales.  
+- Dar la posibilidad de descargar los procesamientos generados y para el caso de las series temproales poder obtener archivos de video mp4.  
+- Permitir la reproducibilidad y la transparencia en cuanto al código generado en la tesis mediante el armado de librerías Python y/o R y código en GitHub.  
+
+
+El proyecto de tesis fue pensado primero como una librería Python para gestionar la descarga y procesamiento de imágenes GOES, correr en un servidor Linux y brindar salidas mediante interfaz web R/Shiny. La libraría Python sería colocada en un repositorio de GitHub y se armaría un procesador dockerizado posible de ser descargado desde DOckerHub. No se buscaba la posibilidad de que el usuario pudiera demandar procesamientos específicos al server, sino que el usuario se limitaría a ver los procesamientos preestablecidos ya ejecutados. El servidor cada tanto tiempo iniciaría la descarga y procesamiento. 
+
+Ocurre el cambaio de GOES 16 a GOES 19, lo cual tiene implicaciones inesperadas en la programación. Se decide entonces hacer lso cambios necesarios para que sea posible procesar cualquier GOES, ya sea 16, 17, 18 o 19.
+Surge entonces el nombre de Legion, por que son muchos y finalmente LegionGOES.
+
+El desarrollo del software de procesmaiento y de interfaz llevan su tiempo pero se logra al menos en un nivel básico. El problema ya no era el software sino conseguir un servidor de acceso público y que soporte el procesamiento de GOES. En resumen, no hay servidores gratuitos para brindar el servicio de análisis de imágenes satelitales y que el público lo vea sin pagar. Esta dificiltad tiene todo el sentido del mundo ya que el procesamiento satelital es muy demandante en temas de hardward y tiene costos que alguien paga después de todo. También hay temas de seguridad informática en servidores que requieren algo más que un profesional GIS con buenas intenciones. Se debe decir que existieron pruebas de versiones que corrieron exitosamente en servidores pequeños. 
+
+Algo que personalmente quise evitar desde el inicio era que el proyecto de tesis sea un proyecto más como tantos otros destinado a ser visto por vez única al momento de defender la tesis, e inmediatamente luego pasara a ser parte del conjunto de código que nunca nadie supo que existió y nadie más utilizó.
+
+Surge entonces una idea de armar un programa instalable. Eso tendría muchas ventajas ya que podría evitar la necesidad de los servidores para mostrar el procesamiento, y podría hacer la herramienta de código abierto para que cualquier persona pudiera utilizarlo en su computadora, y permitiría la idea real y directa de la reproducibilidad en ciencia y técnica. También acercaría la herramienta a cualquier usuario que desea instalarlo y probarlo. El único inconveniente era que esa no era una habilidad informática que el tesista tuviera. Se elige Windows como sistema opereativo target por el hecho que la mayoría de las computadoras tienen Windows. Luego de una serie de intentos, se logra el primer instalador, el cual no funciona de manera correcta hasta luego de muchos más intentos. 
+
+El hecho de poder tener el software instalado y poder compartirlo con otros cambió totalmente las ideas sobre lo que uno pretendía del programa y cambia también la facilidad con que otras personas puede probar el programa.
+
+Nuevas  prestaciones son agregadas al programa y comienzan otros problemas. La aplicación tenía una estructura monolítica y las librerías geoespaciales son muy pesadas tardan mucho en cargar. Al ser monolítico todas las librerías de procesamiento debían ser cargadas incluso cuando solo quisieramos visualizar elementos ya procesados. Surgen también toda una serie de errores inespeíficos que en principio fueron adjudicados al código, pero luego descubrimos se debía algunso usuarios no tenían suficiente memoria RAM para cargar todo el programa. Se decide segmentar la aplicación y pasamos de tener una sola gran aplicación shiny a tener una aplicación shiny que llama otras, de esa manera cada herramietna es cargada a demanda del usuario.
+
+Finalmente LegionGOES termina siendo el programa que es en este momento.
+Se avanzó para lograr una versión para Linux, pero por el momento esa línea de trabajo esta congelada hasta que LegionGOES tenga un poco más de maduración.
+
+
+
+

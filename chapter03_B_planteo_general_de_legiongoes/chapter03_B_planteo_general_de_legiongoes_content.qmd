@@ -1,0 +1,43 @@
+## Definición del sistema
+
+LegionGOES puede definirse como un sistema local de monitoreo, procesamiento y presentación de productos satelitales GOES, orientado a construir salidas útiles para actividades de observación, exploración y operación. No se trata solamente de una interfaz visual ni solamente de una libreria de procesamiento. Su identidad surge precisamente de la articulacion entre varios niveles: detección de archivos, descarga automatizada, organización interna de datos, procesamiento por producto, generación de salidas visuales y aplicaciones de consulta.
+
+En su estado actual, la estructura del proyecto muestra con claridad esta naturaleza mixta. El repositorio contiene un bloque de código Python para pipelines y logica de productos, un bloque de código R para aplicaciones Shiny y gestion de interfaces, recursos gráficos propios, componentes de configuración, scripts de lanzamiento y un instalador que distribuye el conjunto. En otras palabras, LegionGOES no es un programa único sino un ecosistema integrado.
+
+Este planteo responde a una necesidad concreta: transformar la disponibilidad de productos GOES en un flujo de trabajo propio, reproducible y adaptable. El objetivo no es depender por completo de herramientas externas de consulta, sino construir un entorno donde los datos puedan ser recuperados, combinados, interpretados y presentados según los requerimientos del proyecto.
+
+## Objetivos de LegionGOES
+
+El objetivo general del sistema es permitir el uso operativo y exploratorio de productos GOES de interés para el monitoreo agrometeorológico. Esta formulacion combina dos dimensiones que no siempre aparecen juntas. Por un lado, el sistema debe ser capaz de responder con rapidez ante la necesidad de generar un resultado reciente. Por otro lado, debe ofrecer herramientas más ricas para explorar acumulaciones temporales, comparar representaciones y producir salidas audiovisuales o cartograficas más complejas.
+
+Desde una perspectiva funcional, pueden reconocerse cuatro objetivos especificos. El primero es automatizar la relación con los datos de origen, es decir, localizar y descargar archivos pertinentes de la constelacion GOES. El segundo es procesar esos archivos según reglas especificas por producto y por actividad. El tercero es convertir los resultados en objetos visuales entendibles, tales como PNG, GIF o video. El cuarto es ofrecer aplicaciones donde el usuario pueda consultar, combinar y exportar estos resultados sin quedar expuesto a la complejidad completa del procesamiento interno.
+
+Estos objetivos muestran que LegionGOES no se limita a la etapa de análisis ni a la etapa de publicacion. Aspira a cubrir el recorrido completo entre dato satelital y producto utilizable.
+
+## Filosofía general de trabajo
+
+La filosofía general de LegionGOES se apoya en una idea simple: un dato satelital adquiere valor práctico cuando puede integrarse a una secuencia de trabajo estable, repetible y visualmente interpretable. Por eso, el sistema prioriza flujos completos antes que piezas aisladas. No basta con producir una imagen atractiva si no existe una logica clara para obtenerla, almacenarla, emparejarla con otros productos y volver a usarla en aplicaciones posteriores.
+
+En la implementación actual esta filosofía se observa en varios rasgos concretos. El código Python se organiza en torno a productos, actividades y acciones; el código R se organiza en torno a aplicaciones y visores; el instalador distribuye software, recursos y lanzadores; y el sistema de carpetas intenta conservar un orden entre datos crudos, datos procesados y recursos de presentación. En conjunto, estas decisiones muestran una busqueda de coherencia interna más cercana a un sistema de trabajo que a un conjunto disperso de experimentos.
+
+Otra caracteristica importante es que LegionGOES parte del supuesto de que diferentes usuarios requieren diferentes niveles de complejidad. Algunas tareas necesitan una respuesta rápida con pocos pasos intermedios. Otras requieren acumulacion temporal, cambio de proyecciones, superposición de capas y exploración más libre. Esta diferencia de usos no aparece como un conflicto, sino como una razon para disenar módulos distintos dentro del mismo ecosistema.
+
+## Series temporales como eje del sistema
+
+La nocion de serie temporal constituye uno de los ejes conceptuales más fuertes de LegionGOES. La mayor parte de las amenazas y procesos observados por el sistema no pueden interpretarse adecuadamente a partir de una sola escena. Una imagen individual puede mostrar un estado, pero no permite reconstruir la velocidad de cambio, la persistencia ni la direccion evolutiva del fenómeno. Por ello, el sistema fue pensado para trabajar no solo con cuadros aislados, sino con secuencias ordenadas en el tiempo.
+
+Esta logica temporal aparece tanto en el procesamiento como en la interfaz. En el nivel de datos, el sistema usa marcas temporales contenidas en los nombres oficiales de los archivos GOES y organiza reglas de emparejamiento por hora o por bloques de diez minutos. En el nivel de actividad, distintos productos se vinculan entre si a partir de coincidencias temporales: por ejemplo, `LSTF` puede complementarse con `MCMIPF` en la misma hora UTC, mientras que las tormentas pueden asociar una escena `MCMIPF` con archivos `GLM` del mismo bloque temporal. En el nivel de presentación, esta información se convierte en bucles, cuadros navegables, comparaciones y exportaciones audiovisuales.
+
+De esta manera, la serie temporal no es solo una forma de visualizar el resultado final. Es el principio organizador que conecta adquisición, procesamiento, emparejamiento de productos y comunicación visual.
+
+## Productos de salida: pngs, videos y otras presentaciones
+
+Uno de los rasgos distintivos de LegionGOES es que concede mucha importancia a las formas de presentación final. El sistema no se detiene en el archivo procesado como resultado ultimo, sino que busca derivar salidas graficas que puedan ser consultadas, compartidas o reutilizadas. En la estructura actual del proyecto aparecen explicitamente archivos PNG, GIF, MP4 y aplicaciones que permiten exportar capturas o paquetes de resultados.
+
+Esta orientacion tiene una justificacion metodológica. En un entorno de monitoreo, el dato procesado no siempre es el objeto más adecuado para el usuario final. Muchas veces se requiere una imagen limpia, una secuencia temporal corta, una composicion con contexto cartográfico o una capa que pueda ser inspeccionada rapidamente en una app local. Por eso, LegionGOES da tanta relevancia a formatos intermedios y finales de comunicación visual.
+
+Asimismo, la diversidad de presentaciones responde a distintos modos de lectura. Un PNG puede ser suficiente para documentar una situacion concreta. Un GIF o un video puede ser más útil para comunicar evolución temporal. Un visor interactivo permite comparar proyecciones, activar fondos, revisar capas o elegir ventanas temporales especificas. Esta multiplicidad de salidas no es un agregado superficial, sino una extensión natural del objetivo principal del sistema: convertir información satelital en productos comprensibles y útiles.
+
+En síntesis, LegionGOES se plantea como una plataforma en la que los productos GOES no son un fin en si mismos, sino el punto de partida para construir resultados interpretables, navegables y transferibles a distintos contextos de uso.
+
+

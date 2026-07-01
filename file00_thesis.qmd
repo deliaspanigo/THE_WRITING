@@ -53,8 +53,12 @@ resource-path:
   - chapter01_intro/img
   - chapter02_marco_conceptual_y_tecnologico
   - chapter02_marco_conceptual_y_tecnologico/img
-  - chapter03_planteo_general_de_legiongoes
-  - chapter03_planteo_general_de_legiongoes/img
+  - chapter03_A_estado_del_arte
+  - chapter03_A_estado_del_arte/img
+  - chapter03_B_evolucion
+  - chapter03_B_evolucion/img
+  - chapter03_C_legionGOES
+  - chapter03_C_legionGOES/img
   - chapter04_arquitectura_del_sistema
   - chapter04_arquitectura_del_sistema/img
   - chapter05_flujo_metodologico_de_procesamiento
@@ -104,7 +108,19 @@ resource-path:
 \clearpage
 ```
 
-{{< include chapter03_planteo_general_de_legiongoes/chapter03_planteo_general_de_legiongoes_body.qmd >}}
+{{< include chapter03_A_estado_del_arte/chapter03_A_estado_del_arte_body.qmd >}}
+
+```{=latex}
+\clearpage
+```
+
+{{< include chapter03_B_evolucion/chapter03_B_evolucion_body.qmd >}}
+
+```{=latex}
+\clearpage
+```
+
+{{< include chapter03_C_legionGOES/chapter03_C_legionGOES_body.qmd >}}
 
 ```{=latex}
 \clearpage

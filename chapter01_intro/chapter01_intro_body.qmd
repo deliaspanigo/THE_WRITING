@@ -8,5 +8,16 @@
 
 ## Objetivo general de la tesis
 
-## Estructura del documento
+## Descripción breve del equipo de trabajo
+Tanto el tesinista, el director, el codirector como el asesor científico somos un grupo de profesionales utilizamos la programación y la informática para tomar imágenes satitales, imágenes de drones o de otras fuentes para generar reportes, resumir información, y/o generar estadísticas en temas agrícolas, metereológicos y también para otras áreas de la ciencia y la técnica. 
+
+Fue una idea central del equipo orientar al tesista a un producto final de software GIS que resuelva de una manera interesante la posibilidad de manejar series de tiempo de imágenes GOES para temáticas de temperatura en superifice, detección de fuegos y focos de calor, nuebes y tormentas eléctricas.
+
+## Descripción breve de LegionGOES
+En forma corta y simple, LegioGOES es un programaque descarga, procesa y permite visualizar productos generados a paritr de imágenes GOES para las temáticas Temperatura en Superficie, Focos de calor, Nubes y Tormentas Eléctricas.
+
+Una definición un poco más rebuscada, LegionGOES puede definirse como un sistema local GIS que sistematiza la descarga, procesamiento y visualización de productos satelitales de la serie GOES, orientado a construir salidas y reportería útiles que permitan observación, exploración, operación y también educación teniendo como soporte un ecosistema de software basado en Python y R/Shiny.
+
+Un poco más cerca de la programación, LegiónGOES es un servidor web Shiny que corre localmente subdividido en aplicaciones Shiny independientes que utilizan internamente un conjunto de librerías de R y Python creadas específicamente para este fin.
+
 

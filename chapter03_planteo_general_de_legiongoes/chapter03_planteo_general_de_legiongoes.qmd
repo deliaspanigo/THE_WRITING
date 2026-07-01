@@ -1,9 +1,0 @@
----
-title: "03. Planteo general de LegionGOES"
-lang: es
-format:
-  pdf: default
----
-
-{{< include chapter03_planteo_general_de_legiongoes_body.qmd >}}
-

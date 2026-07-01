@@ -2,8 +2,9 @@
 
 El presente capítulo establece los conceptos generales más importantes para comprender el lugar de LegionGOES dentro del monitoreo agrometeorológico basado en imágenes satelitales. No busca desarrollar una historia completa de la agricultura, la meteorología o la teledetección, sino ordenar algunas ideas necesarias para justificar por qué un sistema como LegionGOES tiene sentido: observar procesos ambientales, construir series temporales, procesar productos satelitales y generar salidas visuales útiles para distintos usuarios.
 
+<!-- CODEX-NO-TOCAR -->
 ## Agronomía, meteorología y necesidad de observar
-Vivir entre otras cosas implica alimentarse. Las formas de conocimiento enmarcadas en la agronomía y la meteorología no surgen como formas contemplativas de la naturaleza, sino que son formas sistematizadas de conocimiento utilizadas para mantener la generación de alimentos a corto, mediano y largo plazo.
+Vivir entre otras cosas implica alimentarse. Las formas de conocimiento enmarcadas en la agronomía y la meteorología no surgen como formas contemplativas de la naturaleza, sino que son formas sistematizadas de conocimiento utilizadas para mantener la generación de alimentos a corto, mediano y largo plazo [10].
 
 El monitoreo de la disponibilidad de recursos naturales acompaña a las sociedades humanas desde mucho antes de la existencia de instrumentos científicos modernos. Mucho antes de la agricultura e incluso mucho antes del uso de herramientas, antes del lenguaje y antes del fuego los conocimientos ambientales existieron. El comportamiento de las estaciones, la ocurrencia de lluvias, los movimientos migratorios de los animales, las sequías, heladas, inundaciones o tormentas no fueron solamente fenómenos físicos: también fueron condiciones que afectaron la organización económica, social, territorial, política y bélica a través de la historia.
 
@@ -13,16 +14,15 @@ Algo común también en todas las sociedades y en todos los tiempos es que este 
 
 
 Desde esta perspectiva, esta tesis y LegionGOES se inserta en una continuidad histórica: no inventa la necesidad de observar el ambiente, sino que propone una forma computacional contemporánea de hacerlo. Su aporte se ubica en la organización de datos satelitales geoestacionarios, la construcción de series temporales, la generación de imágenes y videos, y la producción de salidas interpretables para distintos perfiles de usuario.
+<!-- /CODEX-NO-TOCAR -->
 
 
-
-
+<!-- CODEX-NO-TOCAR -->
 ## Monitoreo agrometeorológico
-
 En esta tesis, monitorear se entiende como la acción de observar, registrar, sistematizar, procesar y presentar información de manera repetida sobre un fenómeno o sistema de interés. El objetivo del monitoreo no es la contemplación pasiva del dato, sino la reducción de incertidumbre para apoyar decisiones técnicas, económicas, sociales, logísticas o institucionales.
 
 
-Con sus ventajas y limitaciones, las imágenes satelitales constituyen una fuente de información especialmente valiosa cuando se las sistematiza y ordena de manera adecuada. Debido a que las actividades metereológicas seleccionadas requieren ventanas temporales prolongadas y cobertura espacial amplia, el uso de satélites geoestacionarios resulta particularmente oportuno. En este contexto, monitorear implica contar con secuencias temporales consistentes, mecanismos de procesamiento repetibles, entornos computacionales de trabajo y salidas de reportería interpretables para usuarios técnicos, usuarios operativos y usuarios sin formación avanzada en sistemas de información geográfica.
+Con sus ventajas y limitaciones, las imágenes satelitales constituyen una fuente de información especialmente valiosa cuando se las sistematiza y ordena de manera adecuada. Debido a que las actividades metereológicas seleccionadas requieren ventanas temporales prolongadas y cobertura espacial amplia, el uso de satélites geoestacionarios resulta particularmente oportuno. En este contexto, monitorear implica contar con secuencias temporales consistentes, mecanismos de procesamiento repetibles, entornos computacionales de trabajo y salidas de reportería interpretables para usuarios técnicos, usuarios operativos y usuarios sin formación avanzada en sistemas de información geográfica [10].
 
 El monitoreo agrometeorológico, en particular, se entiende como el monitoreo de procesos atmosféricos y de superficie que tienen consecuencias sobre actividades agropecuarias, ecosistemas productivos o territorios vinculados a la producción. Esta definición incluye tanto variables meteorológicas directas como efectos observables en la superficie como por ejemplo,  nubosidad, focos fuego, tormentas eléctricas, vientos, humedad, precipitaciones o cambios abruptos en la temperatura de superficie pueden afectar cultivos, pasturas, infraestructura y decisiones operativas.
 
@@ -34,12 +34,16 @@ Si bien en la definición anterior hemos utilizado una gran cantidad de lenguaje
 - Espectativas de baja de producción entre un 15% y un 30%, me parece.  
 
 ¿cómo es que iniciamos un intento sumamente cuantitativo utilizando las herramientas tecnológicas más avanzadas a nivel internacional y terminamos con algo sumamente cualitativo y general?
-Rta: Resumir implica perder información, y lograr decir algo respecto a grandes extensiones de tiempo, espacio y biología pues terminan en visiones generalistas del sistema. Es importante resaltar que el monitoreo agrometereológico es en primera instancia una compresión general y resumida de la realidad que debe ser portable a nivel informático en la pantalla de uan computadora o incluso de un celular. 
+Rta: Resumir implica perder información, y lograr decir algo respecto a grandes extensiones de tiempo, espacio y biología pues terminan en visiones generalistas del sistema. Es importante resaltar que el monitoreo agrometereológico es en primera instancia una compresión general y resumida de la realidad que debe ser portable a nivel informático en la pantalla de uan computadora o incluso de un celular. No debe uno pensar en que se debe a que aún no existe la tecnología suficiente.
 
 ¿Por qué se denomina monitoreo agrometereológico si finalmente el reporte tiene tal vez cero contenido agrícola?
 Rta: por que se hace incapié en que dicho reporte debe ser contemplado y entendido por un profesional agrícola para obtener finalmnente la conclusión final. El resumen máximo agrícola puede sonar simplemente a una frase que manifiesta si el conjunto metereológico afectará positiva o negativamente a la realidad agrícola. Lo que queda entonces es acotar el marco metereológico para prestar atención a lo que realmente hace falta.
+<!-- /CODEX-NO-TOCAR -->
 
-Dentro del conjunto amplio de actividades meteorológicas, esta tesis se enfoca en cuatro temáticas principales:
+
+<!-- CODEX-NO-TOCAR -->
+## Actividades Metereológicas seleccionadas
+Hablamos ya de la necesidad de acotar el marco metereológico. Ahora detallaremos los límites. Dentro del conjunto amplio de actividades meteorológicas, esta tesis se enfoca en cuatro temáticas principales:
 
 - Temperatura de superficie.
 - Focos de calor y fuego.
@@ -49,10 +53,12 @@ Dentro del conjunto amplio de actividades meteorológicas, esta tesis se enfoca 
 Estas temáticas tienen en común que su análisis requiere observar la evolución del sistema durante una ventana temporal suficientemente extensa y, en muchos casos, sobre grandes superficies. Un valor aislado puede indicar un estado puntual, pero no siempre permite comprender persistencia, velocidad de cambio, desplazamiento o relación entre fenómenos. Por ello, la serie temporal es una pieza conceptual central para este trabajo.
 Como hemos mencionado anteriormente estas temáticas tendrán en su reportería cero información agrícola asociada de manera explícita y directa, y sin embargo será reportería sumamente útil para tomar contextualizar, entender y tomar decisiones.
 
+En algunos contextos la contextualización del día y la noche y de algunos efectos generados por la geometría de adquisición serán parte de la reportería. Si uno es estricto estos conceptos no son meteorología sino astronomía, pero son para no complicar más los conceptos y tener que usar algo como monitore agroastrometereológico, simplemente diremos que son parte del mismo pack de monitoreo.
+<!-- /CODEX-NO-TOCAR -->
 
 
+<!-- CODEX-NO-TOCAR -->
 ## Satélites geoestacionarios
-
 Los satélites geoestacionarios ocupan una posición especialmente valiosa para este tipo de monitoreo porque observan de manera continua una misma región de la Tierra desde una órbita sincronizada con la rotación terrestre. Según la descripción oficial del programa GOES-R, esta configuración permite que el satélite permanezca en una posición fija respecto de un punto de la superficie y observe continuamente el hemisferio occidental desde aproximadamente 22.300 millas de altura, equivalentes a unos 35.900 km [1].
 
 Esta continuidad temporal representa una ventaja central frente a estrategias basadas solo en observaciones esporádicas o coberturas discontinuas. En el caso de procesos que ocurren en la superficie terrestre o en la atmósfera y que involucran ventanas espaciales o temporales amplias, la frecuencia de adquisición y la posibilidad de seguir la evolución de un mismo sistema nuboso, una misma región con focos de calor o una misma secuencia de descargas eléctricas constituyen componentes estructurales del análisis. La utilidad del dato geoestacionario no reside únicamente en una imagen aislada, sino en la capacidad de construir series temporales coherentes.
@@ -64,7 +70,11 @@ En cambio, un satélite geoestacionario permite contextualizar cada escena dentr
 También debe señalarse una limitación importante: lo que los satélites geoestacionarios ganan en cobertura temporal y espacial lo pierden, en general, en detalle espacial respecto de sensores de órbita polar de alta resolución. La documentación del ABI de la serie GOES-R indica resoluciones espaciales de 0,5 a 2 km para sus modos principales de observación [9], mientras que Landsat 8 alcanza resoluciones multiespectrales de 30 m y pancromáticas de 15 m [7], y Sentinel-2 alcanza resoluciones de hasta 10 m [8]. Esta diferencia responde a la geometría de adquisición, la distancia orbital y el objetivo operacional de cada sistema.
 
 Dentro de los sistemas geoestacionarios recientes, la serie GOES-R ocupa un lugar central. NOAA describe esta generación como su flota más avanzada de satélites meteorológicos geoestacionarios y destaca que la misión integra imágenes visibles e infrarrojas, mapeo total de rayos y productos para atmósfera, océanos y superficie [1]. Además, el instrumento ABI ofrece 16 bandas espectrales, mejora la resolución espacial y temporal respecto de generaciones previas, y permite distintos modos de escaneo, incluyendo disco completo, dominios continentales y dominios de mesoescala [9]. Esta base instrumental hace posible desarrollar aplicaciones dedicadas a variables y fenómenos de interés agroambiental.
+<!-- /CODEX-NO-TOCAR -->
 
+
+
+<!-- CODEX-NO-TOCAR -->
 ## GOES y productos utilizados
 
 La tesis se apoya en productos de la serie GOES-R vinculados a cuatro familias funcionales del sistema LegionGOES. La primera corresponde a `ABI-L2-LSTF`, producto ráster orientado a temperatura de superficie terrestre. La segunda es `ABI-L2-FDCF`, producto ráster asociado a detección y caracterización de focos de calor. La tercera es `ABI-L2-MCMIPF`, producto ráster multicanal utilizado como contexto para nubes y composiciones visuales. La cuarta es `GLM-L2-LCFA`, producto vectorial o tabular vinculado al mapeo de actividad eléctrica.
@@ -122,28 +132,11 @@ El producto `GLM-L2-LCFA` corresponde a detección de actividad eléctrica media
 El archivo `GLM-L2-LCFA` no contiene dimensiones `x` e `y`, sino dimensiones como `number_of_events`, `number_of_groups` y `number_of_flashes`. En el flujo de trabajo de LegionGOES se lo trata como un producto de eventos, grupos y flashes, con variables como `event_lat`, `event_lon`, `flash_lat` y `flash_lon`, y una ventana temporal de 20 segundos. Esta diferencia estructural es relevante porque obliga a un tratamiento metodológico distinto: mientras los productos ABI pueden representarse como imágenes ráster, GLM requiere acumulación temporal, filtrado espacial y conversión a capas de puntos, densidades o trayectorias de actividad eléctrica.
 
 Para el componente de tormentas severas, el Geostationary Lightning Mapper resulta igualmente relevante. La página oficial del instrumento lo define como el primer mapeador operacional de rayos en órbita geoestacionaria y remarca que mide actividad eléctrica total, incluyendo descargas intranube, nube-nube y nube-tierra, de manera continua sobre las Américas y océanos adyacentes [2]. Esta capacidad es especialmente útil cuando el interés no se limita a visualizar rayos aislados, sino a seguir tendencias temporales de electrificación asociadas a tormentas intensas.
+<!-- /CODEX-NO-TOCAR -->
 
-## Ritmos de monitoreo: urgencia y exploración
 
-Una forma útil de ordenar las herramientas de LegionGOES es distinguir entre dos ritmos de monitoreo. El primero está asociado a la urgencia: observar lo que ocurre ahora, o en los minutos inmediatamente anteriores, y producir una salida visual en el menor tiempo posible. El segundo corresponde a la exploración: revisar ventanas temporales más largas, comparar alternativas de visualización, acumular información y construir productos más elaborados.
 
-Para la primera dimensión, la urgencia, puede tomarse de manera práctica una ventana cercana a 10 minutos. En ese escenario, la prioridad no es analizar un año completo de imágenes ni probar múltiples sistemas de referencia, sino descargar, procesar y visualizar rápidamente un producto mínimo pero útil. Puede ser conveniente priorizar un único sistema de referencia de coordenadas, una escala de colores y una salida visual directa.
 
-Cuando el análisis ya no es urgente, es posible dedicar más tiempo a procesar variantes, comparar sistemas de referencia, generar estadísticas, construir animaciones, producir reportes o contextualizar la información con capas auxiliares. En ese caso, el objetivo no es solo responder rápido, sino explorar con mayor profundidad. Esta diferencia entre respuesta operativa y exploración acumulativa ayuda a entender la separación conceptual entre herramientas de tipo *operative* y herramientas de tipo *viewer* dentro de LegionGOES.
-
-## Otros visualizadores de imágenes GOES
-
-En la actualidad existen plataformas de consulta en línea que muestran muy bien el valor del dato GOES como secuencia temporal e interfaz visual. Un ejemplo importante es `SLIDER`, desarrollado por CIRA en asociación con RAMMB/NOAA, que se presenta como un explorador interactivo de bucles satelitales en tiempo real y ofrece productos de imaginería GOES en resolución completa para la comunidad científica y el público general [10]. Este tipo de sistema demuestra la utilidad de las visualizaciones dinámicas y de la exploración cuadro a cuadro.
-
-Este servicio en línea fue una inspiración inicial para el concepto de LegionGOES. SLIDER es, por muchas razones, un visualizador excelente, pero no cubre todas las necesidades abordadas en esta tesis. Por ejemplo, LegionGOES busca trabajar con diferentes sistemas de proyección, procesar archivos locales, generar salidas descargables y organizar productos según actividades específicas como temperatura, fuego, nubes y tormentas eléctricas. En ese sentido, SLIDER funciona como una herramienta generalista muy valiosa, mientras que LegionGOES se plantea como un entorno de procesamiento, visualización y reportería orientado a flujos de trabajo específicos.
-
-QGIS representa otro tipo de herramienta relevante dentro del ecosistema de visualización geoespacial. A diferencia de los visualizadores web orientados a la consulta rápida, QGIS funciona como un sistema de información geográfica de escritorio que permite integrar capas ráster y vectoriales, revisar archivos locales, combinar productos con cartografía auxiliar y construir análisis espaciales más controlados por el usuario [11]. En ese sentido, puede ser utilizado para explorar productos derivados de GOES, especialmente cuando los archivos han sido previamente transformados a formatos geoespaciales más habituales, como GeoTIFF.
-
-Sin embargo, el uso directo de productos GOES en formato `NetCDF` dentro de QGIS puede requerir pasos adicionales. Muchos productos de la serie GOES se distribuyen con variables internas, metadatos específicos, factores de escala y una geometría de adquisición geoestacionaria que no siempre se interpreta de manera inmediata como una imagen lista para análisis. Por esta razón, para construir series temporales de variables como temperatura de superficie, focos de calor, nubosidad o actividad eléctrica, suele ser conveniente realizar una etapa previa de extracción, reproyección, normalización y ordenamiento temporal.
-
-En una etapa complementaria, los Jupyter notebooks pueden ocupar un lugar útil dentro del flujo metodológico de trabajo. Mientras que LegionGOES busca transformar procedimientos repetibles en herramientas operativas y visualizadores más accesibles, los notebooks permiten documentar pruebas, explorar variables de un archivo `NetCDF`, inspeccionar dimensiones, revisar metadatos y ensayar pasos de procesamiento antes de incorporarlos a una aplicación estable [12]. Esta forma de trabajo resulta especialmente valiosa en productos satelitales complejos, donde muchas decisiones técnicas dependen de observar directamente el contenido del archivo y no solo de leer su nombre o su descripción general.
-
-Desde el punto de vista de la tesis, los notebooks no reemplazan al software final, pero pueden funcionar como registro intermedio entre la experimentación y la implementación. En ellos es posible combinar código, texto explicativo, salidas gráficas y resultados parciales, lo que facilita reconstruir por qué se tomó una decisión de procesamiento o cómo se interpretó una variable determinada. En ese sentido, los notebooks aportan trazabilidad metodológica, mientras que LegionGOES aporta empaquetamiento, operación repetible e interfaz de usuario.
 
 ## Referencias del capítulo
 
@@ -156,6 +149,5 @@ Desde el punto de vista de la tesis, los notebooks no reemplazan al software fin
 7. U.S. Geological Survey. [Landsat 8](https://www.usgs.gov/landsat-missions/landsat-8).
 8. European Space Agency. [Sentinel-2](https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-2).
 9. GOES-R Series. [Instruments: Advanced Baseline Imager (ABI)](https://www.goes-r.gov/spacesegment/abi.html).
-10. CIRA/RAMMB. [SLIDER: Satellite Loop Interactive Data Explorer in Real-time](https://slider.cira.colostate.edu/).
-11. QGIS Documentation. [Raster Properties Dialog](https://docs.qgis.org/3.44/en/docs/user_manual/working_with_raster/raster_properties.html).
-12. Project Jupyter. [Project Jupyter](https://jupyter.org/).
+10. FAO. [GIEWS Earth Observation](https://www.fao.org/giews/earthobservation/).
+11. NSF Unidata. [NetCDF](https://www.unidata.ucar.edu/software/netcdf/).
