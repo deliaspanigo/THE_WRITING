@@ -2,22 +2,35 @@
 
 ## Contexto general
 
-## Problema
+
 
 ## Motivación
+La observación de la Tierra es una temática en la que se encuentran los elementos tecnológicos del más alto nivel a nivel global, y un gran marco interdisciplinario y en la actualidad se encuentra lejos de alcanzar sus límites y existe una demanda constante por más profesionales y por más tecnología en todos los países del mundo.
 
-## Objetivo general de la tesis
+En cuanto al desarrollo de software existen en la actualidad diferentes plataformas online y de uso local que intentan satisfacer las necesidades tanto del sector público como el privado. Las necesidades de los profesionales GIS es mucho mayor que las prestaciones encontradas hoy en día por las herramientas informáticas disponibles ya sean de libre acceso o pagas. No deebe confundirse esto como un escaso esfuerzo en el área informática del sector privado o público, sino que las necesidades no logran ser satisfechas aún con la presencia de grandes grupos corporativos y la ciencia generada por las universidades.
 
-## Descripción breve del equipo de trabajo
-Tanto el tesinista, el director, el codirector como el asesor científico somos un grupo de profesionales utilizamos la programación y la informática para tomar imágenes satitales, imágenes de drones o de otras fuentes para generar reportes, resumir información, y/o generar estadísticas en temas agrícolas, metereológicos y también para otras áreas de la ciencia y la técnica. 
+Lso profesionales GIS en los últimos años se ha volcado hacia la programación para poder desarrollar de manera artesanal una solución a medida de sus necesidades, y si bien se han visto desarrollos de plataformas online. Sin embargo es llamativo como hace un tiempo que no se vé un nuevo software libre que permita el procesamiento de imágenes satelitales de manera local.
 
-Fue una idea central del equipo orientar al tesista a un producto final de software GIS que resuelva de una manera interesante la posibilidad de manejar series de tiempo de imágenes GOES para temáticas de temperatura en superifice, detección de fuegos y focos de calor, nuebes y tormentas eléctricas.
+Ser no solo consumidores de software sino ser programadores es una buena instancia de aprendizaje profesional y es un camino que permite conseguir muchas soluciones. Ahora bien, pasar de consumidor a ser generador de software es una instancia que no solo nos permite mostrarnos a nosotros mismos como profesionales de calidad, sino que permite acercar la tecnología GIS a más profesionales que pueden ahora con nuestras herramientas empujar los límites un poco más lejos. 
+
+
+
+
+
+## Objetivo de la tesis
+El objetivo principal de esta tesis es desarrollar y poner operativas un conjunto de herramientas para el monitoreo agrometeorológico mediante el uso de satélites geoestacionarios.
+Para lograr este propósito, se plantean los siguientes objetivos específicos:  
+- Crear  un  ambiente  computacional  propicio  y  sólido  para  el  procesamiento  y  visualización  de datos de satélite Geoestacionario.  
+- Generar  herramientas  de  visualización  de  los  productos  modernas,  intuitivas  y  útiles  para  los usuarios.  
+- Generar visualizaciones específicas para series de tiempo.  
+- Permitir el libre acceso al software generado.
+
 
 ## Descripción breve de LegionGOES
 En forma corta y simple, LegioGOES es un programaque descarga, procesa y permite visualizar productos generados a paritr de imágenes GOES para las temáticas Temperatura en Superficie, Focos de calor, Nubes y Tormentas Eléctricas.
 
 Una definición un poco más rebuscada, LegionGOES puede definirse como un sistema local GIS que sistematiza la descarga, procesamiento y visualización de productos satelitales de la serie GOES, orientado a construir salidas y reportería útiles que permitan observación, exploración, operación y también educación teniendo como soporte un ecosistema de software basado en Python y R/Shiny.
 
-Un poco más cerca de la programación, LegiónGOES es un servidor web Shiny que corre localmente subdividido en aplicaciones Shiny independientes que utilizan internamente un conjunto de librerías de R y Python creadas específicamente para este fin.
+Un poco más cerca de la programación, LegiónGOES es un servidor web Shiny que corre localmente subdividido en aplicaciones Shiny independientes que utilizan internamente un conjunto de librerías de R y Python creadas específicamente para la descarga, procesamiento y visualización de imágenes GOES. Por el momento solo está disponible para Windows.
 
 
