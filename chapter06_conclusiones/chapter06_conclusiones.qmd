@@ -1,0 +1,9 @@
+---
+title: "06. Conclusiones"
+lang: es
+format:
+  pdf: default
+---
+
+{{< include chapter06_conclusiones_body.qmd >}}
+

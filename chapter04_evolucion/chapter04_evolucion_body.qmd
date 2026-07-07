@@ -1,0 +1,37 @@
+# Ideas, contexto y evolución del diseño de LegionGOES
+
+El proyecto de tesis fue pensado primero como una librería Python para gestionar la descarga y procesamiento de imágenes GOES 16 para una serie de temáticas meteorológicas, correr en un servidor Linux y brindar salidas mediante interfaz web R/Shiny. La libraría Python sería colocada en un repositorio de GitHub y se armaría un procesador dockerizado posible de ser descargado desde DOckerHub. No se buscaba la posibilidad de que el usuario pudiera demandar procesamientos específicos al server, sino que el usuario se limitaría a ver los procesamientos preestablecidos ya ejecutados. El servidor cada tanto tiempo iniciaría la descarga y procesamiento. 
+
+El diseño de la interfaz del usuario debía cumplir una serie de ideas básicas:  
+- Maximizar la visualización a pantalla completa (inferfaz del usuario ser más parecida a SLIDE que a QGIS).  
+- Tener una facilidad para poder ver series temporales.  
+- Dar la posibilidad de descargar los procesamientos generados y para el caso de las series temproales poder obtener archivos de video mp4.  
+- Permitir la reproducibilidad y la transparencia en cuanto al código generado en la tesis mediante el armado de librerías Python y/o R y código en GitHub, y la generación de un procesdor en DockerHub listo para producción.
+- Dar al usuario un entorno ordenado por temática metereológica y no por temática informática.
+
+Al momento de plantear esta idea yo ya contaba con experiencia profesional en todos los aspectos informáticos del proyecto y ninguna experiencia metereológica. El código general tendría sus dificultades pero son códigos y temáticas ampliamente utilizadas desde hace años. La novedad no estaría en el procesamiento de las imágenes, sino en la inferfaz y en la experiencia del usuario.
+
+
+Ocurre el cambio de GOES 16 a GOES 19, lo cual tiene implicaciones inesperadas en la programación. Se decide entonces hacer los cambios necesarios para que sea posible procesar ya no solo GOES 16 y 19, sino cualquier GOES. El proyecto incluye ahora la posibilidad de trabajar con la serie completa, ya sea 16, 17, 18 o 19.
+Surge entonces el nombre de Legion, por que son muchos GOES y finalmente LegionGOES.
+
+El desarrollo del software de procesmaiento y de interfaz llevan su tiempo y muchos experimentos pero se logra una versión ya suceptible de ser colocada en un servidor. Ese inconveniente no pudo ser resuelto. No hay servidor para probar a LegioNGOES. En resumen, no hay servidores disponibles para brindar el servicio de análisis de imágenes satelitales y que el público lo vea sin pagar. Esta dificiltad tiene todo el sentido del mundo ya que el procesamiento satelital es muy demandante en temas de hardward y tiene costos que alguien paga después de todo. También hay temas de seguridad informática en servidores que requieren algo más que un profesional GIS con buenas intenciones. Se debe decir que existieron pruebas de versiones que corrieron exitosamente en servidores pequeños. 
+
+Surge entonces una idea de armar un programa instalable. Eso tendría muchas ventajas ya que podría evitar la necesidad de los servidores para mostrar el procesamiento y permitiría la idea real y directa de la reproducibilidad en ciencia y técnica. No se pensó antes esta idea por que no era una habilidad informática que yo tuviera al momento de armar el proyecto. En general uno escucha y ve desarrollos de procesadores, de herramientas online, una herramienta de visualización para Google Earth Engine por ejemplo, pero no se escucha de crear instaladores nuevos. El instalador no era algo que había tenido en cuenta nunca. Se elige Windows como sistema opereativo target por el hecho que la mayoría de las los usuarios utilizan Windows, y se decide generar todo en inglés alcanzar más público y también para evitar todos problemas de encoding.
+
+Definidos estos aspectos dejo de lado el proyecto de tesis para hacer experiemntos con algo más pequeño. Era necesario un proyecto piloto que tuviera R/Shiny pero que sea mucho más sencillo. Después de muchos intentos se tiene un instalador para el proyecto piloto. Con ese primer experimento exitoso de la prueba piloto comienzo ha realizar cambios en LegionGOES para poder llevarlo hacia un instalador. El proyecto sufre muchos cambios que no tocan el core de procesamiento python sino a todo lo referido a R/Shiny. Después de muchos intentos, se tiene la primera versión instalable de LegionGOES. 
+
+Desde ese momento el software es compartido con un grupo de voluntarios testing. El instalador cambió totalmente las ideas sobre lo que uno pretendía del programa, cambia también la facilidad con que otras personas puede probar el programa y genera ahora toda una neuva instancia de errores y un gran delay entre la generación de una versión del software y la siguiente.
+
+Muchos cambios ocurren en la estructura de LegionGOEs que no tienen que ver con lo satelital y ahora tampoco con la interfaz del usuario, sino toda una nueva temática  informática como minimizar el tiempo de carga de todas las herramientas, funciones de control para verificar la existencia de ciertos componentes, pasar de una estructura monolítica a una estructura dividida en módulos y armar de mejor en librerías los componentees de R y Python.
+
+Algunos usuarios manifiestan errores inespecíficos durante el uso del programa. En principio los errores fueron adjudicados a problemas en el código, pero luego de muchos intentos de corrección descubrimos que son errores debido a que no tenían suficiente memoria RAM para cargar todo el programa. Se decide segmentar la aplicación y pasamos de tener una sola gran aplicación shiny a tener una aplicación shiny que llama otras, de esa manera cada herramietna es cargada a demanda del usuario. Todas las pruebas implican testing manual desde la instalación hasta el uso de todas las herramientas, lo cual requiere muchísimo tiempo. Los cambios a nuevas versiones al principio ocurrían tal vez en un mismo día. En esta instancia pasan a ocurrir cada 1 o 2 semanas.
+
+
+Finalmente LegionGOES termina siendo el programa que es en este momento.
+
+
+Quiero cerrar este capítulo con el siguiente comentario el cual lo dejo explícitamente con la idea de que no se generen falsas espectativas en futuras generaciones de tesistas y de ninguna manera promover imponer sobre ellos tareas titánicas imposibles de realizar. LegionGOES no fue pensado y armado en 6 meses que es el tiempo reglamentado. La cantidad de horas destinada al proyecto fue muy superior a las estipuladas, y eso fue una decisión personal y un riesgo que decidí tomar. Convergen en mi un conjunto de habilidades y experiencias profesioanles que me permitieron llevar a cabo este proyecto siendo un solo programador. Considero también que mi equipo de trabajo en cuanto a mi director, codirector y asesor científico fue en todo momento excelente, oportuno y realista y esa es una suerte que muchos tesistas no tienen.
+
+El grupo de testing que estuvo desde el inicio aceleró considerablemente el crecimiento de LegionGOES. Son un grupo de personas que también destinaron una cantidad de tiempo considerable.
+

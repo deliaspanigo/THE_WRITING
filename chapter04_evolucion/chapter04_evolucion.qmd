@@ -1,0 +1,8 @@
+---
+title: "04. Evolución del diseño de LegionGOES"
+lang: es
+format:
+  pdf: default
+---
+
+{{< include chapter04_evolucion_body.qmd >}}

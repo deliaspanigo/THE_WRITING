@@ -1,8 +1,0 @@
----
-title: "03C. LegionGOES"
-lang: es
-format:
-  pdf: default
----
-
-{{< include chapter03_C_legionGOES_body.qmd >}}

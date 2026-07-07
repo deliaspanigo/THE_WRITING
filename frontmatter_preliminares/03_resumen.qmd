@@ -1,10 +1,12 @@
 # Resumen {.unnumbered}
 
-[Escribir aquí el resumen de la tesis.]
+Los eventos agrometeorológicos dinámicos, como heladas, focos de calor, nubosidad convectiva y tormentas eléctricas, requieren herramientas capaces de observar grandes extensiones espaciales con alta frecuencia temporal. La serie GOES-R ofrece productos satelitales geoestacionarios adecuados para este tipo de monitoreo, pero su uso operativo exige resolver problemas de descarga, organización temporal, archivos digitales en diferentes formatos, procesamiento, visualización, generación de productos derivados y reproducibilidad computacional. Esta tesis presenta el desarrollo de LegionGOES, un sistema local para Windows orientado a la descarga, procesamiento, visualización y presentación de productos GOES aplicados al monitoreo agrometeorológico.
 
-El resumen de una tesis de maestría debe ser un texto breve, claro y autónomo que sintetice el contenido completo del trabajo, permitiendo comprender qué problema se abordó, cuál fue el objetivo principal, qué metodología se empleó y cuáles fueron los resultados o aportes más relevantes. Debe redactarse de manera precisa y coherente, sin incluir citas bibliográficas ni referencias a secciones internas.
+LegionGOES integra rutinas en Python para la gestión de archivos y procesamiento de productos satelitales, aplicaciones R/Shiny para la interacción con el usuario, recursos gráficos locales y un instalador que distribuye un entorno computacional controlado. El sistema trabaja con productos como `ABI-L2-LSTF`, `ABI-L2-FDCF`, `ABI-L2-MCMIPF` y `GLM-L2-LCFA`, asociados a temperatura de superficie, focos de calor, nubes y actividad eléctrica. Su diseño distingue herramientas de tipo *operative*, orientadas a respuestas rápidas sobre archivos recientes o puntuales, y herramientas de tipo *viewer*, orientadas a la exploración de series temporales, cambio de proyecciones, combinación de capas y generación de salidas como imágenes, videos y reportes.
 
-**Palabras clave:** [completar]
+El aporte principal de la tesis no se limita al algoritmo de procesamiento de un producto individual, sino a la construcción de un flujo integrado que transforma datos GOES complejos en salidas visuales interpretables, reproducibles y utilizables por usuarios con distintos niveles de experiencia técnica. El trabajo discute además el estado del arte de herramientas como SLIDER, QGIS y Jupyter Notebook, las decisiones de diseño que llevaron desde una idea inicial basada en servidor hacia un software instalable, las limitaciones actuales del sistema y posibilidades a futuro. En conjunto, LegionGOES se propone como una contribución tecnológica para acercar el monitoreo satelital geoestacionario a prácticas locales de análisis, comunicación y toma de decisiones.
+
+**Palabras clave:** LegionGOES; GOES; monitoreo agrometeorológico; series temporales; R/Shiny; Python; reproducibilidad computacional; visualización satelital.
 
 ```{=latex}
 \clearpage

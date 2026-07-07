@@ -1,8 +1,6 @@
 # Marco teórico y tecnológico
+Se establece los conceptos generales más importantes para comprender el lugar de LegionGOES dentro del monitoreo agrometeorológico basado en imágenes satelitales.
 
-El presente capítulo establece los conceptos generales más importantes para comprender el lugar de LegionGOES dentro del monitoreo agrometeorológico basado en imágenes satelitales. No busca desarrollar una historia completa de la agricultura, la meteorología o la teledetección, sino ordenar algunas ideas necesarias para justificar por qué un sistema como LegionGOES tiene sentido: observar procesos ambientales, construir series temporales, procesar productos satelitales y generar salidas visuales útiles para distintos usuarios.
-
-<!-- CODEX-NO-TOCAR -->
 ## Agronomía, meteorología y necesidad de observar
 Vivir entre otras cosas implica alimentarse. Las formas de conocimiento enmarcadas en la agronomía y la meteorología no surgen como formas contemplativas de la naturaleza, sino que son formas sistematizadas de conocimiento utilizadas para mantener la generación de alimentos a corto, mediano y largo plazo [10].
 
@@ -24,20 +22,29 @@ En esta tesis, monitorear se entiende como la acción de observar, registrar, si
 
 Con sus ventajas y limitaciones, las imágenes satelitales constituyen una fuente de información especialmente valiosa cuando se las sistematiza y ordena de manera adecuada. Debido a que las actividades metereológicas seleccionadas requieren ventanas temporales prolongadas y cobertura espacial amplia, el uso de satélites geoestacionarios resulta particularmente oportuno. En este contexto, monitorear implica contar con secuencias temporales consistentes, mecanismos de procesamiento repetibles, entornos computacionales de trabajo y salidas de reportería interpretables para usuarios técnicos, usuarios operativos y usuarios sin formación avanzada en sistemas de información geográfica [10].
 
-El monitoreo agrometeorológico, en particular, se entiende como el monitoreo de procesos atmosféricos y de superficie que tienen consecuencias sobre actividades agropecuarias, ecosistemas productivos o territorios vinculados a la producción. Esta definición incluye tanto variables meteorológicas directas como efectos observables en la superficie como por ejemplo,  nubosidad, focos fuego, tormentas eléctricas, vientos, humedad, precipitaciones o cambios abruptos en la temperatura de superficie pueden afectar cultivos, pasturas, infraestructura y decisiones operativas.
+El monitoreo agrometeorológico, en particular, se entiende como el monitoreo de procesos atmosféricos y de superficie que tienen consecuencias sobre actividades agropecuarias, ecosistemas productivos o territorios vinculados a la producción. Esta definición incluye tanto variables meteorológicas directas como efectos observables en la superficie como por ejemplo,  nubosidad, focos fuego, tormentas eléctricas, vientos, humedad, precipitaciones o cambios abruptos en la temperatura de superficie pueden afectar cultivos, pasturas, infraestructura y decisiones operativas. En la actualidad el monitoreo agrometereológico se realiza con la más alta técnología a nivel internacional como es la tecnología espacial y el análisis de grandes volúmenes de información.
 
-Si bien en la definición anterior hemos utilizado una gran cantidad de lenguaje técnico y de conceptos difíciles, a la hora de ver la reportería asociada al monitoreo agrometereológico nos encontaremos con poco o nulo detalle agrícola, y nos encontraremos inmersos en una toma de decisiones más que todo cualitativa o de tendencia general con hipótesis o afirmaciones realmente sencillas de entender incluso por alguien sin formación en estos campos:  
+Si bien en la definición anterior hemos utilizado una gran cantidad de lenguaje técnico y de conceptos difíciles, a la hora de ver la reportería asociada al monitoreo agrometereológico nos encontaremos con poco o nulo detalle agrícola, y nos estaremos inmersos en una toma de decisiones más que todo cualitativa o de tendencia general con hipótesis o afirmaciones realmente sencillas de entender incluso por alguien sin formación en estos campos:  
 - Mucha lluvia es malo para los cultivos.  
 - La sequía es mala para el cultivo.  
 - La presencia de fuego en cercanías a sectores productivos es mala para la producción.  
 - El granizo es malo para los cultivos.  
 - Espectativas de baja de producción entre un 15% y un 30%, me parece.  
 
-¿cómo es que iniciamos un intento sumamente cuantitativo utilizando las herramientas tecnológicas más avanzadas a nivel internacional y terminamos con algo sumamente cualitativo y general?
-Rta: Resumir implica perder información, y lograr decir algo respecto a grandes extensiones de tiempo, espacio y biología pues terminan en visiones generalistas del sistema. Es importante resaltar que el monitoreo agrometereológico es en primera instancia una compresión general y resumida de la realidad que debe ser portable a nivel informático en la pantalla de uan computadora o incluso de un celular. No debe uno pensar en que se debe a que aún no existe la tecnología suficiente.
+Recapitulemos los últimos dos párrafos en más detalle a través de 3 preguntas orientadas y con respuesta directa.
 
-¿Por qué se denomina monitoreo agrometereológico si finalmente el reporte tiene tal vez cero contenido agrícola?
-Rta: por que se hace incapié en que dicho reporte debe ser contemplado y entendido por un profesional agrícola para obtener finalmnente la conclusión final. El resumen máximo agrícola puede sonar simplemente a una frase que manifiesta si el conjunto metereológico afectará positiva o negativamente a la realidad agrícola. Lo que queda entonces es acotar el marco metereológico para prestar atención a lo que realmente hace falta.
+1) ¿Cómo es que iniciamos un intento sumamente cuantitativo utilizando las herramientas tecnológicas más avanzadas a nivel internacional y terminamos con algo sumamente cualitativo y general?  
+Rta: Resumir implica perder información, y lograr decir algo respecto a grandes extensiones de tiempo, espacio y biología terminan en visiones generalistas del sistema. En este contexto no hay escapatoria: la toma de datos cuantitativa realizada con la más alta tecnología terminará en una toma de decisiones cualitativa y muy gruesa. No debe entenderse esto como falta de tecnología o falta de comprensión. Incluso si nos vamos a campos aún más finos como la agricultura de presición
+
+2) ¿Por qué es posible armar predicciones agrícolas si solo contamos con variables meteorológicas?  
+Por el modelo de causa-efecto en el que estamos inmersos en cuanto a que la meteorología es causa y la agricultura es consecuencia. Por ello es que muchas temáticas agrometeorológicas no tienen valores de cosecha, calidad, o ni si quiera NDVI para poder hacer predicciones del sistema.
+
+3) ¿Por qué se denomina monitoreo agrometereológico si finalmente el reporte tiene tal vez cero contenido agronómico?  
+Rta: por que se hace incapié en que dicho reporte meteorológico debe ser contemplado y entendido por un profesional agrónomo para obtener finalmnente la conclusión final. Como hemos dicho no debemos esperar conclusiones cuantitativas agronómicas a partir de los reportes satelitales meteorológicos. El informe agrícola final puede sonar simplemente a una frase que manifiesta si el conjunto metereológico afectará positiva o negativamente a la realidad agronómica. 
+
+
+Dicho todo esto, lo que queda entonces es acotar el marco metereológico para analizar solo lo que es relevante.
+
 <!-- /CODEX-NO-TOCAR -->
 
 
@@ -53,23 +60,21 @@ Hablamos ya de la necesidad de acotar el marco metereológico. Ahora detallaremo
 Estas temáticas tienen en común que su análisis requiere observar la evolución del sistema durante una ventana temporal suficientemente extensa y, en muchos casos, sobre grandes superficies. Un valor aislado puede indicar un estado puntual, pero no siempre permite comprender persistencia, velocidad de cambio, desplazamiento o relación entre fenómenos. Por ello, la serie temporal es una pieza conceptual central para este trabajo.
 Como hemos mencionado anteriormente estas temáticas tendrán en su reportería cero información agrícola asociada de manera explícita y directa, y sin embargo será reportería sumamente útil para tomar contextualizar, entender y tomar decisiones.
 
-En algunos contextos la contextualización del día y la noche y de algunos efectos generados por la geometría de adquisición serán parte de la reportería. Si uno es estricto estos conceptos no son meteorología sino astronomía, pero son para no complicar más los conceptos y tener que usar algo como monitore agroastrometereológico, simplemente diremos que son parte del mismo pack de monitoreo.
+En algunos contextos la contextualización del día y la noche y de algunos efectos generados por la geometría de adquisición serán parte de la reportería. Si uno es estricto estos conceptos no son meteorología sino astronomía pero con la idea de no complicar más los conceptos y tener que usar algo como monitoreo agroastrometereológico, simplemente diremos que son parte del mismo pack de monitoreo.
 <!-- /CODEX-NO-TOCAR -->
 
 
 <!-- CODEX-NO-TOCAR -->
 ## Satélites geoestacionarios
-Los satélites geoestacionarios ocupan una posición especialmente valiosa para este tipo de monitoreo porque observan de manera continua una misma región de la Tierra desde una órbita sincronizada con la rotación terrestre. Según la descripción oficial del programa GOES-R, esta configuración permite que el satélite permanezca en una posición fija respecto de un punto de la superficie y observe continuamente el hemisferio occidental desde aproximadamente 22.300 millas de altura, equivalentes a unos 35.900 km [1].
+Los satélites geoestacionarios ocupan una posición especialmente valiosa para este tipo de monitoreo porque observan de manera continua una misma región de la Tierra desde una órbita sincronizada con la rotación terrestre. Según la descripción oficial del programa GOES-R, esta configuración permite que el satélite permanezca en una posición fija respecto de un punto de la superficie y observe continuamente el hemisferio occidental desde aproximadamente 35.900 Km de altura [1].
 
 Esta continuidad temporal representa una ventaja central frente a estrategias basadas solo en observaciones esporádicas o coberturas discontinuas. En el caso de procesos que ocurren en la superficie terrestre o en la atmósfera y que involucran ventanas espaciales o temporales amplias, la frecuencia de adquisición y la posibilidad de seguir la evolución de un mismo sistema nuboso, una misma región con focos de calor o una misma secuencia de descargas eléctricas constituyen componentes estructurales del análisis. La utilidad del dato geoestacionario no reside únicamente en una imagen aislada, sino en la capacidad de construir series temporales coherentes.
 
-Para un usuario acostumbrado a imágenes de satélites de órbita polar, como las series Landsat o Sentinel, es útil resaltar algunas diferencias. Landsat 8, por ejemplo, opera en una órbita casi polar heliosincrónica, con un ciclo de repetición de 16 días y escenas de alta resolución espacial para observación terrestre [7]. Sentinel-2, por su parte, está diseñado como una constelación de observación terrestre con resolución de hasta 10 m, una franja de observación de 290 km y un tiempo de revisita de aproximadamente 5 días [8]. Estos sistemas son muy potentes para análisis detallados de superficie, pero no ofrecen la misma continuidad temporal inmediata que un satélite geoestacionario.
+Para un usuario acostumbrado a imágenes de satélites de órbita polar como las series Landsat o Sentinel, será útil resaltar algunas diferencias. Landsat 8, por ejemplo, opera en una órbita casi polar heliosincrónica, con un ciclo de repetición de 16 días y escenas de alta resolución espacial para observación terrestre [7]. Sentinel-2, por su parte, está diseñado como una constelación de observación terrestre con resolución de hasta 10 m, una franja de observación de 290 km y un tiempo de revisita de aproximadamente 5 días [8]. Estos sistemas son muy potentes para análisis detallados de superficie, pero no ofrecen la misma continuidad temporal inmediata que un satélite geoestacionario.
 
-En cambio, un satélite geoestacionario permite contextualizar cada escena dentro de una evolución casi continua. Al trabajar con grandes extensiones espaciales y temporales, una situación bajo análisis puede interpretarse junto con eventos como el ciclo día-noche, la posición relativa de la iluminación solar o la evolución estacional del hemisferio observado. Esta capacidad no reemplaza a los satélites de órbita polar, pero sí ofrece una lógica de monitoreo diferente, orientada a la continuidad temporal y a la cobertura hemisférica.
+En cambio, un satélite geoestacionario permite contextualizar cada escena dentro de una evolución casi continua. Par also satélites GOES la ventan atemporal varía entre lso 20 segundos y 1 hora, con pixeles entre los 500 metros y los 2 Km. Al trabajar con grandes extensiones espaciales y temporales, una situación bajo análisis puede interpretarse junto con eventos como el ciclo día-noche, la posición relativa de la iluminación solar o la evolución estacional del hemisferio observado. Esta capacidad no reemplaza a los satélites de órbita polar, pero sí ofrece una lógica de monitoreo diferente, orientada a la continuidad temporal. Lo que los satélites geoestacionarios ganan en cobertura temporal y espacial lo pierden, en general, en detalle espacial respecto de sensores de órbita polar de alta resolución. 
 
-También debe señalarse una limitación importante: lo que los satélites geoestacionarios ganan en cobertura temporal y espacial lo pierden, en general, en detalle espacial respecto de sensores de órbita polar de alta resolución. La documentación del ABI de la serie GOES-R indica resoluciones espaciales de 0,5 a 2 km para sus modos principales de observación [9], mientras que Landsat 8 alcanza resoluciones multiespectrales de 30 m y pancromáticas de 15 m [7], y Sentinel-2 alcanza resoluciones de hasta 10 m [8]. Esta diferencia responde a la geometría de adquisición, la distancia orbital y el objetivo operacional de cada sistema.
-
-Dentro de los sistemas geoestacionarios recientes, la serie GOES-R ocupa un lugar central. NOAA describe esta generación como su flota más avanzada de satélites meteorológicos geoestacionarios y destaca que la misión integra imágenes visibles e infrarrojas, mapeo total de rayos y productos para atmósfera, océanos y superficie [1]. Además, el instrumento ABI ofrece 16 bandas espectrales, mejora la resolución espacial y temporal respecto de generaciones previas, y permite distintos modos de escaneo, incluyendo disco completo, dominios continentales y dominios de mesoescala [9]. Esta base instrumental hace posible desarrollar aplicaciones dedicadas a variables y fenómenos de interés agroambiental.
+Dentro de los sistemas geoestacionarios recientes, la serie GOES-R ocupa un lugar central. Estos satélites dependen del NOAA (National Oceanic and Atmospheric Administration) que entidad que nuclea los estudios metereológicos en EE.UU. NOAA describe esta generación como su flota más avanzada de satélites meteorológicos geoestacionarios y destaca que la misión integra imágenes visibles e infrarrojas, mapeo total de rayos y productos para atmósfera, océanos y superficie [1]. Además, el instrumento ABI ofrece 16 bandas espectrales, mejora la resolución espacial y temporal respecto de generaciones previas, y permite distintos modos de escaneo, incluyendo disco completo, dominios continentales y dominios de mesoescala [9]. Esta base instrumental hace posible desarrollar aplicaciones dedicadas a variables y fenómenos de interés agroambiental.
 <!-- /CODEX-NO-TOCAR -->
 
 
@@ -77,11 +82,16 @@ Dentro de los sistemas geoestacionarios recientes, la serie GOES-R ocupa un luga
 <!-- CODEX-NO-TOCAR -->
 ## GOES y productos utilizados
 
-La tesis se apoya en productos de la serie GOES-R vinculados a cuatro familias funcionales del sistema LegionGOES. La primera corresponde a `ABI-L2-LSTF`, producto ráster orientado a temperatura de superficie terrestre. La segunda es `ABI-L2-FDCF`, producto ráster asociado a detección y caracterización de focos de calor. La tercera es `ABI-L2-MCMIPF`, producto ráster multicanal utilizado como contexto para nubes y composiciones visuales. La cuarta es `GLM-L2-LCFA`, producto vectorial o tabular vinculado al mapeo de actividad eléctrica.
+La tesis se apoya en productos de la serie GOES-R de nivel L2 con cobertura Full Disk. 
+El detealle nivel L2 implica que el dato ya no es solamente una medición instrumental cruda del satélite, sino un producto geofísico derivado. Es decir: el sensor a medido radiancia electromagnética, y mediante algoritmos, calibraciones y correcciones esa señal ha sido transformada en variables interpretables en términos físicos. EEl detalle Full Disck implica utilizar productos que brindan información de la máxima cobertura terriroral del satélite. El Full Disk implica una visión completa del Continente Americano, en una entensión total equivalente al 44% de la superficie de la Tierra.
 
-La serie GOES ofrece productos con distintas coberturas espaciales, entre ellas dominios continentales, dominios de mesoescala y disco completo. En esta tesis se utilizan productos de disco completo (*full disk*), ya que permiten trabajar con una cobertura hemisférica consistente y comparar fenómenos distribuidos sobre grandes extensiones. La documentación del ABI describe el modo de disco completo como una cobertura hemisférica con resolución temporal de 5 a 15 minutos, según el modo de operación, y resolución espacial de 0,5 a 2 km para las bandas ABI [9].
+Del conjunto de sensores que se encuentran en GOES, destacamos ABI y GLM.  
+- ABI, *Advanced Baseline Imager*, es la cámara/sensor multiespectral principal de GOES, usada para observar nubes, superficie terrestre, vapor de agua, temperatura de brillo, incendios, tormentas y otros fenómenos atmosféricos y ambientales. realiza el análisis de 16 bandas espectrales que van del óptico al infrarrojo lejano.  
+- GLM, *Geostationary Lightning Mapper*, es un sensor de infrarrojo cercano, calibrado para permitir estimación de de actividad eléctrica. Es importante aclarar que GLM Es un detector óptico de rayos, no un sensor eléctrico. No mide corriente, voltaje ni campo eléctrico. Observa destellos asociados a actividad eléctrica.
+ LM detecta actividad eléctrica de manera indirecta, registrando emisiones ópticas producidas por los rayos, principalmente cerca de la línea de oxígeno atómico en 777.4 nm.
 
-La comparación rápida de estos productos permite ver que no todos tienen la misma naturaleza. Algunos productos son rásteres regulares, organizados como matrices de píxeles, mientras que otros son productos vectoriales o tabulares basados en eventos. Esta diferencia condiciona la forma de descarga, procesamiento, visualización y generación de series temporales dentro de LegionGOES.
+Del conjunto de productos L2-FullDisk disponibles de estos sensores, la tesis se apoya en 4 productos de la serie GOES-R. La primera corresponde a `ABI-L2-LSTF`, producto ráster orientado a temperatura de superficie terrestre. La segunda es `ABI-L2-FDCF`, producto ráster asociado a detección y caracterización de focos de calor. La tercera es `ABI-L2-MCMIPF`, producto ráster multicanal utilizado como contexto para nubes y composiciones visuales. La cuarta es `GLM-L2-LCFA`, producto vectorial o tabular vinculado al mapeo de actividad eléctrica. 
+
 
 ```{=latex}
 \begin{center}
@@ -100,54 +110,99 @@ La comparación rápida de estos productos permite ver que no todos tienen la mi
 \end{tabular}
 \end{center}
 ```
+  
+
+
+
+
+La comparación rápida de estos productos permite ver que no todos tienen la misma naturaleza. Algunos productos son rásteres regulares mientras que otros son productos vectoriales o tabulares basados en eventos. Esta diferencia condiciona la forma de descarga, procesamiento, visualización y generación de series temporales dentro de LegionGOES.
+
+
 
 ### ABI-L2-LSTF
 
-El producto `ABI-L2-LSTF` corresponde a temperatura de superficie terrestre, o *Land Surface Temperature*, para disco completo. Es un producto de nivel 2 porque ya no representa una medición radiométrica cruda, sino una variable geofísica derivada a partir de canales infrarrojos del instrumento ABI. En el contexto de esta tesis, este producto resulta central para observar cambios térmicos de superficie, construir secuencias temporales y generar salidas visuales asociadas a heladas, estrés térmico o contrastes espaciales de temperatura. La documentación de GOES-R describe la temperatura de superficie como una variable útil en hidrología, meteorología y climatología, además de destacar su relación con el monitoreo de cultivos y vegetación [3].
+El producto `ABI-L2-LSTF` corresponde a temperatura de superficie terrestre, o *Land Surface Temperature, Full Disk *. Es un producto de nivel 2 porque ya no representa una medición radiométrica cruda, sino una variable geofísica derivada a partir de canales infrarrojos del instrumento ABI. En el contexto de esta tesis, este producto resulta central para observar cambios térmicos de superficie, construir secuencias temporales y generar salidas visuales asociadas a heladas, estrés térmico o contrastes espaciales de temperatura. La documentación de GOES-R describe la temperatura de superficie como una variable útil en hidrología, meteorología y climatología, además de destacar su relación con el monitoreo de cultivos y vegetación [3].
 
-Es importante aclarar que la temperatura es una magnitud física asociada al estado térmico de la materia y, desde una interpretación microscópica, al movimiento de sus partículas. En sentido estricto, una medición directa de temperatura requiere interacción física con el objeto o medio observado mediante un instrumento calibrado, como un termómetro. Un satélite geoestacionario no mide temperatura por contacto: registra radiancia electromagnética, especialmente en bandas infrarrojas térmicas, y a partir de esa señal estima una temperatura de superficie mediante modelos radiativos, correcciones atmosféricas, geometría de adquisición, información de emisividad y supuestos sobre la superficie observada. Por lo tanto, `LSTF` debe entenderse como una estimación indirecta de la temperatura de la superficie terrestre, no como una lectura termométrica directa.
+Es importante aclarar que la temperatura es una magnitud física asociada al estado térmico de la materia y, desde una interpretación microscópica, al movimiento de sus partículas. En sentido estricto, una medición directa de temperatura requiere interacción física con el objeto o medio observado mediante un instrumento calibrado, como un termómetro. El valor de temperatura de cualquier satélite no es una medición sino una extrapolación. En este caso GOES registra radiancia electromagnética, especialmente en bandas infrarrojas térmicas, y a partir de esa señal estima una temperatura de superficie mediante modelos radiativos, correcciones atmosféricas, geometría de adquisición, información de emisividad y supuestos sobre la superficie observada. Por lo tanto, `LSTF` debe entenderse como una estimación indirecta de la temperatura de la superficie terrestre.
 
-En el flujo de trabajo de LegionGOES, un producto `ABI-L2-LSTF` de disco completo contiene la variable principal `LST`, expresada en Kelvin, y una variable de calidad `DQF`. El producto se organiza como una matriz de `1086 x 1086` píxeles, con resolución espacial de `10 km` en el nadir y una ventana temporal aproximada de 10 minutos. Este tamaño menor respecto de otros productos ABI usados en la tesis se debe a la resolución espacial propia del producto LSTF, no a un recorte realizado por LegionGOES.
+Un producto `ABI-L2-LSTF` de disco completo contiene la variable principal `LST`, expresada en Kelvin, y una variable de calidad `DQF`. El producto se organiza como una matriz de `1086 x 1086` píxeles, con resolución espacial de `10 km` en el nadir y una ventana temporal de 1 hora. Los valores de temperatura están disponibles tanto para el día como para  la  noche. Los valores de temperatura no están disponibles para el oceano, cuerpos de agua continentales ni en porciones continentales con nubes, sino solo para la porción continental. Este tamaño menor de pixel respecto de otros productos ABI usados en la tesis se debe a la resolución espacial propia del producto LSTF, no a un recorte realizado por LegionGOES [3, 11]. En el flujo de trabajo de LegionGOES se realizará el cambio de Kelvin a grados Celcius.
 
 ### ABI-L2-FDCF
 
-El producto `ABI-L2-FDCF` corresponde a detección y caracterización de focos de calor para disco completo. Es un producto de nivel 2 generado a partir de observaciones del ABI, que combina información visible e infrarroja para identificar píxeles asociados a fuego y estimar características subpíxel [4]. En términos operativos, este producto es especialmente importante porque permite detectar eventos activos y seguir cambios rápidos en focos de calor, algo que requiere tanto frecuencia temporal como cobertura espacial amplia.
+El producto `ABI-L2-FDCF` significa *Fire Detection and Characterization, Full Disk* corresponde a detección y caracterización de focos de calor para disco completo. Es un producto de nivel 2 resultado de aplicar un algoritmo de clasificación que toma como información inicial las mediciones realizadas para otros productos del satélite, geometría de adquisición y la categoría del pixel en imágenes anteriores. La clasificación combina información visible e infrarroja para identificar píxeles asociados a fuego y otras categorías importantes [4]. 
 
-El archivo `NetCDF` de `ABI-L2-FDCF` presenta una grilla de `5424 x 5424` píxeles, resolución espacial de `2 km` en el nadir y una ventana temporal de aproximadamente 10 minutos para disco completo. Entre las variables principales se encuentran `Mask`, que codifica la clasificación del píxel, `Power`, expresada en MW, `Area`, expresada en m2, y `DQF`, asociada a calidad. Esta estructura justifica que LegionGOES trate a `FDCF` como un producto ráster operativo: cada archivo puede transformarse en una imagen temática y, al mismo tiempo, integrarse en una serie temporal para seguir la evolución de un evento.
+En términos operativos, este producto es especialmente importante porque permite detectar eventos activos y seguir cambios rápidos en focos de calor, algo que requiere tanto frecuencia temporal como cobertura espacial amplia.
 
-Cada píxel de la matriz `Mask` contiene un valor de categoría. Este producto es el resultado de un algoritmo de clasificación propio de GOES que no devuelve directamente una magnitud física continua, sino un valor numérico que representa una categoría para cada píxel. En el caso del producto original, existen 45 categorías posibles, de las cuales una parte está asociada directa o indirectamente a fuego y focos de calor.
+El archivo `NetCDF` de `ABI-L2-FDCF` presenta una grilla de `5424 x 5424` píxeles, resolución espacial de `2 km` en el nadir y una ventana temporal de 10 minutos para disco completo. Entre las variables del archivo se encuentran `Mask`, que codifica la clasificación del píxel, `Power`, expresada en MW para detallar la cantidad de energía del pixel, `Area`, expresada en m², que estima la superficie del evento térmico dentro del píxel y `DQF`, asociada a calidad. [4, 11]. Hay datos tanto en la porción continental como en los oceanos y cuerpos de agua. Los datos se obtienen tanto durante el día cómo durante la noche.
 
-También deben considerarse categorías que no representan fuego, pero que son relevantes para interpretar correctamente la escena. De manera simplificada, el algoritmo de clasificación tiene en cuenta condiciones radiométricas, geométricas y de calidad que pueden afectar la detección. En determinadas zonas del disco completo, la geometría de adquisición y la iluminación pueden producir sectores con alto brillo o condiciones poco favorables para la detección. Al avanzar la rotación terrestre, estos sectores cambian de posición sobre la superficie observada. Por ello, un sistema de visualización no debería mostrar únicamente los píxeles clasificados como fuego, sino también conservar trazabilidad sobre categorías descartadas, ambiguas o limitadas por condiciones de observación.
+Un píxel de GOES puede para FDCF representa 2Km x 2km = 4km², pero un foco de calor real puede ocupar solo una fracción de esa superficie. Por eso se habla de información subpíxel: el algoritmo intenta estimar una característica de un fenómeno más pequeño que el píxel completo observado.
+
+Cada píxel de la matriz `Mask` contiene un valor numérico discreto que que representa a una de 45 categorías. Como reusmen del algoritmo diremos que el brillo del pixel en diferentes bandas determina la posibilidiad del pixel de ser fuego. El clasificador distingue categorías relacioonadas a fuego de categorías relacionadas a humo. Si reunimos todas las categorías que de manera directa o indirecta están asociadas a fuego son 15 categorías.
+
+Para interpretar correctamente la escena deben considierarse otras categorías por fuera de estas 15. De manera simplificada, si el briilo del pixel se asocia a fuego entonces los sectores de la imagen con alto brillo por reflexión solar es un tema a considerar. El algoritmo de clasificación tiene en cuenta entonces condiciones radiométricas, geométricas, temporales y de calidad para ser un mejor clasificador. Estos pixeles van directamente a una categoría especial llamada glint (que significa reflejo especular en inglés).  Al avanzar la rotación terrestre, estos sectores cambian de posición sobre la superficie observada. Eso implica que pixeles con fuego pueden ser reclasificados como pixeles glint. Por ello, un sistema de visualización no debería mostrar únicamente los píxeles clasificados como fuego, sino también conservar trazabilidad sobre categorías descartadas, ambiguas o limitadas por condiciones de observación.
+
+Reunir las categorías asociadas a humo aumentan la cantidad de falsos positivos.  
+Ignorar, desconocer o no considerar las categoríás asociadas glint aumenta la cantidad de falsos negativos.
+No ver una serie temporal para entender el efecto Glint aumenta la cantidad de falsos negativos.
 
 ### ABI-L2-MCMIPF
 
-El producto `ABI-L2-MCMIPF` corresponde a *Cloud and Moisture Imagery* para disco completo. A diferencia de un producto orientado a una sola variable física, este archivo reúne información multicanal del sensor ABI y permite trabajar con distintas bandas visibles, infrarrojas cercanas e infrarrojas térmicas. La documentación de GOES-R indica que el producto de imágenes de nubes y humedad utiliza las 16 bandas espectrales del ABI para monitorear la Tierra, la atmósfera y los océanos, convirtiendo las mediciones en valores de brillo o temperaturas de brillo según corresponda [5].
+El producto `ABI-L2-MCMIPF` corresponde a *Multi-band Cloud and Moisture Imagery Product, Full Disk*. Este archivo reúne información multicanal del sensor ABI y permite trabajar con distintas bandas visibles, infrarrojas cercanas e infrarrojas térmicas [5].
 
-Un archivo `ABI-L2-MCMIPF` presenta una grilla de `5424 x 5424` píxeles, resolución espacial de `2 km` en el nadir y una ventana temporal cercana a 10 minutos para disco completo. Entre las variables observadas se encuentran `CMI_C01`, `CMI_C02` y `CMI_C13`, donde las bandas visibles o reflectivas se expresan como valores adimensionales y las bandas infrarrojas térmicas pueden expresarse en Kelvin. Para LegionGOES, este producto cumple un rol transversal: permite generar composiciones visuales, contextualizar productos como temperatura o fuego, y construir salidas orientadas a nubes, tormentas y escenas meteorológicas complejas.
+Un archivo `ABI-L2-MCMIPF` presenta una grilla de `5424 x 5424` píxeles, resolución espacial de `2 km` en el nadir y una ventana temporal de 10 minutos para disco completo. Las variables observadas se encuentran desde `CMI_C01`, a `CMI_C16`, donde las bandas visibles o reflectivas se expresan como valores adimensionales y las bandas infrarrojas térmicas pueden expresarse en Kelvin. La utilidad de este producto para LegionGOES se puede explica en dos aspectos. El primer aspecto es que las bandas infrarrojas son de utilidad para el estudio de las nubes a diferentes alturas. El segundo aspecto es que tomando algunas bandas y aplicando unas erie de correcciones atmosféricas será posible generar un TrueColor sintético que permitirá contextualizar toda la escena en cuanto al día y la noche, y la posición de las nubes [5, 11].
 
 ### GLM-L2-LCFA
 
-El producto `GLM-L2-LCFA` corresponde a detección de actividad eléctrica mediante el instrumento `GLM`, o *Geostationary Lightning Mapper*. A diferencia de los productos ABI anteriores, no se trata de una imagen ráster regular de píxeles, sino de un producto vectorial o tabular basado en eventos, grupos y flashes. La documentación oficial de GOES-R describe a GLM como un detector óptico en infrarrojo cercano capaz de medir actividad eléctrica total, incluyendo descargas intranube, nube-nube y nube-tierra, de manera continua sobre las Américas y regiones oceánicas adyacentes [2, 6].
+El producto `GLM-L2-LCFA` corresponde a detección de actividad eléctrica mediante el instrumento `GLM`, o *Geostationary Lightning Mapper*.  La sigla LCFA significa *Lightning Cluster-Filter Algorithm* lo cual implica que hay detrás un algoritmo específico de detección de rayos.
 
-El archivo `GLM-L2-LCFA` no contiene dimensiones `x` e `y`, sino dimensiones como `number_of_events`, `number_of_groups` y `number_of_flashes`. En el flujo de trabajo de LegionGOES se lo trata como un producto de eventos, grupos y flashes, con variables como `event_lat`, `event_lon`, `flash_lat` y `flash_lon`, y una ventana temporal de 20 segundos. Esta diferencia estructural es relevante porque obliga a un tratamiento metodológico distinto: mientras los productos ABI pueden representarse como imágenes ráster, GLM requiere acumulación temporal, filtrado espacial y conversión a capas de puntos, densidades o trayectorias de actividad eléctrica.
+La documentación oficial de GOES-R describe a GLM como un detector óptico en infrarrojo cercano capaz de medir actividad eléctrica total, incluyendo descargas intranube, nube-nube y nube-tierra, de manera continua sobre todo el Full Disk incluyendo tanto la parte contiennca como oceánica. Esta capacidad es especialmente útil cuando el interés no se limita a visualizar rayos aislados, sino a seguir tendencias temporales de electrificación asociadas a tormentas intensas.
 
-Para el componente de tormentas severas, el Geostationary Lightning Mapper resulta igualmente relevante. La página oficial del instrumento lo define como el primer mapeador operacional de rayos en órbita geoestacionaria y remarca que mide actividad eléctrica total, incluyendo descargas intranube, nube-nube y nube-tierra, de manera continua sobre las Américas y océanos adyacentes [2]. Esta capacidad es especialmente útil cuando el interés no se limita a visualizar rayos aislados, sino a seguir tendencias temporales de electrificación asociadas a tormentas intensas.
-<!-- /CODEX-NO-TOCAR -->
-
+El archivo `GLM-L2-LCFA` no contiene dimensiones `x` e `y` como los rasters anteirores, sino dimensiones como `number_of_events`, `number_of_groups` y `number_of_flashes, con variables como `event_lat`, `event_lon`, `flash_lat` y `flash_lon. El producto tiene una ventana temporal de 20 segundos. Esta diferencia estructural y temporales relevante porque obliga a un tratamiento metodológico distinto: mientras los productos ABI pueden representarse como imágenes ráster, GLM requiere acumulación temporal, filtrado espacial y conversión a capas de puntos o densidades[6, 11].
 
 
 
+## Referencias del capítulo {.unnumbered}
 
-## Referencias del capítulo
+[1] GOES-R Series. “GOES-R Mission Overview.”
+URL:
+https://www.goes-r.gov/mission/mission.html
 
-1. GOES-R Series. [GOES-R Mission Overview](https://www.goes-r.gov/mission/mission.html).
-2. GOES-R Series. [Geostationary Lightning Mapper (GLM)](https://www.goes-r.gov/spacesegment/glm.html).
-3. GOES-R Series. [Data Products: Land Surface Temperature (Skin)](https://www.goes-r.gov/products/baseline-LST.html).
-4. GOES-R Series. [Data Products: Fire/Hot Spot Characterization](https://www.goes-r.gov/products/baseline-fire-hot-spot.html).
-5. GOES-R Series. [Data Products: Cloud and Moisture Imagery](https://www.goes-r.gov/products/baseline-cloud-moisture-imagery.html).
-6. GOES-R Series. [Data Products: Lightning Detection: Events, Groups and Flashes](https://www.goes-r.gov/products/baseline-lightning-detection.html).
-7. U.S. Geological Survey. [Landsat 8](https://www.usgs.gov/landsat-missions/landsat-8).
-8. European Space Agency. [Sentinel-2](https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-2).
-9. GOES-R Series. [Instruments: Advanced Baseline Imager (ABI)](https://www.goes-r.gov/spacesegment/abi.html).
-10. FAO. [GIEWS Earth Observation](https://www.fao.org/giews/earthobservation/).
-11. NSF Unidata. [NetCDF](https://www.unidata.ucar.edu/software/netcdf/).
+[2] GOES-R Series. “Geostationary Lightning Mapper (GLM).”
+URL:
+https://www.goes-r.gov/spacesegment/glm.html
+
+[3] GOES-R Series. “Data Products: Land Surface Temperature (Skin).”
+URL:
+https://www.goes-r.gov/products/baseline-LST.html
+
+[4] GOES-R Series. “Data Products: Fire/Hot Spot Characterization.”
+URL:
+https://www.goes-r.gov/products/baseline-fire-hot-spot.html
+
+[5] GOES-R Series. “Data Products: Cloud and Moisture Imagery.”
+URL:
+https://www.goes-r.gov/products/baseline-cloud-moisture-imagery.html
+
+[6] GOES-R Series. “Data Products: Lightning Detection: Events, Groups and Flashes.”
+URL:
+https://www.goes-r.gov/products/baseline-lightning-detection.html
+
+[7] U.S. Geological Survey. “Landsat 8.”
+URL:
+https://www.usgs.gov/landsat-missions/landsat-8
+
+[8] European Space Agency. “Sentinel-2.”
+URL:
+https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-2
+
+[9] GOES-R Series. “Instruments: Advanced Baseline Imager (ABI).”
+URL:
+https://www.goes-r.gov/spacesegment/abi.html
+
+[10] FAO. “GIEWS Earth Observation.”
+URL:
+https://www.fao.org/giews/earthobservation/
+
+[11] NSF Unidata. “NetCDF.”
+URL:
+https://www.unidata.ucar.edu/software/netcdf/

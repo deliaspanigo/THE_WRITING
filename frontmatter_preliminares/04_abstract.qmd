@@ -1,8 +1,12 @@
 # Abstract {.unnumbered}
 
-[Write the thesis abstract here.]
+Dynamic agrometeorological events, such as frost, hot spots, convective cloudiness, and lightning activity, require tools capable of observing large spatial domains with high temporal frequency. The GOES-R series provides geostationary satellite products suitable for this type of monitoring; however, operational use requires solving several practical problems, including data download, temporal organization, digital files in different formats, processing, visualization, generation of derived products, and computational reproducibility. This thesis presents the development of LegionGOES, a local Windows-based system designed for downloading, processing, visualizing, and presenting GOES products applied to agrometeorological monitoring.
 
-**Keywords:** [complete]
+LegionGOES integrates Python routines for file management and satellite product processing, R/Shiny applications for user interaction, local graphical resources, and an installer that distributes a controlled computational environment. The system works with products such as `ABI-L2-LSTF`, `ABI-L2-FDCF`, `ABI-L2-MCMIPF`, and `GLM-L2-LCFA`, associated with land surface temperature, hot spots, clouds, and lightning activity. Its design distinguishes between *operative* tools, intended for rapid responses using recent or individual files, and *viewer* tools, intended for temporal series exploration, projection changes, layer combination, and the generation of outputs such as images, videos, and reports.
+
+The main contribution of this thesis is not limited to the processing algorithm of a single satellite product, but rather to the construction of an integrated workflow that transforms complex GOES data into interpretable, reproducible, and usable visual outputs for users with different levels of technical expertise. The work also discusses the state of the art of tools such as SLIDER, QGIS, and Jupyter Notebook, the design decisions that shifted the project from an initial server-based concept toward an installable local software package, the current limitations of the system, and future possibilities. Overall, LegionGOES is proposed as a technological contribution to bring geostationary satellite monitoring closer to local practices of analysis, communication, and decision-making.
+
+**Keywords:** LegionGOES; GOES; agrometeorological monitoring; time series; R/Shiny; Python; computational reproducibility; satellite visualization.
 
 ```{=latex}
 \clearpage

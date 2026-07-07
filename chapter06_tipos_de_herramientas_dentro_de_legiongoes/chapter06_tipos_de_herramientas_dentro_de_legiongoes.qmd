@@ -1,9 +1,0 @@
----
-title: "06. Tipos de herramientas dentro de LegionGOES"
-lang: es
-format:
-  pdf: default
----
-
-{{< include chapter06_tipos_de_herramientas_dentro_de_legiongoes_body.qmd >}}
-

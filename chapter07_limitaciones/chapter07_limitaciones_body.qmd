@@ -1,0 +1,26 @@
+# Limitaciones, puntos débiles a resaltar, decisiones y comentarios extra
+
+Para disminuir la cantidad de errores inespefícos y tener la certeza de que lo que funciona siga funcionando bien es que fue necesario separar y aislar partes del código. Eso tomó la forma de una librería de Python y varias librerías R, y en separar las prestaciones en aplicaciones shiny independientes. 
+
+El programa internamente no usa base de datos relacionales. Tal vez esa sea un gran salto de calidad en una próxima versión del software. 
+
+
+De las cosas  que más dolores de cabeza generaron en el proyecto son los menúes condicionales que condicionan a otros menúes condicionales. Testearlos implicaba recorrer toda la red de condicionales manualmente en el entorno web. La cantidad de errores inespecíficos y problemas visuales que surgieron del código html, css y javascript fue enorme . La decisión fue tajante: disminuir los condicionales y separar en aplicaciones diferentes lo que se pueda separar. Por eso hay una aplicación de descarga y otra de procesamiento. Por eso también viewer y operative son aplicaciones diferentes. No era el momento oportuno para el intento de una única aplicación multipropósito. La idea de aplicaciones temáticas separadas permitió una mejor detección de los errores de la interfaz, y disminuyó notablemente el tiempo espera del usuario para carga del software.  
+ 
+Si bien hay una línea general en la estética y presentación de cada aplicación, la verdad es que se aprecian diferencias. No todos los menúes y opciones están exactamente con el mismo formato de presentación o incluso no se encuentran exactamente en el mismo luegar. Esto se debe a que cada aplicación fue armada como un experimento independiente que tomaba algo que fue exitoso en otra aplicación a la vez que se probaba algo nuevo. En todos esos experimentos el proyecto fue tomando madurez y el programador también. Fue necesario realizarlo de esa manera para avanzar y probar, pero han quedado elementos a pulir.  
+
+El programa no maneja la posibilidad de procesamientos solo para  una capa vectorial como puede ser un país o una región. La idea de esta posibilidad estuvo desde el comienzo, pero en vez de profundizar en la reportería para zonas espaciales más pequeñas, lo que se decidió es ampliar la cantidad de temáticas ofreciidas por el software.  
+
+Se quiso al menos mostrar que es totalmente posible agregar análisis estadísticos al programa. LegionGOES por ahora solo genera estadísticas sencillas y gráficos para la variable temperatura. Ese mínimo de estadística dentro del software implica la posibilidad de poder agregar herramietnas de estadística más avanzada. No fue posible desarrollar un pack estadístico mínimo para cada temática meteorológica.  
+
+También se quiso mostrar que es totalmente posible generar reportería automática y obtener como formato de reporte un pdf o un html. No fue posible generar reportes en todas las aplicaciones por un tema de tiempo.  
+
+Las opciones que tiene el usuario son opciones de visualización pero no de procesamiento. No tiene la opción de decidir si procesar o no en WGS84, Mercator y en GOES Original, si o si procesa incluso si no es de interés del usuario. Otro ejemplo es que el valor de mínimo y máximo para temperatura está seteado de -60 a 60, y no hay posibilidad del usuario a modificar eso. Todo esto fue a propósito para llevar al mínimo la cantidad de menúes condicionales y caminos posibles en el procesamiento. Sería necesario evaluar para cada actividad metereológica en particular si es una buena idea o no ampliar las opciones de procesamiento. La decisión no es menor ya que atraviesa el núcleo central de organización y procesamiento.
+
+La generación de los límites internacionales y costeros como capas vectoriales es un poco lenta en LegionGOES. Definitivamente un aspecto a mejorar en cómo gestionar todos los segmentos de la capa vectorial. En los viewer podrá verse que es posible elegir estos límites como capa vectorial o como png. Si no hay mucho zoom, no hay diferencias entre una y otra. La idea es que la capa como png es más liviana para ser montada sobre el mapa que la capa vectorial.  
+
+La idea de maximizar el espacio de visualización generó la necesidad de botones superiores y menúes ocultos laterales. Puede discutirse esto nuevamente  volver a ordenar estos objetos de una mejor manera.
+
+De las dificultades que tiene la generación de software para usuarios mediante una interfaz es que aún haciendo todo bien el sistema puede no dar una buena experiencia de usuario y hay que comenzar de cero. Si bien LegionGOES es una aplicación agrometeorológica los problemas relacionados a los temas satelitales fueron mucho más sencillos de resolver y en menor cantidad  que los relacionados a la interfaz del usuario.
+
+

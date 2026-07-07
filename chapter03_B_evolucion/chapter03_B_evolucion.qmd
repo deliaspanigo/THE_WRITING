@@ -1,8 +1,0 @@
----
-title: "03B. Evolución del diseño de LegionGOES"
-lang: es
-format:
-  pdf: default
----
-
-{{< include chapter03_B_evolucion_body.qmd >}}

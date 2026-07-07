@@ -1,8 +1,0 @@
----
-title: "03A. Estado del arte"
-lang: es
-format:
-  pdf: default
----
-
-{{< include chapter03_A_estado_del_arte_body.qmd >}}

@@ -53,28 +53,20 @@ resource-path:
   - chapter01_intro/img
   - chapter02_marco_conceptual_y_tecnologico
   - chapter02_marco_conceptual_y_tecnologico/img
-  - chapter03_A_estado_del_arte
-  - chapter03_A_estado_del_arte/img
-  - chapter03_B_evolucion
-  - chapter03_B_evolucion/img
-  - chapter03_C_legionGOES
-  - chapter03_C_legionGOES/img
-  - chapter04_arquitectura_del_sistema
-  - chapter04_arquitectura_del_sistema/img
-  - chapter05_flujo_metodologico_de_procesamiento
-  - chapter05_flujo_metodologico_de_procesamiento/img
-  - chapter06_tipos_de_herramientas_dentro_de_legiongoes
-  - chapter06_tipos_de_herramientas_dentro_de_legiongoes/img
-  - chapter07_aplicaciones_y_componentes_principales
-  - chapter07_aplicaciones_y_componentes_principales/img
-  - chapter08_reproducibilidad_e_instalacion
-  - chapter08_reproducibilidad_e_instalacion/img
-  - chapter09_alcances_limitaciones_y_estado_actual
-  - chapter09_alcances_limitaciones_y_estado_actual/img
-  - chapter10_conclusiones
-  - chapter10_conclusiones/img
-  - chapter11_anexos
-  - chapter11_anexos/img
+  - chapter03_estado_del_arte
+  - chapter03_estado_del_arte/img
+  - chapter04_evolucion
+  - chapter04_evolucion/img
+  - chapter05_legionGOES
+  - chapter05_legionGOES/img
+  - chapter06_conclusiones
+  - chapter06_conclusiones/img
+  - chapter07_limitaciones
+  - chapter07_limitaciones/img
+  - chapter08_proyeccion_futura
+  - chapter08_proyeccion_futura/img
+  - chapter09_cierre
+  - chapter09_cierre/img
 ---
 
 {{< include frontmatter_caratula/caratula.qmd >}}
@@ -108,64 +100,42 @@ resource-path:
 \clearpage
 ```
 
-{{< include chapter03_A_estado_del_arte/chapter03_A_estado_del_arte_body.qmd >}}
+{{< include chapter03_estado_del_arte/chapter03_estado_del_arte_body.qmd >}}
 
 ```{=latex}
 \clearpage
 ```
 
-{{< include chapter03_B_evolucion/chapter03_B_evolucion_body.qmd >}}
+
+
+{{< include chapter05_legionGOES/chapter05_legionGOES_body.qmd >}}
 
 ```{=latex}
 \clearpage
 ```
 
-{{< include chapter03_C_legionGOES/chapter03_C_legionGOES_body.qmd >}}
+{{< include chapter04_evolucion/chapter04_evolucion_body.qmd >}}
 
 ```{=latex}
 \clearpage
 ```
 
-{{< include chapter04_arquitectura_del_sistema/chapter04_arquitectura_del_sistema_body.qmd >}}
+{{< include chapter06_conclusiones/chapter06_conclusiones_body.qmd >}}
 
 ```{=latex}
 \clearpage
 ```
 
-{{< include chapter05_flujo_metodologico_de_procesamiento/chapter05_flujo_metodologico_de_procesamiento_body.qmd >}}
+{{< include chapter07_limitaciones/chapter07_limitaciones_body.qmd >}}
 
 ```{=latex}
 \clearpage
 ```
 
-{{< include chapter06_tipos_de_herramientas_dentro_de_legiongoes/chapter06_tipos_de_herramientas_dentro_de_legiongoes_body.qmd >}}
+{{< include chapter08_proyeccion_futura/chapter08_proyeccion_futura_body.qmd >}}
 
 ```{=latex}
 \clearpage
 ```
 
-{{< include chapter07_aplicaciones_y_componentes_principales/chapter07_aplicaciones_y_componentes_principales_body.qmd >}}
-
-```{=latex}
-\clearpage
-```
-
-{{< include chapter08_reproducibilidad_e_instalacion/chapter08_reproducibilidad_e_instalacion_body.qmd >}}
-
-```{=latex}
-\clearpage
-```
-
-{{< include chapter09_alcances_limitaciones_y_estado_actual/chapter09_alcances_limitaciones_y_estado_actual_body.qmd >}}
-
-```{=latex}
-\clearpage
-```
-
-{{< include chapter10_conclusiones/chapter10_conclusiones_body.qmd >}}
-
-```{=latex}
-\clearpage
-```
-
-{{< include chapter11_anexos/chapter11_anexos_body.qmd >}}
+{{< include chapter09_cierre/chapter09_cierre_body.qmd >}}

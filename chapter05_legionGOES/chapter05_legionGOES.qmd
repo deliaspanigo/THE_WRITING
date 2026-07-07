@@ -1,0 +1,8 @@
+---
+title: "05. LegionGOES"
+lang: es
+format:
+  pdf: default
+---
+
+{{< include chapter05_legionGOES_body.qmd >}}

@@ -1,9 +1,0 @@
----
-title: "08. Reproducibilidad e instalación"
-lang: es
-format:
-  pdf: default
----
-
-{{< include chapter08_reproducibilidad_e_instalacion_body.qmd >}}
-
