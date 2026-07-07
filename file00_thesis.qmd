@@ -55,10 +55,10 @@ resource-path:
   - chapter02_marco_conceptual_y_tecnologico/img
   - chapter03_estado_del_arte
   - chapter03_estado_del_arte/img
-  - chapter04_evolucion
-  - chapter04_evolucion/img
-  - chapter05_legionGOES
-  - chapter05_legionGOES/img
+  - chapter04_legionGOES
+  - chapter04_legionGOES/img
+  - chapter05_evolucion
+  - chapter05_evolucion/img
   - chapter06_conclusiones
   - chapter06_conclusiones/img
   - chapter07_limitaciones
@@ -108,13 +108,13 @@ resource-path:
 
 
 
-{{< include chapter05_legionGOES/chapter05_legionGOES_body.qmd >}}
+{{< include chapter04_legionGOES/chapter04_legionGOES_body.qmd >}}
 
 ```{=latex}
 \clearpage
 ```
 
-{{< include chapter04_evolucion/chapter04_evolucion_body.qmd >}}
+{{< include chapter05_evolucion/chapter05_evolucion_body.qmd >}}
 
 ```{=latex}
 \clearpage
