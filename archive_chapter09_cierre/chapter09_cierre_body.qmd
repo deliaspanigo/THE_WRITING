@@ -1,0 +1,13 @@
+# Cierre
+
+Esta tesis concluye con la presentación de LegionGOES como resultado de un proceso de desarrollo técnico, aprendizaje, prueba y reorganización permanente. El trabajo no surgió únicamente de una necesidad informática, sino de una pregunta más amplia: cómo acercar datos satelitales geoestacionarios complejos a formas de uso más directas, reproducibles y visualmente comprensibles para distintos perfiles de usuario.
+
+El camino recorrido mostró que desarrollar software científico implica mucho más que escribir código. También implica decidir qué problemas vale la pena simplificar, qué opciones deben quedar disponibles para el usuario, qué procesos conviene automatizar, cómo evitar errores previsibles y cómo transformar archivos satelitales en productos que puedan ser interpretados, compartidos y reutilizados. En ese recorrido, LegionGOES fue cambiando desde una idea inicial de servidor hacia un sistema local instalable, modular y orientado a series temporales.
+
+
+
+El cierre de este trabajo es también un reconocimiento al equipo que acompañó su desarrollo: Dr. Andrés Lighezzolo como director, Dr. Arnaldo Mangeaud como codirector y Dr. Diego Pons como asesor científico. Entre los 3 crearon el mejor ambiente posible para el desarrollo de la idea de LegionGOES.
+
+El grupo de testing inicial, que dedicaron tiempo he instalaron no menos de 7 versiones diferentes de softaware permitó una velocidad de crecimiento importante. Un saludo espacial por su visión profesional al Mgter. Daniel Paz y para Dra. 
+
+LegionGOES queda entonces como un punto de llegada y, al mismo tiempo, como un punto de partida. Es un resultado concreto de esta tesis, pero también una plataforma posible para nuevas aplicaciones, mejoras, pruebas con usuarios, publicaciones y desarrollos futuros vinculados al monitoreo satelital geoestacionario.

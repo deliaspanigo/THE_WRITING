@@ -59,14 +59,12 @@ resource-path:
   - chapter04_legionGOES/img
   - chapter05_evolucion
   - chapter05_evolucion/img
-  - chapter06_conclusiones
-  - chapter06_conclusiones/img
-  - chapter07_limitaciones
-  - chapter07_limitaciones/img
-  - chapter08_proyeccion_futura
-  - chapter08_proyeccion_futura/img
-  - chapter09_cierre
-  - chapter09_cierre/img
+  - chapter06_limitaciones
+  - chapter06_limitaciones/img
+  - chapter07_proyeccion_futura
+  - chapter07_proyeccion_futura/img
+  - chapter08_conclusiones
+  - chapter08_conclusiones/img
 ---
 
 {{< include frontmatter_caratula/caratula.qmd >}}
@@ -120,22 +118,17 @@ resource-path:
 \clearpage
 ```
 
-{{< include chapter06_conclusiones/chapter06_conclusiones_body.qmd >}}
+{{< include chapter06_limitaciones/chapter06_limitaciones_body.qmd >}}
 
 ```{=latex}
 \clearpage
 ```
 
-{{< include chapter07_limitaciones/chapter07_limitaciones_body.qmd >}}
+{{< include chapter07_proyeccion_futura/chapter07_proyeccion_futura_body.qmd >}}
 
 ```{=latex}
 \clearpage
 ```
 
-{{< include chapter08_proyeccion_futura/chapter08_proyeccion_futura_body.qmd >}}
+{{< include chapter08_conclusiones/chapter08_conclusiones_body.qmd >}}
 
-```{=latex}
-\clearpage
-```
-
-{{< include chapter09_cierre/chapter09_cierre_body.qmd >}}

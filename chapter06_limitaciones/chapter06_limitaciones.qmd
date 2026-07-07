@@ -5,5 +5,5 @@ format:
   pdf: default
 ---
 
-{{< include chapter07_limitaciones_body.qmd >}}
+{{< include chapter06_limitaciones_body.qmd >}}
 

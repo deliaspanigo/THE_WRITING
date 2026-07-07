@@ -1,0 +1,22 @@
+# Conclusiones
+
+1. El objetivo general de la tesis fue alcanzado mediante el desarrollo de LegionGOES como un sistema local, instalable y de acceso libre para la descarga, procesamiento, visualización y presentación de productos satelitales GOES orientados al monitoreo agrometeorológico. El resultado principal no es un algoritmo aislado, sino un entorno de trabajo que articula datos, procesamiento, interfaz, organización temporal y productos de salida.
+
+2. LegionGOES demuestra que los productos GOES pueden organizarse en un flujo operativo local sin depender necesariamente de servidores externos de procesamiento ni de plataformas cerradas. Esta decisión resulta relevante para la reproducibilidad, porque el usuario trabaja con un entorno computacional controlado, con componentes distribuidos junto al instalador y con una estructura de carpetas que conserva la relación entre archivos originales, productos procesados y salidas visuales.
+
+3. La tesis confirma que la serie temporal es el eje conceptual y metodológico del sistema. En LegionGOES, la serie temporal no aparece únicamente como una animación final, sino como una forma de ordenar la descarga, emparejar productos, controlar fechas, procesar archivos, construir visualizaciones comparables y generar salidas como PNG, videos, reportes o paquetes de resultados.
+
+4. La separación entre herramientas *operative* y herramientas *viewer* constituye una decisión de diseño importante. Las aplicaciones *operative* responden a la necesidad de obtener una salida rápida y puntual, mientras que las aplicaciones *viewer* permiten explorar secuencias temporales, comparar capas, cambiar proyecciones y generar productos derivados. Esta división evita sobrecargar una única interfaz y permite atender necesidades de uso diferentes dentro del mismo software.
+
+5. LegionGOES ocupa un espacio intermedio entre visualizadores web, sistemas GIS de escritorio y entornos de programación. Frente a visualizadores como SLIDER, ofrece mayor control local sobre productos y salidas; frente a QGIS, reduce la carga manual necesaria para construir series temporales homogéneas; frente a Jupyter Notebook, transforma flujos programáticos en herramientas accesibles para usuarios que no necesariamente desean escribir código.
+
+6. El aporte tecnológico de la tesis se expresa también en la integración de Python, R/Shiny, Chrome portable, FFmpeg y Quarto dentro de una misma unidad de distribución. Esta integración permitió resolver problemas prácticos de instalación, visualización, generación de videos y reportería, mostrando que la reproducibilidad en un software científico no depende únicamente del código fuente, sino también del entorno completo en el cual ese código se ejecuta.
+
+7. El desarrollo dejó en evidencia que, en un sistema orientado a usuarios, los problemas de interfaz, instalación, estructura interna y experiencia de uso pueden ser tan importantes como los problemas estrictamente satelitales. En este sentido, LegionGOES no solo procesó productos GOES, sino que también obligó a tomar decisiones de diseño sobre cómo presentar la información, cómo reducir errores, cómo guiar al usuario y cómo transformar datos complejos en salidas interpretables.
+
+8. Las limitaciones identificadas no invalidan el aporte realizado, sino que delimitan su estado actual. La ausencia de una base de datos relacional, la falta de procesamiento por regiones vectoriales específicas, la heterogeneidad entre algunas interfaces y la necesidad de ampliar reportes y estadísticas muestran líneas claras de mejora. Estas limitaciones permiten entender a LegionGOES como una versión funcional y defendible, pero también como una base tecnológica abierta a evolución.
+
+9. En conjunto, LegionGOES constituye una contribución tecnológica para acercar el monitoreo satelital geoestacionario a usuarios técnicos, científicos, docentes y operativos. Su valor no se encuentra únicamente en procesar imágenes GOES, sino en ofrecer una forma organizada, reproducible y visualmente accesible de convertir información satelital compleja en productos utilizables para análisis, comunicación y toma de decisiones.
+
+
+LegionGOES queda así como un resultado concreto de esta tesis y, al mismo tiempo, como una plataforma abierta para nuevas aplicaciones, mejoras, pruebas con usuarios y desarrollos futuros vinculados al monitoreo satelital geoestacionario.
