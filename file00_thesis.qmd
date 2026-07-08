@@ -65,6 +65,8 @@ resource-path:
   - chapter07_proyeccion_futura/img
   - chapter08_conclusiones
   - chapter08_conclusiones/img
+  - chapter09_copia_capitulo02_actual
+  - chapter09_copia_capitulo02_actual/img
 ---
 
 {{< include frontmatter_caratula/caratula.qmd >}}
@@ -132,3 +134,8 @@ resource-path:
 
 {{< include chapter08_conclusiones/chapter08_conclusiones_body.qmd >}}
 
+```{=latex}
+\clearpage
+```
+
+{{< include chapter09_copia_capitulo02_actual/chapter09_copia_capitulo02_actual_body.qmd >}}

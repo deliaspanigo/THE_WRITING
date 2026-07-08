@@ -8,6 +8,15 @@ En esta tesis se consideran tres familias de herramientas especialmente relevant
 
 SLIDER, desarrollado por CIRA en asociación con RAMMB/NOAA, es un visualizador web orientado a la exploración interactiva de imágenes satelitales en tiempo real. Su propio nombre, *Satellite Loop Interactive Data Explorer in Real-time*, resume una idea central: permitir que el usuario vea series de tiempo de imágenes, cambie productos, modifique la cantidad de imágenes, agregue capas y comparta una configuración mediante URL [1].
 
+```{=latex}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.92\textwidth]{chapter03_estado_del_arte/img/img01_slider.jpg}
+\caption{Visualizador CIRA/RAMMB SLIDER mostrando el disco completo de GOES-19. La interfaz combina controles laterales, animación temporal y visualización satelital a pantalla amplia.}
+\label{fig-slider-geocolor}
+\end{figure}
+```
+
 Este tipo de herramienta muestra con mucha claridad el valor de GOES como sistema de observación continua. Una imagen satelital aislada puede ser informativa, pero una serietemporal permite observar desplazamientos, crecimiento de estructuras nubosas, persistencia de señales, cambios de iluminación y evolución de fenómenos atmosféricos. Además la super ventaja de SLIDER es que que el usuario no debe generar la descarga ni el procesamiento de lo que observa. Su fortaleza principal es la consulta visual de productos ya preparados y servidos listos para disfrutar.
 
 Las debilidades de este sistema resaltamos que la proyección solo es en la Proyección original. Los productos ofrecidos en muchos casos no presentan tablas de referencia para los colores ni escalas.
@@ -20,6 +29,23 @@ Si bien permite la reproducibilidad ya que diferentes usuarios pueden visualizar
 
 QGIS representa una segunda familia de herramientas: los sistemas de información geográfica de escritorio de uso local. A diferencia de un visualizador web orientado a consulta rápida, QGIS permite integrar capas ráster y vectoriales, revisar propiedades de los datos, trabajar con simbología, reproyectar información, combinar cartografía auxiliar y construir análisis espaciales más controlados por el usuario [2].
 
+```{=latex}
+\begin{figure}[htbp]
+\centering
+\begin{minipage}[c]{0.22\textwidth}
+\centering
+\includegraphics[width=0.95\linewidth]{chapter03_estado_del_arte/img/img03_qgis.png}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.72\textwidth}
+\centering
+\includegraphics[width=\linewidth]{chapter03_estado_del_arte/img/img04_qgis_lstf.png}
+\end{minipage}
+\caption{QGIS como ejemplo de sistema de información geográfica de escritorio. A la izquierda se muestra el logo del software y a la derecha una visualización de un producto LSTF preparado para su inspección en un entorno GIS local.}
+\label{fig-qgis-lstf}
+\end{figure}
+```
+
 Para productos derivados de GOES, QGIS puede ser muy valioso cuando se trabaja con archivos transformados a formatos geoespaciales habituales, como GeoTIFF, o cuando se desea integrar una salida satelital con límites administrativos, redes viales, áreas productivas u otras capas auxiliares. También es un entorno potente para inspeccionar visualmente datos geográficos y verificar si una salida procesada tiene sentido espacial. La frase que acabamos de leer implica que hubo una instancia de procesamiento previo para transformar los archivos originales en archivos GeoTIFF.
 
 QGIS además no gestiona la descarga de las imágenes GOES, por lo que el usuario debe haber realizado también esa tarea de alguna otra manera por fuera de QGIS.
@@ -31,6 +57,23 @@ Detallaré como algo negativo que la mayoría del espacio en pantalla es para bo
 ## Jupyter Notebook
 
 Jupyter Notebook representa una tercera forma de trabajo. No es principalmente un visualizador final ni un GIS de escritorio, sino un entorno computacional interactivo que permite combinar código, texto, resultados, gráficos y explicaciones dentro de un mismo documento. La documentación original del proyecto Jupyter lo presenta como una aplicación web para crear y compartir documentos computacionales, y destaca su uso en limpieza y transformación de datos, simulación numérica, visualización y aprendizaje automático [3].
+
+```{=latex}
+\begin{figure}[htbp]
+\centering
+\begin{minipage}[c]{0.22\textwidth}
+\centering
+\includegraphics[width=0.95\linewidth]{chapter03_estado_del_arte/img/img05_jupy_logo.png}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.72\textwidth}
+\centering
+\includegraphics[width=\linewidth]{chapter03_estado_del_arte/img/img06_jupy_lstf.png}
+\end{minipage}
+\caption{Jupyter Notebook como entorno de exploración y prototipado. A la izquierda se muestra el logo del proyecto y a la derecha un ejemplo de trabajo con productos GOES mediante código, salidas gráficas y documentación computacional.}
+\label{fig-jupyter-lstf}
+\end{figure}
+```
 
 En el contexto de GOES, un notebook es especialmente útil durante la etapa de exploración. En este entorno de trabajo todo es posible si sabes programar. Permite abrir un archivo `NetCDF`, inspeccionar variables, revisar dimensiones, probar escalas de color, ensayar transformaciones, comparar salidas y documentar por qué se tomó una decisión de procesamiento [4]. Es una herramienta muy adecuada para investigar cómo debe tratarse un producto antes de convertir ese tratamiento en una función estable dentro de un software.
 
