@@ -2,7 +2,14 @@
 
 Antes de presentar el planteo general de LegionGOES, resulta útil ubicar el proyecto dentro del estado del arte de herramientas que tienen la posibilidad de trabajar con imágenes GOES. El objetivo de esta revisión no es realizar una comparación exhaustiva ni construir un ranking de programas, sino reconocer qué aporta cada entorno, qué problemas resuelve bien y qué límites aparecen cuando el interés se desplaza hacia la descarga, procesamiento, visualización y generación de series temporales. Haremos comentarios también sobre lo referido a reproducibilidad y transparencia del código de procesamiento.
 
-En esta tesis se consideran tres familias de herramientas especialmente relevantes. La primera corresponde a visualizadores web de imágenes satelitales, representados aquí por CIRA/RAMMB SLIDER. La segunda corresponde a sistemas de información geográfica de escritorio que corren localmente, con QGIS como caso principal. La tercera corresponde a entornos de trabajo interactivos mediante script, representados por Jupyter Notebook. Cada una de estas herramientas aporta una forma distinta de relacionarse con los datos.
+En esta tesis se consideran cuatro familias de herramientas especialmente relevantes:
+
+- F.1 Visualizadores web de imágenes satelitales, representados aquí por CIRA/RAMMB SLIDER.
+- F.2 Sistemas de información geográfica de escritorio que corren localmente, con QGIS como caso principal.
+- F.3 Plataformas geoespaciales de procesamiento en la nube, representadas por Google Earth Engine.
+- F.4 Entornos de trabajo interactivos mediante script, representados por Jupyter Notebook.
+
+Cada una de estas familias aporta una forma distinta de relacionarse con los datos. Algunas priorizan la visualización rápida, otras el control local, otras la escala de procesamiento y otras la libertad programática.
 
 ## CIRA/RAMMB SLIDER
 
@@ -54,9 +61,34 @@ QGIS no siempre es el entorno cómodo para construir una serie temporal completa
 
 Detallaré como algo negativo que la mayoría del espacio en pantalla es para bordes y menúes de opciones, y no para los productos GIS a visualizar. Aquí la reproducibilidad y la transparencia alcanzan un mejor nivel ya que el software corre localmente en la computadora del usuario y es posible de una manera más o menos sencilla acceder al código real de procesamiento.
 
+## Google Earth Engine
+
+Google Earth Engine representa una tercera familia de herramientas: las plataformas geoespaciales de procesamiento en la nube. La propia documentación de la plataforma la presenta como un entorno que combina un catálogo de imágenes satelitales y datos geoespaciales de escala masiva con capacidades de análisis planetario, disponible mediante una interfaz web y APIs en JavaScript y Python [3].
+
+```{=latex}
+\begin{figure}[htbp]
+\centering
+\begin{minipage}[c]{0.22\textwidth}
+\centering
+\includegraphics[width=0.95\linewidth]{chapter03_estado_del_arte/img/img08_gee_logo.png}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.72\textwidth}
+\centering
+\includegraphics[width=\linewidth]{chapter03_estado_del_arte/img/img09_GEE_goes.jpg}
+\end{minipage}
+\caption{Google Earth Engine como ejemplo de plataforma geoespacial en la nube. A la izquierda se muestra el logo de la plataforma y a la derecha un ejemplo de consulta de productos GOES dentro del catálogo de datos.}
+\label{fig-gee-goes}
+\end{figure}
+```
+
+En relación con GOES, Google Earth Engine incluye productos de la serie GOES-R dentro de su catálogo, como las colecciones `NOAA/GOES/16/MCMIPF`, `NOAA/GOES/17/MCMIPF` y `NOAA/GOES/18/MCMIPF`, asociadas al producto `MCMIPF` de imágenes multibanda de nubes y humedad para disco completo [4, 5, 6]. Su fortaleza principal y evidente es que permite trabajar sin descargar localmente grandes volúmenes de datos y que el procesamiento no ocurre en la computadora del usuario; por lo tanto, un usuario sin grandes capacidades de hardware puede ejecutar el procesamiento en los servidores de Google. El usuario puede filtrar colecciones, seleccionar fechas, aplicar funciones, construir composiciones y exportar resultados desde una infraestructura remota. Para muchos análisis geoespaciales, esta lógica es extremadamente poderosa porque evita gestionar manualmente archivos, dependencias y almacenamiento local.
+
+Una ventaja es que permite generar procesamientos de series de tiempo y obtener incluso videos `mp4`. Como aspectos negativos diremos que el usuario debe manejar JavaScript o Python para poder detallar sus necesidades, y que existen condiciones de uso, cuotas y limitaciones al procesamiento. Además, no todos los productos GOES requeridos por LegionGOES están necesariamente disponibles con la misma estructura, cobertura temporal o nivel de control que se obtiene al trabajar directamente con los archivos originales. En este sentido, Google Earth Engine no es un competidor directo de LegionGOES, sino una referencia importante para entender el valor y las limitaciones del procesamiento geoespacial en la nube.
+
 ## Jupyter Notebook
 
-Jupyter Notebook representa una tercera forma de trabajo. No es principalmente un visualizador final ni un GIS de escritorio, sino un entorno computacional interactivo que permite combinar código, texto, resultados, gráficos y explicaciones dentro de un mismo documento. La documentación original del proyecto Jupyter lo presenta como una aplicación web para crear y compartir documentos computacionales, y destaca su uso en limpieza y transformación de datos, simulación numérica, visualización y aprendizaje automático [3].
+Jupyter Notebook representa una cuarta forma de trabajo. No es principalmente un visualizador final ni un GIS de escritorio, sino un entorno computacional interactivo que permite combinar código, texto, resultados, gráficos y explicaciones dentro de un mismo documento. La documentación original del proyecto Jupyter lo presenta como una aplicación web para crear y compartir documentos computacionales, y destaca su uso en limpieza y transformación de datos, simulación numérica, visualización y aprendizaje automático [7].
 
 ```{=latex}
 \begin{figure}[htbp]
@@ -75,7 +107,7 @@ Jupyter Notebook representa una tercera forma de trabajo. No es principalmente u
 \end{figure}
 ```
 
-En el contexto de GOES, un notebook es especialmente útil durante la etapa de exploración. En este entorno de trabajo todo es posible si sabes programar. Permite abrir un archivo `NetCDF`, inspeccionar variables, revisar dimensiones, probar escalas de color, ensayar transformaciones, comparar salidas y documentar por qué se tomó una decisión de procesamiento [4]. Es una herramienta muy adecuada para investigar cómo debe tratarse un producto antes de convertir ese tratamiento en una función estable dentro de un software.
+En el contexto de GOES, un notebook es especialmente útil durante la etapa de exploración. En este entorno de trabajo todo es posible si sabes programar. Permite abrir un archivo `NetCDF`, inspeccionar variables, revisar dimensiones, probar escalas de color, ensayar transformaciones, comparar salidas y documentar por qué se tomó una decisión de procesamiento [8]. Es una herramienta muy adecuada para investigar cómo debe tratarse un producto antes de convertir ese tratamiento en una función estable dentro de un software.
 
 Su límite aparece cuando el objetivo deja de ser explorar y pasa a ser operar. Un notebook puede documentar muy bien una prueba, pero no será la mejor interfaz para un usuario que solo necesita seleccionar una fecha, un producto, una región o una salida visual. La Jupyter Notebook se aleja de la idea de servicio de análisis de imágenes. La reproducibilidad y la transparencia pueden en este contexto alcanzar los máximos valores posibles, dependiendo de algunos detalles como el uso de rutas relativas en vez de absolutas y si se utilizan recursos compartidos online y no solo locales. Surgen problemas cuando el flujo crece y la notebook puede volverse difícil de mantener: celdas ejecutadas fuera de orden, dependencias implícitas, variables residuales y rutas locales pueden afectar la reproducibilidad del resultado. Por eso, en esta tesis Jupyter se entiende más como laboratorio de desarrollo que como forma final de distribución de LegionGOES.
 
@@ -90,7 +122,7 @@ Construir una serie temporal implica ordenar el tiempo antes de visualizarlo. Es
 Una serie de problemas asociados a las series temporales pueden confundir al usuario no precabido. Un ejemplo de ello es el hecho de que cada imagen pueda tener diferentes valores mínimos y máximos a través del tiempo hace que muchas opciones por defecto como el reescalado automático de las escalas de colores sea un problema. Detalles al estilo ocurren con los cambios en la geometría de adquisición que dan efectos atmosféricos y de iluminación.
 
 
-Todos estos aspectos son problemas que el operador debe entender y resolver de alguna manera dentro de cada software que utiliza. SLIDER ordena de una manera excelente la serie de tiempo y el procesamiento, pero no permite al usuario jugar con diferentes capas al mismo tiempo, ni agregar información espacial de otras fuentes. QGIS en su nivel básico parece no estar diseñado para series temporales. En un nivel avanzado de QGIS con las opciones Processing Toolbox, Graphical Modeler y PyQGIS esto se logra, pero sigue presentando una gran dificultad llevar a cabo todo el procesamiento y obtener los resultados [5, 6, 7]. De hecho el operador debe ser cada vez más programador Python para lograr obtener su serie de tiempo.
+Todos estos aspectos son problemas que el operador debe entender y resolver de alguna manera dentro de cada software que utiliza. SLIDER ordena de una manera excelente la serie de tiempo y el procesamiento, pero no permite al usuario jugar con diferentes capas al mismo tiempo, ni agregar información espacial de otras fuentes. QGIS en su nivel básico parece no estar diseñado para series temporales. En un nivel avanzado de QGIS con las opciones Processing Toolbox, Graphical Modeler y PyQGIS esto se logra, pero sigue presentando una gran dificultad llevar a cabo todo el procesamiento y obtener los resultados [9, 10, 11]. De hecho el operador debe ser cada vez más programador Python para lograr obtener su serie de tiempo.
 
 Qué decir de una Jupyter Notebook. Directamente diseñada para usuarios que deben ser profesionales GIS y a la vez programadores.
 
@@ -98,31 +130,54 @@ Qué decir de una Jupyter Notebook. Directamente diseñada para usuarios que deb
 
 ## Ubicación de LegionGOES frente a estas herramientas
 
-LegionGOES toma elementos de estas tres familias de programas, pero no coincide completamente con ninguna. De SLIDER toma la visualizar de series temporal con facilidad web y de tener un entorno que maximiza el espacio de visualización GIS. De QGIS toma la posibilidad de tener activar o desactivar capas disponibles y de poder utilizar recursos locales y online como son mapas de fondo. De Jupyter toma la posibilidad de trabajar con series temporales en una forma preestablecida y manejar la relación entre todos los archivos con expresiones regulares.
+LegionGOES toma elementos de estas cuatro familias de programas, pero no coincide completamente con ninguna. De SLIDER toma la visualización de series temporales con facilidad web y la idea de maximizar el espacio de visualización GIS. De QGIS toma la posibilidad de activar o desactivar capas disponibles y de utilizar recursos locales y en línea, como mapas de fondo. De Google Earth Engine toma como referencia la idea de procesamiento geoespacial organizado sobre colecciones temporales, aunque reemplaza la dependencia de una plataforma remota por un entorno local e instalable. De Jupyter toma la posibilidad de trabajar con series temporales de forma programática y manejar la relación entre archivos mediante reglas explícitas.
 
 Si bien no será posible estandarizar todas las necesidades de todos los profesionales GIS en todos los posibles temas meteorológicos, un estandard general más o menos concensuado es más que suficiente para tematicas como temperatura en superficie, heladas, focos de calor y fuego, nubes y tormentas eléctricas. Pensemos por un momento en la idea de un procesamiento estandarizado a los fines de ser un generador de ideas para la temática o un referente en cuanto a lo que se puede obtener como resultado mínimo de visualización. Esto también otorga al usuario un entorno de trabajo ordenado por temática metereológica y no por temática informática o por tipo de archivo.
 
 
 
-## Referencias del capítulo
+## Referencias del capítulo {.unnumbered}
 
-1. CIRA/RAMMB. SLIDER: Satellite Loop Interactive Data Explorer in Real-time.  
-URL: https://slider.cira.colostate.edu/
+[1] CIRA/RAMMB. SLIDER: Satellite Loop Interactive Data Explorer in Real-time.  
+URL:
+https://slider.cira.colostate.edu/
 
-2. QGIS Documentation. Raster Properties Dialog.  
-URL: https://docs.qgis.org/3.44/en/docs/user_manual/working_with_raster/raster_properties.html
+[2] QGIS Documentation. Raster Properties Dialog.  
+URL:
+https://docs.qgis.org/3.44/en/docs/user_manual/working_with_raster/raster_properties.html
 
-3. Project Jupyter. Project Jupyter.  
-URL: https://jupyter.org/
+[3] Google Earth Engine. Google Earth Engine.  
+URL:
+https://earthengine.google.com/
 
-4. NSF Unidata. NetCDF.  
-URL: https://www.unidata.ucar.edu/software/netcdf/
+[4] Google Earth Engine Data Catalog. GOES-16 MCMIPF Series ABI Level 2 Cloud and Moisture Imagery Full Disk.  
+URL:
+https://developers.google.com/earth-engine/datasets/catalog/NOAA_GOES_16_MCMIPF
 
-5. QGIS Documentation. The Processing Toolbox.  
-URL: https://docs.qgis.org/3.44/en/docs/user_manual/processing/toolbox.html
+[5] Google Earth Engine Data Catalog. GOES-17 MCMIPF Series ABI Level 2 Cloud and Moisture Imagery Full Disk.  
+URL:
+https://developers.google.com/earth-engine/datasets/catalog/NOAA_GOES_17_MCMIPF
 
-6. QGIS Documentation. The Graphical Modeler.  
-URL: https://docs.qgis.org/3.44/en/docs/user_manual/processing/modeler.html
+[6] Google Earth Engine Data Catalog. GOES-18 MCMIPF Series ABI Level 2 Cloud and Moisture Imagery Full Disk.  
+URL:
+https://developers.google.com/earth-engine/datasets/catalog/NOAA_GOES_18_MCMIPF
 
-7. QGIS Documentation. PyQGIS Developer Cookbook.  
-URL: https://docs.qgis.org/3.44/en/docs/pyqgis_developer_cookbook/
+[7] Project Jupyter. Project Jupyter.  
+URL:
+https://jupyter.org/
+
+[8] NSF Unidata. NetCDF.  
+URL:
+https://www.unidata.ucar.edu/software/netcdf/
+
+[9] QGIS Documentation. The Processing Toolbox.  
+URL:
+https://docs.qgis.org/3.44/en/docs/user_manual/processing/toolbox.html
+
+[10] QGIS Documentation. The Graphical Modeler.  
+URL:
+https://docs.qgis.org/3.44/en/docs/user_manual/processing/modeler.html
+
+[11] QGIS Documentation. PyQGIS Developer Cookbook.  
+URL:
+https://docs.qgis.org/3.44/en/docs/pyqgis_developer_cookbook/

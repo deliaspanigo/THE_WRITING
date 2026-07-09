@@ -22,7 +22,7 @@ Para un usuario acostumbrado a imágenes de satélites de órbita polar como Lan
 
 En cambio, un satélite geoestacionario permite contextualizar cada escena dentro de una evolución casi continua. Para los productos GOES utilizados en esta tesis, las ventanas temporales varían entre 20 segundos, 10 minutos y 1 hora, y las resoluciones espaciales utilizadas se encuentran entre aproximadamente 2 km y 10 km en el nadir.
 
-## Monitoreo y Temáticas bajo monitoreo
+## Temáticas bajo monitoreo
 
 En esta tesis, monitorear se entiende como la acción de observar, registrar, sistematizar, procesar y presentar información de manera repetida sobre un fenómeno o sistema de interés. El objetivo del monitoreo no es la contemplación pasiva del dato, sino la producción de salidas que ayuden a reducir incertidumbre y apoyar decisiones técnicas, económicas, sociales, logísticas, políticas o institucionales.
 
@@ -37,8 +37,7 @@ Una mejor comprensión de estas cuatro temáticas requiere información anexa re
 - A.2) Día y noche.  
 - A.3) Estación del año.  
 
-
-El interés aplicado de estas temáticas surge de sus consecuencias sobre distintos campos de decisión: gestión ambiental, producción agropecuaria, planificación territorial, emergencias, ingeniería civil, transporte, comunicaciones, logística, aseguradoras, aeropuertos y otros sectores que requieren información ambiental oportuna.
+Estas temáticas han sido estudiadas a escala regional, nacional e internacional, y poseen un amplio historial académico, bibliográfico e institucional. Su interés aplicado surge de sus consecuencias sobre distintos campos de decisión: gestión ambiental, producción agropecuaria, planificación territorial, emergencias, ingeniería civil, transporte, comunicaciones, logística, aseguradoras, aeropuertos y otros sectores que requieren información ambiental oportuna. En este contexto, resulta entendible la alta demanda de nuevas herramientas tanto por parte de instituciones como de empresas.
 
 Otra característica de las cuatro temáticas elegidas es que la dimensión temporal resulta fundamental. Un valor aislado representa un estado puntual, pero no permite comprender persistencia, tendencias, velocidad de cambio, desplazamiento, acumulación o relación entre fenómenos. Por ello, la serie temporal es una pieza conceptual central para el software.
 
@@ -48,7 +47,53 @@ Otra característica de las cuatro temáticas elegidas es que la dimensión temp
 
 Dentro de los sistemas geoestacionarios recientes, la serie GOES-R ocupa un lugar central. NOAA describe esta generación como su flota más avanzada de satélites meteorológicos geoestacionarios y destaca que la misión integra imágenes visibles e infrarrojas, mapeo de rayos y productos para atmósfera, océanos y superficie [1].
 
-La operación del sistema GOES se organiza alrededor de posiciones geoestacionarias que permiten observar de manera continua grandes sectores del hemisferio occidental. En términos operativos, la constelación mantiene satélites en posiciones conocidas como `GOES-East` y `GOES-West`, ubicadas aproximadamente sobre los 75° O y 137° O, respectivamente. Esta configuración permite cubrir América, sectores de los océanos Atlántico y Pacífico, y regiones de interés para el monitoreo atmosférico, oceánico y de superficie. Para LegionGOES, esta organización es importante porque la elección del satélite, la cobertura `Full Disk` y la posición orbital condicionan la escena observada, la geometría de adquisición y el modo en que los productos deben ser interpretados.
+La operación del sistema GOES se organiza alrededor de dos posiciones geoestacionarias principales: `GOES-East` y `GOES-West`. La elección del satélite condiciona la región observada, la geometría de adquisición, la cobertura efectiva sobre la superficie de la Tierra y el modo en que los productos deben ser interpretados. Las capacidades instrumentales de los satélites ubicados en ambas posiciones se mantienen lo más equivalentes posible para favorecer la coherencia entre productos.
+
+La cobertura máxima de los satélites GOES se denomina `Full Disk` y constituye una de las formas principales de observación de la serie. En este modo, el satélite no observa toda la Tierra, sino el disco visible desde su posición geoestacionaria. Desde el punto de vista de la geometría óptica, si se considera a la Tierra como una esfera, el límite teórico máximo de observación para un punto externo sería del 50% de la superficie terrestre. Debido a la altura orbital y a la geometría real de observación, el `Full Disk` de cada satélite cubre aproximadamente el 42% de la superficie de la Tierra, lo que equivale a cerca de 216 millones de km².
+
+- `GOES-East` corresponde a la posición oriental de la constelación operativa. En el historial reciente de esta posición, la secuencia operacional estuvo conformada por los satélites `13`, `16` y `19`. Al momento de escritura de esta tesis, la posición `GOES-East` se encuentra ocupada por `GOES-19`, ubicado aproximadamente en 75.2° O [11]. Desde esta posición, el satélite observa casi la totalidad del continente americano, sectores polares visibles, el océano Atlántico occidental y sectores adyacentes del Pacífico oriental.
+
+```{=latex}
+\begin{center}
+\begin{tabular}{llll}
+\hline
+\textbf{Satélite} & \textbf{Posición} & \textbf{Desde} & \textbf{Hasta} \\
+\hline
+\texttt{GOES-13} & \texttt{EAST} & 14 de abril de 2010 & 18 de diciembre de 2017 \\
+\hline
+\texttt{GOES-16} & \texttt{EAST} & 18 de diciembre de 2017 & 7 de abril de 2025 \\
+\hline
+\texttt{GOES-19} & \texttt{EAST} & 7 de abril de 2025 & Actualidad \\
+\hline
+\end{tabular}
+\end{center}
+```
+
+- `GOES-West` corresponde a la posición occidental de la constelación operativa. En el historial reciente de esta posición, la secuencia operacional estuvo conformada por los satélites `15`, `17` y `18`. Al momento de escritura de esta tesis, la posición `GOES-West` se encuentra ocupada por `GOES-18`, ubicado aproximadamente en 137.2° O [12]. Desde esta posición se observa con mayor centralidad el océano Pacífico oriental, la costa oeste de América del Norte y otros sectores del hemisferio occidental. 
+
+```{=latex}
+\begin{center}
+\begin{tabular}{llll}
+\hline
+\textbf{Satélite} & \textbf{Posición} & \textbf{Desde} & \textbf{Hasta} \\
+\hline
+\texttt{GOES-15} & \texttt{WEST} & 6 de diciembre de 2011 & 12 de febrero de 2019 \\
+\hline
+\texttt{GOES-17} & \texttt{WEST} & 12 de febrero de 2019 & 4 de enero de 2023 \\
+\hline
+\texttt{GOES-18} & \texttt{WEST} & 4 de enero de 2023 & Actualidad \\
+\hline
+\end{tabular}
+\end{center}
+```
+
+
+
+  
+    
+Las coberturas `Full Disk` de `GOES-East` y `GOES-West` no son independientes, sino que presentan una superposición considerable sobre el continente americano y sectores oceánicos adyacentes. Tomando como referencia las posiciones aproximadas de 75.2° O para `GOES-East` y 137.2° O para `GOES-West`, y modelando la Tierra como una esfera, la intersección entre ambos discos visibles puede estimarse en aproximadamente 130 millones de km². Esto equivale a cerca del 25% de la superficie terrestre y a alrededor del 60% del área visible de un `Full Disk` individual. Esta superposición explica por qué ciertas regiones pueden ser observadas desde ambas posiciones, aunque con distinta geometría de adquisición, ángulo de visión y utilidad operativa.
+
+Durante el desarrollo del sistema GOES han ocurrido cambios tecnológicos importantes en la sucesión de satélites. Por esta razón, no todos los satélites mencionados en las tablas anteriores forman parte del alcance operativo de LegionGOES. `GOES-13` y `GOES-15` se incluyen para comprender el historial reciente de las posiciones `GOES-East` y `GOES-West`, pero quedan fuera del procesamiento desarrollado en esta tesis porque no poseen los sensores `ABI` ni `GLM` ni la misma estructura de productos de la serie GOES-R. En consecuencia, cuando en el resto del documento se hable de productos GOES procesados por LegionGOES, la referencia operativa corresponde a `GOES-16`, `GOES-17`, `GOES-18` y `GOES-19`.
 
 Del conjunto de instrumentos presentes en GOES, esta tesis se apoya principalmente en `ABI` y `GLM`.
 
@@ -59,9 +104,10 @@ Esta diferencia instrumental tiene consecuencias directas sobre el software. Los
 
 ## GOES y productos utilizados
 
-La tesis se apoya en productos de la serie GOES-R de nivel `L2` con cobertura `Full Disk`. El nivel `L2` implica que el dato ya no es solamente una medición instrumental cruda del satélite, sino un producto derivado. Es decir, el sensor mide radiancia electromagnética y, mediante algoritmos, calibraciones y correcciones, esa señal se transforma en variables interpretables en términos físicos. La cobertura `Full Disk` implica utilizar productos que brindan la máxima cobertura territorial disponible para el satélite, con una visión completa del disco terrestre observado.
+La tesis se apoya en productos de la serie GOES-R de nivel `L2` con cobertura `Full Disk`. El nivel `L2` implica que el dato ya no es solamente una medición instrumental cruda del satélite, sino un producto derivado como reustlado de haber aplicado sobre los valores de radiancia electromagnética una serire de algoritmos, calibraciones y correcciones. La cobertura `Full Disk` implica utilizar productos que brindan la máxima cobertura territorial disponible para el satélite.
 
-Del conjunto de productos `L2-Full Disk` disponibles, LegionGOES trabaja con cuatro productos:
+
+Del conjunto de productos `L2-Full Disk` disponibles, LegionGOES trabaja con cuatro productos para abordar las temáticas de monitoreo:
 
 - `ABI-L2-LSTF`, producto ráster orientado a temperatura de superficie terrestre.
 - `ABI-L2-FDCF`, producto ráster asociado a detección y caracterización de focos de calor.
@@ -86,7 +132,8 @@ Del conjunto de productos `L2-Full Disk` disponibles, LegionGOES trabaja con cua
 \end{center}
 ```
 
-La comparación rápida de estos productos permite ver que no todos tienen la misma naturaleza. Algunos productos son rásteres regulares, mientras que otros son productos vectoriales o tabulares basados en eventos. Esta diferencia condiciona la forma de descarga, procesamiento, visualización y generación de series temporales dentro de LegionGOES.
+En la tabla se indica la resolución espacial en el nadir, es decir, en el sector de la superficie observado con la geometría más directa respecto del satélite. Esta aclaración es importante porque, debido a la geometría óptica del sensor, la curvatura terrestre y el aumento del ángulo de observación hacia los bordes del disco, el tamaño efectivo del píxel sobre la superficie no es constante en todo el `Full Disk`. A medida que una medición se aleja del punto de nadir, el área terrestre representada por cada píxel aumenta y la observación se vuelve geométricamente más oblicua.
+
 
 ### ABI-L2-LSTF
 
@@ -124,13 +171,14 @@ El archivo `GLM-L2-LCFA` no contiene dimensiones `x` e `y` como los rásteres an
 
 ## Implicancias para el diseño de LegionGOES
 
-Las características anteriores no son detalles secundarios: condicionan directamente el diseño del software. LegionGOES debe trabajar con productos que tienen distintas resoluciones espaciales, distintas ventanas temporales, distintas estructuras internas y distintas formas de representación. Algunos productos se comportan como rásteres regulares; otros, como GLM, se comportan como tablas de eventos. Algunos productos pueden visualizarse directamente después de una transformación; otros requieren acumulación, filtrado, emparejamiento con productos auxiliares o construcción de composiciones visuales.
+Las características técnicas descriptas en este capítulo tienen consecuencias directas sobre el diseño de LegionGOES. El software no organiza el trabajo únicamente por producto o por formato de archivo, sino por temática bajo monitoreo. Cada temática se estructura alrededor de una serie temporal y coordina un conjunto preestablecido de productos GOES, configuraciones de procesamiento, criterios estéticos, reglas de emparejamiento y formas de visualización.
 
-Esta diversidad explica por qué LegionGOES no se organiza únicamente por formato de archivo, sino por actividades de uso. El usuario no ingresa al sistema pensando en una variable `NetCDF`, una grilla satelital o un algoritmo de clasificación, sino en una necesidad: observar temperatura de superficie, analizar focos de calor, visualizar nubes o seguir actividad eléctrica. El software traduce esa necesidad temática en una secuencia técnica de descarga, procesamiento, emparejamiento, visualización y generación de salidas.
+Esta organización es necesaria porque los productos GOES tienen distintas resoluciones espaciales, distintas ventanas temporales, distintas estructuras internas y distintas formas de representación. Algunos productos se comportan como rásteres regulares; otros, como `GLM-L2-LCFA`, se comportan como tablas de eventos. Algunos productos pueden visualizarse directamente después de una transformación; otros requieren acumulación, filtrado, emparejamiento con productos auxiliares o construcción de composiciones visuales.
 
-La serie temporal funciona como eje organizador. Para construir una visualización coherente, el sistema debe mantener consistencia entre fechas, productos, escalas de color, proyecciones, capas de contexto y formatos de salida. Esta tarea sería posible mediante programación directa, pero resultaría lenta y repetitiva para muchos usuarios. Por eso, una parte central del aporte de LegionGOES consiste en encapsular decisiones técnicas dentro de herramientas específicas, de modo que el usuario pueda trabajar con productos GOES sin quedar expuesto a toda la complejidad interna del dato original.
+El software traduce la necesidad temática del usuario en una secuencia técnica de descarga, procesamiento, emparejamiento, visualización y generación de salidas. Para construir una visualización coherente, el sistema debe mantener consistencia entre escalas de color, proyecciones, capas de contexto y formatos de salida. Todo lo generado en los pasos anteriores debe presentarse en una interfaz suficientemente ordenada y dinámica para ser, al mismo tiempo, amena y efectiva como entorno de trabajo.
 
-En síntesis, este marco tecnológico muestra que LegionGOES surge de una necesidad concreta: convertir productos satelitales geoestacionarios complejos en flujos de trabajo locales, reproducibles y visualmente interpretables. La tesis se apoya en fenómenos de interés meteorológico, ambiental y agrometeorológico, pero su aporte principal se ubica en el diseño e integración de software para hacer operativa esa información.
+La parte central del aporte de LegionGOES consiste en encapsular decisiones técnicas dentro de herramientas específicas, de modo que el usuario pueda trabajar con foco en la temática bajo monitoreo sin quedar expuesto a toda la complejidad informática interna del dato original.
+
 
 ## Referencias del capítulo {.unnumbered}
 
@@ -173,3 +221,19 @@ https://www.goes-r.gov/spacesegment/abi.html
 [10] NSF Unidata. "NetCDF."  
 URL:
 https://www.unidata.ucar.edu/software/netcdf/
+
+[11] GOES-R Series. "GOES-19 Transition to Operations."  
+URL:
+https://www.goes-r.gov/users/transitionToOperations19.html
+
+[12] GOES-R Series. "GOES-18 Transition to Operations."  
+URL:
+https://www.goes-r.gov/users/transitionToOperations18.html
+
+[13] GOES-R Series. "GOES-16 Transition to Operations."  
+URL:
+https://www.goes-r.gov/users/transitionToOperations16.html
+
+[14] GOES-R Series. "GOES-17 Transition to Operations."  
+URL:
+https://www.goes-r.gov/users/transitionToOperations17.html

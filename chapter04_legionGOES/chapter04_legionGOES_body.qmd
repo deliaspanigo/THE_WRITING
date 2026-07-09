@@ -1,7 +1,7 @@
 # Planteo general de LegionGOES
 
 ## Definición de LegionGOES
-En forma corta y simple, LegioGOES es un programa que descarga, procesa y permite visualizar productos generados a paritr de imágenes GOES para las temáticas Temperatura en Superficie, Focos de calor, Nubes y Tormentas Eléctricas.
+En forma corta y simple, LegioGOES es un programa que descarga, procesa y permite visualizar productos generados a paritr de imágenes GOES para las temáticas Temperatura en Superficie, Focos de calor, Nubes y Tormentas Eléctricas [8, 9, 10, 11].
 
 Una definición un poco más rebuscada, LegionGOES puede definirse como un sistema local de descarga, procesamiento y visualización de productos satelitales de la serie GOES, orientado a construir salidas predeterminadas que permitan observación, exploración y  operación  teniendo como soporte un ecosistema de software basado en Python y R/Shiny, y otros programas accesorios con un fuerte incapie en la visualización de series temporales. 
 
@@ -27,20 +27,20 @@ De esta manera, la serie temporal no es solo una forma de visualizar el resultad
 ## Reproducibilidad y componentes de software
 La reproducibilidad computacional ocupa un lugar central en este trabajo porque el valor de un sistema científico y/o técnico no depende solo de sus scripts, sino también de su posibilidad de ser reinstalado, ejecutado y mantenido bajo un entorno controlado. Cuando un flujo de monitoreo depende de múltiples lenguajes, librerías geoespaciales, configuraciones locales, recursos gráficos y rutas internas, la reproducibilidad deja de ser un aspecto secundario y pasa a ser parte del aporte metodológico.
 
-LegionGOES combina Python para descarga y procesamiento, R/Shiny para interfaces interactivas y algunos procesamientos estadísticos. El código de Python conforma una única librería y el código de R se encuentra en armado en 5 librerías diferentes, esto es con la idea de encapsular dependencias y de reducir la fragilidadad. 
+LegionGOES combina Python para descarga y procesamiento, R/Shiny para interfaces interactivas y algunos procesamientos estadísticos [1, 2, 3]. El código de Python conforma una única librería y el código de R se encuentra en armado en 5 librerías diferentes, esto es con la idea de encapsular dependencias y de reducir la fragilidadad. 
 
 El instalador incluye:  
-- Python 3.12 y todo un conjunto de librerías asociado.  
-- R 4.5.3 y todo un conjunto de librerías.  
-- Chrome portable.  
-- FFmpeg (software de video).  
-- Quarto portable (software de reportería).  
+- Python 3.12 y todo un conjunto de librerías asociado [1].  
+- R 4.5.3 y todo un conjunto de librerías [2].  
+- Chrome portable [5].  
+- FFmpeg (software de video) [6].  
+- Quarto portable (software de reportería) [7].  
 
-La estandarización y reproducibilidad también debía ocurrir en cuanto a la visualización que tiene el usuario. La decisión del entorno web como interfaz trajo consigo problemas y variabilidad en la visualización al abrir LegionGOES en diferentes navegadores o en diferentes versiones de un mismo navegador. Esto fue resuelto agregando un navegador web Chrome al instalador.
+La estandarización y reproducibilidad también debía ocurrir en cuanto a la visualización que tiene el usuario. La decisión del entorno web como interfaz trajo consigo problemas y variabilidad en la visualización al abrir LegionGOES en diferentes navegadores o en diferentes versiones de un mismo navegador. Esto fue resuelto agregando un navegador web Chrome al instalador [5].
 
-La decisión de dotar a LegionGOES de la capacidad de generar videos mp4 se intento primero utilizando recursos propios de Chrome, y había serios problemas relacionados al uso de RAM por este camino. Se intento también hacerlo desde R y PYthon, pero ocurrían errores inespecíficos en algunas computadoras que indicaban que algunas computadoras necesitaban instalar un software específico para tal fin. Se logró una solución total al agregar el programa FFmpeg como parte del instalador.
+La decisión de dotar a LegionGOES de la capacidad de generar videos mp4 se intento primero utilizando recursos propios de Chrome, y había serios problemas relacionados al uso de RAM por este camino. Se intento también hacerlo desde R y PYthon, pero ocurrían errores inespecíficos en algunas computadoras que indicaban que algunas computadoras necesitaban instalar un software específico para tal fin. Se logró una solución total al agregar el programa FFmpeg como parte del instalador [6].
 
-La decisión de dotar a LegionGOES con la capacidad de brindar reportes automatiizados html y pdf en alguanas partes del programa se logró de buena manera al agregar un quarto portable al instalador.
+La decisión de dotar a LegionGOES con la capacidad de brindar reportes automatiizados html y pdf en alguanas partes del programa se logró de buena manera al agregar un quarto portable al instalador [7].
 
 Todo este paquete  de software es independiente del resto de sotfware que el usuario posea en su computadora. Logramos entonces un entorno aislado sin tener que cambiar entre diferentes versiones de Python, de R o de cualquiera de sus librerías. Al estandarizar todos los componentes de software y que no pueda ocurrir ni si quiera diferentes versiones de librerías, los errores inespecíficos disminuyeron drásticamente, y los errores se volvieron sistemáticos en vez de ocasionales o inexplicables.
 
@@ -82,7 +82,7 @@ La estructura de ambas es muy similar. Comenzamos con la descripción de la apli
 #### App Downloader
 La aplicación está conformada por una suceción de elecciones cerrradas. No se abre una elección hasta que no se completa la anterior. La primera elección consiste en elegir una de las 4 actividades metereológicas ya mencionadas: Temperatura, Focos de calor, Nubes y Tormentras Eléctricas. Cada actividad metereológica tácitamente implica una serie de productos GOES asociados para determinado tiempo.
 
-Definida la actividad metereológica el usuario se encontrará diferentes opciones que permitirán la descarga de un archívo único o de una serie temporal para la actividad metereológica seleccionada. Los archivos GOES se toman desde servidores AWS y hay dos particularidades muy buenas respecto a lo que es la descarga de Landsat o Sentinel por ejemplo que es que la descarga de GOES por AWS no tiene limitaciones para el usuario en cuanto a peso ni cantidad de archivos, y no necesita de credenciales aprovadas. Luego de completar todas las opciones LegionGOES gestiona entonces los archivos a ser descargados uno por uno.
+Definida la actividad metereológica el usuario se encontrará diferentes opciones que permitirán la descarga de un archívo único o de una serie temporal para la actividad metereológica seleccionada. Los archivos GOES se toman desde servidores AWS y hay dos particularidades muy buenas respecto a lo que es la descarga de Landsat o Sentinel por ejemplo que es que la descarga de GOES por AWS no tiene limitaciones para el usuario en cuanto a peso ni cantidad de archivos, y no necesita de credenciales aprovadas [4]. Luego de completar todas las opciones LegionGOES gestiona entonces los archivos a ser descargados uno por uno.
 
 Al momento de la descarga de archivos ocurre también una verificación para corroborar si el archivo ya existe localmente o no, y en caso de existir se verifica que el peso del archivo local sea el esperado según está declarado en AWS. De esa manera puede realizarse la descarga de una serie temporal con una gran cantidad de archivos, y en caso de que ocurra una interrupción en la descarga se puede volver a iniciar de manera segura y que los archivos corruptos sean automáticamente eliminados y descargados nuevamente.
 
@@ -115,7 +115,7 @@ Hay también un control para pdoer pasar frame por frame la serie temporal con u
 
 
 #### Focos de calor y fuego - Operative
-La herramienta procesa solo 1 archivo FDCF en proyección WGS84. con 5 salidas visuales. El archivo original FDCF tiene 45 categorías y es un raster. Este producto GOES es en realidad resultado de un procesamiento interno que toma otras bandas para clasificar cada pixel en 1 de las 45 categorías. La detección de focos de calor se basa entre otras en el brillo del pixel. Es importante decir que la geometría de adquisición afecta la detección de focos de calor ya que el brillo solar en la atmósfera y en el reflejo del sol en cuerpos de agua dan falsos positivos. Es por ello que las zonas subzolar y zenith de la imagen son ignoradas para la detección de fuego y son colocadas en una categoría especial denominada Glich. Es un error catastrófico por parte del profesional GIS ignorar la geometría de adquisición y la categoría Glich y asumir directamente que si no hay categoría asociada fuego es que no hay fuego efectivamente. El algoritmo de GOES intenta esquivar los falsos positivos y los falsos negativos pero el algoritmo no evita el mal uso del producto por parte del operador.
+La herramienta procesa solo 1 archivo FDCF en proyección WGS84. con 5 salidas visuales. El archivo original FDCF tiene 45 categorías y es un raster. Este producto GOES es en realidad resultado de un procesamiento interno que toma otras bandas para clasificar cada pixel en 1 de las 45 categorías [9]. La detección de focos de calor se basa entre otras en el brillo del pixel. Es importante decir que la geometría de adquisición afecta la detección de focos de calor ya que el brillo solar en la atmósfera y en el reflejo del sol en cuerpos de agua dan falsos positivos. Es por ello que las zonas subzolar y zenith de la imagen son ignoradas para la detección de fuego y son colocadas en una categoría especial denominada Glich. Es un error catastrófico por parte del profesional GIS ignorar la geometría de adquisición y la categoría Glich y asumir directamente que si no hay categoría asociada fuego es que no hay fuego efectivamente. El algoritmo de GOES intenta esquivar los falsos positivos y los falsos negativos pero el algoritmo no evita el mal uso del producto por parte del operador.
 
 Las 5 visusalizaciones tienen diferentes categorías seleccionadas para obtener diferentes visiones. Para las categorías seleccionadas en cada visualziación se genera una capa vectorial para lograr ver de mejor manera los pixeles con las categorías seleccionadas. Hay un botón rápido que al dar clic LegionGOES se conecta al server AWS y descarga el último archivo disponible en ese momento. Hya un archivo FDCF cada 10 minutos. Es posible también elegir el último archivo local disponible o un archivo local en particular. Hay varias opciones relacioandas a cambiar el mapa de fondo, cambiar el color de los límites internacionales, botón de screenshot y borón de descarga. 
 
@@ -131,7 +131,7 @@ Hay también un control para pdoer pasar frame por frame la serie temporal con u
 
 
 #### Nubes - Operative
-La herramienta procesa solo 1 archivo MCMIPF en proyección WGS84. El archivo original MCMIPF contiene 16 bandas, varias de ellas en el infrarrojo. Con esas categorías se determina la temperatura de cierto grupo de nubes que se encuentran entre los -80 y -30 grados Celsius. Este grupo de nubes son nubes muy altas en la atmósfera importantes por estar asociadas a granizo y tormentas severas.
+La herramienta procesa solo 1 archivo MCMIPF en proyección WGS84. El archivo original MCMIPF contiene 16 bandas, varias de ellas en el infrarrojo [10]. Con esas categorías se determina la temperatura de cierto grupo de nubes que se encuentran entre los -80 y -30 grados Celsius. Este grupo de nubes son nubes muy altas en la atmósfera importantes por estar asociadas a granizo y tormentas severas.
 Hay un botón rápido que al dar clic LegionGOES se conecta al server AWS y descarga el último archivo disponible en ese momento. Hya un archivo MCMIPF cada 10 minutos. Es posible también elegir el último archivo local disponible o un archivo local en particular. Hay varias opciones relacioandas a cambiar el mapa de fondo, cambiar el color de los límites internacionales, botón de screenshot y borón de descarga. 
 
 
@@ -156,7 +156,7 @@ Este opearative entonces rompe con la idea de procesar solo 1 archivo de 1 solo 
 
 #### Tormentas eléctricas - Viewer
 El viewer solo permite visualizar archivos que hayan sido previamente descargados y procesados con las aplicaciones de Downloader y Processing de LegionGOES específicamente para la actividad metereológica tormenta eléctricas. 
-El producto GLM se obtiene cada 20 segundos. Como anexo se utiliza el producto MCMIPF con el mismo procesamiento que tiene el viewer de Nubes que otorgan un TrueColor sintético y nubes superiores entre los -80 y los -30 grados cCElsius. Se tiene un producto MCMIPF cada 10 minutos, entonces lo que se ahce es acumular todos los GLM asociados a rango de 10 minutos del producto MCMIPF y procesarlos juntos.
+El producto GLM se obtiene cada 20 segundos [11]. Como anexo se utiliza el producto MCMIPF con el mismo procesamiento que tiene el viewer de Nubes que otorgan un TrueColor sintético y nubes superiores entre los -80 y los -30 grados cCElsius. Se tiene un producto MCMIPF cada 10 minutos, entonces lo que se ahce es acumular todos los GLM asociados a rango de 10 minutos del producto MCMIPF y procesarlos juntos.
 
 Al tener un producto GML cada 20 segundos esto implica que son 30 productos en 10 minutos, 180 productos es 1 hora y 4320 productos en un día. Entonces por cada archivo MCMIPF habrá 30 archivos GLM asociados.
 
@@ -214,4 +214,50 @@ Asimismo, la diversidad de presentaciones responde a distintos modos de lectura.
 En síntesis, LegionGOES se plantea como una plataforma en la que los productos GOES no son un fin en si mismos, sino el punto de partida para construir resultados interpretables, navegables y transferibles a distintos contextos de uso.
 
 Lso archivos procesados pro LegionGOES habitan en el disco rígido del usuario, y pueden ser utilizados directamente en otros programas.
+
+## Referencias del capítulo {.unnumbered}
+
+[1] Python Software Foundation. "Python."  
+URL:
+https://www.python.org/
+
+[2] The R Foundation. "The R Project for Statistical Computing."  
+URL:
+https://www.r-project.org/
+
+[3] Posit. "Shiny."  
+URL:
+https://shiny.posit.co/
+
+[4] Registry of Open Data on AWS. "NOAA GOES on AWS."  
+URL:
+https://registry.opendata.aws/noaa-goes/
+
+[5] Google. "Google Chrome."  
+URL:
+https://www.google.com/chrome/
+
+[6] FFmpeg. "FFmpeg."  
+URL:
+https://ffmpeg.org/
+
+[7] Posit. "Quarto."  
+URL:
+https://quarto.org/
+
+[8] GOES-R Series. "Data Products: Land Surface Temperature (Skin)."  
+URL:
+https://www.goes-r.gov/products/baseline-LST.html
+
+[9] GOES-R Series. "Data Products: Fire/Hot Spot Characterization."  
+URL:
+https://www.goes-r.gov/products/baseline-fire-hot-spot.html
+
+[10] GOES-R Series. "Data Products: Cloud and Moisture Imagery."  
+URL:
+https://www.goes-r.gov/products/baseline-cloud-moisture-imagery.html
+
+[11] GOES-R Series. "Data Products: Lightning Detection: Events, Groups and Flashes."  
+URL:
+https://www.goes-r.gov/products/baseline-lightning-detection.html
 
