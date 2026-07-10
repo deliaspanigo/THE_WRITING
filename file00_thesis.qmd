@@ -1,7 +1,7 @@
 ---
 lang: es
 bibliography: references.bib
-csl: apa.csl
+csl: ieee.csl
 link-citations: false
 nocite: |
   @*
