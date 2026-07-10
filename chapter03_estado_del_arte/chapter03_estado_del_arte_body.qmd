@@ -70,12 +70,12 @@ Google Earth Engine representa una tercera familia de herramientas: las platafor
 \centering
 \begin{minipage}[c]{0.22\textwidth}
 \centering
-\includegraphics[width=0.95\linewidth]{chapter03_estado_del_arte/img/img08_gee_logo.png}
+\includegraphics[width=0.95\linewidth]{chapter03_estado_del_arte/img/img07_gee_logo.png}
 \end{minipage}
 \hfill
 \begin{minipage}[c]{0.72\textwidth}
 \centering
-\includegraphics[width=\linewidth]{chapter03_estado_del_arte/img/img09_GEE_goes.jpg}
+\includegraphics[width=\linewidth]{chapter03_estado_del_arte/img/img08_GEE_goes.jpg}
 \end{minipage}
 \caption{Google Earth Engine como ejemplo de plataforma geoespacial en la nube. A la izquierda se muestra el logo de la plataforma y a la derecha un ejemplo de consulta de productos GOES dentro del catálogo de datos.}
 \label{fig-gee-goes}
@@ -132,7 +132,25 @@ Qué decir de una Jupyter Notebook. Directamente diseñada para usuarios que deb
 
 LegionGOES toma elementos de estas cuatro familias de programas, pero no coincide completamente con ninguna. De SLIDER toma la visualización de series temporales con facilidad web y la idea de maximizar el espacio de visualización GIS. De QGIS toma la posibilidad de activar o desactivar capas disponibles y de utilizar recursos locales y en línea, como mapas de fondo. De Google Earth Engine toma como referencia la idea de procesamiento geoespacial organizado sobre colecciones temporales, aunque reemplaza la dependencia de una plataforma remota por un entorno local e instalable. De Jupyter toma la posibilidad de trabajar con series temporales de forma programática y manejar la relación entre archivos mediante reglas explícitas.
 
-Si bien no será posible estandarizar todas las necesidades de todos los profesionales GIS en todos los posibles temas meteorológicos, un estandard general más o menos concensuado es más que suficiente para tematicas como temperatura en superficie, heladas, focos de calor y fuego, nubes y tormentas eléctricas. Pensemos por un momento en la idea de un procesamiento estandarizado a los fines de ser un generador de ideas para la temática o un referente en cuanto a lo que se puede obtener como resultado mínimo de visualización. Esto también otorga al usuario un entorno de trabajo ordenado por temática metereológica y no por temática informática o por tipo de archivo.
+
+
+```{=latex}
+\begin{figure}[htbp]
+\centering
+\begin{minipage}[c]{0.22\textwidth}
+\centering
+\includegraphics[width=0.95\linewidth]{chapter03_estado_del_arte/img/img09_legion_logo.png}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.72\textwidth}
+\centering
+\includegraphics[width=\linewidth]{chapter03_estado_del_arte/img/img10_legion_home.png}
+\end{minipage}
+\caption{LegionGOES como propuesta de software integradora. A la izquierda se muestra el logo del proyecto y a la derecha la pantalla principal del sistema, desde la cual se organiza el acceso a herramientas de descarga, procesamiento, visualización y análisis de productos GOES.}
+\label{fig-legiongoes-home}
+\end{figure}
+```
+Si bien no será posible estandarizar todas las necesidades de todos los profesionales GIS en todos los posibles temas meteorológicos, un estandard general más o menos concensuado es más que suficiente para tematicas como temperatura en superficie, heladas, focos de calor y fuego, nubes y tormentas eléctricas. Pensemos por un momento en la idea de un procesamiento estandarizado a los fines de ser un generador de ideas para la temática o un referente en cuanto a lo que se puede obtener como resultado mínimo de visualización. La posibilidad para el usuario de un entorno de trabajo ordenado por temática de monitoreo y no por temática informática o por tipo de archivo es también una novedad importante.
 
 
 

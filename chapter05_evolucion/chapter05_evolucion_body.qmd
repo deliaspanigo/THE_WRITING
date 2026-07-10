@@ -1,41 +1,85 @@
 # Ideas, contexto y evolución del diseño de LegionGOES
-El proyecto paso por diferentes etapas de maduración y cambios que merecen ser nombrados en la tesis con la idea de por que no evitar errores catastróficos en futuros proyector que se desarrollen a partir de esta tesis.
 
-El proyecto original de tesis fue iniicalmente pensado como una librería Python para gestionar la descarga y procesamiento de imágenes GOES 16 para una serie de temáticas a monitorear. El código correría en un servidor Linux y brindaría salidas mediante interfaz web R/Shiny [1, 2, 3]. La libraría Python sería colocada en un repositorio de GitHub y se armaría un procesador dockerizado posible de ser descargado desde DockerHub [4, 5]. No se buscaba la posibilidad de que el usuario pudiera demandar procesamientos específicos al server, sino que el usuario se limitaría a ver los procesamientos preestablecidos ya ejecutados. El servidor cada tanto tiempo iniciaría la descarga y procesamiento. 
-EL acceso del usuario al servidor con o sin credenciales, era factible.
+Este capítulo describe la evolución del proyecto LegionGOES como parte del resultado metodológico de la tesis. No se incluye únicamente como relato histórico, sino como una forma de explicar por qué el software terminó teniendo su estructura actual. Las decisiones tomadas durante el desarrollo no fueron lineales: surgieron de límites técnicos, cambios en los satélites disponibles, dificultades de infraestructura, problemas de instalación, pruebas con usuarios y necesidades de reproducibilidad.
 
-Ocurre el cambio de GOES 16 a GOES 19, lo cual tiene implicaciones inesperadas en la programación. Se decide entonces hacer los cambios necesarios para que sea posible procesar GOES 16 y 19. Inmediatamente se hace extensivo el cambio para intentar procesar cualquier GOES. Luego de ver detalles técnicos finalmente incluye ahora la posibilidad de trabajar con la serie completa, ya sea 16, 17, 18 o 19. Surge entonces el nombre de Legion, por que son muchos GOES y finalmente LegionGOES.
+Desde esta perspectiva, la evolución del proyecto permite comprender mejor el aporte de LegionGOES. El software no nació como una aplicación cerrada desde el inicio, sino como una sucesión de decisiones que fueron desplazando el centro del trabajo desde el procesamiento satelital en un servidor Linux hacia la construcción de un sistema local, instalable, modular y orientado al usuario.
 
-El procesamiento satelital ocurriría. No es una novedad código de procesamiento Python para imágenes GOES. La novedad radicaría en la interfaz del usuario para lo cual ya había una una serie de conceptos elegidos:
-- Maximizar la visualización a pantalla completa (inferfaz del usuario ser más parecida a SLIDE que a QGIS).  
-- Tener una facilidad para poder ver series temporales.
-- Poder visualizar diferentres proyecciones.
-- Dar la posibilidad de descargar los procesamientos generados y para el caso de las series temproales poder obtener archivos de video mp4.  
-- Permitir la reproducibilidad y la transparencia en cuanto al código generado en la tesis mediante el armado de librerías Python y/o R y código en GitHub, y la generación de un procesdor en DockerHub listo para producción.
-- Dar al usuario un entorno ordenado por temática metereológica y no por temática informática.
+## Idea inicial: procesamiento en servidor
+
+El proyecto original de tesis fue inicialmente pensado como una librería Python para gestionar la descarga y procesamiento de imágenes GOES-16 para un conjunto de temáticas a monitorear. El código correría en un servidor Linux y brindaría salidas mediante una interfaz web R/Shiny [1, 2, 3]. La librería Python sería colocada en un repositorio de GitHub y se armaría un procesador dockerizado posible de ser descargado desde DockerHub [4, 5].
+
+En esa primera idea, el usuario no demandaría procesamientos específicos al servidor, sino que accedería a productos previamente generados. El servidor sería el encargado de descargar, procesar y actualizar los resultados cada cierto tiempo. El acceso del usuario, con o sin credenciales, parecía técnicamente factible. 
+
+Esta etapa inicial tenía una lógica clara: centralizar el procesamiento y simplificar la experiencia del usuario final. Sin embargo, también implicaba una fuerte dependencia de infraestructura externa, mantenimiento de servidor, capacidad de cómputo permanente, seguridad informática y costos de operación. Estos aspectos, que inicialmente parecían secundarios, terminaron condicionando fuertemente la evolución del diseño.
+
+## Cambio de alcance: de GOES-16 a la serie GOES-R
+
+Durante el desarrollo ocurrió el cambio operativo de GOES-16 a GOES-19 en la posición GOES-East. Este hecho tuvo implicancias directas en la programación. Lo que inicialmente podía pensarse como un flujo orientado a GOES-16 debió transformarse en un sistema capaz de procesar más de un satélite.
+
+Primero se realizaron cambios para procesar GOES-16 y GOES-19. Luego, esa decisión se extendió para intentar procesar cualquier satélite de la serie GOES-R disponible en el esquema de productos utilizado por la tesis. Finalmente, el sistema incorporó la posibilidad de trabajar con GOES-16, GOES-17, GOES-18 y GOES-19. 
+
+## Nombre y logo
+Esta ampliación de alcance fue el motivo del nombre: no se trataba de un único GOES, sino de muchos. Una legión de satélites GOES. Y finakmente, LegionGOES.
+El logo pasó por muchos modelos. Se buscó siempre un hexagono, y de apariencia a los parches que se ven para las misiones espaciales. Fue generado con inteligencia artificial.
+
+## De procesador satelital a interfaz de usuario
+
+El procesamiento satelital era una parte esperada del proyecto, pero no es una novedad ya que después de todo ya existe código para procesar imágenes GOES.La novedad de LegionGOES no son las temáticas bajo monitoreo ni el código ypthon de procesamiento sino en cómo organizar esa capacidad dentro de una interfaz pensada para usuarios que necesitan observar, explorar y producir salidas.
+
+Desde etapas tempranas aparecieron algunos criterios de diseño:
+- Entorno web si o si.
+- Maximizar el espacio de visualización, con una interfaz más cercana a un visualizador satelital como SLIDER que a un QGIS.
+- Facilitar la visualización de series temporales.
+- Permitir la visualización en diferentes proyecciones.
+- Dar al usuario la posibilidad de descargar procesamientos generados y obtener videos `mp4` para series temporales.
+- Favorecer reproducibilidad y transparencia mediante código organizado en librerías, repositorios y componentes reutilizables.
+- Ordenar el trabajo por temática bajo monitoreo y no solamente por producto, archivo o estructura informática.
 
 
-El desarrollo del software de procesmaiento y de interfaz llevan su tiempo y muchos experimentos pero se logra una versión ya suceptible de ser colocada en un servidor. Se hacen pruebas en red local, sin problema, y luego se busca un servidor. Ese inconveniente no pudo ser resuelto. En resumen, no fue posible contar con un servidor sin pagar. Esta dificiltad tiene todo el sentido del mundo ya que el procesamiento satelital es muy demandante en temas de hardward y tiene costos que alguien paga después de todo. También hay temas de seguridad informática en servidores institucionales que requieren algo más que un profesional GIS con buenas intenciones. 
+## El límite del servidor y el giro hacia un instalador
 
-Surge entonces una idea de armar un programa instalable. Eso tendría muchas ventajas ya que podría evitar la necesidad de los servidores para mostrar el procesamiento y permitiría la idea real y directa de la reproducibilidad en ciencia y técnica. No se pensó antes en esta idea por que no era una habilidad informática que tesista tuviera al momento de armar el proyecto. En general uno escucha y ve desarrollos de procesadores en un servidor, de herramientas online, o de una herramienta de visualización para Google Earth Engine por ejemplo, pero no se escucha de crear nuevos instaladores de software GIS. El instalador no era algo que había sido tenido en cuenta nunca. 
+El desarrollo del software de procesamiento y de interfaz permitió alcanzar una versión susceptible de ser colocada en un servidor. Se realizaron pruebas en red local perfectamente. Sin embargo, al buscar una infraestructura real para sostener el sistema, apareció una dificultad central: no fue posible contar con un servidor adecuado sin asumir costos importantes.
 
-Se decide hacer una prueba. Se elige Windows como sistema opereativo target por el hecho que la mayoría de las los usuarios utilizan Windows, y se decide generar todo en inglés alcanzar más público y también para evitar todos problemas de encoding [6].
+Esta dificultad es razonable. El procesamiento satelital demanda almacenamiento, cómputo, transferencia de datos y mantenimiento. Servidores institucionales no hay disponibles para un proyecto que implica descarga y procesamiento satelital. Hay un tema también de seguridad institucional para estos temas que en general un profesional GIS ignora.
 
-Definidos estos aspectos dejo de lado el proyecto de tesis para hacer experiemntos con algo más pequeño ya que comenzar directamente el intento de instalador de un proyecto tan grande me llevaría a demasiados errores inespecíficos. Era necesario un proyecto piloto que tuviera R/Shiny pero que sea mucho más sencillo. Después de muchos intentos se tiene un instalador para el proyecto piloto. Con ese primer experimento exitoso de la prueba piloto que claro que es necesaria una reestructuración general de todo el código para poder llevar LegionGOES hacia un instalador. Después de muchos intentos, se tiene la primera versión instalable de LegionGOES. 
+A partir de ese límite surgió la idea de construir un programa instalable. Un instalador permitía evitar la dependencia de un servidor para mostrar el procesamiento, trasladar el cómputo a la computadora del usuario y fortalecer una idea de reproducibilidad más directa: todo el proceso puede ocurrir en la computadora del usuario.
 
-Desde ese momento el software es compartido con un grupo de voluntarios testing. El instalador cambió totalmente las ideas sobre lo que uno pretendía del programa, cambia también la facilidad con que otras personas puede probar el programa y genera ahora toda una nueva instancia de errores y un gran delay entre la generación de una versión del software y la siguiente.
+La idea del instalador no había estado presente al inicio del proyecto entre otras razones porque no formaba parte de las habilidades informáticas originales del tesista. En el ámbito GIS es frecuente encontrar procesadores en servidor, plataformas en línea, notebooks o visualizadores web, pero nunca había escuchado a alguien intentar un instalador. De hecho desde la aparición de QGIS no había tenido contacto con otros softwares GIS instalables que corran localmente. Esa decisión terminó siendo una de las características centrales de LegionGOES.
 
-Muchos cambios ocurren en la estructura de LegionGOEs que no tienen que ver con lo satelital y ahora tampoco con la interfaz del usuario, sino toda una nueva temática  informática como es minimizar el tiempo de carga de todas las herramientas, funciones de control para verificar que ciertos componentes existen o han sido cargados antes que otros. Otro cambio estructura grande fue pasar de una estructura monolítica a una estructura dividida en módulos y armar de mejor en librerías los componentees de R y Python. Pasamos entonces de tener una sola gran aplicación Shiny a tener una aplicación home que llama a otros shiny; de esa manera cada herramietna es cargada a demanda del usuario. 
+## Elección de Windows y proyecto piloto
 
-Todas las pruebas implican testing manual desde la instalación hasta el uso de todas las herramientas y el recorrido de cada menú, lo cual requiere muchísimo tiempo. Los cambios a nuevas versiones al principio ocurrían tal vez en un mismo día. En esta instancia pasan a ocurrir cada 1 o 2 semanas.
+Se eligió Windows como sistema operativo objetivo porque representa el entorno más habitual para muchos usuarios técnicos y profesionales que podrían probar el software [6]. Además, se decidió desarrollar el sistema en inglés para alcanzar un público más amplio y reducir problemas de codificación asociados a caracteres especiales (encoding).
 
+Antes de trasladar todo LegionGOES hacia un instalador, fue necesario construir un proyecto piloto más pequeño. Comenzar directamente con el instalador de un sistema grande, con múltiples aplicaciones Shiny, librerías, rutas, dependencias y recursos gráficos, hubiera multiplicado los errores inespecíficos. El proyecto piloto permitió aprender el proceso de empaquetado, lanzamiento, aislamiento de dependencias y apertura de una aplicación web local.
 
-Finalmente LegionGOES termina siendo el programa que es en este momento.
+Cuando el instalador piloto funcionó, quedó claro que LegionGOES requería una reestructuración general. No se trataba simplemente de “poner el código dentro de un instalador”, sino de ordenar carpetas, rutas, librerías, recursos, ejecutables, navegadores, herramientas auxiliares y archivos temporales para que todo pudiera funcionar en computadoras externas al entorno de desarrollo.
 
+## Reestructuración interna y modularidad
 
-Quiero cerrar este capítulo con el siguiente comentario el cual lo dejo explícitamente con la idea de que no se generen falsas espectativas en futuras generaciones de tesistas y de ninguna manera promover imponer sobre ellos tareas titánicas imposibles de realizar. LegionGOES no fue pensado y armado en 6 meses que es el tiempo reglamentado. La cantidad de horas destinada al proyecto fue muy superior a las estipuladas, y eso fue una decisión personal y un riesgo que decidí tomar. Convergen en mi un conjunto de habilidades y experiencias profesioanles que me permitieron llevar a cabo este proyecto siendo un solo programador. Considero también que mi equipo de trabajo en cuanto a mi director, codirector y asesor científico fue en todo momento excelente, oportuno y realista y esa es una suerte que muchos tesistas no tienen.
+La transición hacia un instalador produjo cambios que ya no estaban relacionados directamente con el satélite, sino con la ingeniería del software. Fue necesario minimizar tiempos de carga, verificar la existencia de componentes antes de usarlos, controlar rutas internas, aislar dependencias y reducir la fragilidad del sistema.
 
-Un grupo de testing que estuvo desde la primera versión instalable. Son un grupo de profesionales GIS que destinaron una cantidad de tiempo considerable y cuyos comentarios aceleraron la maduración del pryecto.
+Uno de los cambios estructurales más importantes fue pasar de una aplicación monolítica a una organización dividida en módulos. De una única gran aplicación Shiny, LegionGOES pasó a tener una aplicación `Home` que llama a otras aplicaciones independientes. De esa manera, cada herramienta se carga a demanda del usuario. Esta decisión disminuyó tiempos de espera, facilitó la detección de errores y permitió separar mejor las responsabilidades de cada componente.
+
+También se reorganizó el código en librerías de R y Python. Esta decisión no fue solamente estética: permitió encapsular funciones, separar dominios de responsabilidad, reutilizar rutinas y reducir errores derivados de copiar o modificar código de manera dispersa.
+
+## Testing, usuarios y maduración del software
+
+Desde la primera versión instalable, el software fue compartido con un grupo de voluntarios de testing. Este paso modificó nuevamente la naturaleza del proyecto. Probar el programa en otras computadoras mostró errores que no aparecían en el entorno de desarrollo y reveló la importancia de la instalación, la experiencia de usuario, la velocidad de carga, la claridad de los mensajes y la estabilidad de cada aplicación.
+
+El testing manual implicó recorrer el proceso completo: instalación, apertura del sistema, uso de cada herramienta, navegación por menús, descarga, procesamiento, visualización y generación de salidas. Esta tarea requiere mucho tiempo porque una aplicación puede funcionar desde el punto de vista del código y, sin embargo, ofrecer una mala experiencia de uso por que una ventana no se mueve o no se cierra.
+
+El instalador también cambió el ritmo de desarrollo. Al principio, los cambios podían realizarse varias veces en un mismo día. Con versiones instalables y usuarios externos, cada modificación debía ser más cuidadosa. El tiempo entre versiones pasó a ser mayor, porque cada entrega requería reconstruir, distribuir y volver a probar el sistema.
+
+El grupo de testing aceleró la maduración del proyecto. Sus comentarios permitieron detectar errores, mejorar decisiones de interfaz, identificar puntos confusos y comprender mejor qué partes del programa eran realmente comprensibles para usuarios GIS.
+
+## Sentido metodológico de esta evolución
+
+La evolución de LegionGOES muestra que el desarrollo de software científico no es únicamente una secuencia de implementación técnica. También implica cambiar de estrategia cuando aparecen límites de infraestructura, rediseñar componentes cuando el sistema crece, separar módulos cuando una interfaz se vuelve pesada, aislar dependencias cuando la instalación falla y escuchar usuarios cuando el programa deja de ser usado solo por su desarrollador.
+
+En este sentido, la historia del proyecto forma parte del aporte de la tesis. LegionGOES no fue pensado y armado en seis meses ni surgió como una aplicación final desde el primer intento. La cantidad de horas destinada al desarrollo fue muy superior a la estipulada para una tesis de maestría, y eso fue una decisión personal y un riesgo asumido. Es importante decir que el tesista ya contaba con un trayecto profesional automatizaciones, creación de librerías y servidores Linux para procesamiento satelital. El equipo de trabajo conformado por director, codirector y asesor científico fue excelente desde el inicio del trabajo.
+
+Esta aclaración no busca desalentar futuros desarrollos, sino evitar falsas expectativas en futuros trabajos de tesis, ya sea  por el lado del tesista o del director de tesis.
+
 
 ## Referencias del capítulo {.unnumbered}
 

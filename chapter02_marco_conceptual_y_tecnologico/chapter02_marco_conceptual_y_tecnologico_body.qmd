@@ -1,8 +1,6 @@
 # Marco teórico y tecnológico
 
-Este capítulo establece los conceptos necesarios para comprender a LegionGOES como un sistema de software orientado al trabajo con productos satelitales GOES. El énfasis no está puesto únicamente en la utilidad meteorológica o agrometeorológica de los productos, sino en las características técnicas que hacen necesario construir una herramienta computacional específica: formatos de archivo, grillas, sensores, temporalidad, productos derivados, series temporales, condiciones de observación y formas de presentación visual.
-
-Desde esta perspectiva, el marco conceptual de la tesis no se limita a responder qué fenómenos se observan, sino también qué tipo de dato se recibe, cómo está organizado, qué operaciones requiere, qué dificultades introduce y cómo esas dificultades condicionan el diseño del software.
+Este capítulo establece el marco informático y tecnológico necesario para comprender el diseño de LegionGOES. Para ello, presenta un marco general sobre las temáticas de monitoreo elegidas y sobre el modo en que esas necesidades pueden abordarse mediante información satelital. A partir de ese marco, se describe qué tipo de datos recibe el software, cómo están organizados, qué operaciones requieren, qué restricciones introducen y de qué manera esas características condicionan la descarga, el procesamiento, la visualización y la construcción de series temporales.
 
 ## Información satelital como dato computacional
 
