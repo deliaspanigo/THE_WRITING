@@ -61,50 +61,38 @@ Un poco más cerca de la programación, LegionGOES es un servidor web Shiny que 
 
 ## Referencias del capítulo {.unnumbered}
 
-[1] NASA Earthdata. "Your Gateway to NASA Earth Observation Data."  
-URL:
-https://www.earthdata.nasa.gov/
+[1] NASA Earthdata. (s. f.). *Your gateway to NASA Earth observation data*. NASA.  
+URL: https://www.earthdata.nasa.gov/
 
-[2] QGIS. "Spatial without Compromise."  
-URL:
-https://qgis.org/
+[2] QGIS. (s. f.). *Spatial without compromise*.  
+URL: https://qgis.org/
 
-[3] Esri. "ArcGIS Online."  
-URL:
-https://www.esri.com/en-us/arcgis/products/arcgis-online/overview
+[3] Esri. (s. f.). *ArcGIS Online*.  
+URL: https://www.esri.com/en-us/arcgis/products/arcgis-online/overview
 
-[4] Google. "Google Earth Engine."  
-URL:
-https://earthengine.google.com/
+[4] Google. (s. f.). *Google Earth Engine*.  
+URL: https://earthengine.google.com/
 
-[5] Secretaría de Agricultura, Ganadería y Pesca. Gobierno nacional de la República Argentina. "Programa de gestión integral de los riesgos en el sistema agroindustrial rural."  
-URL:
-https://www.argentina.gob.ar/agricultura/girsar
+[5] Secretaría de Agricultura, Ganadería y Pesca. (s. f.). *Programa de gestión integral de los riesgos en el sistema agroindustrial rural*. Gobierno de la República Argentina.  
+URL: https://www.argentina.gob.ar/economia/planificacion-del-desarrollo-y-la-competitividad-federal/girsar
 
-[6] Ministerio de Ciencia, Tecnología e Innovación. Gobierno nacional de la República Argentina. "Ciencia y tecnología contra el hambre.", 2020.  
-URL:
-https://www.argentina.gob.ar/noticias/ciencia-y-tecnologia-contra-el-hambre
+[6] Ministerio de Ciencia, Tecnología e Innovación. (2020). *Ciencia y tecnología contra el hambre*. Gobierno de la República Argentina.  
+URL: https://www.argentina.gob.ar/noticias/ciencia-y-tecnologia-contra-el-hambre
 
-[7] Ministerio de Ciencia, Tecnología e Innovación. Gobierno nacional de la República Argentina. Resolución de la convocatoria "Ciencia y Tecnología contra el Hambre". Referencia: RS-2020-69564357-APN-MCT, 2020.  
-URL:
-https://www.argentina.gob.ar/sites/default/files/rs-2020-69564357-apn-mct_0.pdf
+[7] Ministerio de Ciencia, Tecnología e Innovación. (2020). *Resolución de la convocatoria Ciencia y Tecnología contra el Hambre: RS-2020-69564357-APN-MCT*. Gobierno de la República Argentina.  
+URL: https://www.argentina.gob.ar/sites/default/files/rs-2020-69564357-apn-mct_0.pdf
 
-[8] Sitio Oficial del Gobierno de la República Argentina. "Avanza el proyecto de un satélite meteorológico para América Latina.", 2023.  
-URL:
-https://www.argentina.gob.ar/noticias/avanza-el-proyecto-de-un-satelite-meteorologico-para-america-latina
+[8] Gobierno de la República Argentina. (2023). *Avanza el proyecto de un satélite meteorológico para América Latina*.  
+URL: https://www.argentina.gob.ar/noticias/avanza-el-proyecto-de-un-satelite-meteorologico-para-america-latina
 
-[9] Observatorio de Hidrometeorología y Cambio Climático (OHMC). "Monitoreo de heladas en tiempo real utilizando datos de GOES."  
-URL:
-https://wrf.ohmc.ar/goes
+[9] Observatorio de Hidrometeorología y Cambio Climático. (s. f.). *Monitoreo de heladas en tiempo real utilizando datos de GOES*.  
+URL: https://wrf.ohmc.ar/goes
 
-[10] Cooperative Institute for Research in the Atmosphere (CIRA), Colorado State University. "RAMMB Slider."  
-URL:
-https://rammb-slider.cira.colostate.edu/
+[10] Cooperative Institute for Research in the Atmosphere. (s. f.). *RAMMB/CIRA SLIDER: Satellite Loop Interactive Data Explorer in Real-time*. Colorado State University.  
+URL: https://slider.cira.colostate.edu/
 
-[11] Lighezzolo, A.; Pons, D.; Machado, F.; Montero, A.; Mari, N.; Martina, A.; Muñoz, A. "Implementation of an operative remote sensing frost product based on GOES-16 satellite." 2020 IEEE Congreso Bienal de Argentina (ARGENCON), pp. 1-7, IEEE, 2020.  
-URL:
-https://doi.org/10.1109/ARGENCON49523.2020.9505363
+[11] Lighezzolo, A., Pons, D., Machado, F., Montero, A., Mari, N., Martina, A., & Muñoz, A. (2020). Implementation of an operative remote sensing frost product based on GOES-16 satellite. En *2020 IEEE Congreso Bienal de Argentina (ARGENCON)* (pp. 1-7). IEEE.  
+URL: https://doi.org/10.1109/ARGENCON49523.2020.9505363
 
-[12] Ribeiro, B. Z.; Machado, L. A.; Biscaro, T. S.; Freitas, E. D.; Mozer, K. W.; Goodman, S. J. "An evaluation of the GOES-16 rapid scan for nowcasting in southeastern Brazil: analysis of a severe hailstorm case." Weather and Forecasting, vol. 34, no. 6, pp. 1829-1848, 2019.  
-URL:
-https://doi.org/10.1175/WAF-D-19-0070.1
+[12] Ribeiro, B. Z., Machado, L. A. T., Biscaro, T. S., Freitas, E. D., Mozer, K. W., & Goodman, S. J. (2019). An evaluation of the GOES-16 rapid scan for nowcasting in southeastern Brazil: Analysis of a severe hailstorm case. *Weather and Forecasting, 34*(6), 1829-1848.  
+URL: https://doi.org/10.1175/WAF-D-19-0070.1

@@ -1,47 +1,47 @@
-# Planteo general de LegionGOES
+﻿# Planteo general de LegionGOES
 
-## Definición de LegionGOES
-En forma corta y simple, LegionGOES es un programa que descarga, procesa y permite visualizar productos generados a partir de imágenes GOES para las temáticas Temperatura en Superficie, Focos de calor, Nubes y Tormentas Eléctricas [8, 9, 10, 11].
+## DefiniciÃ³n de LegionGOES
+En forma corta y simple, LegionGOES es un programa que descarga, procesa y permite visualizar productos generados a partir de imÃ¡genes GOES para las temÃ¡ticas Temperatura en Superficie, Focos de calor, Nubes y Tormentas ElÃ©ctricas [8, 9, 10, 11].
 
-Una definición un poco más detallada es que LegionGOES puede definirse como un sistema local de descarga, procesamiento y visualización de productos satelitales de la serie GOES, orientado a construir salidas predeterminadas que permitan observación, exploración y operación, teniendo como soporte un ecosistema de software basado en Python y R/Shiny, y otros programas accesorios con un fuerte hincapié en la visualización de series temporales.
+Una definiciÃ³n un poco mÃ¡s detallada es que LegionGOES puede definirse como un sistema local de descarga, procesamiento y visualizaciÃ³n de productos satelitales de la serie GOES, orientado a construir salidas predeterminadas que permitan observaciÃ³n, exploraciÃ³n y operaciÃ³n, teniendo como soporte un ecosistema de software basado en Python y R/Shiny, y otros programas accesorios con un fuerte hincapiÃ© en la visualizaciÃ³n de series temporales.
 
-Desde una perspectiva funcional, pueden reconocerse cuatro objetivos específicos. El primero es automatizar la relación con los datos de origen, es decir, localizar y descargar archivos pertinentes de la constelación GOES. El segundo es procesar esos archivos según reglas específicas por producto y por actividad. El tercero es convertir los resultados en objetos visuales entendibles, tales como PNG, GIF o video. El cuarto es ofrecer aplicaciones donde el usuario pueda consultar, combinar y exportar estos resultados sin quedar expuesto a la complejidad completa del procesamiento interno.
+Desde una perspectiva funcional, pueden reconocerse cuatro objetivos especÃ­ficos. El primero es automatizar la relaciÃ³n con los datos de origen, es decir, localizar y descargar archivos pertinentes de la constelaciÃ³n GOES. El segundo es procesar esos archivos segÃºn reglas especÃ­ficas por producto y por actividad. El tercero es convertir los resultados en objetos visuales entendibles, tales como PNG, GIF o video. El cuarto es ofrecer aplicaciones donde el usuario pueda consultar, combinar y exportar estos resultados sin quedar expuesto a la complejidad completa del procesamiento interno.
 
-Estos objetivos muestran que LegionGOES no se limita a la etapa de análisis ni a la etapa de publicación. Aspira a cubrir el recorrido completo entre dato satelital y producto utilizable.
+Estos objetivos muestran que LegionGOES no se limita a la etapa de anÃ¡lisis ni a la etapa de publicaciÃ³n. Aspira a cubrir el recorrido completo entre dato satelital y producto utilizable.
 
 ```{=latex}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.7\linewidth]{chapter04_legionGOES/img/img01_legion_sistema.png}
-\caption{Componentes principales del entorno de software distribuido junto con LegionGOES, incluyendo lenguajes, librerías y programas auxiliares necesarios para su funcionamiento reproducible.}
+\caption{Componentes principales del entorno de software distribuido junto con LegionGOES, incluyendo lenguajes, librerÃ­as y programas auxiliares necesarios para su funcionamiento reproducible.}
 \label{fig-legiongoes-home}
 \end{figure}
 ```
 
 ## Estructura interna general
-En la implementación, el código Python se organiza en torno a productos GOES y temáticas de monitoreo que agrupan ciertos productos; el código R se organiza en torno a aplicaciones y visores; el instalador distribuye software, código, recursos y un sistema de carpetas para conservar un orden entre datos crudos, datos procesados y recursos de presentación. Para cada lenguaje su código se presenta en el formato de librerías de cada código.
+En la implementaciÃ³n, el cÃ³digo Python se organiza en torno a productos GOES y temÃ¡ticas de monitoreo que agrupan ciertos productos; el cÃ³digo R se organiza en torno a aplicaciones y visores; el instalador distribuye software, cÃ³digo, recursos y un sistema de carpetas para conservar un orden entre datos crudos, datos procesados y recursos de presentaciÃ³n. Para cada lenguaje su cÃ³digo se presenta en el formato de librerÃ­as de cada cÃ³digo.
 
-En la computadora del usuario coexisten dos carpetas. Una contiene todo el software y la otra es el laboratorio de trabajo donde se encuentran los archivos descargados y procesados. LegionGOES solo trabaja desde esas carpetas. No es posible para el usuario levantar archivos GOES desde otras posiciones, ni levantar procesamientos generados externamente.  Para que ocurra la coherencia de todas las series temporales, con todos los bemoles que tiene el contexto, el sistema obliga al usuario a trabajar de una manera muy ordenada. Incluso el nombre de cada archivo GOES y la sucesión de carpetas en la cual el archivo está guardado es información importante que debe mantenerse ordenada y estable. Limitar al usuario en este caso es una acción preventiva de errores graves.
+En la computadora del usuario coexisten dos carpetas. Una contiene todo el software y la otra es el laboratorio de trabajo donde se encuentran los archivos descargados y procesados. LegionGOES solo trabaja desde esas carpetas. No es posible para el usuario levantar archivos GOES desde otras posiciones, ni levantar procesamientos generados externamente.  Para que ocurra la coherencia de todas las series temporales, con todos los bemoles que tiene el contexto, el sistema obliga al usuario a trabajar de una manera muy ordenada. Incluso el nombre de cada archivo GOES y la sucesiÃ³n de carpetas en la cual el archivo estÃ¡ guardado es informaciÃ³n importante que debe mantenerse ordenada y estable. Limitar al usuario en este caso es una acciÃ³n preventiva de errores graves.
 
-Todos los entornos de trabajo de LegionGOES son visualizadores de mapas web leaflet de R, con la posibilidad de utilizar diferentes mapas de fondo que son obtenidos online. Existen también recursos locales como son como archivos vectoriales relacionados con los límites internacionales y mapas en formato PNG de buena resolución para tener una fuente de recursos locales independiente de los recursos que son tomados online.
+Todos los entornos de trabajo de LegionGOES son visualizadores de mapas web leaflet de R, con la posibilidad de utilizar diferentes mapas de fondo que son obtenidos online. Existen tambiÃ©n recursos locales como son como archivos vectoriales relacionados con los lÃ­mites internacionales y mapas en formato PNG de buena resoluciÃ³n para tener una fuente de recursos locales independiente de los recursos que son tomados online.
 
-Quien haya trabajado con GOES alguna vez ha podido apreciar la cantidad de información temporal asociada al nombre de cada producto e incluso a las carpetas y subcarpetas si se ha realizado la descarga de manera sistemática.
-Esta lógica temporal que aparece explícita en los archivos GOES se mantiene tanto en el procesamiento como en la interfaz. De esta manera, la serie temporal no es solo una forma de visualizar el resultado final, sino que es el principio organizador que conecta adquisición, procesamiento, emparejamiento de productos y comunicación visual.
+Quien haya trabajado con GOES alguna vez ha podido apreciar la cantidad de informaciÃ³n temporal asociada al nombre de cada producto e incluso a las carpetas y subcarpetas si se ha realizado la descarga de manera sistemÃ¡tica.
+Esta lÃ³gica temporal que aparece explÃ­cita en los archivos GOES se mantiene tanto en el procesamiento como en la interfaz. De esta manera, la serie temporal no es solo una forma de visualizar el resultado final, sino que es el principio organizador que conecta adquisiciÃ³n, procesamiento, emparejamiento de productos y comunicaciÃ³n visual.
 
-Para cada temática, en el nivel de datos, el sistema usa marcas temporales contenidas en los nombres oficiales de los archivos GOES y de las subcarpetas, y organiza reglas de emparejamiento utilizando expresiones regulares. 
+Para cada temÃ¡tica, en el nivel de datos, el sistema usa marcas temporales contenidas en los nombres oficiales de los archivos GOES y de las subcarpetas, y organiza reglas de emparejamiento utilizando expresiones regulares. 
 
 
 ## Reproducibilidad y componentes de software
-La reproducibilidad computacional ocupa un lugar central en este trabajo porque el valor de un sistema científico y/o técnico no depende solo de sus scripts, sino también de su posibilidad de ser reinstalado, ejecutado y mantenido bajo un entorno controlado. Cuando un flujo de monitoreo depende de múltiples lenguajes, librerías geoespaciales, configuraciones locales, recursos gráficos y rutas internas, la reproducibilidad deja de ser un aspecto secundario y pasa a ser parte del aporte metodológico.
+La reproducibilidad computacional ocupa un lugar central en este trabajo porque el valor de un sistema cientÃ­fico y/o tÃ©cnico no depende solo de sus scripts, sino tambiÃ©n de su posibilidad de ser reinstalado, ejecutado y mantenido bajo un entorno controlado. Cuando un flujo de monitoreo depende de mÃºltiples lenguajes, librerÃ­as geoespaciales, configuraciones locales, recursos grÃ¡ficos y rutas internas, la reproducibilidad deja de ser un aspecto secundario y pasa a ser parte del aporte metodolÃ³gico.
 
-LegionGOES combina Python para descarga y procesamiento, R/Shiny para interfaces interactivas y algunos procesamientos estadísticos [1, 2, 3]. El código de Python conforma una única librería y el código de R se encuentra armado en cinco librerías diferentes, con la idea de encapsular dependencias y reducir la fragilidad.
+LegionGOES combina Python para descarga y procesamiento, R/Shiny para interfaces interactivas y algunos procesamientos estadÃ­sticos [1, 2, 3]. El cÃ³digo de Python conforma una Ãºnica librerÃ­a y el cÃ³digo de R se encuentra armado en cinco librerÃ­as diferentes, con la idea de encapsular dependencias y reducir la fragilidad.
 
 El instalador incluye:  
-- Python 3.12 y todo un conjunto de librerías asociadas [1].  
-- R 4.5.3 y todo un conjunto de librerías [2].  
+- Python 3.12 y todo un conjunto de librerÃ­as asociadas [1].  
+- R 4.5.3 y todo un conjunto de librerÃ­as [2].  
 - Chrome portable [5].  
 - FFmpeg (software de video) [6].  
-- Quarto portable (software de reportería) [7].  
+- Quarto portable (software de reporterÃ­a) [7].  
 
 ```{=latex}
 \begin{figure}[htbp]
@@ -52,99 +52,99 @@ El instalador incluye:
 \end{figure}
 ```
 
-La estandarización y reproducibilidad también debían ocurrir en cuanto a la visualización que tiene el usuario. La decisión del entorno web como interfaz trajo consigo problemas y variabilidad en la visualización al abrir LegionGOES en diferentes navegadores o en diferentes versiones de un mismo navegador. Esto fue resuelto agregando un navegador web Chrome al instalador [5].
+La estandarizaciÃ³n y reproducibilidad tambiÃ©n debÃ­an ocurrir en cuanto a la visualizaciÃ³n que tiene el usuario. La decisiÃ³n del entorno web como interfaz trajo consigo problemas y variabilidad en la visualizaciÃ³n al abrir LegionGOES en diferentes navegadores o en diferentes versiones de un mismo navegador. Esto fue resuelto agregando un navegador web Chrome al instalador [5].
 
-La decisión de dotar a LegionGOES de la capacidad de generar videos MP4 se intentó primero utilizando recursos propios de Chrome. En este sentido algunos de los usuarios de testing manifestaron serios problemas relacionados con el uso de RAM. Se intentó también hacerlo desde R y Python, pero ocurrían errores inespecíficos en algunas computadoras que indicaban que esas computadoras necesitaban instalar un software específico para tal fin. Se logró una solución total al agregar el programa FFmpeg como parte del instalador de LegionGOES [6].
+La decisiÃ³n de dotar a LegionGOES de la capacidad de generar videos MP4 se intentÃ³ primero utilizando recursos propios de Chrome. En este sentido algunos de los usuarios de testing manifestaron serios problemas relacionados con el uso de RAM. Se intentÃ³ tambiÃ©n hacerlo desde R y Python, pero ocurrÃ­an errores inespecÃ­ficos en algunas computadoras que indicaban que esas computadoras necesitaban instalar un software especÃ­fico para tal fin. Se logrÃ³ una soluciÃ³n total al agregar el programa FFmpeg como parte del instalador de LegionGOES [6].
 
-La decisión de dotar a LegionGOES con la capacidad de brindar reportes automatizados HTML y PDF en algunas partes del programa se logró de buena manera al agregar un Quarto portable al instalador [7].
+La decisiÃ³n de dotar a LegionGOES con la capacidad de brindar reportes automatizados HTML y PDF en algunas partes del programa se logrÃ³ de buena manera al agregar un Quarto portable al instalador [7].
 
-Todo este paquete de software es independiente del resto del software que el usuario posea en su computadora. Logramos entonces un entorno aislado sin tener que cambiar entre diferentes versiones de Python, de R o de cualquiera de sus librerías. Al estandarizar todos los componentes de software y evitar que ocurran siquiera diferentes versiones de librerías, los errores inespecíficos disminuyeron drásticamente. También llega al máximo posible la reproducibilidad.
+Todo este paquete de software es independiente del resto del software que el usuario posea en su computadora. Logramos entonces un entorno aislado sin tener que cambiar entre diferentes versiones de Python, de R o de cualquiera de sus librerÃ­as. Al estandarizar todos los componentes de software y evitar que ocurran siquiera diferentes versiones de librerÃ­as, los errores inespecÃ­ficos disminuyeron drÃ¡sticamente. TambiÃ©n llega al mÃ¡ximo posible la reproducibilidad.
 
 ## Aplicaciones "Operative" y aplicaciones "Viewer"
-Vamos a dar espacio a una división importante en la concepción del procesamiento y visualización de LegionGOES, que intenta dar respuesta a diferentes necesidades del usuario.
+Vamos a dar espacio a una divisiÃ³n importante en la concepciÃ³n del procesamiento y visualizaciÃ³n de LegionGOES, que intenta dar respuesta a diferentes necesidades del usuario.
 
 
 
 ### Operative
-Las aplicaciones operative tienen como objetivo otorgar al usuario una visualización en pantalla de un único producto con el procesamiento y la visualización lo más rápido posible. El procesamiento ocurrirá para un solo CRS, que en general es WGS84. En pantalla el usuario tendrá un mapa junto a un conjunto reducido de opciones. El procesamiento incluye la menor cantidad de productos GOES posible para analizar la situación en su mínima expresión, que en general será un solo producto. El resultado del procesamiento es generado en una carpeta temporal que es borrada al cerrar el software. Esto es para evitar ocupar espacio en el disco de manera innecesaria.
+Las aplicaciones operative tienen como objetivo otorgar al usuario una visualizaciÃ³n en pantalla de un Ãºnico producto con el procesamiento y la visualizaciÃ³n lo mÃ¡s rÃ¡pido posible. El procesamiento ocurrirÃ¡ para un solo CRS, que en general es WGS84. En pantalla el usuario tendrÃ¡ un mapa junto a un conjunto reducido de opciones. El procesamiento incluye la menor cantidad de productos GOES posible para analizar la situaciÃ³n en su mÃ­nima expresiÃ³n, que en general serÃ¡ un solo producto. El resultado del procesamiento es generado en una carpeta temporal que es borrada al cerrar el software. Esto es para evitar ocupar espacio en el disco de manera innecesaria.
 
 ### Viewer
-Son aplicaciones que permiten la visualización de series de tiempo para imágenes ya procesadas dentro de LegionGOES. Estas aplicaciones permiten mostrar series temporales para la actividad meteorológica seleccionada. Las visualizaciones disponibles son para WGS84, Mercator y GOES original. El usuario puede activar y desactivar capas vectoriales y rasters. El usuario encontrará una cantidad considerable de opciones. Se destaca la posibilidad de generar un video MP4 de la visualización que haya ordenado el usuario en pantalla. Ingresar a una aplicación Viewer implica haber realizado previamente la descarga y el procesamiento con las aplicaciones para ese fin.
+Son aplicaciones que permiten la visualizaciÃ³n de series de tiempo para imÃ¡genes ya procesadas dentro de LegionGOES. Estas aplicaciones permiten mostrar series temporales para la actividad meteorolÃ³gica seleccionada. Las visualizaciones disponibles son para WGS84, Mercator y GOES original. El usuario puede activar y desactivar capas vectoriales y rasters. El usuario encontrarÃ¡ una cantidad considerable de opciones. Se destaca la posibilidad de generar un video MP4 de la visualizaciÃ³n que haya ordenado el usuario en pantalla. Ingresar a una aplicaciÃ³n Viewer implica haber realizado previamente la descarga y el procesamiento con las aplicaciones para ese fin.
 
 ```{=latex}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.7\linewidth]{chapter04_legionGOES/img/img04_plot.png}
-\caption{Comparación conceptual entre las herramientas Operative y Viewer de LegionGOES. El gráfico resume cinco dimensiones funcionales: rapidez de uso, cantidad de opciones, ventana temporal, variedad de proyecciones e información anexa. Operative se destaca por su rapidez de uso, mientras que Viewer presenta mayor amplitud temporal y mayor disponibilidad de opciones e información complementaria.}
+\caption{ComparaciÃ³n conceptual entre las herramientas Operative y Viewer de LegionGOES. El grÃ¡fico resume cinco dimensiones funcionales: rapidez de uso, cantidad de opciones, ventana temporal, variedad de proyecciones e informaciÃ³n anexa. Operative se destaca por su rapidez de uso, mientras que Viewer presenta mayor amplitud temporal y mayor disponibilidad de opciones e informaciÃ³n complementaria.}
 \label{fig-legiongoes-home}
 \end{figure}
 ```
 
-Las funciones de procesamiento asociadas a las herramientas operative son un subconjunto de las funciones asociadas al viewer. Esto es para garantizar que las salidas estadísticas de ambos sean las mismas.
+Las funciones de procesamiento asociadas a las herramientas operative son un subconjunto de las funciones asociadas al viewer. Esto es para garantizar que las salidas estadÃ­sticas de ambos sean las mismas.
 
-Como hemos dicho, el viewer no realiza descarga ni procesamiento de las imágenes GOES originales. Puede ocurrir algún procesamiento accesorio, como la generación de screenshots, MP4 y reportes, y en tal caso son generados en carpetas temporales cuyo contenido es borrado al cerrar el software.
+Como hemos dicho, el viewer no realiza descarga ni procesamiento de las imÃ¡genes GOES originales. Puede ocurrir algÃºn procesamiento accesorio, como la generaciÃ³n de screenshots, MP4 y reportes, y en tal caso son generados en carpetas temporales cuyo contenido es borrado al cerrar el software.
 
-## Comunicación con el usuario
-Todas las aplicaciones otorgan al usuario una consola de comunicación sobre qué actividad está realizando el programa. En este caso, la consola no es un espacio para dar indicaciones escritas, sino que el usuario solo puede leer lo que va ocurriendo. De esa manera, el usuario siempre sabe si la acción indicada está transcurriendo o ha finalizado con éxito o con algún error.
+## ComunicaciÃ³n con el usuario
+Todas las aplicaciones otorgan al usuario una consola de comunicaciÃ³n sobre quÃ© actividad estÃ¡ realizando el programa. En este caso, la consola no es un espacio para dar indicaciones escritas, sino que el usuario solo puede leer lo que va ocurriendo. De esa manera, el usuario siempre sabe si la acciÃ³n indicada estÃ¡ transcurriendo o ha finalizado con Ã©xito o con algÃºn error.
 
-Algunas aplicaciones también tienen carteles emergentes para dar aviso al usuario de que las opciones elegidas en los menús fueron aplicadas.
+Algunas aplicaciones tambiÃ©n tienen carteles emergentes para dar aviso al usuario de que las opciones elegidas en los menÃºs fueron aplicadas.
 
 ## Home
-Al momento de escribir esta tesis, LegionGOES se encuentra en su versión 0.7.2 y cuenta con 15 aplicaciones Shiny.
-Una de las aplicaciones es el Home propiamente dicho, y 14 aplicaciones están destinadas a GOES.
+Al momento de escribir esta tesis, LegionGOES se encuentra en su versiÃ³n 0.7.2 y cuenta con 15 aplicaciones Shiny.
+Una de las aplicaciones es el Home propiamente dicho, y 14 aplicaciones estÃ¡n destinadas a GOES.
 
-El Home presenta visualmente dos columnas. La columna izquierda da detalles informativos al usuario sobre la versión de LegionGOES, el grupo de trabajo y cómo citarlo. Es claro que al momento de escribir esta tesis el programa aún no fue publicado, pero ya se tiene una idea de la estructura final del programa. En la columna derecha se encuentran todas las aplicaciones disponibles para el usuario. Al seleccionar alguna aplicación, esta se abre en una nueva ventana. Es importante decir que la ventana de LegionGOES es un navegador web, por lo tanto puede ajustarse el formato de visualización apretando la tecla Control y la rueda del mouse, como se hace con cualquier navegador web.
+El Home presenta visualmente dos columnas. La columna izquierda da detalles informativos al usuario sobre la versiÃ³n de LegionGOES, el grupo de trabajo y cÃ³mo citarlo. Es claro que al momento de escribir esta tesis el programa aÃºn no fue publicado, pero ya se tiene una idea de la estructura final del programa. En la columna derecha se encuentran todas las aplicaciones disponibles para el usuario. Al seleccionar alguna aplicaciÃ³n, esta se abre en una nueva ventana. Es importante decir que la ventana de LegionGOES es un navegador web, por lo tanto puede ajustarse el formato de visualizaciÃ³n apretando la tecla Control y la rueda del mouse, como se hace con cualquier navegador web.
 
 ```{=latex}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.7\linewidth]{chapter04_legionGOES/img/img05_home.png}
-\caption{Pantalla principal de LegionGOES. En ella se organizan las aplicaciones disponibles en las solapas DataManager, Analysis, Classroom y Extra, junto con información general del sistema.}
+\caption{Pantalla principal de LegionGOES. En ella se organizan las aplicaciones disponibles en las solapas DataManager, Analysis, Classroom y Extra, junto con informaciÃ³n general del sistema.}
 \label{fig-legiongoes-home}
 \end{figure}
 ```
 
-En el Home las aplicaciones están ordenadas en cuatro solapas: DataManager, Analysis, Classroom y Extra. La primera solapa marcada por defecto es la solapa Analysis. Detallamos qué aplicaciones se encuentran en cada solapa.
+En el Home las aplicaciones estÃ¡n ordenadas en cuatro solapas: DataManager, Analysis, Classroom y Extra. La primera solapa marcada por defecto es la solapa Analysis. Detallamos quÃ© aplicaciones se encuentran en cada solapa.
 
 ### Solapa DataManager
 Esta solapa contiene dos aplicaciones: Downloader y Processing.
-La estructura de ambas es muy similar. Comenzamos con la descripción de la aplicación Downloader.
+La estructura de ambas es muy similar. Comenzamos con la descripciÃ³n de la aplicaciÃ³n Downloader.
 
 #### App Downloader
-La aplicación está conformada por una sucesión de elecciones cerradas. No se abre una elección hasta que no se completa la anterior. La primera elección consiste en elegir una de las cuatro actividades meteorológicas ya mencionadas: Temperatura, Focos de calor, Nubes y Tormentas Eléctricas. Cada actividad meteorológica tácitamente implica una serie de productos GOES asociados para determinado tiempo.
+La aplicaciÃ³n estÃ¡ conformada por una sucesiÃ³n de elecciones cerradas. No se abre una elecciÃ³n hasta que no se completa la anterior. La primera elecciÃ³n consiste en elegir una de las cuatro actividades meteorolÃ³gicas ya mencionadas: Temperatura, Focos de calor, Nubes y Tormentas ElÃ©ctricas. Cada actividad meteorolÃ³gica tÃ¡citamente implica una serie de productos GOES asociados para determinado tiempo.
 
-Definida la actividad meteorológica, el usuario encontrará diferentes opciones que permitirán la descarga de un archivo único o de una serie temporal para la actividad meteorológica seleccionada. Los archivos GOES se toman desde servidores AWS y hay dos particularidades muy buenas respecto de lo que es la descarga de Landsat o Sentinel, por ejemplo: la descarga de GOES por AWS no tiene limitaciones para el usuario en cuanto a peso ni cantidad de archivos, y no necesita credenciales aprobadas [4]. Luego de completar todas las opciones, LegionGOES gestiona entonces los archivos a ser descargados uno por uno.
+Definida la actividad meteorolÃ³gica, el usuario encontrarÃ¡ diferentes opciones que permitirÃ¡n la descarga de un archivo Ãºnico o de una serie temporal para la actividad meteorolÃ³gica seleccionada. Los archivos GOES se toman desde servidores AWS y hay dos particularidades muy buenas respecto de lo que es la descarga de Landsat o Sentinel, por ejemplo: la descarga de GOES por AWS no tiene limitaciones para el usuario en cuanto a peso ni cantidad de archivos, y no necesita credenciales aprobadas [4]. Luego de completar todas las opciones, LegionGOES gestiona entonces los archivos a ser descargados uno por uno.
 
-Al momento de la descarga de archivos ocurre también una verificación para corroborar si el archivo ya existe localmente o no, y en caso de existir se verifica que el peso del archivo local sea el esperado según está declarado en AWS. De esa manera puede realizarse la descarga de una serie temporal con una gran cantidad de archivos y, en caso de que ocurra una interrupción en la descarga, se puede volver a iniciar de manera segura para que los archivos corruptos sean automáticamente eliminados y descargados nuevamente.
+Al momento de la descarga de archivos ocurre tambiÃ©n una verificaciÃ³n para corroborar si el archivo ya existe localmente o no, y en caso de existir se verifica que el peso del archivo local sea el esperado segÃºn estÃ¡ declarado en AWS. De esa manera puede realizarse la descarga de una serie temporal con una gran cantidad de archivos y, en caso de que ocurra una interrupciÃ³n en la descarga, se puede volver a iniciar de manera segura para que los archivos corruptos sean automÃ¡ticamente eliminados y descargados nuevamente.
 
-Las aplicaciones Downloader, Processing y Viewer para cada actividad meteorológica están asociadas. Daremos el detalle de qué archivos GOES son descargados directamente al detallar las aplicaciones Viewer de cada actividad meteorológica.
+Las aplicaciones Downloader, Processing y Viewer para cada actividad meteorolÃ³gica estÃ¡n asociadas. Daremos el detalle de quÃ© archivos GOES son descargados directamente al detallar las aplicaciones Viewer de cada actividad meteorolÃ³gica.
 
 #### App Processing
-Tiene una estructura muy similar a la aplicación de descarga. Partimos de la elección de una actividad meteorológica y luego de un conjunto de opciones cerradas. La función de procesamiento tiene asociadas funciones de control tales que, si todas las salidas esperadas del procesamiento existen y cada uno de esos archivos de salida pesa más de 0 KB, se saltea el procesamiento. Si al menos un archivo de salida no existe o al menos un archivo pesa 0 KB, lo que hará es eliminar todos los archivos supuestamente procesados existentes y comenzar el procesamiento desde cero.
+Tiene una estructura muy similar a la aplicaciÃ³n de descarga. Partimos de la elecciÃ³n de una actividad meteorolÃ³gica y luego de un conjunto de opciones cerradas. La funciÃ³n de procesamiento tiene asociadas funciones de control tales que, si todas las salidas esperadas del procesamiento existen y cada uno de esos archivos de salida pesa mÃ¡s de 0 KB, se saltea el procesamiento. Si al menos un archivo de salida no existe o al menos un archivo pesa 0 KB, lo que harÃ¡ es eliminar todos los archivos supuestamente procesados existentes y comenzar el procesamiento desde cero.
 
-Las aplicaciones Downloader, Processing y Viewer para cada actividad meteorológica están asociadas. Daremos el detalle de qué archivos GOES son procesados directamente al detallar las aplicaciones Viewer de cada actividad meteorológica.
+Las aplicaciones Downloader, Processing y Viewer para cada actividad meteorolÃ³gica estÃ¡n asociadas. Daremos el detalle de quÃ© archivos GOES son procesados directamente al detallar las aplicaciones Viewer de cada actividad meteorolÃ³gica.
 
 ### Solapa Analysis
-Temperatura en superficie, focos de calor, nubes y tormentas eléctricas son las cuatro actividades meteorológicas dentro del programa. Por cada actividad meteorológica encontraremos una fila que tiene una herramienta operative y una herramienta viewer.
+Temperatura en superficie, focos de calor, nubes y tormentas elÃ©ctricas son las cuatro actividades meteorolÃ³gicas dentro del programa. Por cada actividad meteorolÃ³gica encontraremos una fila que tiene una herramienta operative y una herramienta viewer.
 
-Detallamos los aspectos mínimos de cada una.
+Detallamos los aspectos mÃ­nimos de cada una.
 
 #### Temperatura en Superficie - Operative
-La herramienta procesa solo un archivo LSTF en proyección WGS84, hace la conversión de grados Kelvin a Celsius y realiza estadísticas básicas y un histograma. Las estadísticas son realizadas sobre el archivo en proyección GOES estacionaria y no sobre el WGS84, ya que sería un error catastrófico. Hay un botón rápido que, al hacer clic, conecta a LegionGOES con el servidor AWS y descarga el último archivo disponible en ese momento. Es posible también elegir el último archivo local disponible o un archivo local en particular. El usuario encontrará opciones para generar un reporte en PDF o en HTML.
-Hay varias opciones relacionadas con cambiar el mapa de fondo, cambiar el color de los límites internacionales, botón de screenshot y botón de descarga.
+La herramienta procesa solo un archivo LSTF en proyecciÃ³n WGS84, hace la conversiÃ³n de grados Kelvin a Celsius y realiza estadÃ­sticas bÃ¡sicas y un histograma. Las estadÃ­sticas son realizadas sobre el archivo en proyecciÃ³n GOES estacionaria y no sobre el WGS84, ya que serÃ­a un error catastrÃ³fico. Hay un botÃ³n rÃ¡pido que, al hacer clic, conecta a LegionGOES con el servidor AWS y descarga el Ãºltimo archivo disponible en ese momento. Es posible tambiÃ©n elegir el Ãºltimo archivo local disponible o un archivo local en particular. El usuario encontrarÃ¡ opciones para generar un reporte en PDF o en HTML.
+Hay varias opciones relacionadas con cambiar el mapa de fondo, cambiar el color de los lÃ­mites internacionales, botÃ³n de screenshot y botÃ³n de descarga.
 
 ```{=latex}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.7\linewidth]{chapter04_legionGOES/img/img06_operatiave_temperatura.png}
-\caption{Ejemplo de la herramienta Operative para temperatura en superficie. La visualización se concentra en un único producto LSTF en WGS84, con una interfaz breve orientada a consulta rápida.}
+\caption{Ejemplo de la herramienta Operative para temperatura en superficie. La visualizaciÃ³n se concentra en un Ãºnico producto LSTF en WGS84, con una interfaz breve orientada a consulta rÃ¡pida.}
 \label{fig-legiongoes-home}
 \end{figure}
 ```
 
 #### Temperatura en Superficie - Viewer
-El viewer solo permite visualizar archivos que hayan sido previamente descargados y procesados con las aplicaciones de Downloader y Processing de LegionGOES específicamente para temperatura de superficie.
-El viewer de temperatura muestra un procesamiento de LSTF, que es propiamente información de temperatura en superficie, y acompaña esa salida con un procesamiento anexo basado en el producto MCMIPF para generar un true color sintético de fondo. Este anexo permitirá visualizar el contexto de temperatura de una mejor manera, ya que será posible ver el día y la noche dentro del Full Disk y será posible ver las nubes en la parte de día. De LSTF hay un producto por hora y de MCMIPF se tiene uno cada 10 minutos. El emparejamiento en este caso es entre el LSTF de cada hora con el primer MCMIPF de cada hora.
+El viewer solo permite visualizar archivos que hayan sido previamente descargados y procesados con las aplicaciones de Downloader y Processing de LegionGOES especÃ­ficamente para temperatura de superficie.
+El viewer de temperatura muestra un procesamiento de LSTF, que es propiamente informaciÃ³n de temperatura en superficie, y acompaÃ±a esa salida con un procesamiento anexo basado en el producto MCMIPF para generar un true color sintÃ©tico de fondo. Este anexo permitirÃ¡ visualizar el contexto de temperatura de una mejor manera, ya que serÃ¡ posible ver el dÃ­a y la noche dentro del Full Disk y serÃ¡ posible ver las nubes en la parte de dÃ­a. De LSTF hay un producto por hora y de MCMIPF se tiene uno cada 10 minutos. El emparejamiento en este caso es entre el LSTF de cada hora con el primer MCMIPF de cada hora.
 
 ```{=latex}
 \begin{figure}[htbp]
@@ -153,40 +153,40 @@ El viewer de temperatura muestra un procesamiento de LSTF, que es propiamente in
 \includegraphics[width=0.4\linewidth]{chapter04_legionGOES/img/img08_viewer_temperatura_mercator.png}
 \includegraphics[width=0.4\linewidth]{chapter04_legionGOES/img/img09_viewer_temperatura_goes.png}
 
-\caption{Ejemplo del Viewer de temperatura en superficie en tres modos de representación: WGS84, Mercator y proyección GOES original. La figura ilustra la amplitud de opciones visuales disponibles para una misma serie temporal.}
+\caption{Ejemplo del Viewer de temperatura en superficie en tres modos de representaciÃ³n: WGS84, Mercator y proyecciÃ³n GOES original. La figura ilustra la amplitud de opciones visuales disponibles para una misma serie temporal.}
 \label{fig-legiongoes-home}
 \end{figure}
 ```
 
-Se pueden agregar a la visual estadísticas y un histograma, los cuales son generados a partir de la información de GOES en su proyección original pasada de Kelvin a Celsius. La escala de colores es una escala generada especialmente para LegionGOES y va desde los -60 a los 60 grados Celsius. Los valores de temperatura inferiores a -60 reciben el color de -60 grados, y los valores superiores a 60 grados reciben el color de 60 grados. Esto es para evitar que los cambios de mínimos y máximos de cada imagen por separado afecten la visualización de la serie temporal.
+Se pueden agregar a la visual estadÃ­sticas y un histograma, los cuales son generados a partir de la informaciÃ³n de GOES en su proyecciÃ³n original pasada de Kelvin a Celsius. La escala de colores es una escala generada especialmente para LegionGOES y va desde los -60 a los 60 grados Celsius. Los valores de temperatura inferiores a -60 reciben el color de -60 grados, y los valores superiores a 60 grados reciben el color de 60 grados. Esto es para evitar que los cambios de mÃ­nimos y mÃ¡ximos de cada imagen por separado afecten la visualizaciÃ³n de la serie temporal.
 
-El usuario tendrá opción de visualizar los productos en WGS84, Mercator y GOES original. Se encuentra un gran conjunto de opciones para los mapas, y hay botones para generar screenshots y un video MP4 para la serie temporal.
-Hay también un control para poder pasar frame por frame la serie temporal con un delay específico.
+El usuario tendrÃ¡ opciÃ³n de visualizar los productos en WGS84, Mercator y GOES original. Se encuentra un gran conjunto de opciones para los mapas, y hay botones para generar screenshots y un video MP4 para la serie temporal.
+Hay tambiÃ©n un control para poder pasar frame por frame la serie temporal con un delay especÃ­fico.
 
 \newpage
 
 #### Focos de calor y fuego - Operative
-La herramienta procesa solo un archivo FDCF en proyección WGS84, con cinco salidas visuales. El archivo original FDCF tiene 45 categorías y es un raster. Este producto GOES es en realidad resultado de un procesamiento interno que toma otras bandas para clasificar cada píxel en una de las 45 categorías [9]. La detección de focos de calor se basa, entre otras cosas, en el brillo del píxel. Es importante decir que la geometría de adquisición afecta la detección de focos de calor, ya que el brillo solar en la atmósfera y el reflejo del sol en cuerpos de agua dan falsos positivos. Es por ello que las zonas subsolar y zenital de la imagen son ignoradas para la detección de fuego y son colocadas en una categoría especial denominada Glich. Es un error catastrófico por parte del profesional GIS ignorar la geometría de adquisición y la categoría Glich, y asumir directamente que si no hay categoría asociada a fuego es que no hay fuego efectivamente. El algoritmo de GOES intenta esquivar los falsos positivos y los falsos negativos, pero el algoritmo no evita el mal uso del producto por parte del usuario.
+La herramienta procesa solo un archivo FDCF en proyecciÃ³n WGS84, con cinco salidas visuales. El archivo original FDCF tiene 45 categorÃ­as y es un raster. Este producto GOES es en realidad resultado de un procesamiento interno que toma otras bandas para clasificar cada pÃ­xel en una de las 45 categorÃ­as [9]. La detecciÃ³n de focos de calor se basa, entre otras cosas, en el brillo del pÃ­xel. Es importante decir que la geometrÃ­a de adquisiciÃ³n afecta la detecciÃ³n de focos de calor, ya que el brillo solar en la atmÃ³sfera y el reflejo del sol en cuerpos de agua dan falsos positivos. Es por ello que las zonas subsolar y zenital de la imagen son ignoradas para la detecciÃ³n de fuego y son colocadas en una categorÃ­a especial denominada Glich. Es un error catastrÃ³fico por parte del profesional GIS ignorar la geometrÃ­a de adquisiciÃ³n y la categorÃ­a Glich, y asumir directamente que si no hay categorÃ­a asociada a fuego es que no hay fuego efectivamente. El algoritmo de GOES intenta esquivar los falsos positivos y los falsos negativos, pero el algoritmo no evita el mal uso del producto por parte del usuario.
 
 ```{=latex}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.7\linewidth]{chapter04_legionGOES/img/img10_operative_fuego.png}
-\caption{Ejemplo de la herramienta Operative para focos de calor y fuego. La aplicación procesa un único archivo FDCF y presenta salidas rápidas orientadas al monitoreo inmediato.}
+\caption{Ejemplo de la herramienta Operative para focos de calor y fuego. La aplicaciÃ³n procesa un Ãºnico archivo FDCF y presenta salidas rÃ¡pidas orientadas al monitoreo inmediato.}
 \label{fig-legiongoes-home}
 \end{figure}
 ```
 
-Las cinco visualizaciones tienen diferentes categorías seleccionadas para obtener diferentes visiones. Para las categorías seleccionadas en cada visualización se genera una capa vectorial para lograr ver de mejor manera los píxeles con las categorías seleccionadas. Hay un botón rápido que, al hacer clic, conecta a LegionGOES con el servidor AWS y descarga el último archivo disponible en ese momento. Hay un archivo FDCF cada 10 minutos. Es posible también elegir el último archivo local disponible o un archivo local en particular. Hay varias opciones relacionadas con cambiar el mapa de fondo, cambiar el color de los límites internacionales, botón de screenshot y botón de descarga.
+Las cinco visualizaciones tienen diferentes categorÃ­as seleccionadas para obtener diferentes visiones. Para las categorÃ­as seleccionadas en cada visualizaciÃ³n se genera una capa vectorial para lograr ver de mejor manera los pÃ­xeles con las categorÃ­as seleccionadas. Hay un botÃ³n rÃ¡pido que, al hacer clic, conecta a LegionGOES con el servidor AWS y descarga el Ãºltimo archivo disponible en ese momento. Hay un archivo FDCF cada 10 minutos. Es posible tambiÃ©n elegir el Ãºltimo archivo local disponible o un archivo local en particular. Hay varias opciones relacionadas con cambiar el mapa de fondo, cambiar el color de los lÃ­mites internacionales, botÃ³n de screenshot y botÃ³n de descarga.
 
 \newpage
 
 #### Focos de calor y fuego - Viewer
-El viewer solo permite visualizar archivos que hayan sido previamente descargados y procesados con las aplicaciones de Downloader y Processing de LegionGOES específicamente para focos de calor.
-El viewer de temperatura muestra un procesamiento de FDCF que es propiamente el producto de GOES con la finalidad de detectar focos de calor y acompaña esa salida con un procesamiento anexo basado en el producto MCMIPF para generar un true color sintético de fondo. Este anexo permitirá visualizar el contexto del foco de calor de una mejor manera, ya que será posible ver el día y la noche dentro del Full Disk y será posible ver las nubes en la parte de día. De FDCF hay un producto cada 10 minutos, lo mismo para MCMIPF, y además coinciden exactamente en tiempo, por lo cual es un emparejamiento sencillo. Tener un producto cada 10 minutos implica cinco pares por hora, lo que son 144 pares de imágenes en un día. Hay opciones para poder elegir, en vez de toda la serie temporal completa, solo el primer par de imágenes de cada hora; entonces, en vez de 144 imágenes en un día son 24.
+El viewer solo permite visualizar archivos que hayan sido previamente descargados y procesados con las aplicaciones de Downloader y Processing de LegionGOES especÃ­ficamente para focos de calor.
+El viewer de temperatura muestra un procesamiento de FDCF que es propiamente el producto de GOES con la finalidad de detectar focos de calor y acompaÃ±a esa salida con un procesamiento anexo basado en el producto MCMIPF para generar un true color sintÃ©tico de fondo. Este anexo permitirÃ¡ visualizar el contexto del foco de calor de una mejor manera, ya que serÃ¡ posible ver el dÃ­a y la noche dentro del Full Disk y serÃ¡ posible ver las nubes en la parte de dÃ­a. De FDCF hay un producto cada 10 minutos, lo mismo para MCMIPF, y ademÃ¡s coinciden exactamente en tiempo, por lo cual es un emparejamiento sencillo. Tener un producto cada 10 minutos implica cinco pares por hora, lo que son 144 pares de imÃ¡genes en un dÃ­a. Hay opciones para poder elegir, en vez de toda la serie temporal completa, solo el primer par de imÃ¡genes de cada hora; entonces, en vez de 144 imÃ¡genes en un dÃ­a son 24.
 
-El usuario tendrá opción de visualizar los productos en WGS84, Mercator y GOES original. Se encuentra un gran conjunto de opciones para los mapas, y hay botones para generar screenshots y un video MP4 para la serie temporal.
-Hay también un control para poder pasar frame por frame la serie temporal con un delay específico.
+El usuario tendrÃ¡ opciÃ³n de visualizar los productos en WGS84, Mercator y GOES original. Se encuentra un gran conjunto de opciones para los mapas, y hay botones para generar screenshots y un video MP4 para la serie temporal.
+Hay tambiÃ©n un control para poder pasar frame por frame la serie temporal con un delay especÃ­fico.
 
 ```{=latex}
 \begin{figure}[htbp]
@@ -197,7 +197,7 @@ Hay también un control para poder pasar frame por frame la serie temporal con u
 \includegraphics[width=0.4\linewidth]{chapter04_legionGOES/img/img13_viewer_fuego_goes.png}
 
 
-\caption{Ejemplo del Viewer de focos de calor y fuego en WGS84, Mercator y proyección GOES original. La visualización permite recorrer la serie temporal y contrastar el comportamiento del producto en distintas proyecciones.}
+\caption{Ejemplo del Viewer de focos de calor y fuego en WGS84, Mercator y proyecciÃ³n GOES original. La visualizaciÃ³n permite recorrer la serie temporal y contrastar el comportamiento del producto en distintas proyecciones.}
 \label{fig-legiongoes-home}
 \end{figure}
 ```
@@ -206,7 +206,7 @@ Hay también un control para poder pasar frame por frame la serie temporal con u
 
 Es realmente revelador ver los productos procesados en el visualizador. 
 
-El primer detalle es poder ver el brillo atmosférico en diferentes productos de LegionGOES.
+El primer detalle es poder ver el brillo atmosfÃ©rico en diferentes productos de LegionGOES.
 ```{=latex}
 \begin{figure}[htbp]
 \centering
@@ -214,12 +214,12 @@ El primer detalle es poder ver el brillo atmosférico en diferentes productos de
 \includegraphics[width=1\linewidth]{chapter04_legionGOES/img/img29_trio.png}
 
 
-\caption{Ejemplo de la relación entre brillo atmosférico y categoría \texttt{Glich} en productos utilizados por LegionGOES. A la izquierda se muestra el contexto en true color sintético, a la derecha la clasificación del producto FDCF y, en el centro, la superposición espacial entre la zona de brillo atmosférico y la región clasificada como \texttt{Glich}.}
+\caption{Ejemplo de la relaciÃ³n entre brillo atmosfÃ©rico y categorÃ­a \texttt{Glich} en productos utilizados por LegionGOES. A la izquierda se muestra el contexto en true color sintÃ©tico, a la derecha la clasificaciÃ³n del producto FDCF y, en el centro, la superposiciÃ³n espacial entre la zona de brillo atmosfÃ©rico y la regiÃ³n clasificada como \texttt{Glich}.}
 \label{fig-legiongoes-home}
 \end{figure}
 ```
 
-Al ver una serie de tiempo el usuario puede entender rápidamente la importancia de no olvidar la geometría de adquisición y la categoría Glich a la hora de monitorear focos de calor con GOES. Personalmente considero esta aplicación una de las visualizaciones más enriquecedoras de la tesis. Fácilmente el usuario podrá ver cómo zonas con focos de calor detectados son enmascaradas a zonas Glich a medida que la Tierra gira, lo cual no implica que el foco de calor haya cesado, sino que no es posible detectarlo en Glich. 
+Al ver una serie de tiempo el usuario puede entender rÃ¡pidamente la importancia de no olvidar la geometrÃ­a de adquisiciÃ³n y la categorÃ­a Glich a la hora de monitorear focos de calor con GOES. Personalmente considero esta aplicaciÃ³n una de las visualizaciones mÃ¡s enriquecedoras de la tesis. FÃ¡cilmente el usuario podrÃ¡ ver cÃ³mo zonas con focos de calor detectados son enmascaradas a zonas Glich a medida que la Tierra gira, lo cual no implica que el foco de calor haya cesado, sino que no es posible detectarlo en Glich. 
 
 ```{=latex}
 \begin{figure}[htbp]
@@ -230,13 +230,13 @@ Al ver una serie de tiempo el usuario puede entender rápidamente la importancia
 \includegraphics[width=0.4\linewidth,trim={7cm 5cm 10cm 6cm},clip]{chapter04_legionGOES/img/img27_pos03.png}
 
 
-\caption{Secuencia de una misma región observada en distintos momentos, donde puede apreciarse cómo sectores previamente clasificados como focos de calor pasan a quedar cubiertos por la zona \texttt{Glich} a medida que cambia la geometría de adquisición. La figura ilustra que la desaparición de una detección no siempre implica el cese del evento térmico, sino una limitación del producto asociada a las condiciones de observación.}
+\caption{Secuencia de una misma regiÃ³n observada en distintos momentos, donde puede apreciarse cÃ³mo sectores previamente clasificados como focos de calor pasan a quedar cubiertos por la zona \texttt{Glich} a medida que cambia la geometrÃ­a de adquisiciÃ³n. La figura ilustra que la desapariciÃ³n de una detecciÃ³n no siempre implica el cese del evento tÃ©rmico, sino una limitaciÃ³n del producto asociada a las condiciones de observaciÃ³n.}
 \label{fig-legiongoes-home}
 \end{figure}
 ```
 
 \newpage
-Con un poco más de atención sobre la serie de tiempo, un usuario con un poco más de experiencia en GIS podrá visualizar también cómo el algoritmo cambia la clasificación de los píxeles cuando un píxel de día pasa a noche o al estar más cerca del punto subsolar.
+Con un poco mÃ¡s de atenciÃ³n sobre la serie de tiempo, un usuario con un poco mÃ¡s de experiencia en GIS podrÃ¡ visualizar tambiÃ©n cÃ³mo el algoritmo cambia la clasificaciÃ³n de los pÃ­xeles cuando un pÃ­xel de dÃ­a pasa a noche o al estar mÃ¡s cerca del punto subsolar.
 
 
 ```{=latex}
@@ -245,7 +245,7 @@ Con un poco más de atención sobre la serie de tiempo, un usuario con un poco m
 \includegraphics[width=0.4\linewidth,trim={14cm 5cm 20cm 6cm},clip]{chapter04_legionGOES/img/img28_pos01.png}
 \includegraphics[width=0.4\linewidth,trim={14cm 5cm 20cm 6cm},clip]{chapter04_legionGOES/img/img28_pos02.png}
 
-\caption{Ejemplo de cómo cambia la clasificación del pixel al estar más cerca del glinch. Notar cómo los pixeles de la costa de Brasil cambian su categoría al acercarse la zona Glinch.}
+\caption{Ejemplo de cÃ³mo cambia la clasificaciÃ³n del pixel al estar mÃ¡s cerca del glinch. Notar cÃ³mo los pixeles de la costa de Brasil cambian su categorÃ­a al acercarse la zona Glinch.}
 \label{fig-legiongoes-home}
 \end{figure}
 ```
@@ -255,14 +255,14 @@ Con un poco más de atención sobre la serie de tiempo, un usuario con un poco m
 \newpage
 
 #### Nubes - Operative
-La herramienta procesa solo un archivo MCMIPF en proyección WGS84. El archivo original MCMIPF contiene 16 bandas, varias de ellas en el infrarrojo [10]. Con esas categorías se determina la temperatura de cierto grupo de nubes que se encuentran entre los -80 y -30 grados Celsius. Este grupo de nubes son nubes muy altas en la atmósfera, importantes por estar asociadas a granizo y tormentas severas.
-Hay un botón rápido que, al hacer clic, conecta a LegionGOES con el servidor AWS y descarga el último archivo disponible en ese momento. Hay un archivo MCMIPF cada 10 minutos. Es posible también elegir el último archivo local disponible o un archivo local en particular. Hay varias opciones relacionadas con cambiar el mapa de fondo, cambiar el color de los límites internacionales, botón de screenshot y botón de descarga.
+La herramienta procesa solo un archivo MCMIPF en proyecciÃ³n WGS84. El archivo original MCMIPF contiene 16 bandas, varias de ellas en el infrarrojo [10]. Con esas categorÃ­as se determina la temperatura de cierto grupo de nubes que se encuentran entre los -80 y -30 grados Celsius. Este grupo de nubes son nubes muy altas en la atmÃ³sfera, importantes por estar asociadas a granizo y tormentas severas.
+Hay un botÃ³n rÃ¡pido que, al hacer clic, conecta a LegionGOES con el servidor AWS y descarga el Ãºltimo archivo disponible en ese momento. Hay un archivo MCMIPF cada 10 minutos. Es posible tambiÃ©n elegir el Ãºltimo archivo local disponible o un archivo local en particular. Hay varias opciones relacionadas con cambiar el mapa de fondo, cambiar el color de los lÃ­mites internacionales, botÃ³n de screenshot y botÃ³n de descarga.
 
 ```{=latex}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.7\linewidth]{chapter04_legionGOES/img/img14_operative_nubes.png}
-\caption{Ejemplo de la herramienta Operative para nubes. La aplicación procesa un único archivo MCMIPF en WGS84 y prioriza una lectura rápida de la situación meteorológica.}
+\caption{Ejemplo de la herramienta Operative para nubes. La aplicaciÃ³n procesa un Ãºnico archivo MCMIPF en WGS84 y prioriza una lectura rÃ¡pida de la situaciÃ³n meteorolÃ³gica.}
 \label{fig-legiongoes-home}
 \end{figure}
 ```
@@ -270,11 +270,11 @@ Hay un botón rápido que, al hacer clic, conecta a LegionGOES con el servidor A
 \newpage
 
 #### Nubes - Viewer
-El viewer solo permite visualizar archivos que hayan sido previamente descargados y procesados con las aplicaciones de Downloader y Processing de LegionGOES específicamente para la actividad meteorológica nubes.
-El viewer de nubes muestra dos procesamientos de MCMIPF. El primer procesamiento es, como ha sido detallado en el Operative de nubes, una visualización raster del grupo de nubes entre los -90 y -30 grados Celsius. El segundo procesamiento es el true color sintético para dar contexto de día y de noche. Se tiene un producto cada 10 minutos, lo que implica cinco imágenes en una hora y 144 imágenes en un día. Hay opciones para poder elegir, en vez de toda la serie temporal completa, solo el primer par de imágenes de cada hora; entonces, en vez de 144 imágenes en un día son 24.
+El viewer solo permite visualizar archivos que hayan sido previamente descargados y procesados con las aplicaciones de Downloader y Processing de LegionGOES especÃ­ficamente para la actividad meteorolÃ³gica nubes.
+El viewer de nubes muestra dos procesamientos de MCMIPF. El primer procesamiento es, como ha sido detallado en el Operative de nubes, una visualizaciÃ³n raster del grupo de nubes entre los -90 y -30 grados Celsius. El segundo procesamiento es el true color sintÃ©tico para dar contexto de dÃ­a y de noche. Se tiene un producto cada 10 minutos, lo que implica cinco imÃ¡genes en una hora y 144 imÃ¡genes en un dÃ­a. Hay opciones para poder elegir, en vez de toda la serie temporal completa, solo el primer par de imÃ¡genes de cada hora; entonces, en vez de 144 imÃ¡genes en un dÃ­a son 24.
 
-El usuario tendrá opción de visualizar los productos en WGS84, Mercator y GOES original. Se encuentra un gran conjunto de opciones para los mapas, y hay botones para generar screenshots y un video MP4 para la serie temporal.
-Hay también un control para poder pasar frame por frame la serie temporal con un delay específico.
+El usuario tendrÃ¡ opciÃ³n de visualizar los productos en WGS84, Mercator y GOES original. Se encuentra un gran conjunto de opciones para los mapas, y hay botones para generar screenshots y un video MP4 para la serie temporal.
+Hay tambiÃ©n un control para poder pasar frame por frame la serie temporal con un delay especÃ­fico.
 
 ```{=latex}
 \begin{figure}[htbp]
@@ -282,37 +282,37 @@ Hay también un control para poder pasar frame por frame la serie temporal con u
 \includegraphics[width=0.4\linewidth]{chapter04_legionGOES/img/img15_viewer_nubes_wgs84.png}
 \includegraphics[width=0.4\linewidth]{chapter04_legionGOES/img/img16_viewer_nubes_mercator.png}
 \includegraphics[width=0.4\linewidth]{chapter04_legionGOES/img/img17_viewer_nubes_goes.png}
-\caption{Ejemplo del Viewer de nubes en WGS84, Mercator y proyección GOES original. La serie temporal permite comparar simultáneamente la salida principal y su contexto visual en distintas proyecciones.}
+\caption{Ejemplo del Viewer de nubes en WGS84, Mercator y proyecciÃ³n GOES original. La serie temporal permite comparar simultÃ¡neamente la salida principal y su contexto visual en distintas proyecciones.}
 \label{fig-legiongoes-home}
 \end{figure}
 ```
 
 \newpage
 
-#### Tormentas Eléctricas - Operative
-El viewer de Tormentas Eléctricas rompe la estructura general de los viewer con novedades interesantes.
-El viewer de tormentas ejecutará un procesamiento continuo acumulado desde el momento en que se inicia el operador en adelante. Esto se debe a que el producto a descargar es GLM, del cual se tiene un producto cada 20 segundos, y se debe decir que es un producto sumamente liviano en su descarga y rápidamente procesable. Esto hace que podamos estar más cerca de un procesamiento en tiempo real. Cada 20 segundos la operative se conectará al servidor para descargar el nuevo e irá acumulando archivos.
-A mi gusto, esta fue una herramienta sumamente reveladora ya que logré una descarga, procesamiento y visualización de un evento que acaba de pasar hace aproximadamente 20 segundos.
+#### Tormentas ElÃ©ctricas - Operative
+El viewer de Tormentas ElÃ©ctricas rompe la estructura general de los viewer con novedades interesantes.
+El viewer de tormentas ejecutarÃ¡ un procesamiento continuo acumulado desde el momento en que se inicia el operador en adelante. Esto se debe a que el producto a descargar es GLM, del cual se tiene un producto cada 20 segundos, y se debe decir que es un producto sumamente liviano en su descarga y rÃ¡pidamente procesable. Esto hace que podamos estar mÃ¡s cerca de un procesamiento en tiempo real. Cada 20 segundos la operative se conectarÃ¡ al servidor para descargar el nuevo e irÃ¡ acumulando archivos.
+A mi gusto, esta fue una herramienta sumamente reveladora ya que logrÃ© una descarga, procesamiento y visualizaciÃ³n de un evento que acaba de pasar hace aproximadamente 20 segundos.
 
 ```{=latex}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.7\linewidth]{chapter04_legionGOES/img/img18_operative_storms.png}
-\caption{Ejemplo de la herramienta Operative para tormentas eléctricas. A diferencia de otras operative, aquí el procesamiento acumula información en continuidad desde el inicio de la sesión para aproximarse al tiempo real.}
+\caption{Ejemplo de la herramienta Operative para tormentas elÃ©ctricas. A diferencia de otras operative, aquÃ­ el procesamiento acumula informaciÃ³n en continuidad desde el inicio de la sesiÃ³n para aproximarse al tiempo real.}
 \label{fig-legiongoes-home}
 \end{figure}
 ```
 
-Este operative entonces rompe con la idea de procesar solo un archivo de un solo tipo y lo que hace es procesar un acumulado de archivos desde que la app se abre. La estética general de este viewer es diferente al resto y la elección de mapa de fondo fue Mercator. Todo esto se debe a la idea de hacer pruebas con diferentes modos de presentación dentro del software.
+Este operative entonces rompe con la idea de procesar solo un archivo de un solo tipo y lo que hace es procesar un acumulado de archivos desde que la app se abre. La estÃ©tica general de este viewer es diferente al resto y la elecciÃ³n de mapa de fondo fue Mercator. Todo esto se debe a la idea de hacer pruebas con diferentes modos de presentaciÃ³n dentro del software.
 
-#### Tormentas eléctricas - Viewer
-El viewer solo permite visualizar archivos que hayan sido previamente descargados y procesados con las aplicaciones de Downloader y Processing de LegionGOES específicamente para la actividad meteorológica tormentas eléctricas.
-El producto GLM se obtiene cada 20 segundos [11]. Como anexo se utiliza el producto MCMIPF con el mismo procesamiento que tiene el viewer de Nubes, que otorga un true color sintético y nubes superiores entre los -80 y los -30 grados Celsius. Se tiene un producto MCMIPF cada 10 minutos, entonces lo que se hace es acumular todos los GLM asociados al rango de 10 minutos del producto MCMIPF y procesarlos juntos.
+#### Tormentas elÃ©ctricas - Viewer
+El viewer solo permite visualizar archivos que hayan sido previamente descargados y procesados con las aplicaciones de Downloader y Processing de LegionGOES especÃ­ficamente para la actividad meteorolÃ³gica tormentas elÃ©ctricas.
+El producto GLM se obtiene cada 20 segundos [11]. Como anexo se utiliza el producto MCMIPF con el mismo procesamiento que tiene el viewer de Nubes, que otorga un true color sintÃ©tico y nubes superiores entre los -80 y los -30 grados Celsius. Se tiene un producto MCMIPF cada 10 minutos, entonces lo que se hace es acumular todos los GLM asociados al rango de 10 minutos del producto MCMIPF y procesarlos juntos.
 
-Al tener un producto GLM cada 20 segundos, esto implica que son 30 productos en 10 minutos, 180 productos en una hora y 4320 productos en un día. Entonces, por cada archivo MCMIPF habrá 30 archivos GLM asociados.
+Al tener un producto GLM cada 20 segundos, esto implica que son 30 productos en 10 minutos, 180 productos en una hora y 4320 productos en un dÃ­a. Entonces, por cada archivo MCMIPF habrÃ¡ 30 archivos GLM asociados.
 
-El usuario tendrá opción de visualizar los productos en WGS84, Mercator y GOES original. Se encuentra un gran conjunto de opciones para los mapas, y hay botones para generar screenshots y un video MP4 para la serie temporal.
-Hay también un control para poder pasar frame por frame la serie temporal con un delay específico.
+El usuario tendrÃ¡ opciÃ³n de visualizar los productos en WGS84, Mercator y GOES original. Se encuentra un gran conjunto de opciones para los mapas, y hay botones para generar screenshots y un video MP4 para la serie temporal.
+Hay tambiÃ©n un control para poder pasar frame por frame la serie temporal con un delay especÃ­fico.
 
 ```{=latex}
 \begin{figure}[htbp]
@@ -323,7 +323,7 @@ Hay también un control para poder pasar frame por frame la serie temporal con u
 \includegraphics[width=0.4\linewidth]{chapter04_legionGOES/img/img21_viewer_storms_goes.png}
 
 
-\caption{Ejemplo del Viewer de tormentas eléctricas en WGS84, Mercator y proyección GOES original. La figura muestra la integración entre acumulados GLM y productos MCMIPF dentro de una serie temporal navegable.}
+\caption{Ejemplo del Viewer de tormentas elÃ©ctricas en WGS84, Mercator y proyecciÃ³n GOES original. La figura muestra la integraciÃ³n entre acumulados GLM y productos MCMIPF dentro de una serie temporal navegable.}
 \label{fig-legiongoes-home}
 \end{figure}
 ```
@@ -331,17 +331,17 @@ Hay también un control para poder pasar frame por frame la serie temporal con u
 
 
 ### Solapa Classroom
-Durante el desarrollo de LegionGOES hubo muchas aplicaciones que fueron experimentos, y particularmente tres las consideré relevantes. Aunque no eran aplicaciones netamente relacionadas con temáticas meteorológicas, eran aplicaciones sumamente útiles. La primera aplicación es para comprender la geometría de adquisición de GOES; la segunda y la tercera son para comprender errores catastróficos en estadística de datos espaciales.
+Durante el desarrollo de LegionGOES hubo muchas aplicaciones que fueron experimentos, y particularmente tres las considerÃ© relevantes. Aunque no eran aplicaciones netamente relacionadas con temÃ¡ticas meteorolÃ³gicas, eran aplicaciones sumamente Ãºtiles. La primera aplicaciÃ³n es para comprender la geometrÃ­a de adquisiciÃ³n de GOES; la segunda y la tercera son para comprender errores catastrÃ³ficos en estadÃ­stica de datos espaciales.
 
 #### App01 - Geometry
-Es una aplicación para la comprensión de la geometría de adquisición de los satélites GOES.
-Se visualiza al inicio un modelo 3D de la Tierra para el modelo de Tierra esférica. La posición de la Tierra respecto al Sol que el usuario visualiza corresponde con la posición de la Tierra respecto al Sol en el momento en que él está viendo la aplicación.
+Es una aplicaciÃ³n para la comprensiÃ³n de la geometrÃ­a de adquisiciÃ³n de los satÃ©lites GOES.
+Se visualiza al inicio un modelo 3D de la Tierra para el modelo de Tierra esfÃ©rica. La posiciÃ³n de la Tierra respecto al Sol que el usuario visualiza corresponde con la posiciÃ³n de la Tierra respecto al Sol en el momento en que Ã©l estÃ¡ viendo la aplicaciÃ³n.
 
-La aplicación permite agregar satélites geoestacionarios y de órbita polar. Si bien el tamaño de los satélites no está a escala, lo referido al tamaño de la Tierra y las distancias a las órbitas de los satélites sí lo están.
+La aplicaciÃ³n permite agregar satÃ©lites geoestacionarios y de Ã³rbita polar. Si bien el tamaÃ±o de los satÃ©lites no estÃ¡ a escala, lo referido al tamaÃ±o de la Tierra y las distancias a las Ã³rbitas de los satÃ©lites sÃ­ lo estÃ¡n.
 
-El modelo además tiene el movimiento de rotación de la Tierra en tiempo real, y también la posición real de los satélites en cada momento. Si se activan los satélites y se hace zoom se podrá ver cómo los satélites se van moviendo, incluso los geoestacionarios.
+El modelo ademÃ¡s tiene el movimiento de rotaciÃ³n de la Tierra en tiempo real, y tambiÃ©n la posiciÃ³n real de los satÃ©lites en cada momento. Si se activan los satÃ©lites y se hace zoom se podrÃ¡ ver cÃ³mo los satÃ©lites se van moviendo, incluso los geoestacionarios.
 
-Hay un gran conjunto de opciones que incluyen, entre otras cosas, la posibilidad de cambiar el mapa de la superficie de la Tierra, obtener información de la posición de la Tierra en la órbita elíptica alrededor del Sol, diagramas para visualizar sectores de día y noche en WGS84, simulación para aumentar la velocidad de rotación y poder ver cómo los satélites geoestacionarios giran con la Tierra, entre otras funcionalidades.
+Hay un gran conjunto de opciones que incluyen, entre otras cosas, la posibilidad de cambiar el mapa de la superficie de la Tierra, obtener informaciÃ³n de la posiciÃ³n de la Tierra en la Ã³rbita elÃ­ptica alrededor del Sol, diagramas para visualizar sectores de dÃ­a y noche en WGS84, simulaciÃ³n para aumentar la velocidad de rotaciÃ³n y poder ver cÃ³mo los satÃ©lites geoestacionarios giran con la Tierra, entre otras funcionalidades.
 
 ```{=latex}
 \begin{figure}[htbp]
@@ -351,41 +351,41 @@ Hay un gran conjunto de opciones que incluyen, entre otras cosas, la posibilidad
 
 
 
-\caption{Ejemplo del Viewer de tormentas eléctricas en WGS84, Mercator y proyección GOES original. La figura muestra la integración entre acumulados GLM y productos MCMIPF dentro de una serie temporal navegable.}
+\caption{Ejemplo del Viewer de tormentas elÃ©ctricas en WGS84, Mercator y proyecciÃ³n GOES original. La figura muestra la integraciÃ³n entre acumulados GLM y productos MCMIPF dentro de una serie temporal navegable.}
 \label{fig-legiongoes-home}
 \end{figure}
 ```
 
 
 #### App02 - Transformation
-Es una aplicación para mostrar de manera sencilla cómo la transformación del sistema de referencia genera distorsiones sobre los datos espaciales. Respecto a una variable cuantitativa que tiene una distribución espacial, el cambio del sistema de referencia es una transformación no lineal aplicada sobre la variable cuantitativa. Esto tiene serias consecuencias sobre la variable y sobre cómo interpretarla. A pesar de los esfuerzos educativos en grado y posgrado, es increíble la cantidad de profesionales académicos y técnicos que cometen el error catastrófico de ser indiferentes a cómo las transformaciones afectan a sus datos.
+Es una aplicaciÃ³n para mostrar de manera sencilla cÃ³mo la transformaciÃ³n del sistema de referencia genera distorsiones sobre los datos espaciales. Respecto a una variable cuantitativa que tiene una distribuciÃ³n espacial, el cambio del sistema de referencia es una transformaciÃ³n no lineal aplicada sobre la variable cuantitativa. Esto tiene serias consecuencias sobre la variable y sobre cÃ³mo interpretarla. A pesar de los esfuerzos educativos en grado y posgrado, es increÃ­ble la cantidad de profesionales acadÃ©micos y tÃ©cnicos que cometen el error catastrÃ³fico de ser indiferentes a cÃ³mo las transformaciones afectan a sus datos.
 
-La aplicación muestra algunas opciones de gráficos estadísticos y medidas de posición y dispersión de la variable LSTF para GOES original, WGS84 y Mercator. La imagen vale más que mil palabras.
+La aplicaciÃ³n muestra algunas opciones de grÃ¡ficos estadÃ­sticos y medidas de posiciÃ³n y dispersiÃ³n de la variable LSTF para GOES original, WGS84 y Mercator. La imagen vale mÃ¡s que mil palabras.
 
 ```{=latex}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.7\linewidth]{chapter04_legionGOES/img/img23_transformation.png}
-\caption{Vista de la aplicación Classroom Transformation. La figura ilustra el uso de gráficos y resúmenes estadísticos para mostrar cómo cambian los datos al transformar su sistema de referencia.}
+\caption{Vista de la aplicaciÃ³n Classroom Transformation. La figura ilustra el uso de grÃ¡ficos y resÃºmenes estadÃ­sticos para mostrar cÃ³mo cambian los datos al transformar su sistema de referencia.}
 \label{fig-legiongoes-home}
 \end{figure}
 ```
 
 #### App03 - Resampling
-Es una aplicación para mostrar cómo afecta a las estadísticas de una variable cuantitativa el cambio en la cantidad de píxeles cuando se cambia la resolución original de una imagen mediante resize.
+Es una aplicaciÃ³n para mostrar cÃ³mo afecta a las estadÃ­sticas de una variable cuantitativa el cambio en la cantidad de pÃ­xeles cuando se cambia la resoluciÃ³n original de una imagen mediante resize.
 
 ```{=latex}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.7\linewidth]{chapter04_legionGOES/img/img24_resize.png}
-\caption{Vista de la aplicación Classroom Resampling. La herramienta se orienta a mostrar el efecto del cambio de resolución espacial sobre la distribución y las estadísticas de la imagen.}
+\caption{Vista de la aplicaciÃ³n Classroom Resampling. La herramienta se orienta a mostrar el efecto del cambio de resoluciÃ³n espacial sobre la distribuciÃ³n y las estadÃ­sticas de la imagen.}
 \label{fig-legiongoes-home}
 \end{figure}
 ```
 
 ### Solapa Extra
-Hay mucho código para procesamiento de imágenes GOES que quedó fuera del software.
-Esta es una parte de ese código que resultó sumamente interesante. Es una aplicación Operative que genera 30 procesamientos diferentes a partir de MCMIPF para WGS84. Todos son productos para diferentes temáticas meteorológicas. Mínimamente vale la pena mirarlo una vez para terminar de entender la cantidad de posibilidades de visualización que son posibles con GOES.
+Hay mucho cÃ³digo para procesamiento de imÃ¡genes GOES que quedÃ³ fuera del software.
+Esta es una parte de ese cÃ³digo que resultÃ³ sumamente interesante. Es una aplicaciÃ³n Operative que genera 30 procesamientos diferentes a partir de MCMIPF para WGS84. Todos son productos para diferentes temÃ¡ticas meteorolÃ³gicas. MÃ­nimamente vale la pena mirarlo una vez para terminar de entender la cantidad de posibilidades de visualizaciÃ³n que son posibles con GOES.
 
 ```{=latex}
 \begin{figure}[htbp]
@@ -395,7 +395,7 @@ Esta es una parte de ese código que resultó sumamente interesante. Es una apli
 \includegraphics[width=0.4\linewidth]{chapter04_legionGOES/img/img26_mix.png}
 
 
-\caption{Ejemplos de salidas de la solapa Extra, donde se reúnen procesamientos alternativos basados en MCMIPF para distintas temáticas meteorológicas y fines exploratorios.}
+\caption{Ejemplos de salidas de la solapa Extra, donde se reÃºnen procesamientos alternativos basados en MCMIPF para distintas temÃ¡ticas meteorolÃ³gicas y fines exploratorios.}
 \label{fig-legiongoes-home}
 \end{figure}
 ```
@@ -403,53 +403,43 @@ Esta es una parte de ese código que resultó sumamente interesante. Es una apli
 
 ## Productos de salida: PNG, TIFF, MP4, CSV y otros formatos
 
-Un PNG puede ser suficiente para documentar una situación concreta. Un GIF o un video puede ser más útil para comunicar evolución temporal. Un archivo tiff puede ser utilizado sobre otro sistema GIS. Un visor interactivo permite comparar proyecciones, activar fondos, revisar capas o elegir ventanas temporales específicas. Esta multiplicidad de salidas es una extensión natural del objetivo principal del sistema: convertir información satelital en productos comprensibles y útiles.
+Un PNG puede ser suficiente para documentar una situaciÃ³n concreta. Un GIF o un video puede ser mÃ¡s Ãºtil para comunicar evoluciÃ³n temporal. Un archivo tiff puede ser utilizado sobre otro sistema GIS. Un visor interactivo permite comparar proyecciones, activar fondos, revisar capas o elegir ventanas temporales especÃ­ficas. Esta multiplicidad de salidas es una extensiÃ³n natural del objetivo principal del sistema: convertir informaciÃ³n satelital en productos comprensibles y Ãºtiles.
 
 
-Los archivos descargados y procesados mediante el uso de LegionGOES pro sus correspondientes aplicaciones downloader y processing  habitan en el disco rígido del usuario, y pueden ser utilizados directamente en por programas, sin restricciones.
+Los archivos descargados y procesados mediante el uso de LegionGOES pro sus correspondientes aplicaciones downloader y processing  habitan en el disco rÃ­gido del usuario, y pueden ser utilizados directamente en por programas, sin restricciones.
 
-## Referencias del capítulo {.unnumbered}
+## Referencias del capÃ­tulo {.unnumbered}
 
-[1] Python Software Foundation. "Python."  
-URL:
-https://www.python.org/
+[1] Python Software Foundation. (s. f.). *Python*.  
+URL: https://www.python.org/
 
-[2] The R Foundation. "The R Project for Statistical Computing."  
-URL:
-https://www.r-project.org/
+[2] R Foundation. (s. f.). *The R project for statistical computing*.  
+URL: https://www.r-project.org/
 
-[3] Posit. "Shiny."  
-URL:
-https://shiny.posit.co/
+[3] Posit. (s. f.). *Shiny*.  
+URL: https://shiny.posit.co/
 
-[4] Registry of Open Data on AWS. "NOAA GOES on AWS."  
-URL:
-https://registry.opendata.aws/noaa-goes/
+[4] Registry of Open Data on AWS. (s. f.). *NOAA GOES on AWS*. Amazon Web Services.  
+URL: https://registry.opendata.aws/noaa-goes/
 
-[5] Google. "Google Chrome."  
-URL:
-https://www.google.com/chrome/
+[5] Google. (s. f.). *Google Chrome*.  
+URL: https://www.google.com/chrome/
 
-[6] FFmpeg. "FFmpeg."  
-URL:
-https://ffmpeg.org/
+[6] FFmpeg. (s. f.). *FFmpeg*.  
+URL: https://ffmpeg.org/
 
-[7] Posit. "Quarto."  
-URL:
-https://quarto.org/
+[7] Posit. (s. f.). *Quarto*.  
+URL: https://quarto.org/
 
-[8] GOES-R Series. "Data Products: Land Surface Temperature (Skin)."  
-URL:
-https://www.goes-r.gov/products/baseline-LST.html
+[8] GOES-R Program. (s. f.). *Data products: Land surface temperature (skin)*. NOAA/NESDIS.  
+URL: https://www.goes-r.gov/products/baseline-LST.html
 
-[9] GOES-R Series. "Data Products: Fire/Hot Spot Characterization."  
-URL:
-https://www.goes-r.gov/products/baseline-fire-hot-spot.html
+[9] GOES-R Program. (s. f.). *Data products: Fire/hot spot characterization*. NOAA/NESDIS.  
+URL: https://www.goes-r.gov/products/baseline-fire-hot-spot.html
 
-[10] GOES-R Series. "Data Products: Cloud and Moisture Imagery."  
-URL:
-https://www.goes-r.gov/products/baseline-cloud-moisture-imagery.html
+[10] GOES-R Program. (s. f.). *Data products: Cloud and moisture imagery*. NOAA/NESDIS.  
+URL: https://www.goes-r.gov/products/baseline-cloud-moisture-imagery.html
 
-[11] GOES-R Series. "Data Products: Lightning Detection: Events, Groups and Flashes."  
-URL:
-https://www.goes-r.gov/products/baseline-lightning-detection.html
+[11] GOES-R Program. (s. f.). *Data products: Lightning detection: Events, groups and flashes*. NOAA/NESDIS.  
+URL: https://www.goes-r.gov/products/baseline-lightning-detection.html
+
