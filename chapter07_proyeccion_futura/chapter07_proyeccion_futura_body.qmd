@@ -1,30 +1,13 @@
-﻿# ProyecciÃ³n futura
-El comienzo de esta tesis hablÃ³ de la temÃ¡tica de observaciÃ³n de la Tierra dicendo que es algo que no tiene lÃ­mites. Siempre hay algo nuevo por aprender, algo nuevo por agregar, una nueva necesidad o un nuevo punto de vista. Siempre hay algo mÃ¡s que agregar, algo que corregir o una nueva forma de presentar lo que ya existÃ­a. Esta idea se ve reflejado en cÃ³mo ha evolucionado QGIS, Google Earth Engine, y las nuevas librerÃ­as de R y Python que aparecen todo el tiempo y las antiguas librerÃ­as que siguen generando versiones [1, 2, 3, 4]. En est esentido LegionGOES es una herramienta tambiÃ©n con mucho potencial. Hablaremos un poco de esas posibilidades.
+# Proyección futura
+El comienzo de esta tesis habló de la temática de observación de la Tierra diciendo que es algo que no tiene límites. Siempre hay algo nuevo por aprender, algo nuevo por agregar, una nueva necesidad o un nuevo punto de vista. Siempre hay algo más que agregar, algo que corregir o una nueva forma de presentar lo que ya existía. Esta idea se ve reflejado en cómo ha evolucionado QGIS, Google Earth Engine, y las nuevas librerías de R y Python que aparecen todo el tiempo y las antiguas librerías que siguen generando versiones [@qgis; @google_earth_engine; @r_project; @python]. En este sentido LegionGOES es una herramienta también con mucho potencial. Hablaremos un poco de esas posibilidades.
 
-El pack de herramientas Classroom merecen tranquilamente un software aparte destinado exlucisvamente a la educaciÃ³n de grado y posgrado, o como iniciaciÃ³n a la temÃ¡tica GIS.
+El pack de herramientas Classroom merecen tranquilamente un software aparte destinado exlucisvamente a la educación de grado y posgrado, o como iniciación a la temática GIS.
 
-PodrÃ­a generarse un equivalente para Sentinel y Landsat, o cualquier otro conjunto de informaciÃ³n espacial como son imÃ¡genes de Drones o informaciÃ³n de geoposiciÃ³n GPS. DespuÃ©s de toda informaciÃ³n espacial es suceptible de ser sitematizada.
+Podría generarse un equivalente para Sentinel y Landsat, o cualquier otro conjunto de información espacial como son imágenes de Drones o información de geoposición GPS. Después de toda información espacial es suceptible de ser sitematizada.
 
-La estructura de LegionGOES merece una versiÃ³n para Linux. Con eso se llegarÃ­a a cubrir dos aspectos importantes. El primero es poder llegar a los usuarios de Linux. Y el 2do es que al ser LegionGOES un servidor web que corre localmente, podrÃ­a ser colocado en un servidor linux para brindar servicio de LegionGOES online [5].
+La estructura de LegionGOES merece una versión para Linux. Con eso se llegaría a cubrir dos aspectos importantes. El primero es poder llegar a los usuarios de Linux. Y el 2do es que al ser LegionGOES un servidor web que corre localmente, podría ser colocado en un servidor Linux para brindar servicio de LegionGOES online [@linux_foundation].
 
-LegionGOES es a todas luces un proyecto que puede ser presentado como I+D y que puede crecer en la medida que sea patrocinado o sostenido por una o mÃ¡s instituciones. 
+LegionGOES es a todas luces un proyecto que puede ser presentado como I+D y que puede crecer en la medida que sea patrocinado o sostenido por una o más instituciones. 
 
-Luego de la presentaciÃ³n de la tesis, se generarÃ¡ una publicaciÃ³n para LegionGOES y permitir de esa manera poder citar el programa si es utilizado por grupos tÃ©cnicos o cientÃ­ficos.
-
-## Referencias del capÃ­tulo {.unnumbered}
-
-[1] QGIS. (s. f.). *Spatial without compromise*.  
-URL: https://qgis.org/
-
-[2] Google. (s. f.). *Google Earth Engine*.  
-URL: https://earthengine.google.com/
-
-[3] R Foundation. (s. f.). *The R project for statistical computing*.  
-URL: https://www.r-project.org/
-
-[4] Python Software Foundation. (s. f.). *Python*.  
-URL: https://www.python.org/
-
-[5] Linux Foundation. (s. f.). *Linux Foundation*.  
-URL: https://www.linuxfoundation.org/
+Luego de la presentación de la tesis, se generará una publicación para LegionGOES y permitir de esa manera poder citar el programa si es utilizado por grupos técnicos o científicos.
 

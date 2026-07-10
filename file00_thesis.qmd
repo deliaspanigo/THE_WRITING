@@ -1,5 +1,10 @@
 ---
 lang: es
+bibliography: references.bib
+csl: apa.csl
+link-citations: false
+nocite: |
+  @*
 format:
   pdf:
     documentclass: book
@@ -65,8 +70,7 @@ resource-path:
   - chapter07_proyeccion_futura/img
   - chapter08_conclusiones
   - chapter08_conclusiones/img
-  - chapter09_copia_capitulo02_actual
-  - chapter09_copia_capitulo02_actual/img
+  - chapter09_bibliografia
 ---
 
 {{< include frontmatter_caratula/caratula.qmd >}}
@@ -80,9 +84,7 @@ resource-path:
 {{< include frontmatter_preliminares/04_abstract.qmd >}}
 
 ```{=latex}
-\begin{spacing}{1.2}
 \tableofcontents
-\end{spacing}
 \clearpage
 ```
 
@@ -138,4 +140,4 @@ resource-path:
 \clearpage
 ```
 
-{{< include chapter09_copia_capitulo02_actual/chapter09_copia_capitulo02_actual_body.qmd >}}
+{{< include chapter09_bibliografia/chapter09_bibliografia_body.qmd >}}

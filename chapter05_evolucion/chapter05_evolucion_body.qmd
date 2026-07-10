@@ -1,102 +1,82 @@
-﻿# Ideas, contexto y evoluciÃ³n del diseÃ±o de LegionGOES
+# Ideas, contexto y evolución del diseño de LegionGOES
 
 
-La evoluciÃ³n del proyecto permite comprender mejor el aporte de LegionGOES. El software no naciÃ³ como una aplicaciÃ³n cerrada desde el inicio, sino como una sucesiÃ³n de decisiones que fueron desplazando el centro del trabajo desde el procesamiento satelital en un servidor Linux hacia la construcciÃ³n de un sistema local, instalable, modular y orientado al usuario.
+La evolución del proyecto permite comprender mejor el aporte de LegionGOES. El software no nació como una aplicación cerrada desde el inicio, sino como una sucesión de decisiones que fueron desplazando el centro del trabajo desde el procesamiento satelital en un servidor Linux hacia la construcción de un sistema local, instalable, modular y orientado al usuario.
 
 ## Idea inicial: procesamiento en servidor
 
-El proyecto original de tesis fue inicialmente pensado como una librerÃ­a Python para gestionar la descarga y procesamiento de imÃ¡genes GOES-16 para un conjunto de temÃ¡ticas a monitorear. El cÃ³digo correrÃ­a en un servidor Linux y brindarÃ­a salidas mediante una interfaz web R/Shiny [1, 2, 3]. La librerÃ­a Python serÃ­a colocada en un repositorio de GitHub y se armarÃ­a un procesador dockerizado posible de ser descargado desde DockerHub [4, 5].
+El proyecto original de tesis fue inicialmente pensado como una librería Python para gestionar la descarga y procesamiento de imágenes GOES-16 para un conjunto de temáticas a monitorear. El código correría en un servidor Linux y brindaría salidas mediante una interfaz web R/Shiny [@python; @linux_foundation; @shiny]. La librería Python sería colocada en un repositorio de GitHub y se armaría un procesador dockerizado posible de ser descargado desde DockerHub [@github; @docker_hub].
 
-En esa primera idea, el usuario no demandarÃ­a procesamientos especÃ­ficos al servidor, sino que accederÃ­a a productos previamente generados. El servidor serÃ­a el encargado de descargar, procesar y actualizar los resultados cada cierto tiempo. El acceso del usuario, con o sin credenciales, parecÃ­a tÃ©cnicamente factible. 
+En esa primera idea, el usuario no demandaría procesamientos específicos al servidor, sino que accedería a productos previamente generados. El servidor sería el encargado de descargar, procesar y actualizar los resultados cada cierto tiempo. El acceso del usuario, con o sin credenciales, parecía técnicamente factible. 
 
-Esta etapa inicial tenÃ­a una lÃ³gica clara: centralizar el procesamiento y simplificar la experiencia del usuario final. Sin embargo, tambiÃ©n implicaba una fuerte dependencia de infraestructura externa, mantenimiento de servidor, capacidad de cÃ³mputo permanente, seguridad informÃ¡tica y costos de operaciÃ³n. Estos aspectos, que inicialmente parecÃ­an secundarios, terminaron condicionando fuertemente la evoluciÃ³n del diseÃ±o.
+Esta etapa inicial tenía una lógica clara: centralizar el procesamiento y simplificar la experiencia del usuario final. Sin embargo, también implicaba una fuerte dependencia de infraestructura externa, mantenimiento de servidor, capacidad de cómputo permanente, seguridad informática y costos de operación. Estos aspectos, que inicialmente parecían secundarios, terminaron condicionando fuertemente la evolución del diseño.
 
 ## Cambio de alcance: de GOES-16 a la serie GOES-R
 
-Durante el desarrollo ocurriÃ³ el cambio operativo de GOES-16 a GOES-19 en la posiciÃ³n GOES-East. Este hecho tuvo implicancias directas en la programaciÃ³n. Lo que inicialmente podÃ­a pensarse como un flujo orientado a GOES-16 debiÃ³ transformarse en un sistema capaz de procesar mÃ¡s de un satÃ©lite.
+Durante el desarrollo ocurrió el cambio operativo de GOES-16 a GOES-19 en la posición GOES-East. Este hecho tuvo implicancias directas en la programación. Lo que inicialmente podía pensarse como un flujo orientado a GOES-16 debió transformarse en un sistema capaz de procesar más de un satélite.
 
-Primero se realizaron cambios para procesar GOES-16 y GOES-19. Luego, esa decisiÃ³n se extendiÃ³ para intentar procesar cualquier satÃ©lite de la serie GOES-R disponible en el esquema de productos utilizado por la tesis. Finalmente, el sistema incorporÃ³ la posibilidad de trabajar con GOES-16, GOES-17, GOES-18 y GOES-19. 
+Primero se realizaron cambios para procesar GOES-16 y GOES-19. Luego, esa decisión se extendió para intentar procesar cualquier satélite de la serie GOES-R disponible en el esquema de productos utilizado por la tesis. Finalmente, el sistema incorporó la posibilidad de trabajar con GOES-16, GOES-17, GOES-18 y GOES-19. 
 
 ## Nombre y logo
-Esta ampliaciÃ³n de alcance fue el motivo del nombre: no se trataba de un Ãºnico GOES, sino de muchos. Una legiÃ³n de satÃ©lites GOES. Y finalmente, LegionGOES.
-El logo pasÃ³ por muchos modelos. Se buscÃ³ siempre un hexagono, y de apariencia a los parches que se ven para las misiones espaciales. Fue generado con inteligencia artificial.
+Esta ampliación de alcance fue el motivo del nombre: no se trataba de un único GOES, sino de muchos. Una legión de satélites GOES. Y finalmente, LegionGOES.
+El logo pasó por muchos modelos. Se buscó siempre un hexagono, y de apariencia a los parches que se ven para las misiones espaciales. Fue generado con inteligencia artificial.
 
 ## De procesador satelital a interfaz de usuario
 
-El procesamiento satelital era una parte esperada del proyecto, pero no es una novedad ya que despuÃ©s de todo ya existe cÃ³digo para procesar imÃ¡genes GOES.La novedad de LegionGOES no son las temÃ¡ticas bajo monitoreo ni el cÃ³digo ypthon de procesamiento sino en cÃ³mo organizar esa capacidad dentro de una interfaz pensada para usuarios que necesitan observar, explorar y producir salidas.
+El procesamiento satelital era una parte esperada del proyecto, pero no es una novedad ya que después de todo ya existe código para procesar imágenes GOES. La novedad de LegionGOES no son las temáticas bajo monitoreo ni el código Python de procesamiento sino en cómo organizar esa capacidad dentro de una interfaz pensada para usuarios que necesitan observar, explorar y producir salidas.
 
-Desde etapas tempranas aparecieron algunos criterios de diseÃ±o:
-- Entorno web si o si.
-- Maximizar el espacio de visualizaciÃ³n, con una interfaz mÃ¡s cercana a un visualizador satelital como SLIDER que a un QGIS.
-- Facilitar la visualizaciÃ³n de series temporales.
-- Permitir la visualizaciÃ³n en diferentes proyecciones.
+Desde etapas tempranas aparecieron algunos criterios de diseño:
+- Entorno web sí o sí.
+- Maximizar el espacio de visualización, con una interfaz más cercana a un visualizador satelital como SLIDER que a un QGIS.
+- Facilitar la visualización de series temporales.
+- Permitir la visualización en diferentes proyecciones.
 - Dar al usuario la posibilidad de descargar procesamientos generados y obtener videos `mp4` para series temporales.
-- Favorecer reproducibilidad y transparencia mediante cÃ³digo organizado en librerÃ­as, repositorios y componentes reutilizables.
-- Ordenar el trabajo por temÃ¡tica bajo monitoreo y no solamente por producto, archivo o estructura informÃ¡tica.
+- Favorecer reproducibilidad y transparencia mediante código organizado en librerías, repositorios y componentes reutilizables.
+- Ordenar el trabajo por temática bajo monitoreo y no solamente por producto, archivo o estructura informática.
 
 
-## El lÃ­mite del servidor y el giro hacia un instalador
+## El límite del servidor y el giro hacia un instalador
 
-El desarrollo del software de procesamiento y de interfaz permitiÃ³ alcanzar una versiÃ³n susceptible de ser colocada en un servidor. Se realizaron pruebas en red local perfectamente. Sin embargo, al buscar una infraestructura real para sostener el sistema, apareciÃ³ una dificultad central: no fue posible contar con un servidor adecuado sin asumir costos importantes.
+El desarrollo del software de procesamiento y de interfaz permitió alcanzar una versión susceptible de ser colocada en un servidor. Se realizaron pruebas en red local perfectamente. Sin embargo, al buscar una infraestructura real para sostener el sistema, apareció una dificultad central: no fue posible contar con un servidor adecuado sin asumir costos importantes.
 
-Esta dificultad es razonable. El procesamiento satelital demanda almacenamiento, cÃ³mputo, transferencia de datos y mantenimiento. Servidores institucionales no hay disponibles para un proyecto que implica descarga y procesamiento satelital. Hay un tema tambiÃ©n de seguridad institucional para estos temas que en general un profesional GIS ignora.
+Esta dificultad es razonable. El procesamiento satelital demanda almacenamiento, cómputo, transferencia de datos y mantenimiento. Servidores institucionales no hay disponibles para un proyecto que implica descarga y procesamiento satelital. Hay un tema también de seguridad institucional para estos temas que en general un profesional GIS ignora.
 
-A partir de ese lÃ­mite surgiÃ³ la idea de construir un programa instalable. Un instalador permitÃ­a evitar la dependencia de un servidor para mostrar el procesamiento, trasladar el cÃ³mputo a la computadora del usuario y fortalecer una idea de reproducibilidad mÃ¡s directa: todo el proceso puede ocurrir en la computadora del usuario.
+A partir de ese límite surgió la idea de construir un programa instalable. Un instalador permitía evitar la dependencia de un servidor para mostrar el procesamiento, trasladar el cómputo a la computadora del usuario y fortalecer una idea de reproducibilidad más directa: todo el proceso puede ocurrir en la computadora del usuario.
 
-La idea del instalador no habÃ­a estado presente al inicio del proyecto entre otras razones porque no formaba parte de las habilidades informÃ¡ticas originales del tesista. En el Ã¡mbito GIS es frecuente encontrar procesadores en servidor, plataformas en lÃ­nea, notebooks o visualizadores web, pero nunca habÃ­a escuchado a alguien intentar un instalador. De hecho desde la apariciÃ³n de QGIS no habÃ­a tenido contacto con otros softwares GIS instalables que corran localmente. Esa decisiÃ³n terminÃ³ siendo una de las caracterÃ­sticas centrales de LegionGOES.
+La idea del instalador no había estado presente al inicio del proyecto entre otras razones porque no formaba parte de las habilidades informáticas originales del tesista. En el ámbito GIS es frecuente encontrar procesadores en servidor, plataformas en línea, notebooks o visualizadores web, pero nunca había escuchado a alguien intentar un instalador. De hecho desde la aparición de QGIS no había tenido contacto con otros softwares GIS instalables que corran localmente. Esa decisión terminó siendo una de las características centrales de LegionGOES.
 
-## ElecciÃ³n de Windows y proyecto piloto
+## Elección de Windows y proyecto piloto
 
-Se eligiÃ³ Windows como sistema operativo objetivo porque representa el entorno mÃ¡s habitual para muchos usuarios tÃ©cnicos y profesionales que podrÃ­an probar el software [6]. AdemÃ¡s, se decidiÃ³ desarrollar el sistema en inglÃ©s para alcanzar un pÃºblico mÃ¡s amplio y reducir problemas de codificaciÃ³n asociados a caracteres especiales (encoding).
+Se eligió Windows como sistema operativo objetivo porque representa el entorno más habitual para muchos usuarios técnicos y profesionales que podrían probar el software [@windows]. Además, se decidió desarrollar el sistema en inglés para alcanzar un público más amplio y reducir problemas de codificación asociados a caracteres especiales (encoding).
 
-Antes de trasladar todo LegionGOES hacia un instalador, fue necesario construir un proyecto piloto mÃ¡s pequeÃ±o. Comenzar directamente con el instalador de un sistema grande, con mÃºltiples aplicaciones Shiny, librerÃ­as, rutas, dependencias y recursos grÃ¡ficos, hubiera multiplicado los errores inespecÃ­ficos. El proyecto piloto permitiÃ³ aprender el proceso de empaquetado, lanzamiento, aislamiento de dependencias y apertura de una aplicaciÃ³n web local.
+Antes de trasladar todo LegionGOES hacia un instalador, fue necesario construir un proyecto piloto más pequeño. Comenzar directamente con el instalador de un sistema grande, con múltiples aplicaciones Shiny, librerías, rutas, dependencias y recursos gráficos, hubiera multiplicado los errores inespecíficos. El proyecto piloto permitió aprender el proceso de empaquetado, lanzamiento, aislamiento de dependencias y apertura de una aplicación web local.
 
-Cuando el instalador piloto funcionÃ³, quedÃ³ claro que LegionGOES requerÃ­a una reestructuraciÃ³n general. No se trataba simplemente de â€œponer el cÃ³digo dentro de un instaladorâ€, sino de ordenar carpetas, rutas, librerÃ­as, recursos, ejecutables, navegadores, herramientas auxiliares y archivos temporales para que todo pudiera funcionar en computadoras externas al entorno de desarrollo.
+Cuando el instalador piloto funcionó, quedó claro que LegionGOES requería una reestructuración general. No se trataba simplemente de “poner el código dentro de un instalador”, sino de ordenar carpetas, rutas, librerías, recursos, ejecutables, navegadores, herramientas auxiliares y archivos temporales para que todo pudiera funcionar en computadoras externas al entorno de desarrollo.
 
-## ReestructuraciÃ³n interna y modularidad
+## Reestructuración interna y modularidad
 
-La transiciÃ³n hacia un instalador produjo cambios que ya no estaban relacionados directamente con el satÃ©lite, sino con la ingenierÃ­a del software. Fue necesario minimizar tiempos de carga, verificar la existencia de componentes antes de usarlos, controlar rutas internas, aislar dependencias y reducir la fragilidad del sistema.
+La transición hacia un instalador produjo cambios que ya no estaban relacionados directamente con el satélite, sino con la ingeniería del software. Fue necesario minimizar tiempos de carga, verificar la existencia de componentes antes de usarlos, controlar rutas internas, aislar dependencias y reducir la fragilidad del sistema.
 
-Uno de los cambios estructurales mÃ¡s importantes fue pasar de una aplicaciÃ³n monolÃ­tica a una organizaciÃ³n dividida en mÃ³dulos. De una Ãºnica gran aplicaciÃ³n Shiny, LegionGOES pasÃ³ a tener una aplicaciÃ³n `Home` que llama a otras aplicaciones independientes. De esa manera, cada herramienta se carga a demanda del usuario. Esta decisiÃ³n disminuyÃ³ tiempos de espera, facilitÃ³ la detecciÃ³n de errores y permitiÃ³ separar mejor las responsabilidades de cada componente.
+Uno de los cambios estructurales más importantes fue pasar de una aplicación monolítica a una organización dividida en módulos. De una única gran aplicación Shiny, LegionGOES pasó a tener una aplicación `Home` que llama a otras aplicaciones independientes. De esa manera, cada herramienta se carga a demanda del usuario. Esta decisión disminuyó tiempos de espera, facilitó la detección de errores y permitió separar mejor las responsabilidades de cada componente.
 
-TambiÃ©n se reorganizÃ³ el cÃ³digo en librerÃ­as de R y Python. Esta decisiÃ³n no fue solamente estÃ©tica: permitiÃ³ encapsular funciones, separar dominios de responsabilidad, reutilizar rutinas y reducir errores derivados de copiar o modificar cÃ³digo de manera dispersa.
+También se reorganizó el código en librerías de R y Python. Esta decisión no fue solamente estética: permitió encapsular funciones, separar dominios de responsabilidad, reutilizar rutinas y reducir errores derivados de copiar o modificar código de manera dispersa.
 
-## Testing, usuarios y maduraciÃ³n del software
+## Testing, usuarios y maduración del software
 
-Desde la primera versiÃ³n instalable, el software fue compartido con un grupo de voluntarios de testing. Este paso modificÃ³ nuevamente la naturaleza del proyecto. Probar el programa en otras computadoras mostrÃ³ errores que no aparecÃ­an en el entorno de desarrollo y revelÃ³ la importancia de la instalaciÃ³n, la experiencia de usuario, la velocidad de carga, la claridad de los mensajes y la estabilidad de cada aplicaciÃ³n.
+Desde la primera versión instalable, el software fue compartido con un grupo de voluntarios de testing. Este paso modificó nuevamente la naturaleza del proyecto. Probar el programa en otras computadoras mostró errores que no aparecían en el entorno de desarrollo y reveló la importancia de la instalación, la experiencia de usuario, la velocidad de carga, la claridad de los mensajes y la estabilidad de cada aplicación.
 
-El testing manual implicÃ³ recorrer el proceso completo: instalaciÃ³n, apertura del sistema, uso de cada herramienta, navegaciÃ³n por menÃºs, descarga, procesamiento, visualizaciÃ³n y generaciÃ³n de salidas. Esta tarea requiere mucho tiempo porque una aplicaciÃ³n puede funcionar desde el punto de vista del cÃ³digo y, sin embargo, ofrecer una mala experiencia de uso por que una ventana no se mueve o no se cierra.
+El testing manual implicó recorrer el proceso completo: instalación, apertura del sistema, uso de cada herramienta, navegación por menús, descarga, procesamiento, visualización y generación de salidas. Esta tarea requiere mucho tiempo porque una aplicación puede funcionar desde el punto de vista del código satelital y, sin embargo, ofrecer una mala experiencia de uso porque una ventana no se mueve o no se cierra.
 
-El instalador tambiÃ©n cambiÃ³ el ritmo de desarrollo. Al principio, los cambios podÃ­an realizarse varias veces en un mismo dÃ­a. Con versiones instalables y usuarios externos, cada modificaciÃ³n debÃ­a ser mÃ¡s cuidadosa. El tiempo entre versiones pasÃ³ a ser mayor, porque cada entrega requerÃ­a reconstruir, distribuir y volver a probar el sistema.
+El instalador también cambió el ritmo de desarrollo. Al principio, los cambios podían realizarse varias veces en un mismo día. Con versiones instalables y usuarios externos, cada modificación debía ser más cuidadosa. El tiempo entre versiones pasó a ser mayor, porque cada entrega requería reconstruir, distribuir y volver a probar el sistema.
 
-El grupo de testing acelerÃ³ la maduraciÃ³n del proyecto. Sus comentarios permitieron detectar errores, mejorar decisiones de interfaz, identificar puntos confusos y comprender mejor quÃ© partes del programa eran realmente comprensibles para usuarios GIS.
+El grupo de testing aceleró la maduración del proyecto. Sus comentarios permitieron detectar errores, mejorar decisiones de interfaz, identificar puntos confusos y comprender mejor qué partes del programa eran realmente comprensibles para usuarios GIS.
 
-## Sentido metodolÃ³gico de esta evoluciÃ³n
+## Sentido metodológico de esta evolución
 
-La evoluciÃ³n de LegionGOES muestra que el desarrollo de software cientÃ­fico no es Ãºnicamente una secuencia de implementaciÃ³n tÃ©cnica. TambiÃ©n implica cambiar de estrategia cuando aparecen lÃ­mites de infraestructura, rediseÃ±ar componentes cuando el sistema crece, separar mÃ³dulos cuando una interfaz se vuelve pesada, aislar dependencias cuando la instalaciÃ³n falla y escuchar usuarios cuando el programa deja de ser usado solo por su desarrollador.
+La evolución de LegionGOES muestra que el desarrollo de software no es únicamente una secuencia de implementación técnica. También implica cambiar de estrategia cuando aparecen límites de infraestructura, rediseñar componentes cuando el sistema crece, separar módulos cuando una interfaz se vuelve pesada, aislar dependencias cuando la instalación falla y escuchar usuarios cuando el programa deja de ser usado solo por su desarrollador.
 
-En este sentido, la historia del proyecto forma parte del aporte de la tesis. LegionGOES no fue pensado y armado en seis meses ni surgiÃ³ como una aplicaciÃ³n final desde el primer intento. La cantidad de horas destinada al desarrollo fue muy superior a la estipulada para una tesis de maestrÃ­a, y eso fue una decisiÃ³n personal y un riesgo asumido. Es importante decir que el tesista ya contaba con un trayecto profesional automatizaciones, creaciÃ³n de librerÃ­as y servidores Linux para procesamiento satelital. El equipo de trabajo conformado por director, codirector y asesor cientÃ­fico fue excelente desde el inicio del trabajo.
+En este sentido, la historia del proyecto forma parte del aporte de la tesis. LegionGOES no fue pensado y armado en seis meses ni surgió como una aplicación final desde el primer intento. La cantidad de horas destinada al desarrollo fue muy superior a la estipulada para una tesis de maestría, y eso fue una decisión personal y un riesgo asumido. Es importante decir que el tesista ya contaba con un trayecto profesional automatizaciones, creación de librerías y servidores Linux para procesamiento satelital. El equipo de trabajo conformado por director, codirector y asesor científico fue excelente desde el inicio del trabajo.
 
-Esta aclaraciÃ³n no busca desalentar futuros desarrollos, sino evitar falsas expectativas en futuros trabajos de tesis, ya sea  por el lado del tesista o del director de tesis.
+Esta aclaración no busca desalentar futuros desarrollos, sino evitar falsas expectativas en futuros trabajos de tesis, ya sea  por el lado del tesista o del director de tesis.
 
-
-## Referencias del capÃ­tulo {.unnumbered}
-
-[1] Python Software Foundation. (s. f.). *Python*.  
-URL: https://www.python.org/
-
-[2] Linux Foundation. (s. f.). *Linux Foundation*.  
-URL: https://www.linuxfoundation.org/
-
-[3] Posit. (s. f.). *Shiny*.  
-URL: https://shiny.posit.co/
-
-[4] GitHub. (s. f.). *GitHub*.  
-URL: https://github.com/
-
-[5] Docker. (s. f.). *Docker Hub*.  
-URL: https://hub.docker.com/
-
-[6] Microsoft. (s. f.). *Windows*.  
-URL: https://www.microsoft.com/windows/
 

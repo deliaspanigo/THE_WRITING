@@ -1,40 +1,40 @@
-﻿# Estado del arte
+# Estado del arte
 
-Antes de presentar el planteo general de LegionGOES, resulta Ãºtil ubicar el proyecto dentro del estado del arte de herramientas que tienen la posibilidad de trabajar con imÃ¡genes GOES. El objetivo de esta revisiÃ³n no es realizar una comparaciÃ³n exhaustiva ni construir un ranking de programas, sino reconocer quÃ© aporta cada entorno, quÃ© problemas resuelve bien y quÃ© lÃ­mites aparecen cuando el interÃ©s se desplaza hacia la descarga, procesamiento, visualizaciÃ³n y generaciÃ³n de series temporales. Haremos comentarios tambiÃ©n sobre lo referido a reproducibilidad y transparencia del cÃ³digo de procesamiento.
+Antes de presentar el planteo general de LegionGOES, resulta útil ubicar el proyecto dentro del estado del arte de herramientas que tienen la posibilidad de trabajar con imágenes GOES. El objetivo de esta revisión no es realizar una comparación exhaustiva ni construir un ranking de programas, sino reconocer qué aporta cada entorno, qué problemas resuelve bien y qué límites aparecen cuando el interés se desplaza hacia la descarga, procesamiento, visualización y generación de series temporales. Haremos comentarios también sobre lo referido a reproducibilidad y transparencia del código de procesamiento.
 
 En esta tesis se consideran cuatro familias de herramientas especialmente relevantes:
 
-- F.1 Visualizadores web de imÃ¡genes satelitales, representados aquÃ­ por CIRA/RAMMB SLIDER.
-- F.2 Sistemas de informaciÃ³n geogrÃ¡fica de escritorio que corren localmente, con QGIS como caso principal.
+- F.1 Visualizadores web de imágenes satelitales, representados aquí por CIRA/RAMMB SLIDER.
+- F.2 Sistemas de información geográfica de escritorio que corren localmente, con QGIS como caso principal.
 - F.3 Plataformas geoespaciales de procesamiento en la nube, representadas por Google Earth Engine.
 - F.4 Entornos de trabajo interactivos mediante script, representados por Jupyter Notebook.
 
-Cada una de estas familias aporta una forma distinta de relacionarse con los datos. Algunas priorizan la visualizaciÃ³n rÃ¡pida, otras el control local, otras la escala de procesamiento y otras la libertad programÃ¡tica.
+Cada una de estas familias aporta una forma distinta de relacionarse con los datos. Algunas priorizan la visualización rápida, otras el control local, otras la escala de procesamiento y otras la libertad programática.
 
 ## CIRA/RAMMB SLIDER
 
-SLIDER, desarrollado por CIRA en asociaciÃ³n con RAMMB/NOAA, es un visualizador web orientado a la exploraciÃ³n interactiva de imÃ¡genes satelitales en tiempo real. Su propio nombre, *Satellite Loop Interactive Data Explorer in Real-time*, resume una idea central: permitir que el usuario vea series de tiempo de imÃ¡genes, cambie productos, modifique la cantidad de imÃ¡genes, agregue capas y comparta una configuraciÃ³n mediante URL [1].
+SLIDER, desarrollado por CIRA en asociación con RAMMB/NOAA, es un visualizador web orientado a la exploración interactiva de imágenes satelitales en tiempo real. Su propio nombre, *Satellite Loop Interactive Data Explorer in Real-time*, resume una idea central: permitir que el usuario vea series de tiempo de imágenes, cambie productos, modifique la cantidad de imágenes, agregue capas y comparta una configuración mediante URL [@cira_slider].
 
 ```{=latex}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.92\textwidth]{chapter03_estado_del_arte/img/img01_slider.jpg}
-\caption{Visualizador CIRA/RAMMB SLIDER mostrando el disco completo de GOES-19. La interfaz combina controles laterales, animaciÃ³n temporal y visualizaciÃ³n satelital a pantalla amplia.}
+\caption{Visualizador CIRA/RAMMB SLIDER mostrando el disco completo de GOES-19. La interfaz combina controles laterales, animación temporal y visualización satelital a pantalla amplia.}
 \label{fig-slider-geocolor}
 \end{figure}
 ```
 
-Este tipo de herramienta muestra con mucha claridad el valor de GOES como sistema de observaciÃ³n continua. Una imagen satelital aislada puede ser informativa, pero una serietemporal permite observar desplazamientos, crecimiento de estructuras nubosas, persistencia de seÃ±ales, cambios de iluminaciÃ³n y evoluciÃ³n de fenÃ³menos atmosfÃ©ricos. AdemÃ¡s la super ventaja de SLIDER es que que el usuario no debe generar la descarga ni el procesamiento de lo que observa. Su fortaleza principal es la consulta visual de productos ya preparados y servidos listos para disfrutar.
+Este tipo de herramienta muestra con mucha claridad el valor de GOES como sistema de observación continua. Una imagen satelital aislada puede ser informativa, pero una serie temporal permite observar desplazamientos, crecimiento de estructuras nubosas, persistencia de señales, cambios de iluminación y evolución de fenómenos atmosféricos. Además la super ventaja de SLIDER es que el usuario no debe generar la descarga ni el procesamiento de lo que observa. Su fortaleza principal es la consulta visual de productos ya preparados y servidos listos para disfrutar.
 
-Las debilidades de este sistema resaltamos que la proyecciÃ³n solo es en la ProyecciÃ³n original. Los productos ofrecidos en muchos casos no presentan tablas de referencia para los colores ni escalas.
+Las debilidades de este sistema resaltamos que la proyección solo es en la Proyección original. Los productos ofrecidos en muchos casos no presentan tablas de referencia para los colores ni escalas.
 
-Resalto como una caracterÃ­stica muy positiva que la mayorÃ­a del espacio en pantalla es para visualizaciÃ³n de los productos GIS y no para los menÃºes.
+Resalto como una característica muy positiva que la mayoría del espacio en pantalla es para visualización de los productos GIS y no para los menúes.
 
-Si bien permite la reproducibilidad ya que diferentes usuarios pueden visualizar el mismo resultado, en realidad no hay transparencia. El cÃ³digo del procesamiento no es de acceso libre y los manuales generados por NOAA no son claros ni explÃ­citos en explicar cÃ³mo se lleva a cabo el procesamiento; por ejemplo en cÃ³mo se realizan las correcciones atmosfÃ©ricas.
+Si bien permite la reproducibilidad ya que diferentes usuarios pueden visualizar el mismo resultado, en realidad no hay transparencia. El código del procesamiento no es de acceso libre y los manuales generados por NOAA no son claros ni explícitos en explicar cómo se lleva a cabo el procesamiento; por ejemplo en cómo se realizan las correcciones atmosféricas.
 
 ## QGIS
 
-QGIS representa una segunda familia de herramientas: los sistemas de informaciÃ³n geogrÃ¡fica de escritorio de uso local. A diferencia de un visualizador web orientado a consulta rÃ¡pida, QGIS permite integrar capas rÃ¡ster y vectoriales, revisar propiedades de los datos, trabajar con simbologÃ­a, reproyectar informaciÃ³n, combinar cartografÃ­a auxiliar y construir anÃ¡lisis espaciales mÃ¡s controlados por el usuario [2].
+QGIS representa una segunda familia de herramientas: los sistemas de información geográfica de escritorio de uso local. A diferencia de un visualizador web orientado a consulta rápida, QGIS permite integrar capas ráster y vectoriales, revisar propiedades de los datos, trabajar con simbología, reproyectar información, combinar cartografía auxiliar y construir análisis espaciales más controlados por el usuario [@qgis_raster_properties].
 
 ```{=latex}
 \begin{figure}[htbp]
@@ -48,22 +48,22 @@ QGIS representa una segunda familia de herramientas: los sistemas de informaciÃ
 \centering
 \includegraphics[width=\linewidth]{chapter03_estado_del_arte/img/img04_qgis_lstf.png}
 \end{minipage}
-\caption{QGIS como ejemplo de sistema de informaciÃ³n geogrÃ¡fica de escritorio. A la izquierda se muestra el logo del software y a la derecha una visualizaciÃ³n de un producto LSTF preparado para su inspecciÃ³n en un entorno GIS local.}
+\caption{QGIS como ejemplo de sistema de información geográfica de escritorio. A la izquierda se muestra el logo del software y a la derecha una visualización de un producto LSTF preparado para su inspección en un entorno GIS local.}
 \label{fig-qgis-lstf}
 \end{figure}
 ```
 
-Para productos derivados de GOES, QGIS puede ser muy valioso cuando se trabaja con archivos transformados a formatos geoespaciales habituales, como GeoTIFF, o cuando se desea integrar una salida satelital con lÃ­mites administrativos, redes viales, Ã¡reas productivas u otras capas auxiliares. TambiÃ©n es un entorno potente para inspeccionar visualmente datos geogrÃ¡ficos y verificar si una salida procesada tiene sentido espacial. La frase que acabamos de leer implica que hubo una instancia de procesamiento previo para transformar los archivos originales en archivos GeoTIFF.
+Para productos derivados de GOES, QGIS puede ser muy valioso cuando se trabaja con archivos transformados a formatos geoespaciales habituales, como GeoTIFF, o cuando se desea integrar una salida satelital con límites administrativos, redes viales, áreas productivas u otras capas auxiliares. También es un entorno potente para inspeccionar visualmente datos geográficos y verificar si una salida procesada tiene sentido espacial. La frase que acabamos de leer implica que hubo una instancia de procesamiento previo para transformar los archivos originales en archivos GeoTIFF.
 
-QGIS ademÃ¡s no gestiona la descarga de las imÃ¡genes GOES, por lo que el usuario debe haber realizado tambiÃ©n esa tarea de alguna otra manera por fuera de QGIS.
+QGIS además no gestióna la descarga de las imágenes GOES, por lo que el usuario debe haber realizado también esa tarea de alguna otra manera por fuera de QGIS.
 
-QGIS no siempre es el entorno cÃ³modo para construir una serie temporal completa. El usuario debe resolver manualmente problemas de carga, simbologÃ­a, orden temporal, reproyecciÃ³n, acumulaciÃ³n, exportaciÃ³n y repeticiÃ³n de operaciones. AdemÃ¡s, la gran cantidad de opciones del programa, que es una fortaleza para usuarios avanzados, puede transformarse en una dificultad cuando el objetivo es mirar rÃ¡pidamente una secuencia o producir salidas homogÃ©neas para muchos tiempos.
+QGIS no siempre es el entorno cómodo para construir una serie temporal completa. El usuario debe resolver manualmente problemas de carga, simbología, orden temporal, reproyección, acumulación, exportación y repetición de operaciones. Además, la gran cantidad de opciones del programa, que es una fortaleza para usuarios avanzados, puede transformarse en una dificultad cuando el objetivo es mirar rápidamente una secuencia o producir salidas homogéneas para muchos tiempos.
 
-DetallarÃ© como algo negativo que la mayorÃ­a del espacio en pantalla es para bordes y menÃºes de opciones, y no para los productos GIS a visualizar. AquÃ­ la reproducibilidad y la transparencia alcanzan un mejor nivel ya que el software corre localmente en la computadora del usuario y es posible de una manera mÃ¡s o menos sencilla acceder al cÃ³digo real de procesamiento.
+Detallaré como algo negativo que la mayoría del espacio en pantalla es para bordes y menúes de opciones, y no para los productos GIS a visualizar. Aquí la reproducibilidad y la transparencia alcanzan un mejor nivel ya que el software corre localmente en la computadora del usuario y es posible de una manera más o menos sencilla acceder al código real de procesamiento.
 
 ## Google Earth Engine
 
-Google Earth Engine representa una tercera familia de herramientas: las plataformas geoespaciales de procesamiento en la nube. La propia documentaciÃ³n de la plataforma la presenta como un entorno que combina un catÃ¡logo de imÃ¡genes satelitales y datos geoespaciales de escala masiva con capacidades de anÃ¡lisis planetario, disponible mediante una interfaz web y APIs en JavaScript y Python [3].
+Google Earth Engine representa una tercera familia de herramientas: las plataformas geoespaciales de procesamiento en la nube. La propia documentación de la plataforma la presenta como un entorno que combina un catálogo de imágenes satelitales y datos geoespaciales de escala masiva con capacidades de análisis planetario, disponible mediante una interfaz web y APIs en JavaScript y Python [@google_earth_engine].
 
 ```{=latex}
 \begin{figure}[htbp]
@@ -77,18 +77,18 @@ Google Earth Engine representa una tercera familia de herramientas: las platafor
 \centering
 \includegraphics[width=\linewidth]{chapter03_estado_del_arte/img/img08_GEE_goes.jpg}
 \end{minipage}
-\caption{Google Earth Engine como ejemplo de plataforma geoespacial en la nube. A la izquierda se muestra el logo de la plataforma y a la derecha un ejemplo de consulta de productos GOES dentro del catÃ¡logo de datos.}
+\caption{Google Earth Engine como ejemplo de plataforma geoespacial en la nube. A la izquierda se muestra el logo de la plataforma y a la derecha un ejemplo de consulta de productos GOES dentro del catálogo de datos.}
 \label{fig-gee-goes}
 \end{figure}
 ```
 
-En relaciÃ³n con GOES, Google Earth Engine incluye productos de la serie GOES-R dentro de su catÃ¡logo, como las colecciones `NOAA/GOES/16/MCMIPF`, `NOAA/GOES/17/MCMIPF` y `NOAA/GOES/18/MCMIPF`, asociadas al producto `MCMIPF` de imÃ¡genes multibanda de nubes y humedad para disco completo [4, 5, 6]. Su fortaleza principal y evidente es que permite trabajar sin descargar localmente grandes volÃºmenes de datos y que el procesamiento no ocurre en la computadora del usuario; por lo tanto, un usuario sin grandes capacidades de hardware puede ejecutar el procesamiento en los servidores de Google. El usuario puede filtrar colecciones, seleccionar fechas, aplicar funciones, construir composiciones y exportar resultados desde una infraestructura remota. Para muchos anÃ¡lisis geoespaciales, esta lÃ³gica es extremadamente poderosa porque evita gestionar manualmente archivos, dependencias y almacenamiento local.
+En relación con GOES, Google Earth Engine incluye productos de la serie GOES-R dentro de su catálogo, como las colecciones `NOAA/GOES/16/MCMIPF`, `NOAA/GOES/17/MCMIPF` y `NOAA/GOES/18/MCMIPF`, asociadas al producto `MCMIPF` de imágenes multibanda de nubes y humedad para disco completo [@gee_goes16_mcmipf; @gee_goes17_mcmipf; @gee_goes18_mcmipf]. Su fortaleza principal y evidente es que permite trabajar sin descargar localmente grandes volúmenes de datos y que el procesamiento no ocurre en la computadora del usuario; por lo tanto, un usuario sin grandes capacidades de hardware puede ejecutar el procesamiento en los servidores de Google. El usuario puede filtrar colecciones, seleccionar fechas, aplicar funciones, construir composiciones y exportar resultados desde una infraestructura remota. Para muchos análisis geoespaciales, esta lógica es extremadamente poderosa porque evita gestionar manualmente archivos, dependencias y almacenamiento local.
 
-Una ventaja es que permite generar procesamientos de series de tiempo y obtener incluso videos `mp4`. Como aspectos negativos diremos que el usuario debe manejar JavaScript o Python para poder detallar sus necesidades, y que existen condiciones de uso, cuotas y limitaciones al procesamiento. AdemÃ¡s, no todos los productos GOES requeridos por LegionGOES estÃ¡n necesariamente disponibles con la misma estructura, cobertura temporal o nivel de control que se obtiene al trabajar directamente con los archivos originales. En este sentido, Google Earth Engine no es un competidor directo de LegionGOES, sino una referencia importante para entender el valor y las limitaciones del procesamiento geoespacial en la nube.
+Una ventaja es que permite generar procesamientos de series de tiempo y obtener incluso videos `mp4`. Como aspectos negativos diremos que el usuario debe manejar JavaScript o Python para poder detallar sus necesidades, y que existen condiciones de uso, cuotas y limitaciones al procesamiento. Además, no todos los productos GOES requeridos por LegionGOES están necesariamente disponibles con la misma estructura, cobertura temporal o nivel de control que se obtiene al trabajar directamente con los archivos originales. En este sentido, Google Earth Engine no es un competidor directo de LegionGOES, sino una referencia importante para entender el valor y las limitaciones del procesamiento geoespacial en la nube.
 
 ## Jupyter Notebook
 
-Jupyter Notebook representa una cuarta forma de trabajo. No es principalmente un visualizador final ni un GIS de escritorio, sino un entorno computacional interactivo que permite combinar cÃ³digo, texto, resultados, grÃ¡ficos y explicaciones dentro de un mismo documento. La documentaciÃ³n original del proyecto Jupyter lo presenta como una aplicaciÃ³n web para crear y compartir documentos computacionales, y destaca su uso en limpieza y transformaciÃ³n de datos, simulaciÃ³n numÃ©rica, visualizaciÃ³n y aprendizaje automÃ¡tico [7].
+Jupyter Notebook representa una cuarta forma de trabajo. No es principalmente un visualizador final ni un GIS de escritorio, sino un entorno computacional interactivo que permite combinar código, texto, resultados, gráficos y explicaciones dentro de un mismo documento. La documentación original del proyecto Jupyter lo presenta como una aplicación web para crear y compartir documentos computacionales, y destaca su uso en limpieza y transformación de datos, simulación numérica, visualización y aprendizaje automático [@jupyter].
 
 ```{=latex}
 \begin{figure}[htbp]
@@ -102,35 +102,35 @@ Jupyter Notebook representa una cuarta forma de trabajo. No es principalmente un
 \centering
 \includegraphics[width=\linewidth]{chapter03_estado_del_arte/img/img06_jupy_lstf.png}
 \end{minipage}
-\caption{Jupyter Notebook como entorno de exploraciÃ³n y prototipado. A la izquierda se muestra el logo del proyecto y a la derecha un ejemplo de trabajo con productos GOES mediante cÃ³digo, salidas grÃ¡ficas y documentaciÃ³n computacional.}
+\caption{Jupyter Notebook como entorno de exploración y prototipado. A la izquierda se muestra el logo del proyecto y a la derecha un ejemplo de trabajo con productos GOES mediante código, salidas gráficas y documentación computacional.}
 \label{fig-jupyter-lstf}
 \end{figure}
 ```
 
-En el contexto de GOES, un notebook es especialmente Ãºtil durante la etapa de exploraciÃ³n. En este entorno de trabajo todo es posible si sabes programar. Permite abrir un archivo `NetCDF`, inspeccionar variables, revisar dimensiones, probar escalas de color, ensayar transformaciones, comparar salidas y documentar por quÃ© se tomÃ³ una decisiÃ³n de procesamiento [8]. Es una herramienta muy adecuada para investigar cÃ³mo debe tratarse un producto antes de convertir ese tratamiento en una funciÃ³n estable dentro de un software.
+En el contexto de GOES, un notebook es especialmente útil durante la etapa de exploración. En este entorno de trabajo todo es posible si sabes programar. Permite abrir un archivo `NetCDF`, inspeccionar variables, revisar dimensiones, probar escalas de color, ensayar transformaciones, comparar salidas y documentar por qué se tomó una decisión de procesamiento [@unidata_netcdf]. Es una herramienta muy adecuada para investigar cómo debe tratarse un producto antes de convertir ese tratamiento en una función estable dentro de un software.
 
-Su lÃ­mite aparece cuando el objetivo deja de ser explorar y pasa a ser operar. Un notebook puede documentar muy bien una prueba, pero no serÃ¡ la mejor interfaz para un usuario que solo necesita seleccionar una fecha, un producto, una regiÃ³n o una salida visual. La Jupyter Notebook se aleja de la idea de servicio de anÃ¡lisis de imÃ¡genes. La reproducibilidad y la transparencia pueden en este contexto alcanzar los mÃ¡ximos valores posibles, dependiendo de algunos detalles como el uso de rutas relativas en vez de absolutas y si se utilizan recursos compartidos online y no solo locales. Surgen problemas cuando el flujo crece y la notebook puede volverse difÃ­cil de mantener: celdas ejecutadas fuera de orden, dependencias implÃ­citas, variables residuales y rutas locales pueden afectar la reproducibilidad del resultado. Por eso, en esta tesis Jupyter se entiende mÃ¡s como laboratorio de desarrollo que como forma final de distribuciÃ³n de LegionGOES.
+Su límite aparece cuando el objetivo deja de ser explorar y pasa a ser operar. Un notebook puede documentar muy bien una prueba, pero no será la mejor interfaz para un usuario que solo necesita seleccionar una fecha, un producto, una región o una salida visual. La Jupyter Notebook se aleja de la idea de servicio de análisis de imágenes. La reproducibilidad y la transparencia pueden en este contexto alcanzar los máximos valores posibles, dependiendo de algunos detalles como el uso de rutas relativas en vez de absolutas y si se utilizan recursos compartidos online y no solo locales. Surgen problemas cuando el flujo crece y la notebook puede volverse difícil de mantener: celdas ejecutadas fuera de orden, dependencias implícitas, variables residuales y rutas locales pueden afectar la reproducibilidad del resultado. Por eso, en esta tesis Jupyter se entiende más como laboratorio de desarrollo que como forma final de distribución de LegionGOES.
 
 
 
 ## La complejidad de construir series temporales
-La construcciÃ³n de las series temporales en cuanto a cÃ³mo el usuario logra efectivamente armarlas de manera coherente y sin huecos es un tema operativo importante. Una serie temporal no es simplemente una carpeta con muchas imÃ¡genes. Para que una serie temporal sea Ãºtil debe existir consistencia entre archivos, nombres, fechas, productos, sistemas de referencia, resoluciÃ³n espacial, escalas de color, criterios de calidad y formato de salida. En el caso de GOES, esta complejidad aumenta porque los productos pueden tener naturalezas distintas: algunos son rÃ¡steres regulares, otros contienen eventos; algunos representan variables fÃ­sicas derivadas, otros son composiciones multibanda o clasificaciones. Un nivel mÃ¡s de dificultad ocurre cuando nos encontramos con productos que tienen diferente resoluciÃ³n temporal siendo algunos cada 20 segundos, otros cada 10 minutos y otros cada hora.
-Un siguiente nivel es si el usuario por ejemplo genera como parte de su procesamiento un acumulado en un rango de tiempo cuyo resultado estarÃ¡ en relaciÃ³n con otros productos base o procesados tambiÃ©n.
+La construcción de las series temporales en cuanto a cómo el usuario logra efectivamente armarlas de manera coherente y sin huecos es un tema operativo importante. Una serie temporal no es simplemente una carpeta con muchas imágenes. Para que una serie temporal sea útil debe existir consistencia entre archivos, nombres, fechas, productos, sistemas de referencia, resolución espacial, escalas de color, criterios de calidad y formato de salida. En el caso de GOES, esta complejidad aumenta porque los productos pueden tener naturalezas distintas: algunos son rásteres regulares, otros contienen eventos; algunos representan variables físicas derivadas, otros son composiciones multibanda o clasificaciones. Un nivel más de dificultad ocurre cuando nos encontramos con productos que tienen diferente resolución temporal siendo algunos cada 20 segundos, otros cada 10 minutos y otros cada hora.
+Un siguiente nivel es si el usuario por ejemplo genera como parte de su procesamiento un acumulado en un rango de tiempo cuyo resultado estará en relación con otros productos base o procesados también.
 
-Construir una serie temporal implica ordenar el tiempo antes de visualizarlo. Esto requiere localizar archivos correctos, verificar que correspondan al satÃ©lite y producto esperado, extraer o interpretar marcas temporales, aplicar reglas homogÃ©neas de procesamiento y decidir cÃ³mo representar valores faltantes, nubes, pÃ­xeles de mala calidad o cambios de geometrÃ­a. Si ademÃ¡s se desea producir un video, la serie debe convertirse en una secuencia visual estable, donde cada cuadro sea comparable con el anterior y el posterior.
+Construir una serie temporal implica ordenar el tiempo antes de visualizarlo. Esto requiere localizar archivos correctos, verificar que correspondan al satélite y producto esperado, extraer o interpretar marcas temporales, aplicar reglas homogéneas de procesamiento y decidir cómo representar valores faltantes, nubes, píxeles de mala calidad o cambios de geometría. Si además se desea producir un video, la serie debe convertirse en una secuencia visual estable, donde cada cuadro sea comparable con el anterior y el posterior.
 
-Una serie de problemas asociados a las series temporales pueden confundir al usuario no precabido. Un ejemplo de ello es el hecho de que cada imagen pueda tener diferentes valores mÃ­nimos y mÃ¡ximos a travÃ©s del tiempo hace que muchas opciones por defecto como el reescalado automÃ¡tico de las escalas de colores sea un problema. Detalles al estilo ocurren con los cambios en la geometrÃ­a de adquisiciÃ³n que dan efectos atmosfÃ©ricos y de iluminaciÃ³n.
-
-
-Todos estos aspectos son problemas que el operador debe entender y resolver de alguna manera dentro de cada software que utiliza. SLIDER ordena de una manera excelente la serie de tiempo y el procesamiento, pero no permite al usuario jugar con diferentes capas al mismo tiempo, ni agregar informaciÃ³n espacial de otras fuentes. QGIS en su nivel bÃ¡sico parece no estar diseÃ±ado para series temporales. En un nivel avanzado de QGIS con las opciones Processing Toolbox, Graphical Modeler y PyQGIS esto se logra, pero sigue presentando una gran dificultad llevar a cabo todo el procesamiento y obtener los resultados [9, 10, 11]. De hecho el operador debe ser cada vez mÃ¡s programador Python para lograr obtener su serie de tiempo.
-
-QuÃ© decir de una Jupyter Notebook. Directamente diseÃ±ada para usuarios que deben ser profesionales GIS y a la vez programadores.
+Una serie de problemas asociados a las series temporales pueden confundir al usuario no precavido. Un ejemplo de ello es el hecho de que cada imagen pueda tener diferentes valores mínimos y máximos a través del tiempo hace que muchas opciones por defecto como el reescalado automático de las escalas de colores sea un problema. Detalles al estilo ocurren con los cambios en la geometría de adquisición que dan efectos atmosféricos y de iluminación.
 
 
+Todos estos aspectos son problemas que el operador debe entender y resolver de alguna manera dentro de cada software que utiliza. SLIDER ordena de una manera excelente la serie de tiempo y el procesamiento, pero no permite al usuario jugar con diferentes capas al mismo tiempo, ni agregar información espacial de otras fuentes. QGIS en su nivel básico parece no estar diseñado para series temporales. En un nivel avanzado de QGIS con las opciones Processing Toolbox, Graphical Modeler y PyQGIS esto se logra, pero sigue presentando una gran dificultad llevar a cabo todo el procesamiento y obtener los resultados [@qgis_processing_toolbox; @qgis_modeler; @qgis_pyqgis]. De hecho el operador debe ser cada vez más programador Python para lograr obtener su serie de tiempo.
 
-## UbicaciÃ³n de LegionGOES frente a estas herramientas
+Qué decir de una Jupyter Notebook. Directamente diseñada para usuarios que deben ser profesionales GIS y a la vez programadores.
 
-LegionGOES toma elementos de estas cuatro familias de programas, pero no coincide completamente con ninguna. De SLIDER toma la visualizaciÃ³n de series temporales con facilidad web y la idea de maximizar el espacio de visualizaciÃ³n GIS. De QGIS toma la posibilidad de activar o desactivar capas disponibles y de utilizar recursos locales y en lÃ­nea, como mapas de fondo. De Google Earth Engine toma como referencia la idea de procesamiento geoespacial organizado sobre colecciones temporales, aunque reemplaza la dependencia de una plataforma remota por un entorno local e instalable. De Jupyter toma la posibilidad de trabajar con series temporales de forma programÃ¡tica y manejar la relaciÃ³n entre archivos mediante reglas explÃ­citas.
+
+
+## Ubicación de LegionGOES frente a estas herramientas
+
+LegionGOES toma elementos de estas cuatro familias de programas, pero no coincide completamente con ninguna. De SLIDER toma la visualización de series temporales con facilidad web y la idea de maximizar el espacio de visualización GIS. De QGIS toma la posibilidad de activar o desactivar capas disponibles y de utilizar recursos locales y en línea, como mapas de fondo. De Google Earth Engine toma como referencia la idea de procesamiento geoespacial organizado sobre colecciones temporales, aunque reemplaza la dependencia de una plataforma remota por un entorno local e instalable. De Jupyter toma la posibilidad de trabajar con series temporales de forma programática y manejar la relación entre archivos mediante reglas explícitas.
 
 
 
@@ -146,46 +146,11 @@ LegionGOES toma elementos de estas cuatro familias de programas, pero no coincid
 \centering
 \includegraphics[width=\linewidth]{chapter03_estado_del_arte/img/img10_legion_home.png}
 \end{minipage}
-\caption{LegionGOES como propuesta de software integradora. A la izquierda se muestra el logo del proyecto y a la derecha la pantalla principal del sistema, desde la cual se organiza el acceso a herramientas de descarga, procesamiento, visualizaciÃ³n y anÃ¡lisis de productos GOES.}
+\caption{LegionGOES como propuesta de software integradora. A la izquierda se muestra el logo del proyecto y a la derecha la pantalla principal del sistema, desde la cual se organiza el acceso a herramientas de descarga, procesamiento, visualización y análisis de productos GOES.}
 \label{fig-legiongoes-home}
 \end{figure}
 ```
-Si bien no serÃ¡ posible estandarizar todas las necesidades de todos los profesionales GIS en todos los posibles temas meteorolÃ³gicos, un estandard general mÃ¡s o menos concensuado es mÃ¡s que suficiente para tematicas como temperatura en superficie, heladas, focos de calor y fuego, nubes y tormentas elÃ©ctricas. Pensemos por un momento en la idea de un procesamiento estandarizado a los fines de ser un generador de ideas para la temÃ¡tica o un referente en cuanto a lo que se puede obtener como resultado mÃ­nimo de visualizaciÃ³n. La posibilidad para el usuario de un entorno de trabajo ordenado por temÃ¡tica de monitoreo y no por temÃ¡tica informÃ¡tica o por tipo de archivo es tambiÃ©n una novedad importante.
+Si bien no será posible estandarizar todas las necesidades de todos los profesionales GIS en todos los posibles temas meteorológicos, un estándar general más o menos consensuado es más que suficiente para temáticas como temperatura en superficie, heladas, focos de calor y fuego, nubes y tormentas eléctricas. Pensemos por un momento en la idea de un procesamiento estandarizado a los fines de ser un generador de ideas para la temática o un referente en cuanto a lo que se puede obtener como resultado mínimo de visualización. La posibilidad para el usuario de un entorno de trabajo ordenado por temática de monitoreo y no por temática informática o por tipo de archivo es también una novedad importante.
 
 
-
-## Referencias del capÃ­tulo {.unnumbered}
-
-[1] Cooperative Institute for Research in the Atmosphere. (s. f.). *SLIDER: Satellite Loop Interactive Data Explorer in Real-time*. Colorado State University.  
-URL: https://slider.cira.colostate.edu/
-
-[2] QGIS Documentation. (s. f.). *Raster properties dialog*. QGIS Project.  
-URL: https://docs.qgis.org/3.44/en/docs/user_manual/working_with_raster/raster_properties.html
-
-[3] Google. (s. f.). *Google Earth Engine*.  
-URL: https://earthengine.google.com/
-
-[4] Google Earth Engine Data Catalog. (s. f.). *GOES-16 MCMIPF series ABI Level 2 cloud and moisture imagery full disk*. Google for Developers.  
-URL: https://developers.google.com/earth-engine/datasets/catalog/NOAA_GOES_16_MCMIPF
-
-[5] Google Earth Engine Data Catalog. (s. f.). *GOES-17 MCMIPF series ABI Level 2 cloud and moisture imagery full disk*. Google for Developers.  
-URL: https://developers.google.com/earth-engine/datasets/catalog/NOAA_GOES_17_MCMIPF
-
-[6] Google Earth Engine Data Catalog. (s. f.). *GOES-18 MCMIPF series ABI Level 2 cloud and moisture imagery full disk*. Google for Developers.  
-URL: https://developers.google.com/earth-engine/datasets/catalog/NOAA_GOES_18_MCMIPF
-
-[7] Project Jupyter. (s. f.). *Project Jupyter*.  
-URL: https://jupyter.org/
-
-[8] NSF Unidata. (s. f.). *NetCDF*. University Corporation for Atmospheric Research.  
-URL: https://www.unidata.ucar.edu/software/netcdf/
-
-[9] QGIS Documentation. (s. f.). *The processing toolbox*. QGIS Project.  
-URL: https://docs.qgis.org/3.44/en/docs/user_manual/processing/toolbox.html
-
-[10] QGIS Documentation. (s. f.). *The graphical modeler*. QGIS Project.  
-URL: https://docs.qgis.org/3.44/en/docs/user_manual/processing/modeler.html
-
-[11] QGIS Documentation. (s. f.). *PyQGIS developer cookbook*. QGIS Project.  
-URL: https://docs.qgis.org/3.44/en/docs/pyqgis_developer_cookbook/
 

@@ -1,61 +1,61 @@
-﻿# Marco teÃ³rico y tecnolÃ³gico
+# Marco teórico y tecnológico
 
-Este capÃ­tulo establece el marco informÃ¡tico y tecnolÃ³gico necesario para comprender el diseÃ±o de LegionGOES. Para ello, presenta un marco general sobre las temÃ¡ticas de monitoreo elegidas y sobre el modo en que esas necesidades pueden abordarse mediante informaciÃ³n satelital. A partir de ese marco, se describe quÃ© tipo de datos recibe el software, cÃ³mo estÃ¡n organizados, quÃ© operaciones requieren, quÃ© restricciones introducen y de quÃ© manera esas caracterÃ­sticas condicionan la descarga, el procesamiento, la visualizaciÃ³n y la construcciÃ³n de series temporales.
+Este capítulo establece el marco informático y tecnológico necesario para comprender el diseño de LegionGOES. Para ello, presenta un marco general sobre las temáticas de monitoreo elegidas y sobre el modo en que esas necesidades pueden abordarse mediante información satelital. A partir de ese marco, se describe qué tipo de datos recibe el software, cómo están organizados, qué operaciones requieren, qué restricciones introducen y de qué manera esas características condicionan la descarga, el procesamiento, la visualización y la construcción de series temporales.
 
-## InformaciÃ³n satelital como dato computacional
+## Información satelital como dato computacional
 
-La informaciÃ³n satelital no llega al usuario como una imagen simple lista para ser interpretada. En general, llega como un conjunto de archivos digitales con estructuras internas complejas, variables mÃºltiples, metadatos, sistemas de referencia, dimensiones espaciales y temporales, indicadores de calidad y convenciones de nombres que contienen informaciÃ³n tÃ©cnica relevante. Por lo tanto, antes de cualquier interpretaciÃ³n temÃ¡tica, existe un problema computacional: localizar el archivo correcto, descargarlo, abrirlo, reconocer sus variables, interpretar su geometrÃ­a, seleccionar valores vÃ¡lidos, aplicar transformaciones y convertir el resultado en una salida comprensible.
+La información satelital no llega al usuario como una imagen simple lista para ser interpretada. En general, llega como un conjunto de archivos digitales con estructuras internas complejas, variables múltiples, metadatos, sistemas de referencia, dimensiones espaciales y temporales, indicadores de calidad y convenciones de nombres que contienen información técnica relevante. Por lo tanto, antes de cualquier interpretación temática, existe un problema computacional: localizar el archivo correcto, descargarlo, abrirlo, reconocer sus variables, interpretar su geometría, seleccionar valores válidos, aplicar transformaciones y convertir el resultado en una salida comprensible.
 
-En el caso de GOES, este problema se vuelve especialmente importante porque la fortaleza del sistema estÃ¡ en la repeticiÃ³n temporal. Una imagen aislada puede ser Ãºtil, pero el valor principal de un satÃ©lite geoestacionario aparece cuando se construyen secuencias temporales coherentes. Esto exige que el software pueda ordenar archivos, asociar productos de distintos tipos, mantener escalas visuales comparables, controlar fechas y generar salidas acumuladas como imÃ¡genes, videos o reportes.
+En el caso de GOES, este problema se vuelve especialmente importante porque la fortaleza del sistema está en la repetición temporal. Una imagen aislada puede ser útil, pero el valor principal de un satélite geoestacionario aparece cuando se construyen secuencias temporales coherentes. Esto exige que el software pueda ordenar archivos, asociar productos de distintos tipos, mantener escalas visuales comparables, controlar fechas y generar salidas acumuladas como imágenes, videos o reportes.
 
-El formato `NetCDF` ocupa un lugar central en este trabajo porque es uno de los formatos utilizados para distribuir productos cientÃ­ficos multidimensionales. Un archivo `NetCDF` puede contener variables, dimensiones, atributos, coordenadas y metadatos dentro de una misma estructura. Esta capacidad lo hace adecuado para datos cientÃ­ficos, pero tambiÃ©n introduce una barrera para usuarios que esperan trabajar directamente con imÃ¡genes georreferenciadas habituales. En consecuencia, una parte importante del trabajo de LegionGOES consiste en mediar entre el archivo cientÃ­fico original y una salida visual utilizable por usuarios [10].
+El formato `NetCDF` ocupa un lugar central en este trabajo porque es uno de los formatos utilizados para distribuir productos científicos multidimensionales. Un archivo `NetCDF` puede contener variables, dimensiones, atributos, coordenadas y metadatos dentro de una misma estructura. Esta capacidad lo hace adecuado para datos científicos, pero también introduce una barrera para usuarios que esperan trabajar directamente con imágenes georreferenciadas habituales. En consecuencia, una parte importante del trabajo de LegionGOES consiste en mediar entre el archivo científico original y una salida visual utilizable por usuarios [@unidata_netcdf].
 
-## ObservaciÃ³n geoestacionaria y series temporales
+## Observación geoestacionaria y series temporales
 
-Los satÃ©lites geoestacionarios ocupan una posiciÃ³n especialmente valiosa para el monitoreo porque observan de manera continua una misma regiÃ³n de la Tierra desde una Ã³rbita sincronizada con la rotaciÃ³n terrestre. SegÃºn la descripciÃ³n oficial del programa GOES-R, esta configuraciÃ³n permite que el satÃ©lite permanezca en una posiciÃ³n fija respecto de la superficie y observe continuamente el hemisferio occidental desde aproximadamente 35.900 km de altura [1].
+Los satélites geoestacionarios ocupan una posición especialmente valiosa para el monitoreo porque observan de manera continua una misma región de la Tierra desde una órbita sincronizada con la rotación terrestre. Según la descripción oficial del programa GOES-R, esta configuración permite que el satélite permanezca en una posición fija respecto de la superficie y observe continuamente el hemisferio occidental desde aproximadamente 35.900 km de altura [@goes_mission].
 
-Esta continuidad temporal representa una ventaja central frente a estrategias basadas solo en observaciones esporÃ¡dicas o coberturas discontinuas. En el caso de procesos que ocurren en la superficie terrestre o en la atmÃ³sfera y que involucran ventanas espaciales o temporales amplias, la frecuencia de adquisiciÃ³n permite seguir la evoluciÃ³n de un sistema nuboso, una regiÃ³n con focos de calor, una secuencia de descargas elÃ©ctricas o cambios tÃ©rmicos sobre la superficie. La utilidad del dato geoestacionario no reside Ãºnicamente en una escena aislada, sino en la capacidad de construir series temporales coherentes.
+Esta continuidad temporal representa una ventaja central frente a estrategias basadas solo en observaciones esporádicas o coberturas discontinuas. En el caso de procesos que ocurren en la superficie terrestre o en la atmósfera y que involucran ventanas espaciales o temporales amplias, la frecuencia de adquisición permite seguir la evolución de un sistema nuboso, una región con focos de calor, una secuencia de descargas eléctricas o cambios térmicos sobre la superficie. La utilidad del dato geoestacionario no reside únicamente en una escena aislada, sino en la capacidad de construir series temporales coherentes.
 
-Para un usuario acostumbrado a imÃ¡genes de satÃ©lites de Ã³rbita polar como Landsat o Sentinel, resulta Ãºtil resaltar algunas diferencias. Landsat 8 opera en una Ã³rbita casi polar heliosincrÃ³nica, con un ciclo de repeticiÃ³n de 16 dÃ­as y escenas de alta resoluciÃ³n espacial para observaciÃ³n terrestre [7]. Sentinel-2, por su parte, estÃ¡ diseÃ±ado como una constelaciÃ³n de observaciÃ³n terrestre con resoluciÃ³n de hasta 10 m, una franja de observaciÃ³n de 290 km y un tiempo de revisita aproximado de 5 dÃ­as [8]. Estos sistemas son muy potentes para anÃ¡lisis detallados de superficie, pero no ofrecen la misma continuidad temporal inmediata que un satÃ©lite geoestacionario.
+Para un usuario acostumbrado a imágenes de satélites de órbita polar como Landsat o Sentinel, resulta útil resaltar algunas diferencias. Landsat 8 opera en una órbita casi polar heliosincrónica, con un ciclo de repetición de 16 días y escenas de alta resolución espacial para observación terrestre [@usgs_landsat8]. Sentinel-2, por su parte, está diseñado como una constelación de observación terrestre con resolución de hasta 10 m, una franja de observación de 290 km y un tiempo de revisita aproximado de 5 días [@esa_sentinel2]. Estos sistemas son muy potentes para análisis detallados de superficie, pero no ofrecen la misma continuidad temporal inmediata que un satélite geoestacionario.
 
-En cambio, un satÃ©lite geoestacionario permite contextualizar cada escena dentro de una evoluciÃ³n casi continua. Para los productos GOES utilizados en esta tesis, las ventanas temporales varÃ­an entre 20 segundos, 10 minutos y 1 hora, y las resoluciones espaciales utilizadas se encuentran entre aproximadamente 2 km y 10 km en el nadir.
+En cambio, un satélite geoestacionario permite contextualizar cada escena dentro de una evolución casi continua. Para los productos GOES utilizados en esta tesis, las ventanas temporales varían entre 20 segundos, 10 minutos y 1 hora, y las resoluciones espaciales utilizadas se encuentran entre aproximadamente 2 km y 10 km en el nadir.
 
-## TemÃ¡ticas bajo monitoreo
+## Temáticas bajo monitoreo
 
-En esta tesis, monitorear se entiende como la acciÃ³n de observar, registrar, sistematizar, procesar y presentar informaciÃ³n de manera repetida sobre un fenÃ³meno o sistema de interÃ©s. El objetivo del monitoreo no es la contemplaciÃ³n pasiva del dato, sino la producciÃ³n de salidas que ayuden a reducir incertidumbre y apoyar decisiones tÃ©cnicas, econÃ³micas, sociales, logÃ­sticas, polÃ­ticas o institucionales.
+En esta tesis, monitorear se entiende como la acción de observar, registrar, sistematizar, procesar y presentar información de manera repetida sobre un fenómeno o sistema de interés. El objetivo del monitoreo no es la contemplación pasiva del dato, sino la producción de salidas que ayuden a reducir incertidumbre y apoyar decisiones técnicas, económicas, sociales, logísticas, políticas o institucionales.
 
-La observaciÃ³n de la Tierra posee un conjunto enorme de temÃ¡ticas susceptibles de ser monitoreadas. LegionGOES se centra en un conjunto acotado de temÃ¡ticas principales:  
+La observación de la Tierra posee un conjunto enorme de temáticas susceptibles de ser monitoreadas. LegionGOES se centra en un conjunto acotado de temáticas principales:  
 - T.1) Temperatura de superficie.  
 - T.2) Focos de calor y fuego.  
 - T.3) Nubes.  
-- T.4) Tormentas elÃ©ctricas.  
+- T.4) Tormentas eléctricas.  
 
-Una mejor comprensiÃ³n de estas cuatro temÃ¡ticas requiere informaciÃ³n anexa relacionada con:  
-- A.1) GeometrÃ­a de adquisiciÃ³n.  
-- A.2) DÃ­a y noche.  
-- A.3) EstaciÃ³n del aÃ±o.  
+Una mejor comprensión de estas cuatro temáticas requiere información anexa relacionada con:  
+- A.1) Geometría de adquisición.  
+- A.2) Día y noche.  
+- A.3) Estación del año.  
 
-Estas temÃ¡ticas han sido estudiadas a escala regional, nacional e internacional, y poseen un amplio historial acadÃ©mico, bibliogrÃ¡fico e institucional. Su interÃ©s aplicado surge de sus consecuencias sobre distintos campos de decisiÃ³n: gestiÃ³n ambiental, producciÃ³n agropecuaria, planificaciÃ³n territorial, emergencias, ingenierÃ­a civil, transporte, comunicaciones, logÃ­stica, aseguradoras, aeropuertos y otros sectores que requieren informaciÃ³n ambiental oportuna. En este contexto, resulta entendible la alta demanda de nuevas herramientas tanto por parte de instituciones como de empresas.
+Estas temáticas han sido estudiadas a escala regional, nacional e internacional, y poseen un amplio historial académico, bibliográfico e institucional. Su interés aplicado surge de sus consecuencias sobre distintos campos de decisión: gestión ambiental, producción agropecuaria, planificación territorial, emergencias, ingeniería civil, transporte, comunicaciones, logística, aseguradoras, aeropuertos y otros sectores que requieren información ambiental oportuna. En este contexto, resulta entendible la alta demanda de nuevas herramientas tanto por parte de instituciones como de empresas.
 
-Otra caracterÃ­stica de las cuatro temÃ¡ticas elegidas es que la dimensiÃ³n temporal resulta fundamental. Un valor aislado representa un estado puntual, pero no permite comprender persistencia, tendencias, velocidad de cambio, desplazamiento, acumulaciÃ³n o relaciÃ³n entre fenÃ³menos. Por ello, la serie temporal es una pieza conceptual central para el software.
+Otra característica de las cuatro temáticas elegidas es que la dimensión temporal resulta fundamental. Un valor aislado representa un estado puntual, pero no permite comprender persistencia, tendencias, velocidad de cambio, desplazamiento, acumulación o relación entre fenómenos. Por ello, la serie temporal es una pieza conceptual central para el software.
 
 
 
 ## GOES-R, ABI y GLM
 
-Dentro de los sistemas geoestacionarios recientes, la serie GOES-R ocupa un lugar central. NOAA describe esta generaciÃ³n como su flota mÃ¡s avanzada de satÃ©lites meteorolÃ³gicos geoestacionarios y destaca que la misiÃ³n integra imÃ¡genes visibles e infrarrojas, mapeo de rayos y productos para atmÃ³sfera, ocÃ©anos y superficie [1].
+Dentro de los sistemas geoestacionarios recientes, la serie GOES-R ocupa un lugar central. NOAA describe esta generación como su flota más avanzada de satélites meteorológicos geoestacionarios y destaca que la misión integra imágenes visibles e infrarrojas, mapeo de rayos y productos para atmósfera, océanos y superficie [@goes_mission].
 
-La operaciÃ³n del sistema GOES se organiza alrededor de dos posiciones geoestacionarias principales: `GOES-East` y `GOES-West`. La elecciÃ³n del satÃ©lite condiciona la regiÃ³n observada, la geometrÃ­a de adquisiciÃ³n, la cobertura efectiva sobre la superficie de la Tierra y el modo en que los productos deben ser interpretados. Las capacidades instrumentales de los satÃ©lites ubicados en ambas posiciones se mantienen lo mÃ¡s equivalentes posible para favorecer la coherencia entre productos.
+La operación del sistema GOES se organiza alrededor de dos posiciones geoestacionarias principales: `GOES-East` y `GOES-West`. La elección del satélite condiciona la región observada, la geometría de adquisición, la cobertura efectiva sobre la superficie de la Tierra y el modo en que los productos deben ser interpretados. Las capacidades instrumentales de los satélites ubicados en ambas posiciones se mantienen lo más equivalentes posible para favorecer la coherencia entre productos.
 
-La cobertura mÃ¡xima de los satÃ©lites GOES se denomina `Full Disk` y constituye una de las formas principales de observaciÃ³n de la serie. En este modo, el satÃ©lite no observa toda la Tierra, sino el disco visible desde su posiciÃ³n geoestacionaria. Desde el punto de vista de la geometrÃ­a Ã³ptica, si se considera a la Tierra como una esfera, el lÃ­mite teÃ³rico mÃ¡ximo de observaciÃ³n para un punto externo serÃ­a del 50% de la superficie terrestre. Debido a la altura orbital y a la geometrÃ­a real de observaciÃ³n, el `Full Disk` de cada satÃ©lite cubre aproximadamente el 42% de la superficie de la Tierra, lo que equivale a cerca de 216 millones de kmÂ².
+La cobertura máxima de los satélites GOES se denomina `Full Disk` y constituye una de las formas principales de observación de la serie. En este modo, el satélite no observa toda la Tierra, sino el disco visible desde su posición geoestacionaria. Desde el punto de vista de la geometría óptica, si se considera a la Tierra como una esfera, el límite teórico máximo de observación para un punto externo sería del 50% de la superficie terrestre. Debido a la altura orbital y a la geometría real de observación, el `Full Disk` de cada satélite cubre aproximadamente el 42% de la superficie de la Tierra, lo que equivale a cerca de 216 millones de km².
 
-- `GOES-East` corresponde a la posiciÃ³n oriental de la constelaciÃ³n operativa. En el historial reciente de esta posiciÃ³n, la secuencia operacional estuvo conformada por los satÃ©lites `13`, `16` y `19`. Al momento de escritura de esta tesis, la posiciÃ³n `GOES-East` se encuentra ocupada por `GOES-19`, ubicado aproximadamente en 75.2Â° O [11]. Desde esta posiciÃ³n, el satÃ©lite observa casi la totalidad del continente americano, sectores polares visibles, el ocÃ©ano AtlÃ¡ntico occidental y sectores adyacentes del PacÃ­fico oriental.
+- `GOES-East` corresponde a la posición oriental de la constelación operativa. En el historial reciente de esta posición, la secuencia operacional estuvo conformada por los satélites `13`, `16` y `19`. Al momento de escritura de esta tesis, la posición `GOES-East` se encuentra ocupada por `GOES-19`, ubicado aproximadamente en 75.2° O [@goes19_transition]. Desde esta posición, el satélite observa casi la totalidad del continente americano, sectores polares visibles, el océano Atlántico occidental y sectores adyacentes del Pacífico oriental.
 
 ```{=latex}
 \begin{center}
 \begin{tabular}{llll}
 \hline
-\textbf{SatÃ©lite} & \textbf{PosiciÃ³n} & \textbf{Desde} & \textbf{Hasta} \\
+\textbf{Satélite} & \textbf{Posición} & \textbf{Desde} & \textbf{Hasta} \\
 \hline
 \texttt{GOES-13} & \texttt{EAST} & 14 de abril de 2010 & 18 de diciembre de 2017 \\
 \hline
@@ -67,13 +67,13 @@ La cobertura mÃ¡xima de los satÃ©lites GOES se denomina `Full Disk` y consti
 \end{center}
 ```
 
-- `GOES-West` corresponde a la posiciÃ³n occidental de la constelaciÃ³n operativa. En el historial reciente de esta posiciÃ³n, la secuencia operacional estuvo conformada por los satÃ©lites `15`, `17` y `18`. Al momento de escritura de esta tesis, la posiciÃ³n `GOES-West` se encuentra ocupada por `GOES-18`, ubicado aproximadamente en 137.2Â° O [12]. Desde esta posiciÃ³n se observa con mayor centralidad el ocÃ©ano PacÃ­fico oriental, la costa oeste de AmÃ©rica del Norte y otros sectores del hemisferio occidental. 
+- `GOES-West` corresponde a la posición occidental de la constelación operativa. En el historial reciente de esta posición, la secuencia operacional estuvo conformada por los satélites `15`, `17` y `18`. Al momento de escritura de esta tesis, la posición `GOES-West` se encuentra ocupada por `GOES-18`, ubicado aproximadamente en 137.2° O [@goes18_transition]. Desde esta posición se observa con mayor centralidad el océano Pacífico oriental, la costa oeste de América del Norte y otros sectores del hemisferio occidental. 
 
 ```{=latex}
 \begin{center}
 \begin{tabular}{llll}
 \hline
-\textbf{SatÃ©lite} & \textbf{PosiciÃ³n} & \textbf{Desde} & \textbf{Hasta} \\
+\textbf{Satélite} & \textbf{Posición} & \textbf{Desde} & \textbf{Hasta} \\
 \hline
 \texttt{GOES-15} & \texttt{WEST} & 6 de diciembre de 2011 & 12 de febrero de 2019 \\
 \hline
@@ -89,40 +89,40 @@ La cobertura mÃ¡xima de los satÃ©lites GOES se denomina `Full Disk` y consti
 
   
     
-Las coberturas `Full Disk` de `GOES-East` y `GOES-West` no son independientes, sino que presentan una superposiciÃ³n considerable sobre el continente americano y sectores oceÃ¡nicos adyacentes. Tomando como referencia las posiciones aproximadas de 75.2Â° O para `GOES-East` y 137.2Â° O para `GOES-West`, y modelando la Tierra como una esfera, la intersecciÃ³n entre ambos discos visibles puede estimarse en aproximadamente 130 millones de kmÂ². Esto equivale a cerca del 25% de la superficie terrestre y a alrededor del 60% del Ã¡rea visible de un `Full Disk` individual. Esta superposiciÃ³n explica por quÃ© ciertas regiones pueden ser observadas desde ambas posiciones, aunque con distinta geometrÃ­a de adquisiciÃ³n, Ã¡ngulo de visiÃ³n y utilidad operativa.
+Las coberturas `Full Disk` de `GOES-East` y `GOES-West` no son independientes, sino que presentan una superposición considerable sobre el continente americano y sectores oceánicos adyacentes. Tomando como referencia las posiciones aproximadas de 75.2° O para `GOES-East` y 137.2° O para `GOES-West`, y modelando la Tierra como una esfera, la intersección entre ambos discos visibles puede estimarse en aproximadamente 130 millones de km². Esto equivale a cerca del 25% de la superficie terrestre y a alrededor del 60% del área visible de un `Full Disk` individual. Esta superposición explica por qué ciertas regiones pueden ser observadas desde ambas posiciones, aunque con distinta geometría de adquisición, ángulo de visión y utilidad operativa.
 
-Durante el desarrollo del sistema GOES han ocurrido cambios tecnolÃ³gicos importantes en la sucesiÃ³n de satÃ©lites. Por esta razÃ³n, no todos los satÃ©lites mencionados en las tablas anteriores forman parte del alcance operativo de LegionGOES. `GOES-13` y `GOES-15` se incluyen para comprender el historial reciente de las posiciones `GOES-East` y `GOES-West`, pero quedan fuera del procesamiento desarrollado en esta tesis porque no poseen los sensores `ABI` ni `GLM` ni la misma estructura de productos de la serie GOES-R. En consecuencia, cuando en el resto del documento se hable de productos GOES procesados por LegionGOES, la referencia operativa corresponde a `GOES-16`, `GOES-17`, `GOES-18` y `GOES-19`.
+Durante el desarrollo del sistema GOES han ocurrido cambios tecnológicos importantes en la sucesión de satélites. Por esta razón, no todos los satélites mencionados en las tablas anteriores forman parte del alcance operativo de LegionGOES. `GOES-13` y `GOES-15` se incluyen para comprender el historial reciente de las posiciones `GOES-East` y `GOES-West`, pero quedan fuera del procesamiento desarrollado en esta tesis porque no poseen los sensores `ABI` ni `GLM` ni la misma estructura de productos de la serie GOES-R. En consecuencia, cuando en el resto del documento se hable de productos GOES procesados por LegionGOES, la referencia operativa corresponde a `GOES-16`, `GOES-17`, `GOES-18` y `GOES-19`.
 
 Del conjunto de instrumentos presentes en GOES, esta tesis se apoya principalmente en `ABI` y `GLM`.
 
-- `ABI`, *Advanced Baseline Imager*, es el sensor multiespectral principal de GOES. Permite observar nubes, superficie terrestre, vapor de agua, temperatura de brillo, incendios, tormentas y otros fenÃ³menos atmosfÃ©ricos y ambientales. Realiza observaciones en 16 bandas espectrales que abarcan desde el visible hasta el infrarrojo tÃ©rmico [9].
-- `GLM`, *Geostationary Lightning Mapper*, es un sensor Ã³ptico diseÃ±ado para detectar actividad elÃ©ctrica total. Es importante aclarar que GLM no mide electricidad en forma directa: no mide corriente, voltaje ni campo elÃ©ctrico. Detecta emisiones Ã³pticas asociadas a descargas elÃ©ctricas, principalmente cerca de la lÃ­nea de oxÃ­geno atÃ³mico en 777.4 nm [2].
+- `ABI`, *Advanced Baseline Imager*, es el sensor multiespectral principal de GOES. Permite observar nubes, superficie terrestre, vapor de agua, temperatura de brillo, incendios, tormentas y otros fenómenos atmosféricos y ambientales. Realiza observaciones en 16 bandas espectrales que abarcan desde el visible hasta el infrarrojo térmico [@goes_abi].
+- `GLM`, *Geostationary Lightning Mapper*, es un sensor óptico diseñado para detectar actividad eléctrica total. Es importante aclarar que GLM no mide electricidad en forma directa: no mide corriente, voltaje ni campo eléctrico. Detecta emisiones ópticas asociadas a descargas eléctricas, principalmente cerca de la línea de oxígeno atómico en 777.4 nm [@goes_glm].
 
-Esta diferencia instrumental tiene consecuencias directas sobre el software. Los productos ABI se organizan como grillas regulares que pueden tratarse como rÃ¡steres. En cambio, los productos GLM estÃ¡n organizados alrededor de eventos, grupos y flashes, por lo que requieren acumulaciÃ³n temporal, filtrado espacial y conversiÃ³n a representaciones de puntos, densidades o capas derivadas en formato vectorial.
+Esta diferencia instrumental tiene consecuencias directas sobre el software. Los productos ABI se organizan como grillas regulares que pueden tratarse como rásteres. En cambio, los productos GLM están organizados alrededor de eventos, grupos y flashes, por lo que requieren acumulación temporal, filtrado espacial y conversión a representaciones de puntos, densidades o capas derivadas en formato vectorial.
 
 ## GOES y productos utilizados
 
-La tesis se apoya en productos de la serie GOES-R de nivel `L2` con cobertura `Full Disk`. El nivel `L2` implica que el dato ya no es solamente una mediciÃ³n instrumental cruda del satÃ©lite, sino un producto derivado como reustlado de haber aplicado sobre los valores de radiancia electromagnÃ©tica una serire de algoritmos, calibraciones y correcciones. La cobertura `Full Disk` implica utilizar productos que brindan la mÃ¡xima cobertura territorial disponible para el satÃ©lite.
+La tesis se apoya en productos de la serie GOES-R de nivel `L2` con cobertura `Full Disk`. El nivel `L2` implica que el dato ya no es solamente una medición instrumental cruda del satélite, sino un producto derivado como reustlado de haber aplicado sobre los valores de radiancia electromagnética una serire de algoritmos, calibraciones y correcciones. La cobertura `Full Disk` implica utilizar productos que brindan la máxima cobertura territorial disponible para el satélite.
 
 
-Del conjunto de productos `L2-Full Disk` disponibles, LegionGOES trabaja con cuatro productos para abordar las temÃ¡ticas de monitoreo:
+Del conjunto de productos `L2-Full Disk` disponibles, LegionGOES trabaja con cuatro productos para abordar las temáticas de monitoreo:
 
-- `ABI-L2-LSTF`, producto rÃ¡ster orientado a temperatura de superficie terrestre.
-- `ABI-L2-FDCF`, producto rÃ¡ster asociado a detecciÃ³n y caracterizaciÃ³n de focos de calor.
-- `ABI-L2-MCMIPF`, producto rÃ¡ster multibanda utilizado como contexto para nubes y composiciones visuales con diferentes propÃ³sitos.
-- `GLM-L2-LCFA`, producto vectorial o tabular vinculado al mapeo de actividad elÃ©ctrica.
+- `ABI-L2-LSTF`, producto ráster orientado a temperatura de superficie terrestre.
+- `ABI-L2-FDCF`, producto ráster asociado a detección y caracterización de focos de calor.
+- `ABI-L2-MCMIPF`, producto ráster multibanda utilizado como contexto para nubes y composiciones visuales con diferentes propósitos.
+- `GLM-L2-LCFA`, producto vectorial o tabular vinculado al mapeo de actividad eléctrica.
 
 ```{=latex}
 \begin{center}
 \begin{tabular}{lllll}
 \hline
-\textbf{Producto} & \textbf{Instrumento} & \textbf{Tipo} & \textbf{DimensiÃ³n} & \textbf{ResoluciÃ³n nadir} \\
+\textbf{Producto} & \textbf{Instrumento} & \textbf{Tipo} & \textbf{Dimensión} & \textbf{Resolución nadir} \\
 \hline
-\texttt{ABI-L2-LSTF} & ABI & RÃ¡ster & \texttt{1086 x 1086} pÃ­xeles & \texttt{10 km} \\
+\texttt{ABI-L2-LSTF} & ABI & Ráster & \texttt{1086 x 1086} píxeles & \texttt{10 km} \\
 \hline
-\texttt{ABI-L2-FDCF} & ABI & RÃ¡ster & \texttt{5424 x 5424} pÃ­xeles & \texttt{2 km} \\
+\texttt{ABI-L2-FDCF} & ABI & Ráster & \texttt{5424 x 5424} píxeles & \texttt{2 km} \\
 \hline
-\texttt{ABI-L2-MCMIPF} & ABI & RÃ¡ster multibanda & \texttt{5424 x 5424} pÃ­xeles & \texttt{2 km} \\
+\texttt{ABI-L2-MCMIPF} & ABI & Ráster multibanda & \texttt{5424 x 5424} píxeles & \texttt{2 km} \\
 \hline
 \texttt{GLM-L2-LCFA} & GLM & Vectorial / tabular & Sin matriz \texttt{x/y} regular & \texttt{8 km} \\
 \hline
@@ -130,95 +130,51 @@ Del conjunto de productos `L2-Full Disk` disponibles, LegionGOES trabaja con cua
 \end{center}
 ```
 
-En la tabla se indica la resoluciÃ³n espacial en el nadir, es decir, en el sector de la superficie observado con la geometrÃ­a mÃ¡s directa respecto del satÃ©lite. Esta aclaraciÃ³n es importante porque, debido a la geometrÃ­a Ã³ptica del sensor, la curvatura terrestre y el aumento del Ã¡ngulo de observaciÃ³n hacia los bordes del disco, el tamaÃ±o efectivo del pÃ­xel sobre la superficie no es constante en todo el `Full Disk`. A medida que una mediciÃ³n se aleja del punto de nadir, el Ã¡rea terrestre representada por cada pÃ­xel aumenta y la observaciÃ³n se vuelve geomÃ©tricamente mÃ¡s oblicua.
+En la tabla se indica la resolución espacial en el nadir, es decir, en el sector de la superficie observado con la geometría más directa respecto del satélite. Esta aclaración es importante porque, debido a la geometría óptica del sensor, la curvatura terrestre y el aumento del ángulo de observación hacia los bordes del disco, el tamaño efectivo del píxel sobre la superficie no es constante en todo el `Full Disk`. A medida que una medición se aleja del punto de nadir, el área terrestre representada por cada píxel aumenta y la observación se vuelve geométricamente más oblicua.
 
 
 ### ABI-L2-LSTF
 
-El producto `ABI-L2-LSTF` corresponde a temperatura de superficie terrestre, o *Land Surface Temperature, Full Disk*. Es un producto de nivel 2 porque ya no representa una mediciÃ³n radiomÃ©trica cruda, sino una variable geofÃ­sica derivada a partir de canales infrarrojos del instrumento ABI. En el contexto de esta tesis, este producto resulta central para observar cambios tÃ©rmicos de superficie, construir secuencias temporales y generar salidas visuales asociadas a heladas, estrÃ©s tÃ©rmico o contrastes espaciales de temperatura. La documentaciÃ³n de GOES-R describe la temperatura de superficie como una variable Ãºtil en hidrologÃ­a, meteorologÃ­a y climatologÃ­a, ademÃ¡s de destacar su relaciÃ³n con el monitoreo de cultivos y vegetaciÃ³n [3].
+El producto `ABI-L2-LSTF` corresponde a temperatura de superficie terrestre, o *Land Surface Temperature, Full Disk*. Es un producto de nivel 2 porque ya no representa una medición radiométrica cruda, sino una variable geofísica derivada a partir de canales infrarrojos del instrumento ABI. En el contexto de esta tesis, este producto resulta central para observar cambios térmicos de superficie, construir secuencias temporales y generar salidas visuales asociadas a heladas, estrés térmico o contrastes espaciales de temperatura. La documentación de GOES-R describe la temperatura de superficie como una variable útil en hidrología, meteorología y climatología, además de destacar su relación con el monitoreo de cultivos y vegetación [@goes_lst].
 
-Es importante aclarar que la temperatura es una magnitud fÃ­sica asociada al estado tÃ©rmico de la materia y, desde una interpretaciÃ³n microscÃ³pica, al movimiento de sus partÃ­culas. En sentido estricto, una mediciÃ³n directa de temperatura requiere interacciÃ³n fÃ­sica con el objeto o medio observado mediante un instrumento calibrado, como un termÃ³metro. El valor de temperatura de cualquier satÃ©lite no es una mediciÃ³n directa, sino una estimaciÃ³n indirecta. En este caso, GOES registra radiancia electromagnÃ©tica, especialmente en bandas infrarrojas tÃ©rmicas, y a partir de esa seÃ±al estima una temperatura de superficie mediante modelos radiativos, correcciones atmosfÃ©ricas, geometrÃ­a de adquisiciÃ³n, informaciÃ³n de emisividad y supuestos sobre la superficie observada.
+Es importante aclarar que la temperatura es una magnitud física asociada al estado térmico de la materia y, desde una interpretación microscópica, al movimiento de sus partículas. En sentido estricto, una medición directa de temperatura requiere interacción física con el objeto o medio observado mediante un instrumento calibrado, como un termómetro. El valor de temperatura de cualquier satélite no es una medición directa, sino una estimación indirecta. En este caso, GOES registra radiancia electromagnética, especialmente en bandas infrarrojas térmicas, y a partir de esa señal estima una temperatura de superficie mediante modelos radiativos, correcciones atmosféricas, geometría de adquisición, información de emisividad y supuestos sobre la superficie observada.
 
-Un producto `ABI-L2-LSTF` de disco completo contiene la variable principal `LST`, expresada en Kelvin, y una variable de calidad `DQF`. El producto se organiza como una matriz de `1086 x 1086` pÃ­xeles, con resoluciÃ³n espacial de `10 km` en el nadir y una ventana temporal de 1 hora. Los valores de temperatura estÃ¡n disponibles tanto para el dÃ­a como para la noche, aunque no estÃ¡n disponibles para ocÃ©anos, cuerpos de agua continentales ni porciones continentales cubiertas por nubes. En el flujo de trabajo de LegionGOES se realiza la conversiÃ³n de Kelvin a grados Celsius [3, 10].
+Un producto `ABI-L2-LSTF` de disco completo contiene la variable principal `LST`, expresada en Kelvin, y una variable de calidad `DQF`. El producto se organiza como una matriz de `1086 x 1086` píxeles, con resolución espacial de `10 km` en el nadir y una ventana temporal de 1 hora. Los valores de temperatura están disponibles tanto para el día como para la noche, aunque no están disponibles para océanos, cuerpos de agua continentales ni porciones continentales cubiertas por nubes. En el flujo de trabajo de LegionGOES se realiza la conversión de Kelvin a grados Celsius [@goes_lst; @unidata_netcdf].
 
 ### ABI-L2-FDCF
 
-El producto `ABI-L2-FDCF`, *Fire Detection and Characterization, Full Disk*, corresponde a detecciÃ³n y caracterizaciÃ³n de focos de calor para disco completo. Es un producto de nivel 2 resultado de aplicar un algoritmo de clasificaciÃ³n que toma como informaciÃ³n inicial mediciones satelitales, condiciones radiomÃ©tricas, geometrÃ­a de adquisiciÃ³n y la categorÃ­a del pÃ­xel en imÃ¡genes anteriores. La clasificaciÃ³n combina informaciÃ³n visible e infrarroja para identificar pÃ­xeles asociados a fuego y otras categorÃ­as importantes [4].
+El producto `ABI-L2-FDCF`, *Fire Detection and Characterization, Full Disk*, corresponde a detección y caracterización de focos de calor para disco completo. Es un producto de nivel 2 resultado de aplicar un algoritmo de clasificación que toma como información inicial mediciones satelitales, condiciones radiométricas, geometría de adquisición y la categoría del píxel en imágenes anteriores. La clasificación combina información visible e infrarroja para identificar píxeles asociados a fuego y otras categorías importantes [@goes_fire].
 
-En tÃ©rminos operativos, este producto es especialmente importante porque permite detectar eventos activos y seguir cambios rÃ¡pidos en focos de calor, algo que requiere tanto frecuencia temporal como cobertura espacial amplia.
+En términos operativos, este producto es especialmente importante porque permite detectar eventos activos y seguir cambios rápidos en focos de calor, algo que requiere tanto frecuencia temporal como cobertura espacial amplia.
 
-El archivo `NetCDF` de `ABI-L2-FDCF` presenta una grilla de `5424 x 5424` pÃ­xeles, resoluciÃ³n espacial de `2 km` en el nadir y una ventana temporal de 10 minutos para disco completo. Entre las variables del archivo se encuentran `Mask`, que codifica la clasificaciÃ³n del pÃ­xel; `Power`, expresada en MW para estimar la potencia radiativa del evento tÃ©rmico; `Area`, expresada en mÂ², que estima la superficie del evento tÃ©rmico dentro del pÃ­xel; y `DQF`, asociada a calidad [4, 10].
+El archivo `NetCDF` de `ABI-L2-FDCF` presenta una grilla de `5424 x 5424` píxeles, resolución espacial de `2 km` en el nadir y una ventana temporal de 10 minutos para disco completo. Entre las variables del archivo se encuentran `Mask`, que codifica la clasificación del píxel; `Power`, expresada en MW para estimar la potencia radiativa del evento térmico; `Area`, expresada en m², que estima la superficie del evento térmico dentro del píxel; y `DQF`, asociada a calidad [@goes_fire; @unidata_netcdf].
 
-Un pÃ­xel de FDCF representa aproximadamente `2 km x 2 km` en el nadir, pero un foco de calor real puede ocupar solo una fracciÃ³n de esa superficie. Por eso se habla de informaciÃ³n subpÃ­xel: el algoritmo intenta estimar caracterÃ­sticas de un fenÃ³meno mÃ¡s pequeÃ±o que el pÃ­xel completo observado. Esta aclaraciÃ³n es importante para el software, porque el usuario puede ver un pÃ­xel clasificado como fuego sin que eso signifique que toda la superficie representada por el pÃ­xel estÃ© ardiendo.
+Un píxel de FDCF representa aproximadamente `2 km x 2 km` en el nadir, pero un foco de calor real puede ocupar solo una fracción de esa superficie. Por eso se habla de información subpíxel: el algoritmo intenta estimar características de un fenómeno más pequeño que el píxel completo observado. Esta aclaración es importante para el software, porque el usuario puede ver un píxel clasificado como fuego sin que eso signifique que toda la superficie representada por el píxel esté ardiendo.
 
-Cada pÃ­xel de la matriz `Mask` contiene un valor numÃ©rico discreto que representa una categorÃ­a de clasificaciÃ³n. Para interpretar correctamente la escena deben considerarse no solo las categorÃ­as asociadas a fuego, sino tambiÃ©n categorÃ­as ambiguas, descartadas o afectadas por condiciones de observaciÃ³n. Un ejemplo importante es el `glint`, o reflejo especular, que puede afectar la detecciÃ³n debido al brillo solar reflejado en determinadas condiciones geomÃ©tricas. Por ello, un sistema de visualizaciÃ³n no deberÃ­a mostrar Ãºnicamente los pÃ­xeles clasificados como fuego, sino tambiÃ©n conservar trazabilidad sobre categorÃ­as descartadas, ambiguas o limitadas por condiciones de adquisiciÃ³n.
+Cada píxel de la matriz `Mask` contiene un valor numérico discreto que representa una categoría de clasificación. Para interpretar correctamente la escena deben considerarse no solo las categorías asociadas a fuego, sino también categorías ambiguas, descartadas o afectadas por condiciones de observación. Un ejemplo importante es el `glint`, o reflejo especular, que puede afectar la detección debido al brillo solar reflejado en determinadas condiciones geométricas. Por ello, un sistema de visualización no debería mostrar únicamente los píxeles clasificados como fuego, sino también conservar trazabilidad sobre categorías descartadas, ambiguas o limitadas por condiciones de adquisición.
 
 ### ABI-L2-MCMIPF
 
-El producto `ABI-L2-MCMIPF` corresponde a *Multi-band Cloud and Moisture Imagery Product, Full Disk*. Este archivo reÃºne informaciÃ³n multicanal del sensor ABI y permite trabajar con distintas bandas visibles, infrarrojas cercanas e infrarrojas tÃ©rmicas [5].
+El producto `ABI-L2-MCMIPF` corresponde a *Multi-band Cloud and Moisture Imagery Product, Full Disk*. Este archivo reúne información multicanal del sensor ABI y permite trabajar con distintas bandas visibles, infrarrojas cercanas e infrarrojas térmicas [@goes_cmi].
 
-Un archivo `ABI-L2-MCMIPF` presenta una grilla de `5424 x 5424` pÃ­xeles, resoluciÃ³n espacial de `2 km` en el nadir y una ventana temporal de 10 minutos para disco completo. Las variables observadas se encuentran desde `CMI_C01` a `CMI_C16`, donde las bandas visibles o reflectivas se expresan como valores adimensionales y las bandas infrarrojas tÃ©rmicas pueden expresarse en Kelvin. Para LegionGOES, este producto cumple dos funciones principales: permite estudiar nubes a partir de bandas infrarrojas y permite generar composiciones visuales de contexto, como True Color sintÃ©tico, Ãºtiles para interpretar dÃ­a, noche, superficie y nubosidad [5, 10].
+Un archivo `ABI-L2-MCMIPF` presenta una grilla de `5424 x 5424` píxeles, resolución espacial de `2 km` en el nadir y una ventana temporal de 10 minutos para disco completo. Las variables observadas se encuentran desde `CMI_C01` a `CMI_C16`, donde las bandas visibles o reflectivas se expresan como valores adimensionales y las bandas infrarrojas térmicas pueden expresarse en Kelvin. Para LegionGOES, este producto cumple dos funciones principales: permite estudiar nubes a partir de bandas infrarrojas y permite generar composiciones visuales de contexto, como True Color sintético, útiles para interpretar día, noche, superficie y nubosidad [@goes_cmi; @unidata_netcdf].
 
 ### GLM-L2-LCFA
 
-El producto `GLM-L2-LCFA` corresponde a detecciÃ³n de actividad elÃ©ctrica mediante el instrumento `GLM`, o *Geostationary Lightning Mapper*. La sigla `LCFA` significa *Lightning Cluster-Filter Algorithm*, lo cual indica que existe un algoritmo especÃ­fico para organizar detecciones de actividad elÃ©ctrica en eventos, grupos y flashes.
+El producto `GLM-L2-LCFA` corresponde a detección de actividad eléctrica mediante el instrumento `GLM`, o *Geostationary Lightning Mapper*. La sigla `LCFA` significa *Lightning Cluster-Filter Algorithm*, lo cual indica que existe un algoritmo específico para organizar detecciones de actividad eléctrica en eventos, grupos y flashes.
 
-La documentaciÃ³n oficial de GOES-R describe a GLM como un detector Ã³ptico en infrarrojo cercano capaz de medir actividad elÃ©ctrica total, incluyendo descargas intranube, nube-nube y nube-tierra, de manera continua sobre todo el disco observado [2, 6]. Esta capacidad es especialmente Ãºtil cuando el interÃ©s no se limita a visualizar rayos aislados, sino a seguir tendencias temporales de electrificaciÃ³n asociadas a tormentas intensas.
+La documentación oficial de GOES-R describe a GLM como un detector óptico en infrarrojo cercano capaz de medir actividad eléctrica total, incluyendo descargas intranube, nube-nube y nube-tierra, de manera continua sobre todo el disco observado [@goes_glm; @goes_lightning]. Esta capacidad es especialmente útil cuando el interés no se limita a visualizar rayos aislados, sino a seguir tendencias temporales de electrificación asociadas a tormentas intensas.
 
-El archivo `GLM-L2-LCFA` no contiene dimensiones `x` e `y` como los rÃ¡steres anteriores, sino dimensiones como `number_of_events`, `number_of_groups` y `number_of_flashes`, con variables como `event_lat`, `event_lon`, `flash_lat` y `flash_lon`. El producto tiene una ventana temporal de 20 segundos. Esta diferencia estructural y temporal es relevante porque obliga a un tratamiento metodolÃ³gico distinto: mientras los productos ABI pueden representarse como imÃ¡genes rÃ¡ster, GLM requiere acumulaciÃ³n temporal, filtrado espacial y conversiÃ³n a capas de puntos o densidades [6, 10].
+El archivo `GLM-L2-LCFA` no contiene dimensiones `x` e `y` como los rásteres anteriores, sino dimensiones como `number_of_events`, `number_of_groups` y `number_of_flashes`, con variables como `event_lat`, `event_lon`, `flash_lat` y `flash_lon`. El producto tiene una ventana temporal de 20 segundos. Esta diferencia estructural y temporal es relevante porque obliga a un tratamiento metodológico distinto: mientras los productos ABI pueden representarse como imágenes ráster, GLM requiere acumulación temporal, filtrado espacial y conversión a capas de puntos o densidades [@goes_lightning; @unidata_netcdf].
 
-## Implicancias para el diseÃ±o de LegionGOES
+## Implicancias para el diseño de LegionGOES
 
-Las caracterÃ­sticas tÃ©cnicas descriptas en este capÃ­tulo tienen consecuencias directas sobre el diseÃ±o de LegionGOES. El software no organiza el trabajo Ãºnicamente por producto o por formato de archivo, sino por temÃ¡tica bajo monitoreo. Cada temÃ¡tica se estructura alrededor de una serie temporal y coordina un conjunto preestablecido de productos GOES, configuraciones de procesamiento, criterios estÃ©ticos, reglas de emparejamiento y formas de visualizaciÃ³n.
+Las características técnicas descriptas en este capítulo tienen consecuencias directas sobre el diseño de LegionGOES. El software no organiza el trabajo únicamente por producto o por formato de archivo, sino por temática bajo monitoreo. Cada temática se estructura alrededor de una serie temporal y coordina un conjunto preestablecido de productos GOES, configuraciones de procesamiento, criterios estéticos, reglas de emparejamiento y formas de visualización.
 
-Esta organizaciÃ³n es necesaria porque los productos GOES tienen distintas resoluciones espaciales, distintas ventanas temporales, distintas estructuras internas y distintas formas de representaciÃ³n. Algunos productos se comportan como rÃ¡steres regulares; otros, como `GLM-L2-LCFA`, se comportan como tablas de eventos. Algunos productos pueden visualizarse directamente despuÃ©s de una transformaciÃ³n; otros requieren acumulaciÃ³n, filtrado, emparejamiento con productos auxiliares o construcciÃ³n de composiciones visuales.
+Esta organización es necesaria porque los productos GOES tienen distintas resoluciones espaciales, distintas ventanas temporales, distintas estructuras internas y distintas formas de representación. Algunos productos se comportan como rásteres regulares; otros, como `GLM-L2-LCFA`, se comportan como tablas de eventos. Algunos productos pueden visualizarse directamente después de una transformación; otros requieren acumulación, filtrado, emparejamiento con productos auxiliares o construcción de composiciones visuales.
 
-El software traduce la necesidad temÃ¡tica del usuario en una secuencia tÃ©cnica de descarga, procesamiento, emparejamiento, visualizaciÃ³n y generaciÃ³n de salidas. Para construir una visualizaciÃ³n coherente, el sistema debe mantener consistencia entre escalas de color, proyecciones, capas de contexto y formatos de salida. Todo lo generado en los pasos anteriores debe presentarse en una interfaz suficientemente ordenada y dinÃ¡mica para ser, al mismo tiempo, amena y efectiva como entorno de trabajo.
+El software traduce la necesidad temática del usuario en una secuencia técnica de descarga, procesamiento, emparejamiento, visualización y generación de salidas. Para construir una visualización coherente, el sistema debe mantener consistencia entre escalas de color, proyecciones, capas de contexto y formatos de salida. Todo lo generado en los pasos anteriores debe presentarse en una interfaz suficientemente ordenada y dinámica para ser, al mismo tiempo, amena y efectiva como entorno de trabajo.
 
-La parte central del aporte de LegionGOES consiste en encapsular decisiones tÃ©cnicas dentro de herramientas especÃ­ficas, de modo que el usuario pueda trabajar con foco en la temÃ¡tica bajo monitoreo sin quedar expuesto a toda la complejidad informÃ¡tica interna del dato original.
+La parte central del aporte de LegionGOES consiste en encapsular decisiones técnicas dentro de herramientas específicas, de modo que el usuario pueda trabajar con foco en la temática bajo monitoreo sin quedar expuesto a toda la complejidad informática interna del dato original.
 
-
-## Referencias del capÃ­tulo {.unnumbered}
-
-[1] GOES-R Program. (s. f.). *GOES-R mission overview*. NOAA/NESDIS.  
-URL: https://www.goes-r.gov/mission/mission.html
-
-[2] GOES-R Program. (s. f.). *Geostationary Lightning Mapper (GLM)*. NOAA/NESDIS.  
-URL: https://www.goes-r.gov/spacesegment/glm.html
-
-[3] GOES-R Program. (s. f.). *Data products: Land surface temperature (skin)*. NOAA/NESDIS.  
-URL: https://www.goes-r.gov/products/baseline-LST.html
-
-[4] GOES-R Program. (s. f.). *Data products: Fire/hot spot characterization*. NOAA/NESDIS.  
-URL: https://www.goes-r.gov/products/baseline-fire-hot-spot.html
-
-[5] GOES-R Program. (s. f.). *Data products: Cloud and moisture imagery*. NOAA/NESDIS.  
-URL: https://www.goes-r.gov/products/baseline-cloud-moisture-imagery.html
-
-[6] GOES-R Program. (s. f.). *Data products: Lightning detection: Events, groups and flashes*. NOAA/NESDIS.  
-URL: https://www.goes-r.gov/products/baseline-lightning-detection.html
-
-[7] U.S. Geological Survey. (s. f.). *Landsat 8*.  
-URL: https://www.usgs.gov/landsat-missions/landsat-8
-
-[8] European Space Agency. (s. f.). *Sentinel-2*.  
-URL: https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-2
-
-[9] GOES-R Program. (s. f.). *Instruments: Advanced Baseline Imager (ABI)*. NOAA/NESDIS.  
-URL: https://www.goes-r.gov/spacesegment/abi.html
-
-[10] NSF Unidata. (s. f.). *NetCDF*. University Corporation for Atmospheric Research.  
-URL: https://www.unidata.ucar.edu/software/netcdf/
-
-[11] GOES-R Program. (s. f.). *GOES-19 transition to operations*. NOAA/NESDIS.  
-URL: https://www.goes-r.gov/users/transitionToOperations19.html
-
-[12] GOES-R Program. (s. f.). *GOES-18 transition to operations*. NOAA/NESDIS.  
-URL: https://www.goes-r.gov/users/transitionToOperations18.html
-
-[13] GOES-R Program. (s. f.). *GOES-16 transition to operations*. NOAA/NESDIS.  
-URL: https://www.goes-r.gov/users/transitionToOperations16.html
-
-[14] GOES-R Program. (s. f.). *GOES-17 transition to operations*. NOAA/NESDIS.  
-URL: https://www.goes-r.gov/users/transitionToOperations17.html
 

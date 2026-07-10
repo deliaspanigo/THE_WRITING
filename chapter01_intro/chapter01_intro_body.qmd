@@ -19,33 +19,34 @@ En un contexto donde gran parte de los desarrollos recientes en información geo
 
 ## Motivación
 
-La observación de la Tierra es una temática en la que se encuentran elementos científicos y tecnológicos del más alto nivel dentro de un gran marco interdisciplinario. En la actualidad, el área se encuentra lejos de alcanzar sus límites y existe una demanda constante de más profesionales, más datos, más infraestructura y más tecnología en todos los países del mundo [1].
+La observación de la Tierra es una temática en la que se encuentran elementos científicos y tecnológicos del más alto nivel dentro de un gran marco interdisciplinario. En la actualidad, el área se encuentra lejos de alcanzar sus límites y existe una demanda constante de más profesionales, más datos, más infraestructura y más tecnología en todos los países del mundo [@nasa_earthdata].
 
-En cuanto a tecnología y software GIS, existen diferentes plataformas en línea y de uso local que intentan satisfacer las necesidades tanto del sector público como del sector privado [2, 3]. Sin embargo, las necesidades de los profesionales GIS suelen ser más amplias que las prestaciones encontradas en las herramientas informáticas disponibles, sean estas de libre acceso o pagas. No debe confundirse esto con un escaso esfuerzo informático del sector privado o público, sino que a pesar de la presencia de grados grupos corportativos y abundate producción científica aún quedan muchas necesidades por reoslver de diversas índole.
+En cuanto a tecnología y software GIS, existen diferentes plataformas en línea y de uso local que intentan satisfacer las necesidades tanto del sector público como del sector privado [@qgis; @esri_arcgis_online]. Sin embargo, las necesidades de los profesionales GIS suelen ser más amplias que las prestaciones encontradas en las herramientas informáticas disponibles, sean estas de libre acceso o pagas. No debe confundirse esto con un escaso esfuerzo informático del sector privado o público, sino que a pesar de la presencia de grandes grupos corporativos y abundante producción científica aún quedan muchas necesidades por resolver de diversas índole.
 
-Los profesionales GIS se han volcado en los últimos años hacia la programación para desarrollar de manera artesanal soluciones a medida para las necesidades de sus instituciones o empresas. También se han expandido plataformas para procesamiento en línea, como Google Earth Engine y ArcGIS Online [4, 3]. La oferta de herramientas y servicios remotos ha crecido considerablemente, y no ha sucedido lo mismo con osftware de escritorio.
+Los profesionales GIS se han volcado en los últimos años hacia la programación para desarrollar de manera artesanal soluciones a medida para las necesidades de sus instituciones o empresas. También se han expandido plataformas para procesamiento en línea, como Google Earth Engine y ArcGIS Online [@google_earth_engine; @esri_arcgis_online]. La oferta de herramientas y servicios remotos ha crecido considerablemente, y no ha sucedido lo mismo con software de escritorio.
 
-Existe una intención manifiesta por ordenar, coordinar y ocmpartir esfuerzos entre organsimos internacionales, nacioanles y provinciales con la finalidad de tener un mejor entendimiento y previsión meteorológicas que necesitan si o si nuevos desarrollos GIS. Pueden mencionarse el Programa de Gestión Integral de los Riesgos en el Sistema Agroindustrial Rural (GIRSAR), el programa Ciencia y Tecnología contra el Hambre y el proyecto Sistema de Alerta Temprana y Red de Centinelas Ambientales (SAT y RedCA) de la Región Alimentaria de Córdoba (RAC) [5, 6, 7]. 
+Existe una intención manifiesta por ordenar, coordinar y compartir esfuerzos entre organismos internacionales, nacionales y provinciales con la finalidad de tener un mejor entendimiento y previsión meteorológicas que necesitan sí o sí nuevos desarrollos GIS. Pueden mencionarse el Programa de Gestión Integral de los Riesgos en el Sistema Agroindustrial Rural (GIRSAR), el programa Ciencia y Tecnología contra el Hambre y el proyecto Sistema de Alerta Temprana y Red de Centinelas Ambientales (SAT y RedCA) de la Región Alimentaria de Córdoba (RAC) [@argentina_girsar; @argentina_ciencia_hambre; @argentina_resolucion_hambre]. 
 
 La tesis está orientada a ocupar parte de ese nicho vacío, no solo generando y orquestando el procesamiento satelital necesario, sino también proponiendo un cambio de posición: pasar de ser netamente consumidores de software GIS a ser generadores de software GIS. En ese sentido, LegionGOES no se plantea únicamente como una herramienta para mirar productos GOES, sino como una contribución al desarrollo de capacidades locales de software científico aplicado a información satelital.
 
-Finalmente, cabe destacar que la temática de la tesis resulta relevante para CONAE y para el Instituto Gulich. La CONAE, junto al Servicio Meteorológico Nacional, avanza actualmente en el proyecto de construcción de un satélite meteorológico para América Latina, con lo cual lo generado en esta tesis podría tomarse como antecedente conceptual y técnico para la generación de software de análisis propio vinculado a futuros desarrollos satelitales regionales [8].
+Finalmente, cabe destacar que la temática de la tesis resulta relevante para CONAE y para el Instituto Gulich. La CONAE, junto al Servicio Meteorológico Nacional, avanza actualmente en el proyecto de construcción de un satélite meteorológico para América Latina, con lo cual lo generado en esta tesis podría tomarse como antecedente conceptual y técnico para la generación de software de análisis propio vinculado a futuros desarrollos satelitales regionales [@argentina_satelite_latam].
 
 ## Antecedentes
 
-En relación con productos satelitales de temperatura, heladas y tormentas existen diferentes herramientas y productos a nivel internacional que abordan el tema con distintas perspectivas y objetivos. A nivel nacional se han realizado diversas actividades relacionadas con el monitoreo de heladas en el Observatorio de Hidrometeorología y Cambio Climático (OHMC), como el monitoreo de heladas utilizando datos de GOES [9]. Este servicio permite visualizar un sector específico de Argentina y muestra la existencia de antecedentes concretos de uso operativo de datos GOES para monitoreo regional.
+En relación con productos satelitales de temperatura, heladas y tormentas existen diferentes herramientas y productos a nivel internacional que abordan el tema con distintas perspectivas y objetivos. A nivel nacional se han realizado diversas actividades relacionadas con el monitoreo de heladas en el Observatorio de Hidrometeorología y Cambio Climático (OHMC), como el monitoreo de heladas utilizando datos de GOES [@ohmc_goes_heladas]. Este servicio permite visualizar un sector específico de Argentina y muestra la existencia de antecedentes concretos de uso operativo de datos GOES para monitoreo regional.
 
-Portales de visualización de productos GOES como RAMMB Slider de CIRA permiten visualizar imágenes satelitales y descargas eléctricas en tiempo real, aunque no están orientados a que el usuario descargue, reprocese y reorganice localmente los datos originales [10].
+Portales de visualización de productos GOES como RAMMB Slider de CIRA permiten visualizar imágenes satelitales y descargas eléctricas en tiempo real, aunque no están orientados a que el usuario descargue, reprocese y reorganice localmente los datos originales [@cira_slider].
 
-En cuanto a focos de calor, es posible encontrar datos y productos dentro de plataformas como Google Earth Engine [4]. El problema es que no siempre se puede operativizar la obtención de datos desde estas plataformas sin depender de latencias, restricciones de tamaño de archivos, condiciones de servicio o flujos de trabajo externos al usuario.
+En cuanto a focos de calor, es posible encontrar datos y productos dentro de plataformas como Google Earth Engine [@google_earth_engine]. El problema es que no siempre se puede operativizar la obtención de datos desde estas plataformas sin depender de latencias, restricciones de tamaño de archivos, condiciones de servicio o flujos de trabajo externos al usuario.
 
-La temática ha sido abordada por diferentes grupos de investigación desde la aparición de los satélites de la serie GOES y pueden encontrarse publicaciones científicas de diferentes países vinculadas al monitoreo con GOES, la detección de heladas, la observación de tormentas severas y el uso de escaneo rápido para nowcasting [11, 12].
+La temática ha sido abordada por diferentes grupos de investigación desde la aparición de los satélites de la serie GOES y pueden encontrarse publicaciones científicas de diferentes países vinculadas al monitoreo con GOES, la detección de heladas, la observación de tormentas severas y el uso de escaneo rápido para nowcasting [@lighezzolo_2020_frost; @ribeiro_2019_goes16].
 
 ## Objetivo de la tesis
 
 El objetivo principal de esta tesis es desarrollar y poner operativo un sistema de software libre, de uso local, instalable, para sitematizar la descarga, procesamiento, visualización y generación de productos derivados de la serie GOES-R.
 
 Para lograr este propósito, se plantean los siguientes objetivos específicos:  
+
 - Crear un ambiente computacional sólido para el procesamiento y visualización de datos satelitales geoestacionarios.  
 - Integrar rutinas de descarga, procesamiento, visualización y generación de productos de salida dentro de un mismo sistema de trabajo.  
 - Desarrollar herramientas modernas, intuitivas y útiles para usuarios interesados en productos GOES.  
@@ -59,40 +60,3 @@ LegionGOES es un sistema local GIS que sistematiza la descarga, procesamiento y 
 
 Un poco más cerca de la programación, LegionGOES es un servidor web Shiny que corre localmente subdividido en aplicaciones Shiny independientes que utilizan internamente un conjunto de librerías de R y Python creadas específicamente para la descarga, procesamiento y visualización de imágenes GOES. Por el momento solo está disponible para Windows.
 
-## Referencias del capítulo {.unnumbered}
-
-[1] NASA Earthdata. (s. f.). *Your gateway to NASA Earth observation data*. NASA.  
-URL: https://www.earthdata.nasa.gov/
-
-[2] QGIS. (s. f.). *Spatial without compromise*.  
-URL: https://qgis.org/
-
-[3] Esri. (s. f.). *ArcGIS Online*.  
-URL: https://www.esri.com/en-us/arcgis/products/arcgis-online/overview
-
-[4] Google. (s. f.). *Google Earth Engine*.  
-URL: https://earthengine.google.com/
-
-[5] Secretaría de Agricultura, Ganadería y Pesca. (s. f.). *Programa de gestión integral de los riesgos en el sistema agroindustrial rural*. Gobierno de la República Argentina.  
-URL: https://www.argentina.gob.ar/economia/planificacion-del-desarrollo-y-la-competitividad-federal/girsar
-
-[6] Ministerio de Ciencia, Tecnología e Innovación. (2020). *Ciencia y tecnología contra el hambre*. Gobierno de la República Argentina.  
-URL: https://www.argentina.gob.ar/noticias/ciencia-y-tecnologia-contra-el-hambre
-
-[7] Ministerio de Ciencia, Tecnología e Innovación. (2020). *Resolución de la convocatoria Ciencia y Tecnología contra el Hambre: RS-2020-69564357-APN-MCT*. Gobierno de la República Argentina.  
-URL: https://www.argentina.gob.ar/sites/default/files/rs-2020-69564357-apn-mct_0.pdf
-
-[8] Gobierno de la República Argentina. (2023). *Avanza el proyecto de un satélite meteorológico para América Latina*.  
-URL: https://www.argentina.gob.ar/noticias/avanza-el-proyecto-de-un-satelite-meteorologico-para-america-latina
-
-[9] Observatorio de Hidrometeorología y Cambio Climático. (s. f.). *Monitoreo de heladas en tiempo real utilizando datos de GOES*.  
-URL: https://wrf.ohmc.ar/goes
-
-[10] Cooperative Institute for Research in the Atmosphere. (s. f.). *RAMMB/CIRA SLIDER: Satellite Loop Interactive Data Explorer in Real-time*. Colorado State University.  
-URL: https://slider.cira.colostate.edu/
-
-[11] Lighezzolo, A., Pons, D., Machado, F., Montero, A., Mari, N., Martina, A., & Muñoz, A. (2020). Implementation of an operative remote sensing frost product based on GOES-16 satellite. En *2020 IEEE Congreso Bienal de Argentina (ARGENCON)* (pp. 1-7). IEEE.  
-URL: https://doi.org/10.1109/ARGENCON49523.2020.9505363
-
-[12] Ribeiro, B. Z., Machado, L. A. T., Biscaro, T. S., Freitas, E. D., Mozer, K. W., & Goodman, S. J. (2019). An evaluation of the GOES-16 rapid scan for nowcasting in southeastern Brazil: Analysis of a severe hailstorm case. *Weather and Forecasting, 34*(6), 1829-1848.  
-URL: https://doi.org/10.1175/WAF-D-19-0070.1

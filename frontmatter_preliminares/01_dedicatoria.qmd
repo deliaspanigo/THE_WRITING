@@ -1,6 +1,7 @@
 ```{=latex}
 \thispagestyle{empty}
 \vspace*{4cm}
-\hfill\normalsize\textit{\sf [Dedicado a Eratóstenes de Cirene]}
+\hfill\normalsize\textit{\sffamily [Dedicado a Eratóstenes de Cirene]}
 \clearpage
 ```
+
