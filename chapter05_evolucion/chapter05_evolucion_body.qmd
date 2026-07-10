@@ -1,8 +1,7 @@
 # Ideas, contexto y evolución del diseño de LegionGOES
 
-Este capítulo describe la evolución del proyecto LegionGOES como parte del resultado metodológico de la tesis. No se incluye únicamente como relato histórico, sino como una forma de explicar por qué el software terminó teniendo su estructura actual. Las decisiones tomadas durante el desarrollo no fueron lineales: surgieron de límites técnicos, cambios en los satélites disponibles, dificultades de infraestructura, problemas de instalación, pruebas con usuarios y necesidades de reproducibilidad.
 
-Desde esta perspectiva, la evolución del proyecto permite comprender mejor el aporte de LegionGOES. El software no nació como una aplicación cerrada desde el inicio, sino como una sucesión de decisiones que fueron desplazando el centro del trabajo desde el procesamiento satelital en un servidor Linux hacia la construcción de un sistema local, instalable, modular y orientado al usuario.
+La evolución del proyecto permite comprender mejor el aporte de LegionGOES. El software no nació como una aplicación cerrada desde el inicio, sino como una sucesión de decisiones que fueron desplazando el centro del trabajo desde el procesamiento satelital en un servidor Linux hacia la construcción de un sistema local, instalable, modular y orientado al usuario.
 
 ## Idea inicial: procesamiento en servidor
 
@@ -19,7 +18,7 @@ Durante el desarrollo ocurrió el cambio operativo de GOES-16 a GOES-19 en la po
 Primero se realizaron cambios para procesar GOES-16 y GOES-19. Luego, esa decisión se extendió para intentar procesar cualquier satélite de la serie GOES-R disponible en el esquema de productos utilizado por la tesis. Finalmente, el sistema incorporó la posibilidad de trabajar con GOES-16, GOES-17, GOES-18 y GOES-19. 
 
 ## Nombre y logo
-Esta ampliación de alcance fue el motivo del nombre: no se trataba de un único GOES, sino de muchos. Una legión de satélites GOES. Y finakmente, LegionGOES.
+Esta ampliación de alcance fue el motivo del nombre: no se trataba de un único GOES, sino de muchos. Una legión de satélites GOES. Y finalmente, LegionGOES.
 El logo pasó por muchos modelos. Se buscó siempre un hexagono, y de apariencia a los parches que se ven para las misiones espaciales. Fue generado con inteligencia artificial.
 
 ## De procesador satelital a interfaz de usuario

@@ -1,9 +1,9 @@
 # Proyección futura
-El comienzo de esta tesis habló de la temática de observación de la Tierra dicendo que es algo que no tiene límites. Siempre hay algo nuevo por aprender, algo nuevo por agregar, una nueva necesidad o un nuevo punto de vista. Siempre hay algo más que agregar, algo que corregir o una nueva forma de presentar lo que ya existía. Esta idea se ve reflejado en cómo ha evolucionado QGIS, Google Earth Engine, y las nuevas librerías de R y Python que aparecen todo el tiempo y las antiguas librerías que siguen generando versiones [1, 2, 3, 4].
+El comienzo de esta tesis habló de la temática de observación de la Tierra dicendo que es algo que no tiene límites. Siempre hay algo nuevo por aprender, algo nuevo por agregar, una nueva necesidad o un nuevo punto de vista. Siempre hay algo más que agregar, algo que corregir o una nueva forma de presentar lo que ya existía. Esta idea se ve reflejado en cómo ha evolucionado QGIS, Google Earth Engine, y las nuevas librerías de R y Python que aparecen todo el tiempo y las antiguas librerías que siguen generando versiones [1, 2, 3, 4]. En est esentido LegionGOES es una herramienta también con mucho potencial. Hablaremos un poco de esas posibilidades.
 
 El pack de herramientas Classroom merecen tranquilamente un software aparte destinado exlucisvamente a la educación de grado y posgrado, o como iniciación a la temática GIS.
 
-Podría generarse un equivalente para Sentinel y Landsat, o cualquier otro conjunto de información espacial como son imágenes de Drones o información de geoposición GPS. Después de todo para el desarrollador es lo mismo.
+Podría generarse un equivalente para Sentinel y Landsat, o cualquier otro conjunto de información espacial como son imágenes de Drones o información de geoposición GPS. Después de toda información espacial es suceptible de ser sitematizada.
 
 La estructura de LegionGOES merece una versión para Linux. Con eso se llegaría a cubrir dos aspectos importantes. El primero es poder llegar a los usuarios de Linux. Y el 2do es que al ser LegionGOES un servidor web que corre localmente, podría ser colocado en un servidor linux para brindar servicio de LegionGOES online [5].
 

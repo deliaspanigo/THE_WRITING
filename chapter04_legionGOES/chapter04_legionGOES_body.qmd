@@ -185,6 +185,9 @@ Las cinco visualizaciones tienen diferentes categorías seleccionadas para obten
 El viewer solo permite visualizar archivos que hayan sido previamente descargados y procesados con las aplicaciones de Downloader y Processing de LegionGOES específicamente para focos de calor.
 El viewer de temperatura muestra un procesamiento de FDCF que es propiamente el producto de GOES con la finalidad de detectar focos de calor y acompaña esa salida con un procesamiento anexo basado en el producto MCMIPF para generar un true color sintético de fondo. Este anexo permitirá visualizar el contexto del foco de calor de una mejor manera, ya que será posible ver el día y la noche dentro del Full Disk y será posible ver las nubes en la parte de día. De FDCF hay un producto cada 10 minutos, lo mismo para MCMIPF, y además coinciden exactamente en tiempo, por lo cual es un emparejamiento sencillo. Tener un producto cada 10 minutos implica cinco pares por hora, lo que son 144 pares de imágenes en un día. Hay opciones para poder elegir, en vez de toda la serie temporal completa, solo el primer par de imágenes de cada hora; entonces, en vez de 144 imágenes en un día son 24.
 
+El usuario tendrá opción de visualizar los productos en WGS84, Mercator y GOES original. Se encuentra un gran conjunto de opciones para los mapas, y hay botones para generar screenshots y un video MP4 para la serie temporal.
+Hay también un control para poder pasar frame por frame la serie temporal con un delay específico.
+
 ```{=latex}
 \begin{figure}[htbp]
 \centering
@@ -201,27 +204,53 @@ El viewer de temperatura muestra un procesamiento de FDCF que es propiamente el 
 
 \newpage
 
-Es realmente revelador ver los productos procesados en el visualizador. Al ver una serie de tiempo el usuario puede entender rápidamente la importancia de no olvidar la geometría de adquisición y la categoría Glich a la hora de monitorear focos de calor con GOES. Personalmente considero esta aplicación una de las visualizaciones más enriquecedoras de la tesis. Fácilmente el usuario podrá ver cómo zonas con focos de calor detectados son enmascaradas a zonas Glich a medida que la Tierra gira, lo cual no implica que el foco de calor haya cesado, sino que no es posible detectarlo en Glich. 
+Es realmente revelador ver los productos procesados en el visualizador. 
+
+El primer detalle es poder ver el brillo atmosférico en diferentes productos de LegionGOES.
+```{=latex}
+\begin{figure}[htbp]
+\centering
+
+\includegraphics[width=1\linewidth]{chapter04_legionGOES/img/img29_trio.png}
+
+
+\caption{Ejemplo de la relación entre brillo atmosférico y categoría \texttt{Glich} en productos utilizados por LegionGOES. A la izquierda se muestra el contexto en true color sintético, a la derecha la clasificación del producto FDCF y, en el centro, la superposición espacial entre la zona de brillo atmosférico y la región clasificada como \texttt{Glich}.}
+\label{fig-legiongoes-home}
+\end{figure}
+```
+
+Al ver una serie de tiempo el usuario puede entender rápidamente la importancia de no olvidar la geometría de adquisición y la categoría Glich a la hora de monitorear focos de calor con GOES. Personalmente considero esta aplicación una de las visualizaciones más enriquecedoras de la tesis. Fácilmente el usuario podrá ver cómo zonas con focos de calor detectados son enmascaradas a zonas Glich a medida que la Tierra gira, lo cual no implica que el foco de calor haya cesado, sino que no es posible detectarlo en Glich. 
 
 ```{=latex}
 \begin{figure}[htbp]
 \centering
 
-\includegraphics[width=0.4\linewidth]{chapter04_legionGOES/img/img27_pos01.png}
-\includegraphics[width=0.4\linewidth]{chapter04_legionGOES/img/img27_pos02.png}
-\includegraphics[width=0.4\linewidth]{chapter04_legionGOES/img/img27_pos03.png}
+\includegraphics[width=0.4\linewidth,trim={7cm 5cm 10cm 6cm},clip]{chapter04_legionGOES/img/img27_pos01.png}
+\includegraphics[width=0.4\linewidth,trim={7cm 5cm 10cm 6cm},clip]{chapter04_legionGOES/img/img27_pos02.png}
+\includegraphics[width=0.4\linewidth,trim={7cm 5cm 10cm 6cm},clip]{chapter04_legionGOES/img/img27_pos03.png}
 
 
-\caption{Ejemplo del Viewer de focos de calor y fuego en WGS84, Mercator y proyección GOES original. La visualización permite recorrer la serie temporal y contrastar el comportamiento del producto en distintas proyecciones.}
+\caption{Secuencia de una misma región observada en distintos momentos, donde puede apreciarse cómo sectores previamente clasificados como focos de calor pasan a quedar cubiertos por la zona \texttt{Glich} a medida que cambia la geometría de adquisición. La figura ilustra que la desaparición de una detección no siempre implica el cese del evento térmico, sino una limitación del producto asociada a las condiciones de observación.}
+\label{fig-legiongoes-home}
+\end{figure}
+```
+
+\newpage
+Con un poco más de atención sobre la serie de tiempo, un usuario con un poco más de experiencia en GIS podrá visualizar también cómo el algoritmo cambia la clasificación de los píxeles cuando un píxel de día pasa a noche o al estar más cerca del punto subsolar.
+
+
+```{=latex}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.4\linewidth,trim={14cm 5cm 20cm 6cm},clip]{chapter04_legionGOES/img/img28_pos01.png}
+\includegraphics[width=0.4\linewidth,trim={14cm 5cm 20cm 6cm},clip]{chapter04_legionGOES/img/img28_pos02.png}
+
+\caption{Ejemplo de cómo cambia la clasificación del pixel al estar más cerca del glinch. Notar cómo los pixeles de la costa de Brasil cambian su categoría al acercarse la zona Glinch.}
 \label{fig-legiongoes-home}
 \end{figure}
 ```
 
 
-Con un poco más de atención sobre la serie de tiempo, un usuario con un poco más de experiencia en GIS podrá visualizar también cómo el algoritmo cambia la clasificación de los píxeles cuando un píxel de día pasa a noche o viceversa.
-
-El usuario tendrá opción de visualizar los productos en WGS84, Mercator y GOES original. Se encuentra un gran conjunto de opciones para los mapas, y hay botones para generar screenshots y un video MP4 para la serie temporal.
-Hay también un control para poder pasar frame por frame la serie temporal con un delay específico.
 
 \newpage
 
@@ -237,6 +266,8 @@ Hay un botón rápido que, al hacer clic, conecta a LegionGOES con el servidor A
 \label{fig-legiongoes-home}
 \end{figure}
 ```
+
+\newpage
 
 #### Nubes - Viewer
 El viewer solo permite visualizar archivos que hayan sido previamente descargados y procesados con las aplicaciones de Downloader y Processing de LegionGOES específicamente para la actividad meteorológica nubes.
@@ -360,8 +391,8 @@ Esta es una parte de ese código que resultó sumamente interesante. Es una apli
 \begin{figure}[htbp]
 \centering
 
-\includegraphics[width=0.5\linewidth]{chapter04_legionGOES/img/img25_mix.png}
-\includegraphics[width=0.5\linewidth]{chapter04_legionGOES/img/img26_mix.png}
+\includegraphics[width=0.4\linewidth]{chapter04_legionGOES/img/img25_mix.png}
+\includegraphics[width=0.4\linewidth]{chapter04_legionGOES/img/img26_mix.png}
 
 
 \caption{Ejemplos de salidas de la solapa Extra, donde se reúnen procesamientos alternativos basados en MCMIPF para distintas temáticas meteorológicas y fines exploratorios.}
@@ -372,15 +403,10 @@ Esta es una parte de ese código que resultó sumamente interesante. Es una apli
 
 ## Productos de salida: PNG, TIFF, MP4, CSV y otros formatos
 
-Uno de los rasgos distintivos de LegionGOES es que concede mucha importancia a las formas de presentación final. El sistema no se detiene en el archivo procesado como resultado último, sino que busca derivar salidas gráficas que puedan ser consultadas, compartidas o reutilizadas. En la estructura actual del proyecto aparecen explícitamente archivos PNG, GIF, MP4 y aplicaciones que permiten exportar capturas o paquetes de resultados.
+Un PNG puede ser suficiente para documentar una situación concreta. Un GIF o un video puede ser más útil para comunicar evolución temporal. Un archivo tiff puede ser utilizado sobre otro sistema GIS. Un visor interactivo permite comparar proyecciones, activar fondos, revisar capas o elegir ventanas temporales específicas. Esta multiplicidad de salidas es una extensión natural del objetivo principal del sistema: convertir información satelital en productos comprensibles y útiles.
 
-Esta orientación tiene una justificación metodológica. En un entorno de monitoreo, el dato procesado no siempre es el objeto más adecuado para el usuario final. Muchas veces se requiere una imagen limpia, una secuencia temporal corta, una composición con contexto cartográfico o una capa que pueda ser inspeccionada rápidamente en una app local. Por eso, LegionGOES da tanta relevancia a formatos intermedios y finales de comunicación visual.
 
-Asimismo, la diversidad de presentaciones responde a distintos modos de lectura. Un PNG puede ser suficiente para documentar una situación concreta. Un GIF o un video puede ser más útil para comunicar evolución temporal. Un visor interactivo permite comparar proyecciones, activar fondos, revisar capas o elegir ventanas temporales específicas. Esta multiplicidad de salidas es una extensión natural del objetivo principal del sistema: convertir información satelital en productos comprensibles y útiles.
-
-En síntesis, LegionGOES se plantea como una plataforma en la que los productos GOES no son un fin en sí mismos, sino el punto de partida para construir resultados interpretables, navegables y transferibles a distintos contextos de uso.
-
-Los archivos procesados por LegionGOES desde la aplicación de procesación habitan en el disco rígido del usuario, y pueden ser utilizados directamente en otros programas, sin restricciones.
+Los archivos descargados y procesados mediante el uso de LegionGOES pro sus correspondientes aplicaciones downloader y processing  habitan en el disco rígido del usuario, y pueden ser utilizados directamente en por programas, sin restricciones.
 
 ## Referencias del capítulo {.unnumbered}
 
