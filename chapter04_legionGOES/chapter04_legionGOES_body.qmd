@@ -1,34 +1,85 @@
-# Planteo general de LegionGOES
+# Necesidades GIS y usuarios GIS
 
-## Definición de LegionGOES
-En forma corta y simple, LegionGOES es un programa que descarga, procesa y permite visualizar productos generados a partir de imágenes GOES para las temáticas Temperatura en Superficie, Focos de calor, Nubes y Tormentas Eléctricas [@goes_lst; @goes_fire; @goes_cmi; @goes_lightning].
+A grandes razgos vale la pena decir que las temáticas abordadas por LegionGOES son de interés públicos de manera constante, todos los días. Los procesamientos de GOES serían últiles para los servicios metereológicos de todo el país, instituciones agropecuarias como el INTA, organsismos como cámaras de cereales e industria, aeropuertos, aseguradoras y ejército. En todos ellos la necesidad de información GOES procesada ocurre todos los días, y seguirá ocurriendo de esa manera. Remarquemso que solo en Argentiuna hay un servicio metereológico nacional y al menos un servicio metererológico por provincia, sin contar las universidades y grupos de investigación que utilizan GOES.
 
-Una definición un poco más detallada es que LegionGOES puede definirse como un sistema local de descarga, procesamiento y visualización de productos satelitales de la serie GOES, orientado a construir salidas predeterminadas que permitan observación, exploración y operación, teniendo como soporte un ecosistema de software basado en Python y R/Shiny, y otros programas accesorios con un fuerte hincapié en la visualización de series temporales.
 
-Desde una perspectiva funcional, pueden reconocerse cuatro objetivos específicos. El primero es automatizar la relación con los datos de origen, es decir, localizar y descargar archivos pertinentes de la constelación GOES. El segundo es procesar esos archivos según reglas específicas por producto y por actividad. El tercero es convertir los resultados en objetos visuales entendibles, tales como PNG, GIF o video. El cuarto es ofrecer aplicaciones donde el usuario pueda consultar, combinar y exportar estos resultados sin quedar expuesto a la complejidad completa del procesamiento interno.
+Las mismas necesidades ocurren en todos los países del mundo. Mínimamente, los países alcanzados por el full disk de  GOES EAST son 35, y cada uno de ellos con instituciones metereológicoas, elementos gubertamentales destinados a los recursos naturales y agrícolas, aeropuesto sy ejército, universidades y grupos de investigación.
 
-Estos objetivos muestran que LegionGOES no se limita a la etapa de análisis ni a la etapa de publicación. Aspira a cubrir el recorrido completo entre dato satelital y producto utilizable.
 
-```{=latex}
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=1\linewidth]{chapter04_legionGOES/img/img01_legion_sistema.png}
-\caption{Componentes principales del entorno de software distribuido junto con LegionGOES, incluyendo lenguajes, librerías y programas auxiliares necesarios para su funcionamiento reproducible.}
-\label{fig-legiongoes-home}
-\end{figure}
-```
+Lso profeisonales GOES que trabajan sobre el monitoreo metereológico y utilizan GOES es realmente muy grande. El usuario final de  LegionGEOS son los Profesionales GIS, tanto del sector público como privado que buscan una fuente estandarizada para procesamiento de información satelital GOES con la finalidad de analizar temáticas metereológicas y así satisfacer las necesidades de sus organiizaciones o de sus proyectos, ya sean proyectos científicos, técnicos,  laborales y/o académicos. En este contexto lo proporcionado por el software podría ser exactamente lo que el profesional busca, ser un puntapie inicial sobre lo que se puede generar, ser un iniciador de ideas, o ser un nuevo punto de partida tomando los procesamiento de LegionGOEOS para generar otros elementos de reportería.  
 
-## Estructura interna general
-En la implementación, el código Python se organiza en torno a productos GOES y temáticas de monitoreo que agrupan ciertos productos; el código R se organiza en torno a aplicaciones y visores; el instalador distribuye software, código, recursos y un sistema de carpetas para conservar un orden entre datos crudos, datos procesados y recursos de presentación. Para cada lenguaje su código se presenta en el formato de librerías de cada código.
 
-En la computadora del usuario coexisten dos carpetas. Una contiene todo el software y la otra es el laboratorio de trabajo donde se encuentran los archivos descargados y procesados. LegionGOES solo trabaja desde esas carpetas. No es posible para el usuario levantar archivos GOES desde otras posiciones, ni levantar procesamientos generados externamente.  Para que ocurra la coherencia de todas las series temporales, con todos los bemoles que tiene el contexto, el sistema obliga al usuario a trabajar de una manera muy ordenada. Incluso el nombre de cada archivo GOES y la sucesión de carpetas en la cual el archivo está guardado es información importante que debe mantenerse ordenada y estable. Limitar al usuario en este caso es una acción preventiva de errores graves.
 
-Todos los entornos de trabajo de LegionGOES son visualizadores de mapas web leaflet de R, con la posibilidad de utilizar diferentes mapas de fondo que son obtenidos online. Existen también recursos locales como son como archivos vectoriales relacionados con los límites internacionales y mapas en formato PNG de buena resolución para tener una fuente de recursos locales independiente de los recursos que son tomados online. El procesamiento de las imágenes GOES toma recursos locales preestablecidos como son las grillas para las geotransformaciones de manera de minimizar el tiempo de procesamiento.´
+
+# Premisas, Arquitectura y Diseño
+
+## Premisas
+Desde una perspectiva funcional, pueden reconocerse cuatro premisas que el software debe alcanzar.  
+1) Automatizar la relación con los datos de origen, es decir, localizar y descargar archivos pertinentes de la constelación GOES para las temáticas abordadas.  
+2) Procesar esos archivos según reglas específicas por producto satelital y por actividad bajo monitoreo.  
+3) Convertir los resultados en objetos visuales entendibles, tales imágenes, videos, reportes y entornos de visualización.  
+4) El cuarto es ofrecer aplicaciones donde el usuario pueda consultar, combinar y exportar estos resultados sin quedar expuesto a la complejidad completa del procesamiento interno.
+
+Estas premisas manifiestan que LegionGOES aspira a cubrir el recorrido completo entre dato satelital y producto utilizable o reportería.
+
+
+## Requerimientos de arquitectura
+El lineamiento general de la estructura internal del programa son;
+
+- Realizar el procesamiento de imágenes satelitales con Python.
+- Utilizar caches locales permanentes y temporales para agilizar los tiempos de procesamiento.
+- Utilizar R/Shiny para desarrollar la interfaz del usuario, con la posibilidad de utilizar dentro de Shiny código HTML, CSS y JavaScript.
+- Organizar el código en librerías de Python y R según corresponda.
+- El usuario contará con dos carpetas de referencia, una exclusivamente con el programa y otra donde guardar las descargas y procesamientos generados.
+- Se prestará particular atención a la relación entre las series de series de tiempo, las temáticas metereológicas y los productos satelitales.
+- Al ser los metadatos sumamente importantes, se impondrán restricciones al usuario para solo trabajar en LegionGOES con los archivos que hayan sido descargados y procesados dentro de LegionGOES.
+- El programa debe correr al menos en Windows, y de ser posible también en Linux.
+- Reproduciibilidad, transparencia y software libre.
+
+En la implementación, el código Python se organiza en torno a productos GOES y las temáticas de monitoreo que agrupan ciertos productos. El código R se organiza en torno a aplicaciones y visores. El código Python está más cerca de las imágenes satalitales mientras R está más cerca del usuario.
+
+Tanto R como Python sirven para el procesamiento de imágenes satelitales. Consideré una buena práctica que todo el procesamiento satelital esté solo en un lenguaje con la intención de facilitar que en el futuro profesionales puedan visualizar y entender el código de procesamiento de manera más sencilla. La elección de Python como núcleo central del procesamiento de imágenes satelites se toma por la cantidad de código python disponible en internet y por los buenos resultados obtenidos en pruebas que realice mediante la utilización de las librerías que existen para tal fin como numpy, xarray, netCDF4, satpy, cartopy, matplotlib, scipy, pyresample entre otros. 
+
+La decisión de R/Shiny como entorno de visualización se basa en que el tesista es programador R/Shiny hace varios años. Shiny es una librería originada para  R que proprociona la posibilidad de generar entornos web. Actualmente python también cuenta con una librería shiny que intenta cubrir las mismas prestaciones en Python, pero tiene un mayor grado  de madurez la librería Shiny en R.
+
+Luego de la instalación de LegionGOES en la comoputadora del usuario coexisten dos carpetas. Una contiene todo el software y la otra es el laboratorio de trabajo donde se encuentran los archivos descargados y procesados. LegionGOES solo trabaja desde esas carpetas. No es posible para el usuario levantar archivos GOES desde otras posiciones, ni levantar procesamientos generados externamente.  Para que ocurra la coherencia de todas las series temporales, con todos los bemoles que tiene el contexto, el sistema obliga al usuario a trabajar de una manera muy ordenada. Ocurre que incluso el nombre de cada archivo GOES y la sucesión de carpetas en la cual el archivo está guardado es información importante que debe mantenerse ordenada y estable. Limitar al usuario en este caso es una acción preventiva de errores graves.
 
 Quien haya trabajado con GOES alguna vez ha podido apreciar la cantidad de información temporal asociada al nombre de cada producto e incluso a las carpetas y subcarpetas si se ha realizado la descarga de manera sistemática.
 Esta lógica temporal que aparece explícita en los archivos GOES se mantiene tanto en el procesamiento como en la interfaz. De esta manera, la serie temporal no es solo una forma de visualizar el resultado final, sino que es el principio organizador que conecta adquisición, procesamiento, emparejamiento de productos y comunicación visual.
 
-Para cada temática, en el nivel de datos, el sistema usa marcas temporales contenidas en los nombres oficiales de los archivos GOES y de las subcarpetas, y organiza reglas de emparejamiento utilizando expresiones regulares. 
+Para cada temáticabajo monitoreo, en el nivel de datos, el sistema usa marcas temporales contenidas en los nombres oficiales de los archivos GOES y de las subcarpetas, y organiza reglas de emparejamiento utilizando expresiones regulares. 
+
+La decisión de priorizar un programa que corra en Windows sobre Linux es debido a que hay más usuarios Windows. Se dispondrán esfuerzos en el futuro para tener tmabién una versión en Linux.
+
+En lo referido a reproducibilidad, transparencia y software libre es un tema muy importante que será tratado varias veces durante el desarrollo de la tesis.
+
+## Requerimientos del Diseño
+El diseño de LegionGOES tiene un conjunto de ideas que tienen que ver 
+En esta sección detallamos las ideas iniciales que debía respetar el diseño de legionGOES. 
+
+- Incluir toda la cadena de análisis incluyendo la descarga de las imágenes satelitales
+- Una interfaz de usuario visualmente agradable.
+- Guiar al usuario dentro del programa pensando en temáticas meteorológicas y no en temáticas informáticas o satelitales.
+- Maximizar es espacio de visualización
+- Visualización de series de tiempo.
+- Permitir de alguna manera que el usuario pueda acomodar los objetos en pantalla al menos en algunas de las herramientas para que el usuario pueda.
+- Obtesión de screenshots y la generación de videos mp4 sin la necesidad de salir del programa.
+- Incluir recursos online para contar con mapas y capas vectoriales. Por ejemplo ESRI de 50cm de pixel.
+- Incluir recursos locales para contar con mapas y capas vectoriales para tener opciones no dependientes de internet.
+- Permitir al usuario que los productos procesados puedan ser descargados o en caso de encontrarse localmente, orientar al usuario a encontarlos.
+- En todo momento el software debe ser claro en cuanto a si se encuentra o no realizando una actividad. Si programa debe manifestar de manera evidente si se encuentra descargando, procesando, o si esas acción han finalizado ya de manera exitosa o con errores.
+
+
+A través de los servidores de AWS el usuario cuenta con la enorme ventaja de no necesitar usaurio y contraseña para ser descargadas, y tampoco cuentan con límite de descarga.
+
+Todos los entornos de trabajo de LegionGOES son visualizadores de mapas web leaflet de R, con la posibilidad de utilizar diferentes mapas de fondo que son obtenidos online. Existen también recursos locales como son como archivos vectoriales relacionados con los límites internacionales y mapas en formato PNG de buena resolución para tener una fuente de recursos locales independiente de los recursos que son tomados online. 
+
+Lo ya detallado en el Estado del Arte son justificaciones en relación a las decisiones de buscar  la  maximización de la visualización.
+
+La posibilidad de generar videos mp4 sin tener que salir a buscar otro software lo consideré la evolución que a futuro debería tener cualquier software GIS. El software presentado al usuario por temáticas meterelógicas y no por temática satelital o informática, es también la evolución natural esperada para los entornos de trabajos GIS.
+En este sentido esperamos que LegionGOES sea el primero de muchos software con estas características.
+
+En general la descarga, el procesameinto  y la visualización no  son instantáneos, al contrario a veces demoran muchoo tiempo. En general los software no dan mucha comunicación al usuario sobre es estado del proceso y lleva al usuario a tener serias dudas de si la acción indicada está siendo ejecutado y necesita  más tiempo, en qué paso se encuentra efectivametne, o si el sistema colapso y está freezado. Para evitar las dudas del usuario todas las aplicaciones de  LegionGOES otorgan al usuario una consola de comunicación sobre qué actividad está realizando el programa. La consola no es un espacio para dar indicaciones escritas, sino un espacio netamente informativodonde el usuario puede leer lo que va ocurriendo. De esa manera el usuario siempre sabe si la acción indicada está transcurriendo y si ha finalizado saber si ha sido con con éxito o con algún error. Algunas aplicaciones también tienen carteles emergentes para dar aviso al usuario de que las opciones elegidas en los menús fueron aplicadas.
 
 
 ## Reproducibilidad y componentes de software
@@ -46,19 +97,57 @@ El instalador incluye:
 ```{=latex}
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=1\linewidth]{chapter04_legionGOES/img/img03_software.png}
+\includegraphics[width=0.8\linewidth]{chapter04_legionGOES/img/img03_software.png}
 \caption{Logo del proyecto LegionGOES.}
 \label{fig-legiongoes-home}
 \end{figure}
 ```
 
-La estandarización y reproducibilidad también debían ocurrir en cuanto a la visualización que tiene el usuario. La decisión del entorno web como interfaz trajo consigo problemas y variabilidad en la visualización al abrir LegionGOES en diferentes navegadores o en diferentes versiones de un mismo navegador. Esto fue resuelto agregando un navegador web Chrome al instalador [@chrome].
+
+La decisión del entorno web como interfaz trajo consigo problemas y variabilidad en la visualización al abrir LegionGOES en diferentes navegadores o en diferentes versiones de un mismo navegador. La estandarización y reproducibilidad también debían ocurrir en cuanto a la visualización que tiene el usuario. Esto fue resuelto agregando un navegador web Chrome al instalador [@chrome].
 
 La decisión de dotar a LegionGOES de la capacidad de generar videos MP4 se intentó primero utilizando recursos propios de Chrome. En este sentido algunos de los usuarios de testing manifestaron serios problemas relacionados con el uso de RAM. Se intentó también hacerlo desde R y Python, pero ocurrían errores inespecíficos en algunas computadoras que indicaban que esas computadoras necesitaban instalar un software específico para tal fin. Se logró una solución total al agregar el programa FFmpeg como parte del instalador de LegionGOES [@ffmpeg].
 
 La decisión de dotar a LegionGOES con la capacidad de brindar reportes automatizados HTML y PDF en algunas partes del programa se logró de buena manera al agregar un Quarto portable al instalador [@quarto].
 
 Todo este paquete de software es independiente del resto del software que el usuario posea en su computadora. Logramos entonces un entorno aislado sin tener que cambiar entre diferentes versiones de Python, de R o de cualquiera de sus librerías. Al estandarizar todos los componentes de software y evitar que ocurran siquiera diferentes versiones de librerías, los errores inespecíficos disminuyeron drásticamente. También llega al máximo posible la reproducibilidad.
+
+
+# Software LegionGOES
+
+## Definición de LegionGOES
+En forma corta y simple, LegionGOES es un programa que descarga, procesa y permite visualizar productos generados a partir de imágenes GOES para las temáticas Temperatura en Superficie, Focos de calor, Nubes y Tormentas Eléctricas [@goes_lst; @goes_fire; @goes_cmi; @goes_lightning].
+
+Una definición un poco más detallada es que LegionGOES puede definirse como un sistema local de descarga, procesamiento y visualización de productos satelitales de la serie GOES, teniendo como soporte un ecosistema de software basado en Python y R/Shiny, y otros programas accesorios con un fuerte hincapié en la visualización de series temporales.
+
+
+
+```{=latex}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=1\linewidth]{chapter04_legionGOES/img/img01_legion_sistema.png}
+\caption{Componentes principales del entorno de software distribuido junto con LegionGOES, incluyendo lenguajes, librerías y programas auxiliares necesarios para su funcionamiento reproducible.}
+\label{fig-legiongoes-home}
+\end{figure}
+```
+
+
+## Requerimientos de entorno
+- Windows 7 o superior.
+- 4 Gb de Ram o superior.
+- Tarjeta  gráfica de 512 Mb o superior.
+
+
+Los requisitos mínimos de software y hardware están asociados a la posibilidad de instalar R y Python en las versiones mencionadas y en poder instalar librerías geoespaciales de manera correcta.
+
+
+## Aplicaciones dentro de LegionGOES
+Al momento de escribir esta tesis, LegionGOES se encuentra en su versión 0.7.2 y cuenta con una estruuctura modular separada en 15 aplicaciones R/Shiny. Una de las aplicaciones es el Home propiamente dicho, y 14 aplicaciones son llamadas desde el HOME a pedido del usuario.
+
+
+
+# Aplicaciones dentro de LegionGOES
+
 
 ## Aplicaciones "Operative" y aplicaciones "Viewer"
 Vamos a dar espacio a una división importante en la concepción del procesamiento y visualización de LegionGOES, que intenta dar respuesta a diferentes necesidades del usuario.
@@ -84,14 +173,9 @@ Las funciones de procesamiento asociadas a las herramientas operative son un sub
 
 Como hemos dicho, el viewer no realiza descarga ni procesamiento de las imágenes GOES originales. Puede ocurrir algún procesamiento accesorio, como la generación de screenshots, MP4 y reportes, y en tal caso son generados en carpetas temporales cuyo contenido es borrado al cerrar el software.
 
-## Comunicación con el usuario
-Todas las aplicaciones otorgan al usuario una consola de comunicación sobre qué actividad está realizando el programa. En este caso, la consola no es un espacio para dar indicaciones escritas, sino que el usuario solo puede leer lo que va ocurriendo. De esa manera, el usuario siempre sabe si la acción indicada está transcurriendo o ha finalizado con éxito o con algún error.
 
-Algunas aplicaciones también tienen carteles emergentes para dar aviso al usuario de que las opciones elegidas en los menús fueron aplicadas.
 
 ## Home
-Al momento de escribir esta tesis, LegionGOES se encuentra en su versión 0.7.2 y cuenta con 15 aplicaciones Shiny.
-Una de las aplicaciones es el Home propiamente dicho, y 14 aplicaciones están destinadas a GOES.
 
 El Home presenta visualmente dos columnas. La columna izquierda da detalles informativos al usuario sobre la versión de LegionGOES, el grupo de trabajo y cómo citarlo. Es claro que al momento de escribir esta tesis el programa aún no fue publicado, pero ya se tiene una idea de la estructura final del programa. En la columna derecha se encuentran todas las aplicaciones disponibles para el usuario. Al seleccionar alguna aplicación, esta se abre en una nueva ventana. Es importante decir que la ventana de LegionGOES es un navegador web, por lo tanto puede ajustarse el formato de visualización apretando la tecla Control y la rueda del mouse, como se hace con cualquier navegador web.
 
