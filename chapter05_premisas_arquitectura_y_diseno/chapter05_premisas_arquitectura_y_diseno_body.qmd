@@ -1,0 +1,88 @@
+# Premisas, Arquitectura y Diseño
+
+## Premisas
+Desde una perspectiva funcional, pueden reconocerse cuatro premisas que el software debe alcanzar.  
+1) Automatizar la relación con los datos de origen, es decir, localizar y descargar archivos pertinentes de la constelación GOES para las temáticas abordadas.  
+2) Procesar esos archivos según reglas específicas por producto satelital y por actividad bajo monitoreo.  
+3) Convertir los resultados en objetos visuales entendibles, tales imágenes, videos, reportes y entornos de visualización.  
+4) El cuarto es ofrecer aplicaciones donde el usuario pueda consultar, combinar y exportar estos resultados sin quedar expuesto a la complejidad completa del procesamiento interno.
+
+Estas premisas manifiestan que LegionGOES aspira a cubrir el recorrido completo entre dato satelital y producto utilizable o reportería.
+
+
+## Requerimientos de arquitectura
+El lineamiento general de la estructura internal del programa son;
+
+- Realizar el procesamiento de imágenes satelitales con Python.
+- Utilizar caches locales permanentes y temporales para agilizar los tiempos de procesamiento.
+- Utilizar R/Shiny para desarrollar la interfaz del usuario, con la posibilidad de utilizar dentro de Shiny código HTML, CSS y JavaScript.
+- Organizar el código en librerías de Python y R según corresponda.
+- El usuario contará con dos carpetas de referencia, una exclusivamente con el programa y otra donde guardar las descargas y procesamientos generados.
+- Se prestará particular atención a la relación entre las series de series de tiempo, las temáticas metereológicas y los productos satelitales.
+- Al ser los metadatos sumamente importantes, se impondrán restricciones al usuario para solo trabajar en LegionGOES con los archivos que hayan sido descargados y procesados dentro de LegionGOES.
+- El programa debe correr al menos en Windows, y de ser posible también en Linux.
+- Reproduciibilidad, transparencia y software libre.
+
+En la implementación, el código Python se organiza en torno a productos GOES y las temáticas de monitoreo que agrupan ciertos productos. El código R se organiza en torno a aplicaciones y visores. El código Python está más cerca de las imágenes satalitales mientras R está más cerca del usuario.
+
+Tanto R como Python sirven para el procesamiento de imágenes satelitales. Consideré una buena práctica que todo el procesamiento satelital esté solo en un lenguaje con la intención de facilitar que en el futuro profesionales puedan visualizar y entender el código de procesamiento de manera más sencilla. La elección de Python como núcleo central del procesamiento de imágenes satelites se toma por la cantidad de código python disponible en internet y por los buenos resultados obtenidos en pruebas que realice mediante la utilización de las librerías que existen para tal fin como numpy, xarray, netCDF4, satpy, cartopy, matplotlib, scipy, pyresample entre otros. 
+
+La decisión de R/Shiny como entorno de visualización se basa en que el tesista es programador R/Shiny hace varios años. Shiny es una librería originada para  R que proprociona la posibilidad de generar entornos web. Actualmente python también cuenta con una librería shiny que intenta cubrir las mismas prestaciones en Python, pero tiene un mayor grado  de madurez la librería Shiny en R.
+
+Luego de la instalación de LegionGOES en la comoputadora del usuario coexisten dos carpetas. Una contiene todo el software y la otra es el laboratorio de trabajo donde se encuentran los archivos descargados y procesados. LegionGOES solo trabaja desde esas carpetas. No es posible para el usuario levantar archivos GOES desde otras posiciones, ni levantar procesamientos generados externamente.  Para que ocurra la coherencia de todas las series temporales, con todos los bemoles que tiene el contexto, el sistema obliga al usuario a trabajar de una manera muy ordenada. Ocurre que incluso el nombre de cada archivo GOES y la sucesión de carpetas en la cual el archivo está guardado es información importante que debe mantenerse ordenada y estable. Limitar al usuario en este caso es una acción preventiva de errores graves.
+
+Quien haya trabajado con GOES alguna vez ha podido apreciar la cantidad de información temporal asociada al nombre de cada producto e incluso a las carpetas y subcarpetas si se ha realizado la descarga de manera sistemática.
+Esta lógica temporal que aparece explícita en los archivos GOES se mantiene tanto en el procesamiento como en la interfaz. De esta manera, la serie temporal no es solo una forma de visualizar el resultado final, sino que es el principio organizador que conecta adquisición, procesamiento, emparejamiento de productos y comunicación visual.
+
+Para cada temáticabajo monitoreo, en el nivel de datos, el sistema usa marcas temporales contenidas en los nombres oficiales de los archivos GOES y de las subcarpetas, y organiza reglas de emparejamiento utilizando expresiones regulares. 
+
+La decisión de priorizar un programa que corra en Windows sobre Linux es debido a que hay más usuarios Windows. Se dispondrán esfuerzos en el futuro para tener tmabién una versión en Linux.
+
+En lo referido a reproducibilidad, transparencia y software libre es un tema muy importante que será tratado varias veces durante el desarrollo de la tesis.
+
+## Requerimientos del Diseño
+El diseño de LegionGOES se apoya en una serie de requerimientos orientados a transformar productos satelitales complejos en herramientas de uso práctico para usuarios GIS. Estos requerimientos no se limitan al procesamiento de archivos GOES, sino que abarcan la forma en que el usuario interactúa con el sistema, comprende el estado de cada operación, visualiza los resultados y obtiene productos derivados sin depender de flujos externos.
+
+En primer lugar, el sistema debe incluir la cadena completa de trabajo: descarga, organización local, procesamiento, visualización y exportación de resultados. Esta decisión responde a una necesidad central del proyecto: evitar que el usuario deba resolver manualmente pasos técnicos dispersos antes de poder analizar una serie temporal. LegionGOES busca que la relación entre archivo original, producto procesado y salida visual quede contenida dentro de un mismo entorno de trabajo.
+
+En segundo lugar, la interfaz debe estar organizada desde la lógica de uso del profesional y no desde la estructura interna del dato satelital. Por esta razón, las herramientas se presentan según temáticas bajo monitoreo, como temperatura en superficie, focos de calor, nubes y tormentas eléctricas, y no únicamente según nombres técnicos de productos o variables. Esta forma de organización permite reducir la distancia entre la necesidad del usuario y el producto GOES que debe utilizarse para responderla.
+
+Otro requerimiento central es maximizar el espacio de visualización. En un sistema orientado a imágenes satelitales, la pantalla no debe estar dominada por menús, controles o elementos secundarios. Los controles deben estar disponibles, pero no competir con la imagen. Esta premisa explica la presencia de menús laterales, botones superiores, paneles ocultables y opciones de visualización que buscan mantener el mapa como elemento principal de trabajo.
+
+El diseño también debe facilitar la construcción y exploración de series temporales. Para ello, no alcanza con procesar imágenes individuales: es necesario ordenar fechas, emparejar productos, mantener escalas visuales comparables, permitir el avance cuadro por cuadro y generar salidas como capturas de pantalla o videos `mp4`. En LegionGOES, la serie temporal es al mismo tiempo una estructura de datos, una forma de navegación y un producto comunicacional.
+
+Asimismo, el sistema debe ofrecer recursos de visualización tanto en línea como locales. Los mapas base obtenidos desde servicios externos permiten una lectura cartográfica familiar y de buena calidad visual, mientras que los recursos locales aseguran que ciertas capas y fondos puedan seguir utilizándose aun cuando la conexión a internet sea limitada o inexistente. Esta combinación aumenta la flexibilidad del software y reduce su dependencia de servicios externos.
+
+Finalmente, el diseño debe comunicar de manera clara el estado del procesamiento. La descarga, el procesamiento, la reproyección, la generación de imágenes, la construcción de videos y la producción de reportes pueden requerir tiempos considerables. Por ello, el usuario necesita saber si el programa está trabajando, en qué etapa se encuentra, si la tarea terminó correctamente o si ocurrió un error. La consola informativa y los mensajes de estado cumplen esta función: no están pensados como espacios de programación, sino como mecanismos de transparencia operativa dentro de la interfaz.
+
+En conjunto, estos requerimientos expresan una idea central del diseño de LegionGOES: un software GIS aplicado a productos GOES no debe limitarse a ejecutar algoritmos, sino que debe construir una experiencia de uso ordenada, visual, reproducible y comprensible para transformar datos satelitales en productos técnicos utilizables.
+
+## Reproducibilidad y componentes de software
+La reproducibilidad computacional ocupa un lugar central en este trabajo porque el valor de un sistema científico y/o técnico no depende solo de sus scripts, sino también de su posibilidad de ser reinstalado, ejecutado y mantenido bajo un entorno controlado. Cuando un flujo de monitoreo depende de múltiples lenguajes, librerías geoespaciales, configuraciones locales, recursos gráficos y rutas internas, la reproducibilidad deja de ser un aspecto secundario y pasa a ser parte del aporte metodológico.
+
+LegionGOES combina Python para descarga y procesamiento, R/Shiny para interfaces interactivas y algunos procesamientos estadísticos [@python; @r_project; @shiny]. El código de Python conforma una única librería y el código de R se encuentra armado en cinco librerías diferentes, con la idea de encapsular dependencias y reducir la fragilidad.
+
+El instalador incluye:  
+- Python 3.12 y todo un conjunto de librerías asociadas [@python].  
+- R 4.5.3 y todo un conjunto de librerías [@r_project].  
+- Chrome portable [@chrome].  
+- FFmpeg (software de video) [@ffmpeg].  
+- Quarto portable (software de reportería) [@quarto].  
+
+```{=latex}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\linewidth]{chapter07_aplicaciones_dentro_de_legiongoes/img/img03_software.png}
+\caption{Logo del proyecto LegionGOES.}
+\label{fig-legiongoes-home}
+\end{figure}
+```
+
+
+La decisión del entorno web como interfaz trajo consigo problemas y variabilidad en la visualización al abrir LegionGOES en diferentes navegadores o en diferentes versiones de un mismo navegador. La estandarización y reproducibilidad también debían ocurrir en cuanto a la visualización que tiene el usuario. Esto fue resuelto agregando un navegador web Chrome al instalador [@chrome].
+
+La decisión de dotar a LegionGOES de la capacidad de generar videos MP4 se intentó primero utilizando recursos propios de Chrome. En este sentido algunos de los usuarios de testing manifestaron serios problemas relacionados con el uso de RAM. Se intentó también hacerlo desde R y Python, pero ocurrían errores inespecíficos en algunas computadoras que indicaban que esas computadoras necesitaban instalar un software específico para tal fin. Se logró una solución total al agregar el programa FFmpeg como parte del instalador de LegionGOES [@ffmpeg].
+
+La decisión de dotar a LegionGOES con la capacidad de brindar reportes automatizados HTML y PDF en algunas partes del programa se logró de buena manera al agregar un Quarto portable al instalador [@quarto].
+
+Todo este paquete de software es independiente del resto del software que el usuario posea en su computadora. Logramos entonces un entorno aislado sin tener que cambiar entre diferentes versiones de Python, de R o de cualquiera de sus librerías. Al estandarizar todos los componentes de software y evitar que ocurran siquiera diferentes versiones de librerías, los errores inespecíficos disminuyeron drásticamente. También llega al máximo posible la reproducibilidad.

@@ -60,17 +60,23 @@ resource-path:
   - chapter02_marco_conceptual_y_tecnologico/img
   - chapter03_estado_del_arte
   - chapter03_estado_del_arte/img
-  - chapter04_legionGOES
-  - chapter04_legionGOES/img
-  - chapter05_evolucion
-  - chapter05_evolucion/img
-  - chapter06_limitaciones
-  - chapter06_limitaciones/img
-  - chapter07_proyeccion_futura
-  - chapter07_proyeccion_futura/img
-  - chapter08_conclusiones
-  - chapter08_conclusiones/img
-  - chapter09_bibliografia
+  - chapter04_necesidades_gis_y_usuarios_gis
+  - chapter04_necesidades_gis_y_usuarios_gis/img
+  - chapter05_premisas_arquitectura_y_diseno
+  - chapter05_premisas_arquitectura_y_diseno/img
+  - chapter06_software_legiongoes
+  - chapter06_software_legiongoes/img
+  - chapter07_aplicaciones_dentro_de_legiongoes
+  - chapter07_aplicaciones_dentro_de_legiongoes/img
+  - chapter08_evolucion
+  - chapter08_evolucion/img
+  - chapter09_limitaciones
+  - chapter09_limitaciones/img
+  - chapter10_proyeccion_futura
+  - chapter10_proyeccion_futura/img
+  - chapter11_conclusiones
+  - chapter11_conclusiones/img
+  - chapter12_bibliografia
 ---
 
 {{< include frontmatter_caratula/caratula.qmd >}}
@@ -110,34 +116,52 @@ resource-path:
 
 
 
-{{< include chapter04_legionGOES/chapter04_legionGOES_body.qmd >}}
+{{< include chapter04_necesidades_gis_y_usuarios_gis/chapter04_necesidades_gis_y_usuarios_gis_body.qmd >}}
 
 ```{=latex}
 \clearpage
 ```
 
-{{< include chapter05_evolucion/chapter05_evolucion_body.qmd >}}
+{{< include chapter05_premisas_arquitectura_y_diseno/chapter05_premisas_arquitectura_y_diseno_body.qmd >}}
 
 ```{=latex}
 \clearpage
 ```
 
-{{< include chapter06_limitaciones/chapter06_limitaciones_body.qmd >}}
+{{< include chapter06_software_legiongoes/chapter06_software_legiongoes_body.qmd >}}
 
 ```{=latex}
 \clearpage
 ```
 
-{{< include chapter07_proyeccion_futura/chapter07_proyeccion_futura_body.qmd >}}
+{{< include chapter07_aplicaciones_dentro_de_legiongoes/chapter07_aplicaciones_dentro_de_legiongoes_body.qmd >}}
 
 ```{=latex}
 \clearpage
 ```
 
-{{< include chapter08_conclusiones/chapter08_conclusiones_body.qmd >}}
+{{< include chapter08_evolucion/chapter08_evolucion_body.qmd >}}
 
 ```{=latex}
 \clearpage
 ```
 
-{{< include chapter09_bibliografia/chapter09_bibliografia_body.qmd >}}
+{{< include chapter09_limitaciones/chapter09_limitaciones_body.qmd >}}
+
+```{=latex}
+\clearpage
+```
+
+{{< include chapter10_proyeccion_futura/chapter10_proyeccion_futura_body.qmd >}}
+
+```{=latex}
+\clearpage
+```
+
+{{< include chapter11_conclusiones/chapter11_conclusiones_body.qmd >}}
+
+```{=latex}
+\clearpage
+```
+
+{{< include chapter12_bibliografia/chapter12_bibliografia_body.qmd >}}
