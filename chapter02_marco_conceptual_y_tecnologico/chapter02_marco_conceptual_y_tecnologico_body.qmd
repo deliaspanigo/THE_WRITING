@@ -113,6 +113,16 @@ Del conjunto de productos `L2-Full Disk` disponibles, LegionGOES trabaja con cua
 - `GLM-L2-LCFA`, producto vectorial o tabular vinculado al mapeo de actividad eléctrica.
 
 ```{=latex}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=1\linewidth]{chapter02_marco_conceptual_y_tecnologico/img/img01_productos_tematicas_goes_r.png}
+\caption{Relación conceptual entre la serie GOES-R, los productos utilizados por LegionGOES y las temáticas bajo monitoreo. Las flechas sólidas indican la asociación principal entre producto y temática, mientras que las flechas discontinuas muestran el uso transversal de \texttt{ABI-L2-MCMIPF} como producto de contexto visual para distintas herramientas del sistema.}
+\label{fig-productos-tematicas-goes-r}
+\end{figure}
+```
+
+
+```{=latex}
 \begin{center}
 \begin{tabular}{lllll}
 \hline

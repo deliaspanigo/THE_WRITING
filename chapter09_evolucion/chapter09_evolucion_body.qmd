@@ -21,27 +21,15 @@ Primero se realizaron cambios para procesar GOES-16 y GOES-19. Luego, esa decisi
 Esta ampliación de alcance fue el motivo del nombre: no se trataba de un único GOES, sino de muchos. Una legión de satélites GOES. Y finalmente, LegionGOES.
 El logo pasó por muchos modelos. Se buscó siempre un hexagono, y de apariencia a los parches que se ven para las misiones espaciales. Fue generado con inteligencia artificial.
 
-## De procesador satelital a interfaz de usuario
-
-El procesamiento satelital era una parte esperada del proyecto, pero no es una novedad ya que después de todo ya existe código para procesar imágenes GOES. La novedad de LegionGOES no son las temáticas bajo monitoreo ni el código Python de procesamiento sino en cómo organizar esa capacidad dentro de una interfaz pensada para usuarios que necesitan observar, explorar y producir salidas.
-
-Desde etapas tempranas aparecieron algunos criterios de diseño:
-- Entorno web sí o sí.
-- Maximizar el espacio de visualización, con una interfaz más cercana a un visualizador satelital como SLIDER que a un QGIS.
-- Facilitar la visualización de series temporales.
-- Permitir la visualización en diferentes proyecciones.
-- Dar al usuario la posibilidad de descargar procesamientos generados y obtener videos `mp4` para series temporales.
-- Favorecer reproducibilidad y transparencia mediante código organizado en librerías, repositorios y componentes reutilizables.
-- Ordenar el trabajo por temática bajo monitoreo y no solamente por producto, archivo o estructura informática.
-
-
 ## El límite del servidor y el giro hacia un instalador
 
 El desarrollo del software de procesamiento y de interfaz permitió alcanzar una versión susceptible de ser colocada en un servidor. Se realizaron pruebas en red local perfectamente. Sin embargo, al buscar una infraestructura real para sostener el sistema, apareció una dificultad central: no fue posible contar con un servidor adecuado sin asumir costos importantes.
 
-Esta dificultad es razonable. El procesamiento satelital demanda almacenamiento, cómputo, transferencia de datos y mantenimiento. Servidores institucionales no hay disponibles para un proyecto que implica descarga y procesamiento satelital. Hay un tema también de seguridad institucional para estos temas que en general un profesional GIS ignora.
+Esta dificultad es razonable. El procesamiento satelital demanda almacenamiento, cómputo, y transferencia de datos. Servidores institucionales no hay disponibles. En caso de existir servidores disponbiles debe ser un servidor que pueda soportar el procesamiento satelital y el volumen de archivos descargados y alojados en disco que es de al menos 67Gb por día. Hay un tema también de seguridad institucional para estos temas que en general un profesional GIS ignora.
 
-A partir de ese límite surgió la idea de construir un programa instalable. Un instalador permitía evitar la dependencia de un servidor para mostrar el procesamiento, trasladar el cómputo a la computadora del usuario y fortalecer una idea de reproducibilidad más directa: todo el proceso puede ocurrir en la computadora del usuario.
+La ideia de realizar esta tarea con Google Earth Engine nunca fue si quiera tenida en cuenta. Se buscaba si o si la posibilidad de tener toda la flexibilidad posible y eso debía ocurrir con Python, R y un entorno web. Además las limitacioens de procesamiento de GEE están muy por debajo  de las espectativas que se  tenían para el prouyecto.
+
+A partir de carencia de servidor surgió la idea de construir un programa instalable. Un instalador permitía evitar la dependencia de un servidor para mostrar el procesamiento, trasladar el cómputo a la computadora del usuario y fortalecer una idea de reproducibilidad más directa: todo el proceso puede ocurrir en la computadora del usuario.
 
 La idea del instalador no había estado presente al inicio del proyecto entre otras razones porque no formaba parte de las habilidades informáticas originales del tesista. En el ámbito GIS es frecuente encontrar procesadores en servidor, plataformas en línea, notebooks o visualizadores web, pero nunca había escuchado a alguien intentar un instalador. De hecho desde la aparición de QGIS no había tenido contacto con otros softwares GIS instalables que corran localmente. Esa decisión terminó siendo una de las características centrales de LegionGOES.
 
@@ -49,21 +37,20 @@ La idea del instalador no había estado presente al inicio del proyecto entre ot
 
 Se eligió Windows como sistema operativo objetivo porque representa el entorno más habitual para muchos usuarios técnicos y profesionales que podrían probar el software [@windows]. Además, se decidió desarrollar el sistema en inglés para alcanzar un público más amplio y reducir problemas de codificación asociados a caracteres especiales (encoding).
 
-Antes de trasladar todo LegionGOES hacia un instalador, fue necesario construir un proyecto piloto más pequeño. Comenzar directamente con el instalador de un sistema grande, con múltiples aplicaciones Shiny, librerías, rutas, dependencias y recursos gráficos, hubiera multiplicado los errores inespecíficos. El proyecto piloto permitió aprender el proceso de empaquetado, lanzamiento, aislamiento de dependencias y apertura de una aplicación web local.
+Antes de trasladar todo LegionGOES hacia un instalador, fue necesario construir un proyecto piloto más pequeño. Comenzar directamente con el instalador de un sistema grande de  procesamiento de imágenes satelitales con múltiples aplicaciones Shiny, librerías, rutas, dependencias y recursos gráficos, hubiera multiplicado los errores inespecíficos. El proyecto piloto permitió aprender el proceso de empaquetado, lanzamiento, aislamiento de dependencias y apertura de una aplicación web local.
 
-Cuando el instalador piloto funcionó, quedó claro que LegionGOES requería una reestructuración general. No se trataba simplemente de “poner el código dentro de un instalador”, sino de ordenar carpetas, rutas, librerías, recursos, ejecutables, navegadores, herramientas auxiliares y archivos temporales para que todo pudiera funcionar en computadoras externas al entorno de desarrollo.
+Cuando el instalador piloto funcionó, quedó claro que LegionGOES requería una reestructuración general. No se trataba simplemente de poner el código dentro de un instalador, sino de una reestructura notable.
 
 ## Reestructuración interna y modularidad
 
-La transición hacia un instalador produjo cambios que ya no estaban relacionados directamente con el satélite, sino con la ingeniería del software. Fue necesario minimizar tiempos de carga, verificar la existencia de componentes antes de usarlos, controlar rutas internas, aislar dependencias y reducir la fragilidad del sistema.
+La transición hacia un instalador produjo cambios que ya no estaban relacionados directamente con el satélite, sino con la ingeniería del software. Fue necesario minimizar tiempos de carga, verificar la existencia de componentes antes de habilitar un menu para usarlos, controlar rutas internas, aislar dependencias y reducir la fragilidad del sistema. También se reorganizó el código en librerías de R y Python. 
 
-Uno de los cambios estructurales más importantes fue pasar de una aplicación monolítica a una organización dividida en módulos. De una única gran aplicación Shiny, LegionGOES pasó a tener una aplicación `Home` que llama a otras aplicaciones independientes. De esa manera, cada herramienta se carga a demanda del usuario. Esta decisión disminuyó tiempos de espera, facilitó la detección de errores y permitió separar mejor las responsabilidades de cada componente.
+Uno de los cambios estructurales más importantes fue pasar de una aplicación monolítica a una organización dividida en módulos. De una única gran aplicación Shiny, LegionGOES pasó a tener una aplicación `Home` que llama a otras aplicaciones shiny independientes, y de esa manera cada herramienta se carga a demanda del usuario. Esta decisión disminuyó tiempos de espera, facilitó la detección de errores y permitió separar mejor las responsabilidades de cada componente.
 
-También se reorganizó el código en librerías de R y Python. Esta decisión no fue solamente estética: permitió encapsular funciones, separar dominios de responsabilidad, reutilizar rutinas y reducir errores derivados de copiar o modificar código de manera dispersa.
 
 ## Testing, usuarios y maduración del software
 
-Desde la primera versión instalable, el software fue compartido con un grupo de voluntarios de testing. Este paso modificó nuevamente la naturaleza del proyecto. Probar el programa en otras computadoras mostró errores que no aparecían en el entorno de desarrollo y reveló la importancia de la instalación, la experiencia de usuario, la velocidad de carga, la claridad de los mensajes y la estabilidad de cada aplicación.
+Desde la primera versión instalable, el software fue compartido con un grupo de voluntarios de testing. Este paso modificó nuevamente la naturaleza del proyecto. Probar el programa en otras computadoras mostró errores que no aparecían en el entorno de desarrollo y reveló la importancia de la experiencia de usuario, la velocidad de carga, la claridad de los mensajes y la estabilidad de cada aplicación.
 
 El testing manual implicó recorrer el proceso completo: instalación, apertura del sistema, uso de cada herramienta, navegación por menús, descarga, procesamiento, visualización y generación de salidas. Esta tarea requiere mucho tiempo porque una aplicación puede funcionar desde el punto de vista del código satelital y, sin embargo, ofrecer una mala experiencia de uso porque una ventana no se mueve o no se cierra.
 
@@ -73,9 +60,9 @@ El grupo de testing aceleró la maduración del proyecto. Sus comentarios permit
 
 ## Sentido metodológico de esta evolución
 
-La evolución de LegionGOES muestra que el desarrollo de software no es únicamente una secuencia de implementación técnica. También implica cambiar de estrategia cuando aparecen límites de infraestructura, rediseñar componentes cuando el sistema crece, separar módulos cuando una interfaz se vuelve pesada, aislar dependencias cuando la instalación falla y escuchar usuarios cuando el programa deja de ser usado solo por su desarrollador.
+La evolución de LegionGOES muestra que el desarrollo de software no es únicamente una secuencia de implementación técnica sino que también implica cambiar de estrategia cuando aparecen límites de infraestructura, rediseñar componentes cuando el sistema crece, separar módulos cuando una interfaz se vuelve pesada, tener paciencia con los errores inespecíficos que aparecen, aislar dependencias cuando la instalación falla y escuchar usuarios cuando el programa deja de ser usado solo por su desarrollador.
 
-En este sentido, la historia del proyecto forma parte del aporte de la tesis. LegionGOES no fue pensado y armado en seis meses ni surgió como una aplicación final desde el primer intento. La cantidad de horas destinada al desarrollo fue muy superior a la estipulada para una tesis de maestría, y eso fue una decisión personal y un riesgo asumido. Es importante decir que el tesista ya contaba con un trayecto profesional automatizaciones, creación de librerías y servidores Linux para procesamiento satelital. El equipo de trabajo conformado por director, codirector y asesor científico fue excelente desde el inicio del trabajo.
+En este sentido, la historia del proyecto forma parte del aporte de la tesis. LegionGOES no fue pensado y armado en seis meses ni surgió como una aplicación final desde el primer intento. La cantidad de horas destinada al desarrollo fue muy superior a la estipulada para una tesis de maestría, y eso fue una decisión personal y un riesgo asumido. Es importante decir que el tesista ya contaba con un trayecto profesional en automatizaciones en servidores, creación de librerías y manejo de servidores Linux para procesamiento satelital. El equipo de trabajo conformado por director, codirector y asesor científico fue excelente desde el inicio del trabajo.
 
 Esta aclaración no busca desalentar futuros desarrollos, sino evitar falsas expectativas en futuros trabajos de tesis, ya sea  por el lado del tesista o del director de tesis.
 

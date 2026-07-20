@@ -21,6 +21,8 @@ La generación de los límites internacionales y costeros como capas vectoriales
 
 La idea de maximizar el espacio de visualización generó la necesidad de botones superiores y menús ocultos laterales. Puede discutirse esto nuevamente  volver a ordenar estos objetos de una mejor manera.
 
-De las dificultades que tiene la generación de software para usuarios mediante una interfaz es que aún haciendo todo bien el sistema puede no dar una buena experiencia de usuario y hay que comenzar de cero. Si bien LegionGOES es una aplicación agrometeorológica los problemas relacionados a los temas satelitales fueron mucho más sencillos de resolver y en menor cantidad  que los relacionados a la interfaz del usuario.
+Como usuarios muchass veces no contextualizamos lo que implica en términos computacionales nuestros deseos de una serie temporal, por ejemplo, de 1 año completo. Solo en lo referido a una serie temporal para 1 día de 4 actividades metereológicas, requiere un espacio en disco de 67Gb.
+
+De las dificultades que tiene la generación de software para usuarios mediante una interfaz es que aún haciendo todo bien el sistema puede no dar una buena experiencia de usuario y hay que comenzar de cero. Y si funciona todo bien y de decide agregar un nuevo botón a veces esa nueva opción lleva a la decisión de volver a modificar toda la interfaz. Si bien LegionGOES es un software que descarga, procesa y visualizap productos GOES los problemas relacionados a los temas satelitales fueron mucho más sencillos de resolver y en menor cantidad  que los relacionados a la interfaz del usuario.
 
 

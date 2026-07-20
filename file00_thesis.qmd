@@ -68,15 +68,17 @@ resource-path:
   - chapter06_software_legiongoes/img
   - chapter07_aplicaciones_dentro_de_legiongoes
   - chapter07_aplicaciones_dentro_de_legiongoes/img
-  - chapter08_evolucion
-  - chapter08_evolucion/img
-  - chapter09_limitaciones
-  - chapter09_limitaciones/img
-  - chapter10_proyeccion_futura
-  - chapter10_proyeccion_futura/img
-  - chapter11_conclusiones
-  - chapter11_conclusiones/img
-  - chapter12_bibliografia
+  - chapter08_jornada_de_testing_legiongoes
+  - chapter08_jornada_de_testing_legiongoes/img
+  - chapter09_evolucion
+  - chapter09_evolucion/img
+  - chapter10_limitaciones
+  - chapter10_limitaciones/img
+  - chapter11_proyeccion_futura
+  - chapter11_proyeccion_futura/img
+  - chapter12_conclusiones
+  - chapter12_conclusiones/img
+  - chapter13_bibliografia
 ---
 
 {{< include frontmatter_caratula/caratula.qmd >}}
@@ -140,28 +142,34 @@ resource-path:
 \clearpage
 ```
 
-{{< include chapter08_evolucion/chapter08_evolucion_body.qmd >}}
+{{< include chapter08_jornada_de_testing_legiongoes/chapter08_jornada_de_testing_legiongoes_body.qmd >}}
 
 ```{=latex}
 \clearpage
 ```
 
-{{< include chapter09_limitaciones/chapter09_limitaciones_body.qmd >}}
+{{< include chapter09_evolucion/chapter09_evolucion_body.qmd >}}
 
 ```{=latex}
 \clearpage
 ```
 
-{{< include chapter10_proyeccion_futura/chapter10_proyeccion_futura_body.qmd >}}
+{{< include chapter10_limitaciones/chapter10_limitaciones_body.qmd >}}
 
 ```{=latex}
 \clearpage
 ```
 
-{{< include chapter11_conclusiones/chapter11_conclusiones_body.qmd >}}
+{{< include chapter11_proyeccion_futura/chapter11_proyeccion_futura_body.qmd >}}
 
 ```{=latex}
 \clearpage
 ```
 
-{{< include chapter12_bibliografia/chapter12_bibliografia_body.qmd >}}
+{{< include chapter12_conclusiones/chapter12_conclusiones_body.qmd >}}
+
+```{=latex}
+\clearpage
+```
+
+{{< include chapter13_bibliografia/chapter13_bibliografia_body.qmd >}}

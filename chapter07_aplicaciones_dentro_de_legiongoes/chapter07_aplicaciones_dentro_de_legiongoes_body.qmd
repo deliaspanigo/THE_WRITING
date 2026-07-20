@@ -343,17 +343,3 @@ Esta es una parte de ese código que resultó sumamente interesante. Es una apli
 \label{fig-legiongoes-home}
 \end{figure}
 ```
-
-\newpage
-
-
-# Jornada de Testing para LegionGOES
-La idea del producto para el desarrollador puede ser buena, y agradable para su grupo de amigos o colegas cercanos, pero sirven como primer nivel de usuarios testing. En algún momento hay que enfrentar el producto generado a un grupo más objetivo. Si la idea es ser una herramietna de software pues hay que enfrentar la herramietna a un grupo de profesionales GIS y ver que dicen de ella.
-
-Se promovió desde el instituto Gulich unba jornada de Testing para LegionGOES que tuvo la participación de 12 personas, todos profesionales GIS que utilizaron el programa por primera vez. En el grupo había backgrounds muy diferentes como meteorólogos, personal de CONAE, profesores universitarios, doctores en geomática y doctorandos, computólogos y científicos de conicet, todos con al menos 10 años en temáticas GIS.
-
-El grupo en un su conjunto manifestó sorpresa por las posibilidades de procesamienteo y visualziación, y explícitamente manifestaron un visto bueno a la herramienta. Los puntos destacados han sido la posibilidad de volver a tener control de los procesamientos de manera local, la maximización del epsacio de visualización y las herramietnas que facilitan la visualización de series temporales y generación de videos.
-
-También hay que decir que rápidamente encontraron errores y detalles a mejorar.
-
-La idea es durante los sigueitnes meses seguir generando jornadas de testing para difundir a LegionGOES como una opción GIS.

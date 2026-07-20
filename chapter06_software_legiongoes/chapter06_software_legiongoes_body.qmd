@@ -16,7 +16,7 @@ Una definición un poco más detallada es que LegionGOES puede definirse como un
 \end{figure}
 ```
 
-
+\newpage
 ## Requerimientos de entorno
 - Windows 7 o superior.
 - 4 Gb de Ram o superior.
@@ -25,6 +25,8 @@ Una definición un poco más detallada es que LegionGOES puede definirse como un
 
 Los requisitos mínimos de software y hardware están asociados a la posibilidad de instalar R y Python en las versiones mencionadas y en poder instalar librerías geoespaciales de manera correcta.
 
+## Entorno de trabajo
+La interfaz del usuario está ordenada en base a temáticas babjo monitoreo. Cada temática internamente está asociada a un conjunto preestablecido de imágenes GOES.
 
 ## Aplicaciones dentro de LegionGOES
 Al momento de escribir esta tesis, LegionGOES se encuentra en su versión 0.7.2 y cuenta con una estruuctura modular separada en 15 aplicaciones R/Shiny. Una de las aplicaciones es el Home propiamente dicho, y 14 aplicaciones son llamadas desde el HOME a pedido del usuario.
@@ -43,6 +45,8 @@ Los archivos originales de GOES se encuentran en formato `NetCDF`. A continuaci�
 | **Total descargado** | **1 día** |**4632** | **41.57 GB** ||
 
 En la carpeta de datos originales (`data_raw`), el volumen total de archivos `NetCDF` encontrados para ese día fue de aproximadamente 41.57 GB. 
+
+\newpage
 
 En cuanto a los archivos procesados en la carpeta de productos procesados (`data_proc`), para el mismo día de referencia, el volumen total de productos procesados fue `26.25 GB`:
 

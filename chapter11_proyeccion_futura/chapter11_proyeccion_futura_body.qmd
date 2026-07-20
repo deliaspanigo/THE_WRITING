@@ -1,0 +1,12 @@
+# Proyección futura y posibiidades
+El comienzo de esta tesis habló de la temática de observación de la Tierra diciendo que es algo que no tiene límites. Siempre hay algo nuevo por aprender, algo nuevo por agregar, una nueva necesidad o un nuevo punto de vista. Siempre hay algo más que agregar, algo que corregir o una nueva forma de presentar lo que ya existía. Esta idea se ve reflejado en cómo ha evolucionado QGIS, Google Earth Engine, y las nuevas librerías de R y Python que aparecen todo el tiempo y las antiguas librerías que siguen generando versiones [@qgis; @google_earth_engine; @r_project; @python]. En este sentido LegionGOES es una herramienta también con mucho potencial. Hablaremos un poco de esas posibilidades.
+
+LegionGOES es a todas luces un proyecto que puede ser presentado como I+D y que puede crecer en la medida que sea patrocinado o sostenido por una o más instituciones. Se dará difusión el proyecto con la finalidad de encontrar un apoyo para seguir desarrollando la herramiena. Luego de la presentación de la tesis, se generará una publicación para LegionGOES y permitir de esa manera poder citar el programa si es utilizado por grupos técnicos y/o científicos.
+
+La estructura actual de LegionGOES es tal vez un buen prototipo para retomar una idea que nadie discute que es la de generar software local. La estructura de LegionGOES merece una versión para Linux. Con eso se llegaría a cubrir dos aspectos importantes; el primero es poder llegar a los usuarios de Linux y el segundo es que al ser LegionGOES un servidor web que corre localmente, podría ser colocado en un servidor Linux para brindar servicio de LegionGOES online [@linux_foundation].
+
+
+El pack de herramientas Classroom merecen tranquilamente un software aparte destinado exlucisvamente a la educación de grado y posgrado, o como iniciación a la temática GIS.
+
+No hay un softawre de uso local para ningún satélite y es factible generar un equivalente de  LegioGOES por ejemplo para Sentinel y Landsat. Puntualemnte para cualquiera de los satélites que componen la constelación de satélites argentinos, o para el próximo satélite SabiaMAR, es totalmente posible generar un software instalable de uso local que permita al menos un mínimo de procesamiento de sus productos satelitales. Por fuera de las imágenes satelitales, lo mismo para imágenes de drones o para cualquier otro tipo de información espacial.
+
