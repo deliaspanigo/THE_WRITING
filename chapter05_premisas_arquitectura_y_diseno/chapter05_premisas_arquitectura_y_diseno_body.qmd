@@ -5,13 +5,21 @@ Desde una perspectiva funcional, pueden reconocerse cuatro premisas que el softw
 1) Automatizar la relación con los datos de origen, es decir, localizar y descargar archivos pertinentes de la constelación GOES para las temáticas abordadas.  
 2) Procesar esos archivos según reglas específicas por producto satelital y por actividad bajo monitoreo.  
 3) Convertir los resultados en objetos visuales entendibles, tales imágenes, videos, reportes y entornos de visualización.  
-4) El cuarto es ofrecer aplicaciones donde el usuario pueda consultar, combinar y exportar estos resultados sin quedar expuesto a la complejidad completa del procesamiento interno.
+4) Ofrecer aplicaciones donde el usuario pueda consultar, combinar y exportar estos resultados sin quedar expuesto a la complejidad completa del procesamiento interno.
+
 
 Estas premisas manifiestan que LegionGOES aspira a cubrir el recorrido completo entre dato satelital y producto utilizable o reportería.
 
+## Requerimientos GIS y formato de archivos.
+
+- Se generarán archivos tiff en formato wgs84 como parte de las salidas.
+- Generarán archivos PNG como formato de imagen. La elección de PNG sobre JPG se debe a que JPG no permite tener celdas transparentes.
+- Capas vectoriales en formato geojason.
+- Dataframes en formato csv.
+- En caso de realizar estadísticas las mismas serán obtenidas sobre los datos de GOES en su proyección original.
 
 ## Requerimientos de arquitectura
-El lineamiento general de la estructura internal del programa son;
+El lineamiento general de la estructura internal del programa es;
 
 - Realizar el procesamiento de imágenes satelitales con Python.
 - Utilizar caches locales permanentes y temporales para agilizar los tiempos de procesamiento.

@@ -30,13 +30,9 @@ Los requisitos mínimos de software y hardware están asociados a la posibilidad
 Al momento de escribir esta tesis, LegionGOES se encuentra en su versión 0.7.2 y cuenta con una estruuctura modular separada en 15 aplicaciones R/Shiny. Una de las aplicaciones es el Home propiamente dicho, y 14 aplicaciones son llamadas desde el HOME a pedido del usuario.
 
 ## Un día completo
+Analizaremos el volumen de descarga y procesamiento asociado a un día completo contemplando todas las actividadedsd e monitoreo. Como jornada de referencia se decidió el 03-01-2026, que en día juliano corresponde al 003-2026.
 
-Un aspecto relevante para comprender el funcionamiento práctico de LegionGOES es el volumen de almacenamiento asociado a un día completo de trabajo. Aunque el usuario interactúa con visualizaciones, botones y salidas gráficas, internamente el sistema debe gestionar una cantidad considerable de archivos originales y productos derivados. 
-
-Como día de referencia se decidió el 03-01-2026, que el día juliano corresponde al 003-2026. SI bien hay variabilidad entre los archivos de diferentes días y satélite, la información presentada a continuación sirve de ejemplo dimensionar el orden de magnitud del problema computacional que el software resuelve para el usuario.
-
-
-Los archivos originales de GOES que pueden descargarse todos se encuentran en formato `NetCDF`.
+Los archivos originales de GOES se encuentran en formato `NetCDF`. A continuación una tabla con el peso de los diferentes productos que son descargados desde AWS: 
 
 | Producto GOES | Frecuencia |Cantidad de archivos | Peso total aproximado | Peso promedio por archivo (MB) |
 |---|---:|---:|---:|---:|
@@ -44,32 +40,21 @@ Los archivos originales de GOES que pueden descargarse todos se encuentran en fo
 | `ABI-L2-LSTF` | 1 hora |24 | `0.01 GB` | `0.61 MB` |
 | `ABI-L2-MCMIPF` | 10 minutos |144 | `39.34 GB` | `279.71 MB` |
 | `GLM-L2-LCFA` | 20 segundos |4320 | `1.98 GB` | `0.47 MB` |
+| **Total descargado** | **1 día** |**4632** | **41.57 GB** ||
 
-Esta comparación muestra que el peso individual de los productos es muy desigual. Un archivo `MCMIPF` pesa mucho más que un archivo `FDCF`, `LSTF` o `GLM-L2-LCFA`. Sin embargo, el impacto final en almacenamiento no depende solamente del peso de cada archivo, sino también de la frecuencia temporal de cada producto. Por ello, además del peso individual, resulta necesario observar el volumen acumulado para un día completo.
+En la carpeta de datos originales (`data_raw`), el volumen total de archivos `NetCDF` encontrados para ese día fue de aproximadamente 41.57 GB. 
 
-En la carpeta de datos originales (`data_raw`), el volumen total de archivos `NetCDF` encontrados para ese día fue de aproximadamente `41.57 GB`, distribuidos de la siguiente manera:
+En cuanto a los archivos procesados en la carpeta de productos procesados (`data_proc`), para el mismo día de referencia, el volumen total de productos procesados fue `26.25 GB`:
 
-| Producto GOES | Cantidad de archivos | Peso aproximado por día |
-|---|---:|---:|
-| `ABI-L2-FDCF` | 144 | `0.24 GB` |
-| `ABI-L2-LSTF` | 24 | `0.01 GB` |
-| `ABI-L2-MCMIPF` | 144 | `39.34 GB` |
-| `GLM-L2-LCFA` | 4320 | `1.98 GB` |
-| **Total descargado** | **4632** | **41.57 GB** |
-
-El resultado muestra que el producto `ABI-L2-MCMIPF` domina claramente el peso de los datos originales descargados. Esto es esperable porque se trata de un producto multibanda de disco completo, con una frecuencia temporal elevada para el uso planteado en LegionGOES. En contraste, `ABI-L2-LSTF` presenta un volumen mucho menor debido a su frecuencia horaria, mientras que `GLM-L2-LCFA`, aun teniendo 4320 archivos diarios por su resolución temporal de 20 segundos, mantiene un peso total menor que `MCMIPF`.
-
-En la carpeta de productos procesados (`data_proc`), LegionGOES organiza las salidas observadas principalmente por bloque de procesamiento, satélite y producto. Para el mismo día de referencia, el volumen total de productos procesados encontrados fue de aproximadamente `26.25 GB`:
-
-| Bloque procesado | Producto | Cantidad de archivos | Peso aproximado |
-|---|---|---:|---:|
-| `sp01_single` | `ABI-L2-FDCF` | 8208 | `1.52 GB` |
-| `sp01_single` | `ABI-L2-LSTF` | 648 | `0.20 GB` |
-| `sp01_single` | `ABI-L2-MCMIPF` | 3024 | `23.12 GB` |
-| `sp01_single` | `GLM-L2-LCFA` | 1152 | `1.42 GB` |
+ Producto GOES | Cantidad de archivos | Peso aproximado |
+---|---:|---:|
+ `ABI-L2-FDCF` | 8208 | `1.52 GB` |
+ `ABI-L2-LSTF` | 648 | `0.20 GB` |
+ `ABI-L2-MCMIPF` | 3024 | `23.12 GB` |
+ `GLM-L2-LCFA` | 1152 | `1.42 GB` |
 | **Total procesado** |  | **13032** | **26.25 GB** |
 
-La distribución por tipo de archivo procesado confirma que el mayor peso se encuentra en las salidas visuales, especialmente en imágenes `PNG`:
+Podemos separar a estas mismas salidas por tipo de archivo y veremos que el mayor peso se encuentra en las salidas visuales, especialmente en imágenes `PNG`:
 
 | Tipo de archivo procesado | Cantidad de archivos | Peso aproximado |
 |---|---:|---:|
@@ -80,12 +65,8 @@ La distribución por tipo de archivo procesado confirma que el mayor peso se enc
 | otros formatos | 2568 | `0.19 GB` |
 | **Total procesado** | **13032** | **26.25 GB** |
 
-Esta medición permite destacar una decisión central de diseño: LegionGOES no solo descarga datos satelitales, sino que transforma esos datos en una colección amplia de productos intermedios y finales. Entre ellos se incluyen imágenes, capas vectoriales, archivos tabulares, rásteres reproyectados, objetos temporales y salidas preparadas para visualización. Por este motivo, el almacenamiento generado por el procesamiento no es un aspecto secundario, sino una parte estructural del sistema.
 
-Desde el punto de vista temático, los productos no se comportan como compartimentos completamente independientes. `LSTF` se asocia principalmente a temperatura en superficie; `FDCF` a focos de calor; `GLM-L2-LCFA` a tormentas eléctricas; y `MCMIPF` cumple un rol transversal, ya que participa en nubes y también funciona como producto de contexto visual para otras herramientas viewer. Por esta razón, si se sumaran los pesos por temática de manera directa, se correría el riesgo de contar varias veces el peso de `MCMIPF`. En términos de almacenamiento real, resulta más correcto distinguir entre el peso por producto descargado y el peso por producto o bloque procesado.
+Contemplando el total de archivos descargados,y el total de archivos procesados, el espacio total ocupado en disco por día es de 67 GB.
+Una vez finalizado el procesamiento, el usuario podría eliminar los archivos `NetCDF` originales si su objetivo es conservar únicamente las salidas procesadas para visualización, análisis o comunicación. 
 
-En conjunto, este ejemplo muestra que un solo día completo de trabajo puede implicar decenas de gigabytes entre datos originales y productos derivados. Para el caso analizado, los archivos originales descargados alcanzaron aproximadamente `41.57 GB`, mientras que los productos procesados alcanzaron aproximadamente `26.25 GB`. Si el usuario conservara ambos conjuntos, el volumen local asociado a esa jornada superaría los `67 GB`. Esta magnitud justifica la necesidad de una estructura local ordenada, reglas estrictas de ubicación de archivos, controles de existencia y tamaño, procesamiento incremental, generación de cachés y mecanismos de comunicación con el usuario.
 
-Una consecuencia práctica de esta organización es que, una vez finalizado el procesamiento, el usuario podría eliminar los archivos `NetCDF` originales si su objetivo es conservar únicamente las salidas procesadas para visualización, análisis o comunicación. Esta decisión permite recuperar una parte importante del espacio en disco, aunque implica perder la posibilidad de reprocesar localmente los datos originales sin volver a descargarlos. Por lo tanto, LegionGOES deja abierta una decisión operativa: conservar los archivos originales para asegurar reprocesamiento y trazabilidad completa, o quedarse solo con los productos derivados cuando la prioridad sea reducir almacenamiento.
-
-También explica por qué la reproducibilidad en LegionGOES no depende únicamente de conocer el algoritmo aplicado, sino de mantener una relación estable entre archivos descargados, productos procesados, rutas internas y salidas visuales.
